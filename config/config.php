@@ -1,5 +1,7 @@
 <?php
 
+/** configuration variable **/
+
 define('DEVELOPMENT_ENVIRONMENT', true);
 define('DB_HOST', '');
 define('DB_USER', '');
