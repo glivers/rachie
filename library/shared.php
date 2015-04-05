@@ -1,7 +1,8 @@
 <?php
 
 /** check if environment is development and display errors **/
-functon setReporting()
+
+function setReporting()
 {
 	if(DEVELOPMENT_ENVIRONMENT == true)
 	{
@@ -23,7 +24,7 @@ functon setReporting()
 
 /** check for magic quotes and remove them **/
 
-functon stripSlashesDeep($value)
+function stripSlashesDeep($value)
 {
 	$value = is_array($value) ? array_map('stripSlashesDeep', $value) : stripslashes($value);
 
@@ -31,7 +32,7 @@ functon stripSlashesDeep($value)
 
 }
 
-functon removeMagicQuotes()
+function removeMagicQuotes()
 {
 	if(get_magic_quotes_gpc())
 	{
