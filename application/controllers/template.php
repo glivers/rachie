@@ -1,5 +1,7 @@
 <?php
 
+class Template  {
+
 protected $variables = array();
 protected $_controller;
 protected $_action;
@@ -43,7 +45,9 @@ protected $_action;
         else 
         {
             include (ROOT . DS . 'application' . DS . 'views' . DS . 'footer.php');
-            
+
         }
 
 	}
+
+}

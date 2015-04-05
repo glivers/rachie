@@ -30,7 +30,7 @@ class ItemsController extends Controller {
     {
         $this->set('title','Success - My Todo List App');
         $this->set('todo',$this->Item->query('delete from items where id = \''.mysql_real_escape_string($id).'\''));  
-        
+
     }
  
 }

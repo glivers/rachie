@@ -39,7 +39,7 @@ class SQLQuery {
 
 	function disconnect()
 	{
-		if(@mysql_close($this->_dbHandle != 0)
+		if(@mysql_close($this->_dbHandle != 0))
 		{
 			return 1;
 
@@ -85,7 +85,7 @@ class SQLQuery {
 	        for ($i = 0; $i < $numOfFields; ++$i) {
 	            array_push($table,mysql_field_table($this->_result, $i));
 	            array_push($field,mysql_field_name($this->_result, $i));
-	            
+
         }
  
          
