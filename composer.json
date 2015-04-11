@@ -1,5 +1,5 @@
 {
-	"name" : "gliver-mvc/core",
+	"name" : "gliver/core",
 	"type" : "project",
 	"description" : "The base foundation for the gliver mvc PHP framework",
 	"keywords" : ["gliver", "mvc", "gliver-mvc", "php framework"],
