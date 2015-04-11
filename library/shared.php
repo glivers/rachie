@@ -108,8 +108,9 @@ function callHook()
 
 /** Autoload any classes that are required **/
 
-function __autoload($className)
+function autoload($className)
 {
+
 	if(file_exists(ROOT . DS . 'library' . DS . strtolower($className) . '.class.php'))
 	{
 		require_once(ROOT . DS . 'library' . DS . strtolower($className) . '.class.php');
@@ -130,11 +131,14 @@ function __autoload($className)
 
 	else
 	{
-		/** Error generation code here **/
+		// Error generation code here 
+		throw new Exception("{$className} not found");
 
 	}
 
 }
+
+spl_autoload_register('autoload');
 
 setReporting();
 removeMagicQuotes();
