@@ -33,7 +33,7 @@ class View {
         $path = Path::app() . 'views' . DIRECTORY_SEPARATOR;
 
 
-        //check if there multiple directories to the $file path
+        //check if there multiple directories in the $file path
         if(count($viewFileArray) > 1)
         {
             //set the number of iterations
