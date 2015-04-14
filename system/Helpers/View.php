@@ -1,8 +1,11 @@
 <?php namespace Core\Helpers;
 
+use Core\Helpers\Url;
+use Core\Helpers\Path;
+
 class View {
 
-	protected $variables = array();
+	protected static $variables = array();
     protected $_controller;
     protected $_action;
      
@@ -13,28 +16,68 @@ class View {
  
     /** Set Variables **/
  
-    function set($name,$value) {
-        $this->variables[$name] = $value;
+    public static function  set($name,$value) 
+    {
+
+        //self::variables[$name] = $value;
     }
  
     /** Display Template **/
      
-    function render() {
-        extract($this->variables);
-         
-            if (file_exists(ROOT . DS . 'application' . DS . 'views' . DS . $this->_controller . DS . 'header.php')) {
-                include (ROOT . DS . 'application' . DS . 'views' . DS . $this->_controller . DS . 'header.php');
-            } else {
-                include (ROOT . DS . 'application' . DS . 'views' . DS . 'header.php');
+   public static function  render($filePath, array $data = null) 
+   {
+        $viewFileArray = array();
+        $viewFileArray = explode("/", $filePath);
+
+        //compose the file full path
+        $path = Path::app() . 'views' . DIRECTORY_SEPARATOR;
+
+
+        //check if there multiple directories to the $file path
+        if(count($viewFileArray) > 1)
+        {
+            //set the number of iterations
+            $itr = count($viewFileArray);
+
+            //loop though the array concatenating the file path
+            for ($i=0; $i < $itr; $i++) 
+            { 
+                //if this is the last item, dont add directory separator, instead, add the .php extension
+                if($i ==  ($itr - 1))
+                {
+                    $path .= $viewFileArray[$i] . '.php';
+
+                }
+                //append the directory separator at the end
+                else
+                {
+                    $path .= $viewFileArray[$i] . DIRECTORY_SEPARATOR;
+
+                }
+
             }
+
+        }
+        //no sub-directories, add the file name and extension
+        else
+        {
+            $path .= $viewFileArray[0] . '.php';
+
+        }
+
+        //load this file into view
+        if (file_exists($path)) 
+        {
+            include ($path);
+
+        } 
+        //throw throw the appropriate error message
+        else 
+        {
+            //
+
+        }
  
-        include (ROOT . DS . 'application' . DS . 'views' . DS . $this->_controller . DS . $this->_action . '.php');      
-             
-            if (file_exists(ROOT . DS . 'application' . DS . 'views' . DS . $this->_controller . DS . 'footer.php')) {
-                include (ROOT . DS . 'application' . DS . 'views' . DS . $this->_controller . DS . 'footer.php');
-            } else {
-                include (ROOT . DS . 'application' . DS . 'views' . DS . 'footer.php');
-            }
     }
 
 }

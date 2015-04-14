@@ -1,35 +1,30 @@
 <?php namespace Controllers;
 
-use Core\Template;
+use Core\Helpers\View;
 
 class Controller {
 
-	protected $_model;
 	protected $_controller;
 	protected $_action;
-	protected $_template;
 
 	function __construct($model, $controller, $action)
 	{
-			echo "Something in here!";
+		echo "Something in here!";
 		$this->_controller 	= $controller;
 		$this->_action 		= $action;
-		$this->_model 		= $model;
-
-		$model = 'Models\\' . $model;
-
 
 	}
 
+/*
 	function set($name, $value)
 	{
-		//$this->_template->set($name, $value);
+		View::set($name, $value);
 
 	}
-
+*/
 	function __destruct()
 	{
-		//$this->_template->render();
+		View::render('items/viewall');
 
 	}
 

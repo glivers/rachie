@@ -19,6 +19,6 @@ $config = require_once __DIR__ . '/../config/config.php';
 $start = require_once __DIR__ . '/start.php';
 
 /**
- *Launch this application
+ *Launch this application instance
  */
 $start();
