@@ -13,8 +13,8 @@ class ItemsController extends Controller {
     function viewall() 
     {
  
-        $this->set('title','All Items - My Todo List App');
-        $this->set('todo',$this->Item->selectAll());
+        //$this->set('title','All Items - My Todo List App');
+        //$this->set('todo',$this->Item->selectAll());
 
     }
      

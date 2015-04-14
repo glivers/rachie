@@ -1,7 +1,6 @@
-<?php namespace Core;
+<?php namespace Core\Helpers;
 
-class SQLQuery {
-
+class DB {
 	protected $_dbHandle;
 	protected $_result;
 
@@ -123,5 +122,4 @@ class SQLQuery {
     function getError() {
         return mysql_error($this->_dbHandle);
     }
-
 }

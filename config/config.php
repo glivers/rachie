@@ -1,15 +1,23 @@
 <?php
 
-/** configuration variable **/
+return array(
 
-define('DEVELOPMENT_ENVIRONMENT', true);
+	/**
+	 *Set the application environment. Set true for development, otherwise, set to false
+	 */
+	'development' => true,
 
-/** define the database configuration settings **/
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASSWORD', 'goliver');
-define('DB_NAME', 'todo');
+	/**
+	 *Set the protocol for this url
+	 */
+	'protocol' => 'http',
+	/**
+	 *Set the server name for this url for example localhost or example.com for a domain
+	 */
+	'host' => 'localhost',
+	/**
+	 *Define the root directory
+	 */
+	'root' => dirname((dirname(__FILE__))),
 
-define('BASE_PATH', 'http://localhost/gliver');
-
-define('PAGINATE_LIMIT', '5');
+	);
