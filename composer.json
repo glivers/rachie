@@ -20,7 +20,7 @@
 		"psr-4" : {
 			"Models\\" : "application/models",
 			"Controllers\\" : "application/controllers",
-			"Core\\" : "library"
+			"Core\\" : "system"
 		}
 	}
 }

@@ -12,4 +12,4 @@ require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../config/config.php';
 //require_once(ROOT . DS . 'config' . DS . 'routing.php');
 //require_once(ROOT . DS . 'config' . DS . 'inflection.php');
-require_once(ROOT . DS . 'library' . DS . 'shared.php');
+require_once(ROOT . DS . 'system' . DS . 'shared.php');
