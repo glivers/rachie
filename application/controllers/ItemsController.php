@@ -1,4 +1,4 @@
-<?php
+<?php namespace Controllers;
 
 class ItemsController extends Controller {
 

@@ -88,7 +88,7 @@ function callHook()
 	$controllerName = $controller;
 	$controller 	= ucwords($controller);
 	$model 			= rtrim($controller, 's');
-	$controller 	.= 'Controller';
+	$controller 	= 'Controllers\\' . $controller . 'Controller';
 	$dispatch 		= new $controller($model, $controllerName, $action);
 
 	if((int)method_exists($controller, $action))
@@ -105,40 +105,6 @@ function callHook()
 	}
 
 }
-
-/** Autoload any classes that are required **/
-
-function autoload($className)
-{
-
-	if(file_exists(ROOT . DS . 'library' . DS . strtolower($className) . '.class.php'))
-	{
-		require_once(ROOT . DS . 'library' . DS . strtolower($className) . '.class.php');
-
-	}
-
-	elseif (file_exists(ROOT . DS . 'application' . DS . 'controllers' . DS . strtolower($className) . '.php'))
-	{
-		require_once(ROOT . DS . 'application' . DS . 'controllers' . DS . strtolower($className) . '.php');
-
-	}
-
-	elseif (file_exists(ROOT . DS . 'application' . DS . 'models' . DS . strtolower($className) . '.php')) 
-	{
-		require_once(ROOT . DS . 'application' . DS . 'models' . DS . strtolower($className) . '.php');
-
-	}
-
-	else
-	{
-		// Error generation code here 
-		throw new Exception("{$className} not found");
-
-	}
-
-}
-
-spl_autoload_register('autoload');
 
 setReporting();
 removeMagicQuotes();
