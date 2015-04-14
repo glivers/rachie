@@ -17,8 +17,10 @@
 		"php" : ">=5.4.0"
 	},
 	"autoload" : {
-		"psr-0" : {
-			"Monolog" : "src"
+		"psr-4" : {
+			"Models\\" : "application/models",
+			"Controllers\\" : "application/controllers",
+			"Core\\" : "library"
 		}
 	}
 }

@@ -1,8 +1,9 @@
 <?php
 
-define('DS', DIRECTORY_SEPARATOR);
-define('ROOT', dirname(dirname(__FILE__)));
+//use Controllers\Auth;
 
-$url = $_GET['url'];
+require_once __DIR__ . '/../library/bootstrap.php';
 
-require_once(ROOT . DS . 'library' . DS . 'bootstrap.php');
+
+$start = new Controllers\ItemsController();
+
