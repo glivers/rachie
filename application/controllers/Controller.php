@@ -18,20 +18,18 @@ class Controller {
 
 		$model = 'Models\\' . $model;
 
-		$this->$model 		= new $model;
-		$this->_template 	= new Template($controller, $action); 
 
 	}
 
 	function set($name, $value)
 	{
-		$this->_template->set($name, $value);
+		//$this->_template->set($name, $value);
 
 	}
 
 	function __destruct()
 	{
-		$this->_template->render();
+		//$this->_template->render();
 
 	}
 

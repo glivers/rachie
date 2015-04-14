@@ -1,8 +1,8 @@
-<?php namespace Core;
+<?php namespace Core\Helpers;
 
-class Template {
-     
-    protected $variables = array();
+class View {
+
+	protected $variables = array();
     protected $_controller;
     protected $_action;
      
@@ -36,5 +36,5 @@ class Template {
                 include (ROOT . DS . 'application' . DS . 'views' . DS . 'footer.php');
             }
     }
- 
+
 }
