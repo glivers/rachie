@@ -22,7 +22,7 @@ return	function(){
 	 *Check for development environment to use in setting the manner in which errors are displayed
 	 *
 	 */
-	if($config['development'] == true)
+	if($config['development'] === true)
 	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 'On');
