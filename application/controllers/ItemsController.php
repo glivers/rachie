@@ -1,5 +1,8 @@
 <?php namespace Controllers;
 
+use Core\Helpers\View;
+
+
 class ItemsController extends Controller {
 
 	function view($id = null,$name = null) 
@@ -15,7 +18,7 @@ class ItemsController extends Controller {
  
         //$this->set('title','All Items - My Todo List App');
         //$this->set('todo',$this->Item->selectAll());
-
+        View::render('items/viewalll', array('title' => 'This is the homepage'));
     }
      
     function add() 

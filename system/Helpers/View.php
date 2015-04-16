@@ -1,83 +1,125 @@
 <?php namespace Core\Helpers;
 
+/**
+ *This class handles rendering of view files
+ *
+ *@author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
+ *@copyright Copyright (c) 2015 - 2020 Geoffrey Oliver
+ *@link http://libraries.gliver.io
+ *@category Core
+ *@package Core\Helpers\View
+ */
+
 use Core\Helpers\Url;
 use Core\Helpers\Path;
+use Core\Exceptions\FileErrorException;
 
 class View {
 
-	protected static $variables = array();
-    protected $_controller;
-    protected $_action;
      
-    function __construct($controller,$action) {
-        $this->_controller = $controller;
-        $this->_action = $action;
-    }
- 
-    /** Set Variables **/
- 
-    public static function  set($name,$value) 
+    public function __construct() 
     {
+        //    
 
-        //self::variables[$name] = $value;
     }
  
-    /** Display Template **/
-     
+    /**
+     *This method parses the input variables and loads the specified views
+     *
+     *This method gets the string $filePath and splits it into array separated by
+     *the '/'. It then composes a directory path with these fragments and loads the
+     *view file
+     *
+     *@param string $filePath the string that specifies the view file to load
+     *@param array $data an array with variables to be passed to the view file
+     *@return void This method does not return anything, it directly loads the view file
+     *@throws 
+     */     
    public static function  render($filePath, array $data = null) 
    {
-        $viewFileArray = array();
-        $viewFileArray = explode("/", $filePath);
+        //this try block is excecuted to enable throwing and catching of errors as appropriate
+        try {
 
-        //compose the file full path
-        $path = Path::app() . 'views' . DIRECTORY_SEPARATOR;
-
-
-        //check if there multiple directories to the $file path
-        if(count($viewFileArray) > 1)
-        {
-            //set the number of iterations
-            $itr = count($viewFileArray);
-
-            //loop though the array concatenating the file path
-            for ($i=0; $i < $itr; $i++) 
-            { 
-                //if this is the last item, dont add directory separator, instead, add the .php extension
-                if($i ==  ($itr - 1))
+            //get the variables passed and make them available to the view
+            if ( $data != null)
+            {
+                //loop through the array setting the respective variables
+                foreach ($data as $key => $value) 
                 {
-                    $path .= $viewFileArray[$i] . '.php';
-
-                }
-                //append the directory separator at the end
-                else
-                {
-                    $path .= $viewFileArray[$i] . DIRECTORY_SEPARATOR;
+                    $$key = $value;
 
                 }
 
             }
 
+            $viewFileArray = array();
+            $viewFileArray = explode("/", $filePath);
+
+            //compose the file full path
+            $path = Path::app() . 'views' . DIRECTORY_SEPARATOR;
+
+
+            //check if there multiple directories in the $file path
+            if(count($viewFileArray) > 1)
+            {
+                //set the number of iterations
+                $itr = count($viewFileArray);
+
+                //loop though the array concatenating the file path
+                for ($i=0; $i < $itr; $i++) 
+                { 
+                    //if this is the last item, dont add directory separator, instead, add the .php extension
+                    if($i ==  ($itr - 1))
+                    {
+                        $path .= $viewFileArray[$i] . '.php';
+
+                    }
+                    //append the directory separator at the end
+                    else
+                    {
+                        $path .= $viewFileArray[$i] . DIRECTORY_SEPARATOR;
+
+                    }
+
+                }
+
+            }
+            //no sub-directories, add the file name and extension
+            else
+            {
+                $path .= $viewFileArray[0] . '.php';
+
+            }
+
+            //load this file into view
+            if (file_exists($path)) 
+            {
+                include ($path);
+
+            } 
+            //throw throw the appropriate error message
+            else 
+            {
+                //throw FileErrorExcepton
+                throw new FileErrorException($filePath);
+
+            }
+     
         }
-        //no sub-directories, add the file name and extension
-        else
-        {
-            $path .= $viewFileArray[0] . '.php';
+
+        catch(FileErrorException $e) {
+
+            //echo $e->getMessage();
+            $e->show();
 
         }
 
-        //load this file into view
-        if (file_exists($path)) 
-        {
-            include ($path);
+        catch(Exception $e) {
 
-        } 
-        //throw throw the appropriate error message
-        else 
-        {
-            //
-
+          echo $e->getMessage();
+          
         }
- 
+
     }
 
 }
