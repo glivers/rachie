@@ -3,13 +3,14 @@
 return	function(){
 
 	/**
-	 *global $config array variable
-	 *This array contains the basic configuration information for this application
+	 *@global array This array contains the basic configuration information for this application
+	 *
 	 */
 	global $config;
 
 	/**
-	 *This string contains the uri segments for this particulat request
+	 *@global string This string contains the uri segments for this particulat request
+	 *
 	 */
 	global $url;
 
