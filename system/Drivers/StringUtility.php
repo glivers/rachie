@@ -14,7 +14,7 @@
  *@version 1.0.1
  */
 
-class String {
+class StringUtility {
 
 	/**
 	 *@var string $delimiter Used to sanitize regular expression pattern
@@ -141,6 +141,19 @@ class String {
 
 		//split string and return array
 		return preg_split(self::normalize($pattern), $string, $limit, $flags);
+
+	}
+
+	/**
+	 *This function cleans strips a string of html, xml and php tags
+	 *
+	 *@param string $string The string to be cleaned of tags
+	 *@return string String after tags have been removed
+	 */
+	public static function removeTags($string)
+	{
+		//remove tags and return new string
+		return strip_tags($string);
 
 	}
 

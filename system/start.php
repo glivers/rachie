@@ -42,8 +42,10 @@ return	function(){
 	 *Explode uri string into array to get the uri components
 	 *
 	 */
-	$urlArray = array();
-	$urlArray = explode("/", $url);
+
+	$urlObj = new Core\Drivers\UrlParser($url);
+
+	echo $urlObj->getController() ;exit();
 
 	//check is a controller was specified
 	if( count($urlArray) > 1)

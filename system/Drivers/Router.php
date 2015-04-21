@@ -75,7 +75,9 @@ class Router extends BaseRouter {
 	 */
 	public function match($name)
 	{
-		//do something
+		//check if a route index with this name is defined.
+		if( isset($this->routes[$name]) ) return true;
+
 
 	}
 

@@ -27,17 +27,17 @@ class BaseRouter {
 	 *@var string $controller The controller name to launch
 	 *@readwrite
 	 */
-	protected $controller;
+	protected $controller = null;
 	/**
 	 *@var string $action The controller method to invoke
 	 *@readwrite
 	 */
-	protected $method;
+	protected $method = null;
 	/**
 	 *@var array $parameters The url request parameters
 	 *@readwrite
 	 */
-	protected $parameters;
+	protected $parameters = null;
 
 	/**
 	 *This exception class is  throw when the specified action cannot be found.

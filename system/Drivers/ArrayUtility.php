@@ -14,7 +14,7 @@
  *@version 1.0.1
  */
 
-class Array {
+class ArrayUtility {
 
 	/**
 	 *This constructor class is private to prevent creating instances of this class
@@ -52,11 +52,11 @@ class Array {
 	public static function clean($array)
 	{
 		//loop throught the input array removing empty elements and return resultant array
-		return array_filter($array, function($item){
+		return array_values(array_filter($array, function($item){
 
 				return ! empty($item);
 
-		});
+		}));
 
 	}
 

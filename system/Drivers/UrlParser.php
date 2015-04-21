@@ -12,7 +12,8 @@
  *@version 1.0.1
  */
 
-use Core\Drivers\Array;
+use Core\Drivers\ArrayUtility;
+use Core\Drivers\StringUtility;
 
 class UrlParser  {
 
@@ -22,6 +23,11 @@ class UrlParser  {
 	protected $url;
 
 	/**
+	 *@var array $parameters Parsed url string parameters
+	 */
+	protected $parameters = null;
+
+	/**
 	 *This constructor initializes the $url string variable
 	 *@param string $url The url request string
 	 *@return void
@@ -29,7 +35,7 @@ class UrlParser  {
 	public function __construct($url)
 	{
 		//assign this value to the $url internal variable
-		$this->url = $url;
+		$this->url = StringUtility::removeTags($url);
 
 	}
 
@@ -49,14 +55,17 @@ class UrlParser  {
 		{
 
 			//remove empty elements
-			$array = Array::clean($array);
+			$array = ArrayUtility::clean($array);
 
 			//remove whitespace from array elements
-			$array = Array::trim($array);
+			$array = ArrayUtility::trim($array);
 
 			//check if array still contains elements
 			if (sizeof($array) > 0) 
 			{
+				//set the parameters array value
+				$this->parameters = $array;
+
 				//return the controller
 				return $array[0];
 
@@ -83,27 +92,11 @@ class UrlParser  {
 	 */
 	public function getAction()
 	{
-		//break url string into array of substrings
-		$array = explode("/", $this->url);
-
 		//procede if parameters were found
-		if (sizeof($array) > 1)
+		if (sizeof($this->parameters) > 1)
 		{
-
-			//remove empty elements
-			$array = Array::clean($array);
-
-			//remove whitespace from array elements
-			$array = Array::trim($array);
-
-			//check if array still contains elements
-			if (sizeof($array) > 1) 
-			{
-				//return the action
-				return $array[1];
-
-			}
-
+			//return the action
+			return $this->parameters[1];
 
 		}
 
@@ -125,27 +118,10 @@ class UrlParser  {
 	 */
 	public function getParam()
 	{
-		//break url string into array of substrings
-		$array = explode("/", $this->url);
-
-		//procede if parameters were found
-		if (sizeof($array) > 2)
+		if (sizeof($this->parameters) > 2)
 		{
-
-			//remove empty elements
-			$array = Array::clean($array);
-
-			//remove whitespace from array elements
-			$array = Array::trim($array);
-
-			//check if array still contains elements
-			if (sizeof($array) > 2) 
-			{
-				//return the controller
-				return array_slice($array, 2);
-
-			}
-
+			//return the controller
+			return array_slice($this->parameters, 2);
 
 		}
 
