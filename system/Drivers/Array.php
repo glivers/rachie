@@ -78,4 +78,35 @@ class Array {
 
 	}
 
+	/**
+	 *This method converts a multi-dimensional array into a uni-dimensional array
+	 *
+	 *@param array $array The array to flatten
+	 *@param array $return The return array
+	 *@return array The flattened array
+	 */
+	public function flatten($array, $return = array())
+	{
+		//loop through the multi-dimensional array flattening the array value
+		foreach ($array as $key => $value) 
+		{
+			//flatten is array element is a value or element
+			if( is_array($value) || is_object($value))
+			{
+				//return 
+				$return = self::flatten($value, $return);
+
+			}
+			else
+			{
+				$return[] = $value;
+
+			}
+
+		}
+
+		return $return;
+
+	}
+
 }
