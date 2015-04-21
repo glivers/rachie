@@ -13,8 +13,8 @@
  *@version 1.0.1
  */
 
-use Core\Drivers\Array;
-use Core\Drivers\String;
+use Core\Drivers\ArrayUtility;
+use Core\Drivers\StringUtility;
 
 class BaseRouter {
 
@@ -22,7 +22,7 @@ class BaseRouter {
 	 *@var string $pattern The url string pattern to check for
 	 *@readwrite 
 	 */
-	protected $pattern;
+	protected $pattern = '@';
 	/**
 	 *@var string $controller The controller name to launch
 	 *@readwrite

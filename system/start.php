@@ -14,15 +14,7 @@ return	function(){
 	 */
 	global $url;
 
-	/**
-	 *Define the query string array
-	 */
-	$queryString = array();
-
-	/**
-	 *Check for development environment to use in setting the manner in which errors are displayed
-	 *
-	 */
+	//set the development environment
 	if($config['development'] === true)
 	{
 		error_reporting(E_ALL);
@@ -39,56 +31,54 @@ return	function(){
 	}
 
 	/**
-	 *Explode uri string into array to get the uri components
-	 *
+	 *Load the defined routes array
 	 */
+	try{
 
-	$urlObj = new Core\Drivers\UrlParser($url);
+		if ( ! $routes = @include __DIR__ . '/../application/routes.php')
 
-	echo $urlObj->getController() ;exit();
+			throw new Core\Exceptions\FileNotFoundException("The routes.php file cannot be found!");
+			
+	}
+	catch(Core\Exceptions\FileNotFoundException $error){
 
-	//check is a controller was specified
-	if( count($urlArray) > 1)
+		$error->show();
+
+		return;
+	}
+
+	$routeObj = new Core\Drivers\Router();
+
+	//there is a defined route
+	if ( $routeObj->dispatch($url, $routes) ) 
 	{
-		//extract controller from first array element
-		$controller = $urlArray[0];
+		//get the controller name
+		($controller = $routeObj->getController()) || ($controller = 'Home');
 
-		//remove the controller after extracting it
-		array_shift($urlArray);
+		//get the action name
+		($action = $routeObj->getMethod()) || ($action = 'Index');
 
-		//check to see if an action has been specified
-		if( count($urlArray) > 0)
-		{
-			//get the action as the second element
-			$action = $urlArray[0];
-
-			//remove the action from array after extracting it
-			array_shift($urlArray);
-
-			//get the uri segments if they exist
-			$queryString = @$urlArray;
-
-		}
-		//there is no action specified, assign the default action
-		else
-		{
-			//get the default action from the config array
-			$action = $config['default']['action'];
-
-		}
-
+		//get parameters
+		$parameters = $routeObj->getParameters();
 
 	}
-	//no url specified, use the default controller
+	//there is no defined route
 	else
 	{
-		//set the default controller		
-		$controller = $config['default']['controller'];
+		//create an instance of the url parser
+		$urlObj = new Core\Drivers\UrlParser($url);
 
-		//set the default action
-		$action = $config['default']['action'];
+		//get the controller name
+		($controller = $urlObj->getController()) || ($controller = 'Home');
+
+		//get the action name
+		($action = $urlObj->getMethod()) || ($action = 'Index');
+
+		//get parameters
+		$parameters = $urlObj->getParameters();
 
 	}
+
 
 	//get the namespaced controller class
 	$controller 	= 'Controllers\\' . ucwords($controller) . 'Controller';
@@ -96,7 +86,7 @@ return	function(){
 
 	if((int)method_exists($controller, $action))
 	{
-		call_user_func_array(array($dispatch, $action), $queryString);
+		call_user_func_array(array($dispatch, $action), $parameters);
 
 	} 
 

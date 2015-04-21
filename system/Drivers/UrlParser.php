@@ -90,7 +90,7 @@ class UrlParser  {
 	 *@param null
 	 *@return string Action name
 	 */
-	public function getAction()
+	public function getMethod()
 	{
 		//procede if parameters were found
 		if (sizeof($this->parameters) > 1)
@@ -116,7 +116,7 @@ class UrlParser  {
 	 *@param null
 	 *@return array Query parameters for this request
 	 */
-	public function getParam()
+	public function getParameters()
 	{
 		if (sizeof($this->parameters) > 2)
 		{
