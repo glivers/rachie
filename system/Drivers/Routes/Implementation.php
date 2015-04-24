@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers;
+<?php namespace Core\Drivers\Routes;
 
 /**
  *This class routes a request to the appropriate controller and action.
@@ -12,15 +12,15 @@
  *@version 1.0.1
  */
 
-use Core\Drivers\ArrayUtility;
+use Core\Drivers\Utilities\ArrayUtility;
 use Core\Drivers\StringUtility;
 use Core\Drivers\BaseRouter;
 use Core\Drivers\Registry;
 use Core\Drivers\Inspector;
-use Core\Drivers\UrlParser;
+use Core\Drivers\Utilities\UrlParser;
 use Core\Exceptions\RouteControllerNotDefinedException;
 
-class Router extends BaseRouter {
+class Implementation extends Base {
 
 	/**
 	 *@var array $keys An array of key/value pairs
