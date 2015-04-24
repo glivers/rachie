@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers;
+<?php namespace Core\Drivers\Utilities;
 
 /**
  *This class resolves a Url string to get the controller, method and query parameters
@@ -12,8 +12,8 @@
  *@version 1.0.1
  */
 
-use Core\Drivers\ArrayUtility;
-use Core\Drivers\StringUtility;
+use Core\Drivers\Utilities\ArrayUtility;
+use Core\Drivers\Utilities\StringUtility;
 
 class UrlParser  {
 
