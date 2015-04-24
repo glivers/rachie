@@ -3,7 +3,7 @@
 use Core\Exceptions\Exception;
 use Core\Helpers\Path;
 
-class FileErrorException extends Exception {
+class RouteControllerNotDefinedException extends Exception {
 
 	/**
 	 *This function prints the appropriate error messages to the client
@@ -18,9 +18,7 @@ class FileErrorException extends Exception {
 		$title = $config['title'];
 
 		//the variable to be populated with the error message
-		$msg = $this->getCode() . ': Error on line '.$this->getLine().' in '.$this->getFile() .': <b> The view file named "'.$this->getMessage().'.php " </b> was not found';
-
-		//parent::__construct($this->msg, $error->code);
+		$msg = $this->getCode() . ': Error on line '.$this->getLine().' in '.$this->getFile() .': <b>  "'.$this->getMessage().' " </b> ';
 
 		//load the template file
 		include Path::sys() . 'Exceptions' . DIRECTORY_SEPARATOR . 'index.php';
