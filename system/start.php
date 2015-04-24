@@ -1,18 +1,6 @@
 <?php
 
-return	function(){
-
-	/**
-	 *@global array This array contains the basic configuration information for this application
-	 *
-	 */
-	global $config;
-
-	/**
-	 *@global string This string contains the uri segments for this particulat request
-	 *
-	 */
-	global $url;
+return	function() use($config, $url){
 
 	//set the development environment
 	if($config['development'] === true)
@@ -30,9 +18,8 @@ return	function(){
 
 	}
 
-	/**
-	 *Load the defined routes array
-	 */
+	
+	//Load the defined routes file into array
 	try{
 
 		if ( ! $routes = @include __DIR__ . '/../application/routes.php')
@@ -47,7 +34,7 @@ return	function(){
 		return;
 	}
 
-	$routeObj = new Core\Drivers\Router();
+	$routeObj = new Core\Drivers\Routes\Implementation();
 
 	//there is a defined route
 	if ( $routeObj->dispatch($url, $routes) ) 
@@ -66,7 +53,7 @@ return	function(){
 	else
 	{
 		//create an instance of the url parser
-		$urlObj = new Core\Drivers\UrlParser($url);
+		$urlObj = new Core\Drivers\Utilities\UrlParser($url);
 
 		//get the controller name
 		($controller = $urlObj->getController()) || ($controller = 'Home');
@@ -79,20 +66,46 @@ return	function(){
 
 	}
 
+	//check if this class and method exists
+	try {
 
-	//get the namespaced controller class
-	$controller 	= 'Controllers\\' . ucwords($controller) . 'Controller';
-	$dispatch 		= new $controller();
+		//get the namespaced controller class
+		$controller 	= 'Controllers\\' . ucwords($controller) . 'Controller';
 
-	if((int)method_exists($controller, $action))
-	{
-		call_user_func_array(array($dispatch, $action), $parameters);
+		if( ! class_exists($controller) ) throw new Core\Exceptions\ClassNotFoundException("The class " . $controller . ' is undefined');
+		
+		if( ! (int)method_exists($controller, $action) )
+		{
+			//create instance of this object
+			$dispatch = new $controller;
 
-	} 
+			//throw exception if no method can be found
+			if( ! $dispatch->$action() ) throw new Core\Exceptions\MethodNotFoundException("Access to undefined method " . $controller . '->' . $action);
+			
+			//get the infered method name
+			$action = $dispatch->$action();
 
-	else
-	{
-		/** Error generation code here **/
+			$dispatch->$action();
+
+
+		}
+
+		//method exists, go ahead and dispatch
+		else $dispatch = new $controller; call_user_func_array(array($dispatch, $action), $parameters = array());
+
+	}
+	catch(Core\Exceptions\ClassNotFoundException $error){
+
+		$error->show();
+
+		return;
+
+	}
+	catch(Core\Exceptions\MethodNotFoundException $error){
+
+		$error->show();
+
+		return;
 
 	}
 
