@@ -55,7 +55,7 @@ class Url {
 		$urlArray = explode("/", $_SERVER['REQUEST_URI']);
 
 		//compose the url string
-		echo $protocol . "://" . $base . $_SERVER['REQUEST_URI'];echo "<pre>"; print_r($urlArray); exit();
+		echo $_SERVER['REQUEST_URI'];echo "<pre>";  exit();
 
 	}
 
