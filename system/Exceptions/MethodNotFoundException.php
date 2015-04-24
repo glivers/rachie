@@ -3,7 +3,7 @@
 use Core\Exceptions\Exception;
 use Core\Helpers\Path;
 
-class RouteControllerNotDefinedException extends Exception {
+class MethodNotFoundException extends Exception {
 
 	/**
 	 *This function prints the appropriate error messages to the client
