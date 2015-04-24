@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers;
+<?php namespace Core\Drivers\Routes;
 
 /**
  *This class performs url resolving. It inspects the input url and gets the appropriate controller and method
@@ -16,7 +16,7 @@
 use Core\Drivers\ArrayUtility;
 use Core\Drivers\StringUtility;
 
-class BaseRouter {
+class Base {
 
 	/**
 	 *@var string $pattern The url string pattern to check for
