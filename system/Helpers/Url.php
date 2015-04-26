@@ -34,28 +34,20 @@ class Url {
 	 */
 	public static function base()
 	{
-		//get the server name
-		$base  = $_SERVER['SERVER_NAME']; //. $_SERVER['REQUEST_URI']; 
 
+		global $url;
 
-		//get the protocol
-		if(isset($_SERVER['HTTPS']))
-		{
-        	//use https if its defined in the $_SERVER global variable
-        	$protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
+		//get the server name from global $_SERVER[] array()
+		$base  = $_SERVER['SERVER_NAME']; 
 
-    	}
-    	else
-    	{
-        	//defualt to http if https is not set to 'on'
-        	$protocol = 'http';
+		//prepend installation folder to server name
+		$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], $url));
 
-    	}
-
-		$urlArray = explode("/", $_SERVER['REQUEST_URI']);
+    	//use https if its defined in the $_SERVER global variable
+    	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";
 
 		//compose the url string
-		echo $_SERVER['REQUEST_URI'];echo "<pre>";  exit();
+		return $protocol . '://' . $base;
 
 	}
 
@@ -69,11 +61,19 @@ class Url {
 	 */
 	public static function assets()
 	{
-		//get the server name
+		global $url;
 
-		//get the protocol
+		//get the server name from global $_SERVER[] array()
+		$base  = $_SERVER['SERVER_NAME']; 
+
+		//prepend installation folder to server name
+		$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], $url));
+
+    	//use https if its defined in the $_SERVER global variable
+    	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";
 
 		//compose the url string
+		return $protocol . '://' . $base . 'public/';
 
 	}
 
@@ -87,11 +87,20 @@ class Url {
 	 */
 	public static function link( $string = null )
 	{
-		//get the server name
+		global $url;
 
-		//get the protocol
+		//get the server name from global $_SERVER[] array()
+		$base  = $_SERVER['SERVER_NAME']; 
+
+		//prepend installation folder to server name
+		$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], $url));
+
+    	//use https if its defined in the $_SERVER global variable
+    	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";
 
 		//compose the url string
+		return $protocol . '://' . $base . '<br />';
+
 
 	}
 
