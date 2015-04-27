@@ -12,6 +12,7 @@
 
 use Core\Helpers\Url;
 use Core\Helpers\Path;
+use Core\Drivers\Templates\Implementation;
 use Core\Exceptions\FileErrorException;
 
 class View {
@@ -60,7 +61,7 @@ class View {
 
 
             //check if there multiple directories in the $file path
-            if(count($viewFileArray) > 1)
+            if(sizeof($viewFileArray) > 1)
             {
                 //set the number of iterations
                 $itr = count($viewFileArray);
@@ -94,7 +95,31 @@ class View {
             //load this file into view
             if (file_exists($path)) 
             {
-                include ($path);
+
+                ob_start(); // Start output buffering
+               
+               $source = file_get_contents($path);
+
+               $template = new Implementation();
+
+               $template->parse($source, $template);
+
+               $template->process(array(
+                                "name" =>  "Chris",
+                                "address" =>  "Planet Earth!",
+                                "stack" =>  array(
+                                    "one" =>  array(1, 2, 3),
+                                    "two" =>  array(4, 5, 6)
+                                ),
+                                "empty" =>  array()
+                        )
+                );
+
+
+                $contents = ob_get_contents(); // Get the contents of the buffer
+                ob_end_clean(); // End buffering and discard
+                return $contents; // Return the contents
+ 
 
             } 
             //throw throw the appropriate error message
