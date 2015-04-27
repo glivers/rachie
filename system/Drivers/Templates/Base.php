@@ -624,7 +624,7 @@ class  Base {
 		$this->code = $this->header . $this->script($tree) . $this->footer;
 
 		//call the function instance
-		$this->function = create_function("\$_data", $this->code);
+		$this->function = function($_data) {$this->code;};
 
 		//return function representation
 		return $this;

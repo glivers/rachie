@@ -6,7 +6,7 @@ return	function() use($config, $url){
 	if($config['development'] === true)
 	{
 		error_reporting(E_ALL);
-		ini_set('display_errors', 'On');
+		//ini_set('display_errors', 'On');
 
 	}
 	else
@@ -18,16 +18,19 @@ return	function() use($config, $url){
 
 	}
 
-	
 	//Load the defined routes file into array
 	try{
 
-		if ( ! $routes = @include __DIR__ . '/../application/routes.php')
+		//check of the routes configuration file exists
+		if ( ! file_exists( __DIR__ . '/../application/routes.php'))
 
-			throw new Core\Exceptions\FileNotFoundException("The routes.php file cannot be found!");
-			
+			throw new Core\Exceptions\BaseException("The defined routes file cannot be found! Please restore if you deleted");
+		
+		//get the defined routes
+		$routes = include __DIR__ . '/../application/routes.php';
+
 	}
-	catch(Core\Exceptions\FileNotFoundException $error){
+	catch(Core\Exceptions\Core\Exceptions\BaseException $error){
 
 		$error->show();
 
@@ -72,7 +75,7 @@ return	function() use($config, $url){
 		//get the namespaced controller class
 		$controller 	= 'Controllers\\' . ucwords($controller) . 'Controller';
 
-		if( ! class_exists($controller) ) throw new Core\Exceptions\ClassNotFoundException("The class " . $controller . ' is undefined');
+		if( ! class_exists($controller) ) throw new Core\Exceptions\BaseException("The class " . $controller . ' is undefined');
 		
 		if( ! (int)method_exists($controller, $action) )
 		{
@@ -80,7 +83,7 @@ return	function() use($config, $url){
 			$dispatch = new $controller;
 
 			//throw exception if no method can be found
-			if( ! $dispatch->$action() ) throw new Core\Exceptions\MethodNotFoundException("Access to undefined method " . $controller . '->' . $action);
+			if( ! $dispatch->$action() ) throw new Core\Exceptions\BaseException("Access to undefined method " . $controller . '->' . $action);
 			
 			//fire up application
 			$dispatch->$action();
@@ -92,14 +95,14 @@ return	function() use($config, $url){
 		else $dispatch = new $controller; call_user_func_array(array($dispatch, $action), $parameters = array());
 
 	}
-	catch(Core\Exceptions\ClassNotFoundException $error){
+	catch(Core\Exceptions\BaseException $error){
 
 		$error->show();
 
 		return;
 
 	}
-	catch(Core\Exceptions\MethodNotFoundException $error){
+	catch(Core\Exceptions\BaseException $error){
 
 		$error->show();
 

@@ -195,7 +195,7 @@ class StringUtility {
 		foreach ($parts as $part) 
 		{
 			//normalize the part
-			$normalized = self::_normalize("\\{$part}");
+			$normalized = self::normalize("\\{$part}");
 
 			//search string and replace normalized string in place of original string from input $string
 			$string = preg_replace("{$normalized}m", "\\{$part}", $string);

@@ -1,12 +1,13 @@
 <?php namespace Core\Exceptions;
 
-use Core\Exceptions\Exception;
 use Core\Helpers\Path;
 
-class ClassNotFoundException extends Exception {
+class BaseException extends \Exception {
 
 	/**
-	 *This function prints the appropriate error messages to the client
+	 *This method displays the error message
+	 *
+	 *@param 
 	 *
 	 */
 	public function show()
@@ -25,4 +26,5 @@ class ClassNotFoundException extends Exception {
 
 	}
 
+	
 }
