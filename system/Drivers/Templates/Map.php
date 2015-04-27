@@ -23,51 +23,58 @@ trait  Map {
 		'echo' => array(
 				'opener' => "{echo",
 				'closer' => "}",
-				'handler' => "echo"
+				'handler' => "getEcho"
 			),
 		'script' => array(
 				'opener' => "{script",
 				'closer' => "}",
+				'handler' => "getScript"
+			),
+		'statement' =>array(
+				'opener' => '{',
+				'closer' => '}',
 				'tags' => array(
 						'foreach' => array(
 								'isolated' => false,
 								'arguments' => "{element} in {object}",
-								'handler' => "each"
+								'handler' => "getEach"
 							),
 						'for' => array(
 								'isolated' => false,
 								'arguments' => "{element} in {object}",
-								'handler' => 'for'
+								'handler' => 'getFor'
 							),
 						'if' => array(
 								'isolated' => false,
 								'arguments' => null,
-								'handler' => 'if'
+								'handler' => 'getIf'
 							),
 						'elseif' => array(
 								'isolated' => true,
 								'arguments' => null,
-								'handler' => 'elif'
+								'handler' => 'getElif'
 							),
 						'else' => array(
 								'isolated' => true,
 								'arguments' => null,
-								'handler' => 'else'
+								'handler' => 'getElse'
 							),
 						'macro' => array(
 								'isolated' => false,
 								'arguments' => "{name}({args})",
-								'handler' => 'macro'
+								'handler' => 'getMacro'
 							),
 						'literal' => array(
 								'isolated' => false,
 								'arguments' => null,
-								'handler' => 'literal'
+								'handler' => 'getLiteral'
 							)
 
 					)
+
 			)
 
 	);
+
 
 }
