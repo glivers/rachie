@@ -10,8 +10,6 @@
  *@package Core\Helpers\View
  */
 
-use Core\Helpers\Url;
-use Core\Helpers\Path;
 use Core\Drivers\Templates\Implementation;
 use Core\Exceptions\FileErrorException;
 
@@ -95,11 +93,22 @@ class View {
             //load this file into view
             if (file_exists($path)) 
             {
+                //get the configuration array
+                global $config;
+
+                //loop through aliases autoloading
+                foreach ($config['aliases'] as $aliasNamespace => $aliasName) 
+                {
+                    //autoload the aliases
+                    class_alias($aliasNamespace, $aliasName);
+
+                }
 
                 ob_start(); // Start output buffering
-               
+
                $source = file_get_contents($path);
 
+               /*
                $template = new Implementation();
 
                $template->parse($source, $template);
@@ -115,10 +124,13 @@ class View {
                         )
                 );
 
+                */
+                
+                eval("?>" . $source . "<?");
 
                 $contents = ob_get_contents(); // Get the contents of the buffer
                 ob_end_clean(); // End buffering and discard
-                return $contents; // Return the contents
+                echo $contents; // Return the contents
  
 
             } 
