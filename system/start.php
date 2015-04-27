@@ -6,7 +6,7 @@ return	function() use($config, $url){
 	if($config['development'] === true)
 	{
 		error_reporting(E_ALL);
-		ini_set('display_errors', 'On');
+		//ini_set('display_errors', 'On');
 
 	}
 	else
@@ -18,14 +18,17 @@ return	function() use($config, $url){
 
 	}
 
-	
 	//Load the defined routes file into array
 	try{
 
-		if ( ! $routes = @include __DIR__ . '/../application/routes.php')
+		//check of the routes configuration file exists
+		if ( ! file_exists( __DIR__ . '/../application/routes.php'))
 
-			throw new Core\Exceptions\FileNotFoundException("The routes.php file cannot be found!");
-			
+			throw new Core\Exceptions\FileNotFoundException("The defined routes file cannot be found! Please restore if you deleted");
+		
+		//get the defined routes
+		$routes = include __DIR__ . '/../application/routes.php';
+
 	}
 	catch(Core\Exceptions\FileNotFoundException $error){
 
