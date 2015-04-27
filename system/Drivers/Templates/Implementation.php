@@ -23,7 +23,7 @@ class  Implementation extends Base {
 	 *@param string $source Source string to process
 	 *@return string The processed text
 	 */
-	protected function echo($tree, $content)
+	protected function getEcho($tree, $content)
 	{
 		//parse the contents of the 'echo' tag
 		$raw = $this->script($tree, $content);
@@ -40,7 +40,7 @@ class  Implementation extends Base {
 	 *@param string $content The source string to parse
 	 *@return string Processed string
 	 */
-	protected function script($tree, $content)
+	protected function getScript($tree, $content)
 	{
 		//return the content of the raw index, or emplty if no contect
 		$raw = ! empty($tree['raw']) ? $tree['raw'] : '';
@@ -57,7 +57,7 @@ class  Implementation extends Base {
 	 *@param string $content The source string to parse
 	 *@return array Processed content
 	 */
-	protected function each($tree, $content)
+	protected function getEach($tree, $content)
 	{
 		//get the object name
 		$object = $tree['arguments']['object'];
@@ -79,7 +79,7 @@ class  Implementation extends Base {
 	 *@param string $content Source string to parse
 	 *@return array Processed content
 	 */
-	protected function for($tree, $content)
+	protected function getFor($tree, $content)
 	{
 		//get the object name
 		$object = $tree['arguments']['object'];
@@ -101,7 +101,7 @@ class  Implementation extends Base {
 	 *@param string $content The source content to parse
 	 *@return string Proccessed string
 	 */
-	protected function if($tree, $content)
+	protected function getIf($tree, $content)
 	{
 		//set the value of raw
 		$raw = $tree['raw'];
@@ -117,13 +117,13 @@ class  Implementation extends Base {
 	 *@param string $content The source string to parse
 	 *@return string Processed string
 	 */
-	protected function elif($tree, $content)
+	protected function getElif($tree, $content)
 	{
 		//get the $raw
 		$raw = $tree['raw'];
 
 		//return 
-		return "if ({$raw}) {{$content}}";
+		return "elseif ({$raw}) {{$content}}";
 
 	}
 
@@ -134,7 +134,7 @@ class  Implementation extends Base {
 	 *@param string $content The source string to parse
 	 *@return string Processed content
 	 */
-	protected function else($tree, $content)
+	protected function getElse($tree, $content)
 	{
 		//return the content
 		return "else {{$content}}";
@@ -148,7 +148,7 @@ class  Implementation extends Base {
 	 *@param string $content The content of string to parse
 	 *@return string Processed string
 	 */
-	protected function macro($tree, $content)
+	protected function getMacro($tree, $content)
 	{
 		//get the arguments
 		$arguments = $tree['arguments'];
@@ -174,7 +174,7 @@ class  Implementation extends Base {
 	 *@param string $content
 	 *@return string Processed content
 	 */
-	protected function literal($tree, $content)
+	protected function getLiteral($tree, $content)
 	{
 		//get the source
 		$source = addslashes($tree['source']);
@@ -185,7 +185,7 @@ class  Implementation extends Base {
 	}
 
 	/**
-	 *This method processes the content in the 'loop' rag
+	 *This method processes the content in the 'loop' tags
 	 *
 	 *@param array $tree
 	 *@param string $content
