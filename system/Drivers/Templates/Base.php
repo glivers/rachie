@@ -12,10 +12,201 @@
  */
 
 use Core\Drivers\Templates\Map;
+use Core\Drivers\Templates\Exception;
+use Core\Drivers\Utilities\StringUtility;
+use Core\Drivers\Utilities\ArrayUtility;
 
 class  Base {
 
 	use Map;
+
+	/**
+	 *@var 
+	 *@readwrite
+	 */
+	protected $getImplementation;
+
+	/**
+	 *@var
+	 *@readwrite
+	 */
+	protected $header = "if (is_array(\$_data) && sizeof(\$_data)) extract(\$_data); \$_text = array(); ";
+
+	/**
+	 *@var
+	 *@readwrite
+	 */
+	protected $footer = "return implode(\$_text);";
+
+	/**
+	 *@var
+	 *@read
+	 */
+	protected $code;
+
+	/**
+	 *@var
+	 *@read
+	 */
+	protected $function;
+
+	/**
+	 *This method defines the exception for implementation
+	 *
+	 *@param string $method The method name to pass for this exception
+	 *@return object Object instance of this exception class
+	 */
+	public function getExceptionForImplementation($method)
+	{
+		return new Exception\Implementation("{$method} method not implemented");
+
+	}
+
+	/**
+	 *This method is used for any of the statements, if they have a specific argument format such as for,foreach...
+	 *
+	 *It returns the bits between the {...} characters in a neat associative array
+	 *@param string $source
+	 *@param string $expression
+	 *@return array Characters in between {...} in associative array
+	 */
+	protected function arguments($source, $expression)
+	{
+
+		$args = $this->getArray($expression, array(
+				$expression => array(
+					'opener' => "{",
+					'closer' => "}"
+				)
+			)
+		);
+
+		$tags = $args['tags'];
+
+		$arguments = array();
+
+		$sanitized = StringUtility::sanitize($expression, "()[],.<>*$@");
+
+		foreach ($tags as $i => $tag) 
+		{
+			$sanitized = str_replace($tag, "(.*)", $sanitized);
+
+			$tags[$i] = str_replace(array("{", "}"), "", $tag);
+
+		}
+
+		if(preg_match("#{$sanitized}#", $source, $matches))
+		{
+
+			foreach ($tags as $i => $tag) 
+			{
+
+				$arguments[$tags] = $matches[$i+1];
+
+			}
+
+		}
+
+		return $arguments;
+
+	}
+
+	/**
+	 *Generates a $node array which contains a bit of metadata about the tag.
+	 *This method calls the implementation's match method, which tells the parser if the chunk of template
+	 *we are parsing is a tag or a plain string. The match method will return false for a  nonmatch. It then extracts
+	 *all the bits between the opener and closer strings we specified in the implementation. For example, for {if $check}
+	 *the match() method will extract the tag 'if' the rest of the tag data ($check), and whether or not it is a closing tag.
+	 *
+	 *@param string $source The source string to parse
+	 *@return 
+	 */
+	protected function tag($source)
+	{
+
+		$tag = null;
+
+		$arguments = array();
+
+		$match = $this->getImplementation->match($source);
+
+		if($match == null)
+		{
+			return false;
+
+		}
+
+		$delimiter = $match['delimiter'];
+
+		$type = $match['type'];
+
+		$start = strlen($type['opener']);
+		$end = strpos($source, $type['closer']);
+		$extract = substr($source, $start, $end - $start);
+
+		if(isset($type['tags']))
+		{
+
+			$tags = implode("|", array_keys($type['tags']));
+
+			$regex = "#^(/){0,1}({$tags})\s*(.*)$#";
+
+			if ( ! preg_match($regex, $extract, $matches)) 
+			{
+
+				return false;
+
+			}
+
+			$tag = $matches[2];
+
+			$extract = $matches[3];
+
+			$closer = !!$matches[1];
+
+		}
+
+		if($tag && $closer)
+		{
+
+			return array(
+				'tag' => $tag,
+				'delimiter' => $delimiter,
+				'closer' => true,
+				'source' => false,
+				'arguments' => false,
+				'isolated' => $type['tags'][$tag]['isolated']
+
+			);
+
+		}
+
+		if(isset($type['arguments']))
+		{
+
+			$arguments = $this->arguments($extract, $type['arguments']);
+
+		}
+
+		elseif ($tag && isset($type['tags'][$tag]['arguments'])) 
+		{
+
+			$arguments = $this->arguments($extract, $type['tags'][$tag]['arguments']);
+
+		}
+
+		return array(
+			'tag' => $tag,
+			'delimiter' => $delimiter,
+			'closer' => false,
+			'source' => $extract,
+			'arguments' => $arguments,
+			'isolated' => ( ! empty($type['tags']) ? $type['tags'][$tag]['isolated'] : false)
+
+		);
+
+
+	}
 
 	/**
 	 *This method takes a node array and determines the correct handler method to execute
@@ -125,7 +316,7 @@ class  Base {
 		if ($type == null) 
 		{
 			//return null
-			return null;
+			return null; 
 
 		}
 
@@ -144,7 +335,7 @@ class  Base {
 	 *@param string $source The source content to parse
 	 *@return array Array containing all the deconstructed parts in one multidimensional array
 	 */
-	protected function array($source)
+	protected function getArray($source)
 	{
 		//define the parts array
 		$parts = array();
@@ -164,8 +355,8 @@ class  Base {
 		//loop through the source string performing actions
 		while ($source) 
 		{
-			//serch for a tag match
-			$match = $this->implementationntation->match($source);
+			//search for a tag match
+			$match = $this->getImplementation->match($source);
 
 			//get the type
 			$type = $match['type'];
@@ -391,7 +582,7 @@ class  Base {
 		if(isset($tree['parent']))
 		{
 			//return equivalent
-			return $this->implementation->handle($tree, implode($content));
+			return $this->getImplementation->handle($tree, implode($content));
 
 		}
 
@@ -407,21 +598,27 @@ class  Base {
 	 *@return $this obejct function instance
 	 */
 
-	public function parse($template)
+	public function parse($template, $objectInstance)
 	{
+		$this->getImplementation = $objectInstance;
+
 		//check for this object instance
-		if ( ! is_a($this->implementation, 'Core\Drivers\Templates\Implementation')) 
+		if ( ! is_a($this->getImplementation, 'Core\Drivers\Templates\Implementation')) 
 		{
 			//throw error
-			throw new Core\Drivers\Template\Exception("Error Processing Request", 1);
+			throw new Exception("The object passed is not an instance of Templates\Implementation Class");
 
 		}
 
 		//turn string into array
-		$array  = $this->array($template);
+		$array  = $this->getArray($template);
+
 
 		//get tree structure from array
 		$tree = $this->tree($array['all']);
+
+		echo "<pre>";
+		print_r($array);exit();
 
 		//assign this return value  to code var
 		$this->code = $this->header . $this->script($tree) . $this->footer;
@@ -442,11 +639,12 @@ class  Base {
 	 */
 	public function process($data = array())
 	{
+
 		//throw exception if this function has not been set
 		if ( $this->function == null) 
 		{
 			//throw exception
-			throw new Core\Drivers\Templates\Exception("Error Processing Request", 1);
+			throw new Exception("The callback function to process this request has not been defined!");
 
 		}
 
@@ -456,7 +654,7 @@ class  Base {
 			$function = $this->function;
 
 			//return the data after processing by function
-			return $function($data);
+			echo $function($data);
 
 		}
 		catch(Core\Drivers\Templates\Exception  $error){
