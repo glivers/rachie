@@ -1,18 +1,8 @@
 <?php namespace Core\Exceptions;
 
+use Core\Helpers\Path;
+
 class BaseException extends \Exception {
-
-	/**
-	 *This constructor function set the default values for the properties above
-	 *
-	 *@param 
-	 *
-	 */
-	public function __construct()
-	{
-		//
-
-	}
 
 	/**
 	 *This method displays the error message
@@ -20,9 +10,19 @@ class BaseException extends \Exception {
 	 *@param 
 	 *
 	 */
-	public function errorShow()
+	public function show()
 	{
-		//
+		//get the global $config array for site title
+		global $config;
+
+		//set the title variable
+		$title = $config['title'];
+
+		//the variable to be populated with the error message
+		$msg = $this->getCode() . ': Error on line '.$this->getLine().' in '.$this->getFile() .': <b>  "'.$this->getMessage().' " </b> ';
+
+		//load the template file
+		include Path::sys() . 'Exceptions' . DIRECTORY_SEPARATOR . 'index.php';
 
 	}
 
