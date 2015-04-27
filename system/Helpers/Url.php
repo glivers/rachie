@@ -34,12 +34,14 @@ class Url {
 	 */
 	public static function base()
 	{
-
 		global $url;
 
 		//get the server name from global $_SERVER[] array()
 		$base  = $_SERVER['SERVER_NAME']; 
 
+		//prepend installation folder to server name
+		//$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], str_replace("url=","",$_SERVER['REDIRECT_QUERY_STRING'])));
+		
 		//prepend installation folder to server name
 		$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], $url));
 

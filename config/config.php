@@ -37,4 +37,14 @@ return array(
 
 	),
 
+	/**
+	 *Define class aliases
+	 *
+	 */
+	'aliases' => array(
+		'Core\Helpers\Url' => 'Url',
+		'Core\Helpers\Path' => 'Path'
+
+	),
+
 );
