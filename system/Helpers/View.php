@@ -93,16 +93,6 @@ class View {
             //load this file into view
             if (file_exists($path)) 
             {
-                //get the configuration array
-                global $config;
-
-                //loop through aliases autoloading
-                foreach ($config['aliases'] as $aliasNamespace => $aliasName) 
-                {
-                    //autoload the aliases
-                    class_alias($aliasNamespace, $aliasName);
-
-                }
 
                 ob_start(); // Start output buffering
 

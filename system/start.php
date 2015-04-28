@@ -2,8 +2,8 @@
 
 return	function() use($config, $url){
 
-	//set the development environment
-	if($config['development'] === true)
+	//set the application environment
+	if($config['environment'] == 'development')
 	{
 		error_reporting(E_ALL);
 		//ini_set('display_errors', 'On');
@@ -30,7 +30,7 @@ return	function() use($config, $url){
 		$routes = include __DIR__ . '/../application/routes.php';
 
 	}
-	catch(Core\Exceptions\Core\Exceptions\BaseException $error){
+	catch(Core\Exceptions\BaseException $error){
 
 		$error->show();
 

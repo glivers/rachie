@@ -34,16 +34,26 @@ class Url {
 	 */
 	public static function base()
 	{
-		global $url;
-
 		//get the server name from global $_SERVER[] array()
 		$base  = $_SERVER['SERVER_NAME']; 
 
 		//prepend installation folder to server name
 		//$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], str_replace("url=","",$_SERVER['REDIRECT_QUERY_STRING'])));
 		
-		//prepend installation folder to server name
-		$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], $url));
+		//check if there is a uri string
+		if (isset($_SERVER['REDIRECT_QUERY_STRING'])) 
+		{
+			//prepend installation folder to server name
+			$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], str_replace("url=","",$_SERVER['REDIRECT_QUERY_STRING'])));
+
+		}
+		//there is no query string, 
+		else
+		{
+			//prepend installation folder to server name
+			$base .= substr($_SERVER['REQUEST_URI'], 0);
+
+		}
 
     	//use https if its defined in the $_SERVER global variable
     	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";
@@ -63,13 +73,24 @@ class Url {
 	 */
 	public static function assets()
 	{
-		global $url;
-
 		//get the server name from global $_SERVER[] array()
 		$base  = $_SERVER['SERVER_NAME']; 
 
-		//prepend installation folder to server name
-		$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], $url));
+		//check if there is a uri string
+		if (isset($_SERVER['REDIRECT_QUERY_STRING'])) 
+		{
+			//prepend installation folder to server name
+			$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], str_replace("url=","",$_SERVER['REDIRECT_QUERY_STRING'])));
+
+		}
+		//there is no query string, 
+		else
+		{
+			//prepend installation folder to server name
+			$base .= substr($_SERVER['REQUEST_URI'], 0);
+
+		}
+
 
     	//use https if its defined in the $_SERVER global variable
     	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";
