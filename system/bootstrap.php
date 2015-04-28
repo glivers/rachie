@@ -47,7 +47,7 @@ try{
 	require_once __DIR__ . '/Exceptions/Debug/BaseShutdown.php';
 	
 	//initilize native session
-	session_start();
+	session_start(); 
 
 	//get the uri string from url request
 	$url = isset($_GET['url']) ? $_GET['url'] : '';
@@ -57,6 +57,15 @@ try{
 	
 	//load system configuration settings into array	 
 	$config = require_once __DIR__ . '/../config/config.php';
+
+	//set the class aliases, so they are available to our closure objects
+    //loop through aliases autoloading
+    foreach ($config['aliases'] as $aliasNamespace => $aliasName) 
+    {
+        //register and lazy autoload the aliases(class)
+        class_alias($aliasNamespace, $aliasName);
+
+    }
 
 	//get closure object instance to lauch application
 	$start = require_once __DIR__ . '/start.php';
