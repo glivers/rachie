@@ -46,5 +46,61 @@ return array(
 		'Core\Helpers\Path' 			=> 'Path',
 
 	),
+	/**
+	 *Define the Caching Driver Settings
+	 */
+	'cache' => array(
+		/**
+		 *Set true|false to turn caching on and off
+		 */
+		'cache' => true,
+		/**
+		 *Define the default driver
+		 */
+		'default' => 'memcached',
+		/**
+		 *Define the setting for individual drivers
+		 */
+		'configuration' => array(
+			/**
+			 *Define the settings for Memcached Driver
+			 */
+			'memcached' => array(
+				/**
+				 *Set the host name
+				 */
+				'host' => '127.0.0.1',
+				/**
+				 *Set the port for access
+				 */
+				'port' => '11211',
+				/**
+				 *Set the Socket file
+				 */
+				'socket' => '',
+
+			),
+			/**
+			 *Define the settings for Redis Server
+			 */
+			'redis' => array(
+				/**
+				 *Set the server host name
+				 */
+				'host' => '',
+				/**
+				 *Set the access port numnber
+				 */
+				'port' => '',
+				/**
+				 *Set the socket file
+				 */
+				'socket' => '',
+
+			),
+
+		),
+
+	),
 
 );
