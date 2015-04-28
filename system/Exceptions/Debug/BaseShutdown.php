@@ -141,6 +141,7 @@ function handler( $errNo, $errMsg, $errFile, $errLine ) {
 
         header('Location: 500.html');
         header('Status: 500 Internal Server Error');
+        exit();
 
     }
 
@@ -189,14 +190,19 @@ function handler( $errNo, $errMsg, $errFile, $errLine ) {
             </body>
             </html>
 ERROR;
-
+    
+    //display the error message
     echo $error;
+
+    //stop further script execution
+    exit();
 
     }
 
     //Logg error message to file if logging has been set to true
     if(LOG_ERRORS)
         error_log(strip_tags($message), 0);
+
 
 }
 
