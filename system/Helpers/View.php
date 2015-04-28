@@ -12,6 +12,7 @@
 
 use Core\Drivers\Templates\Implementation;
 use Core\Exceptions\FileErrorException;
+use Core\Drivers\Cache\CacheBase;
 
 class View {
 
@@ -93,34 +94,64 @@ class View {
             //load this file into view
             if (file_exists($path)) 
             {
+                //grab the global config array to get the default catch
+                global $config;
 
-                ob_start(); // Start output buffering
+                //get cache object intance
+                $cache = new CacheBase($config['cache']['default']);
 
-               $source = file_get_contents($path);
+                //initialize instance
+                $cache = $cache->initialize();
 
-               /*
-               $template = new Implementation();
+                $connection = $cache->connect();
 
-               $template->parse($source, $template);
+                $contents = $connection->get('3today');
 
-               $template->process(array(
-                                "name" =>  "Chris",
-                                "address" =>  "Planet Earth!",
-                                "stack" =>  array(
-                                    "one" =>  array(1, 2, 3),
-                                    "two" =>  array(4, 5, 6)
-                                ),
-                                "empty" =>  array()
-                        )
-                );
+                //there is a cache for this file
+                if ( $contents ) 
+                {
+                    //get the contents and display
+                    echo $contents;
+                }
+                //there is not cache for this file, get new file and store in cache
+                else
+                {
+                    // Start output buffering
+                    ob_start(); 
 
-                */
-                
-                eval("?>" . $source . "<?");
+                    $source = file_get_contents($path);
 
-                $contents = ob_get_contents(); // Get the contents of the buffer
-                ob_end_clean(); // End buffering and discard
-                echo $contents; // Return the contents
+                    /*
+                    $template = new Implementation();
+
+                    $template->parse($source, $template);
+
+                    $template->process(array(
+                                    "name" =>  "Chris",
+                                    "address" =>  "Planet Earth!",
+                                    "stack" =>  array(
+                                        "one" =>  array(1, 2, 3),
+                                        "two" =>  array(4, 5, 6)
+                                    ),
+                                    "empty" =>  array()
+                            )
+                    );
+
+                    */
+                    
+                    eval("?>" . $source . "<?");
+
+                    $contents = ob_get_contents(); // Get the contents of the buffer
+                    ob_end_clean(); // End buffering and discard
+
+                    //put this information into the cache
+                    $connection->set('3today', $contents, $duration = 120);
+
+                    //output 
+                    echo $contents; // Return the contents
+
+                }
+
  
 
             } 
