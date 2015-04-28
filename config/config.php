@@ -5,7 +5,7 @@ return array(
 	/**
 	 *Set the application environment. Set true for development, otherwise, set to false
 	 */
-	'development' => true,
+	'environment' => 'development',
 	/**
 	 *Set the Site Title
 	 */
@@ -39,11 +39,11 @@ return array(
 
 	/**
 	 *Define class aliases
-	 *
+	 *cd 
 	 */
 	'aliases' => array(
-		'Core\Helpers\Url' => 'Url',
-		'Core\Helpers\Path' => 'Path'
+		'Core\Helpers\Url' 				=> 'Url',
+		'Core\Helpers\Path' 			=> 'Path',
 
 	),
 
