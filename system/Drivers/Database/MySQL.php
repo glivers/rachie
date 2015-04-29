@@ -178,7 +178,7 @@ class MySQl {
 		if (! $this->validService() ) 
 		{
 			//throw exceptions
-			throw newDbException("Not connected to a valid database service");
+			throw new DbException("Not connected to a valid database service");
 
 		}
 
