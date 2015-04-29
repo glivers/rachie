@@ -6,3 +6,5 @@
 [14-Apr-2015 12:26:59 Africa/Khartoum] PHP Fatal error:  Call to a member function selectAll() on a non-object in /home/geoffrey/Desktop/public/html/gliver/application/controllers/ItemsController.php on line 17
 [14-Apr-2015 13:16:52 Africa/Khartoum] PHP Notice:  Undefined property: Controllers\ItemsController::$Item in /home/geoffrey/Desktop/public/html/gliver/application/controllers/ItemsController.php on line 17
 [14-Apr-2015 13:16:52 Africa/Khartoum] PHP Fatal error:  Call to a member function selectAll() on a non-object in /home/geoffrey/Desktop/public/html/gliver/application/controllers/ItemsController.php on line 17
+[28-Apr-2015 03:20:22 Africa/Khartoum] E_WARNING: strpos(): Empty needle in /home/geoffrey/Desktop/public/html/gliver/system/Helpers/Url.php on line 72
+[28-Apr-2015 03:20:22 Africa/Khartoum] E_WARNING: strpos(): Empty needle in /home/geoffrey/Desktop/public/html/gliver/system/Helpers/Url.php on line 46

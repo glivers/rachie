@@ -1,0 +1,184 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+    font-family: 'Raleway', sans-serif;
+    margin-top: 45px;}
+h1{
+    font-family: 'Raleway', sans-serif;
+    color: #333333;
+    font-weight: 700;
+    margin-top: 30px;
+    font-size: 40px;
+    line-height: 51px;
+}
+h2{
+    color: #333333;
+    font-weight: 700;
+    font-size: 30px;
+}
+.left-col h2{
+    margin-bottom: 20px;;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+header{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-image: url("../img/header.jpg");
+    background-repeat: no-repeat;
+    background-color: #fff;
+    background-position: top center;
+    height: 284px;
+    width: 100%;
+}
+.gliverContainer {
+    margin-top: 35px;
+    width: 1200px;
+    margin: 0 auto;
+    border: 2px solid #cccccc;
+}
+.headerText{
+    width: 500px;
+    float: left;
+    margin-left: 200px;
+}
+
+.gliverLogo{
+    position: relative;
+    float: left;
+    width: 170px;
+    margin-left: 165px;
+    margin-top: 50px;
+}
+header h1{
+    margin-top: 40px;
+}
+header p{
+    color: #ffffff;
+    font-weight: 400;
+    margin-top: 10px;
+    line-height: 1.1em;
+    font-size: 1.2em;
+
+}
+span.subtext{
+    font-weight: 300;
+}
+
+.left-col{
+    float: left;
+    width: 500px;
+    margin-left: 100px;
+    margin-top: 30px;
+}
+.right-col{
+    float: right;
+    width: 600px;
+}
+
+.clearfix {
+    overflow: auto;
+    zoom: 1;
+}
+.left-col h2{
+
+}
+
+.arrow li{
+    line-height: 30px;
+    color: #777777;
+}
+
+.arrow li:before{
+    margin-right: 15px;
+    content: "\f054";
+    font-family: fontAwesome;
+    color: #8fd39d;
+    font-size: 12px;
+}
+.circles{
+    margin-top: 20px;
+}
+.number{
+    border-radius: 100%;
+    background: #8fd39d;
+    color: #ffffff;
+    float: left;
+    font-size: 60px;
+    font-weight: 400;
+    width: 71px;
+    height: 71px;
+    text-align: center;
+    margin-right: 29px;
+    margin-top: 6px;
+    line-height: 58px;
+}
+
+.wrapper{
+    overflow: hidden;
+}
+.gliver-text{
+    margin-top: 15px;
+    color: #5e9796;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+li{
+    display: list-item;
+    text-align: -webkit-match-parent;
+    float: left;
+    margin-bottom: 15px;;
+}
+:link {
+    color: #333;
+}
+a, a:visited{
+    color: #333;
+}
+a:hover{
+    opacity: .7;
+    cursor: pointer;
+}
+.bmarg{
+    margin-bottom: 30px;
+}
