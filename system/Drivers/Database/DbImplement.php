@@ -13,7 +13,7 @@
  *@version 1.0.1
  */
 
-trait DbImplement {
+trait DbImplement { 
 
 	/**
 	 *@var string The database type
