@@ -11,7 +11,7 @@
  */
 
 use Core\Drivers\Templates\Implementation;
-use Core\Exceptions\FileErrorException;
+use Core\Exceptions\BaseException;
 use Core\Drivers\Cache\CacheBase;
 
 class View {
@@ -105,7 +105,7 @@ class View {
 
                 $connection = $cache->connect();
 
-                $contents = $connection->get('3today');
+                $contents = $connection->get('30today');
 
                 //there is a cache for this file
                 if ( $contents ) 
@@ -145,7 +145,7 @@ class View {
                     ob_end_clean(); // End buffering and discard
 
                     //put this information into the cache
-                    $connection->set('3today', $contents, $duration = 120);
+                    //$connection->set('3today', $contents, $duration = 120);
 
                     //output 
                     echo $contents; // Return the contents
@@ -159,13 +159,13 @@ class View {
             else 
             {
                 //throw FileErrorExcepton
-                throw new FileErrorException($filePath);
+                throw new BaseException($filePath);
 
             }
      
         }
 
-        catch(FileErrorException $e) {
+        catch(BaseException $e) {
 
             //echo $e->getMessage();
             $e->show();
