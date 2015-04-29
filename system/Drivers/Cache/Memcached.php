@@ -102,7 +102,7 @@ class Memcached {
 		}
 		catch(\Exception $e){
 
-			throw new CacheException("Unable to connect to service");
+			throw new CacheException("Unable to connect to service ");
 
 		}
 
