@@ -21,7 +21,7 @@ class Controller {
 
 	function __construct()
 	{
-		//
+		//do something
 
 	}
 
