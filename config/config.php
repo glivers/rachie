@@ -9,7 +9,7 @@ return array(
 	/**
 	 *Set the Site Title
 	 */
-	'title' => 'Gliver MVC Application',
+	'title' => 'Gliver MVC Framework',
 	/**
 	 *Set the protocol for this url
 	 */
