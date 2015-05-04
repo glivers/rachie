@@ -1,8 +1,9 @@
 <?php namespace Core\Drivers\Routes;
 
 /**
- *This class performs url resolving. It inspects the input url and gets the appropriate controller and method
- *to launch based on the defined or infered routes
+ *This class performs url resolving. 
+ *It inspects the input url and gets the appropriate controller and method to launch based on the 
+ *defined or infered routes
  *
  *@author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
  *@copyright 2015 - 2020 Geoffrey Oliver
@@ -50,6 +51,7 @@ class Base {
 		return new Exception\Implementation("{$method} method not implemented" );
 
 	}
+
 
 
 }
