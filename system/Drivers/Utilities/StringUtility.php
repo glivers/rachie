@@ -264,5 +264,130 @@ class StringUtility {
 		return $position;
 	}
 
+
+	private static $singulars = array(
+		"(matr)ices$" => "\\1ix",
+		"(vert|ind)ices$" => "\\1ex",
+		"^(ox)en" => "\\1",
+		"(alias)es$" => "\\1",
+		"([octop|vir])i$" => "\\1us",
+		"(cris|ax|test)es$" => "\\1is",
+		"(shoe)s$" => "\\1",
+		"(o)es$" => "\\1",
+		"(bus|campus)es$" => "\\1",
+		"([m|l])ice$" => "\\1ouse",
+		"(x|ch|ss|sh)es$" => "\\1",
+		"(m)ovies$" => "\\1\\2ovie",
+		"(s)eries$" => "\\1\\2eries",
+		"([^aeiouy]|qu)ies$" => "\\1y",
+		"([lr])ves$" => "\\1f",
+		"(tive)s$" => "\\1",
+		"(hive)s$" => "\\1",
+		"([^f])ves$" => "\\1fe",
+		"(^analy)ses$" => "\\1sis",
+		"((a)naly|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)ses$" => "\\1\\2sis",
+		"([ti])a$" => "\\1um",
+		"(p)eople$" => "\\1\\2erson",
+		"(m)en$" => "\\1an",
+		"(s)tatuses$" => "\\1\\2tatus",
+		"(c)hildren$" => "\\1\\2hild",
+		"(n)ews$" => "\\1\\2ews",
+		"([^u])s$" => "\\1"
+
+	);
+
+	private static $plurals = array(
+		"^(ox)$" => "\\1\\2en",
+		"([m|l])ouse$" => "\\1ice",
+		"(matr|vert|ind)ix|ex$" => "\\1ices",
+		"(x|ch|ss|sh)$" => "\\1es",
+		"([^aeiouy]|qu)y$" => "\\1ies",
+		"(hive)$" => "\\1s",
+		"(?:([^f])fe|([lr])f)$" => "\\1\\2ves",
+		"sis$" => "ses",
+		"([ti])um$" => "\\1a",
+		"(p)erson$" => "\\1eople",
+		"(m)an$" => "\\1en",
+		"(c)hild$" => "\\1hildren",
+		"(buffal|tomat)o$" => "\\1\\2oes",
+		"(bu|campu)s$" => "\\1\\2ses",
+		"(alias|status|virus)" => "\\1es",
+		"(octop)us$" => "\\1i",
+		"(ax|cris|test)is$" => "\\1es",
+		"s$" => "s",
+		"$" => "s"
+
+	);
+
+	/**
+	 *This method gets the singular form of an input string
+	 *
+	 *@param string $string The input string for which an singular term is to be found.
+	 *@return string The output string after appropriate replacement has been done.
+	 */
+	public static function singular($string)
+	{
+		//assing the input string to a result variable
+		$result = $string;
+
+		//loop through the array of singular patterns, getting the regular exppression patters
+		foreach ($self::$singulars as $rule => $replacement) 
+		{
+			//get the regular expression friendly pattern
+			$rule = self::normalize($rule);
+
+			//check if there is a matching pattern in the input string
+			if ( preg_match($rule, $string) ) 
+			{
+				//replace with the appropriate string and return
+				$result = preg_replace($rule, $replacement, $string);
+
+				//once  a replacement is found, break out of the loop
+				break;
+
+			}
+
+		}
+
+		//return the result that was found
+		return $result;
+
+	}
+
+	/**
+	 *This method gets the plural form of an input string
+	 *
+	 *@param string $string Input string for which to find plural
+	 *@return string The output string after chaning to plural
+	 */
+	public static function plural($string)
+	{
+		//assign the input string to a result variable
+		$result = $string;
+
+		//loop through the array of plural patterns, getting the regular exppression friendly pattern
+		foreach (self::$plurals as $rule => $replacement) 
+		{
+			//get the regular axpression friendlt pattern
+			$result = $string;
+
+			//check if there is a match for this pattern in the input string
+			if ( preg_match($rule, $string) ) 
+			{
+				//if match found, replace rule with the replacement string
+				$result = preg_replace($rule, $replacement, $string);
+
+				//break out of loop once match is found
+				break;
+
+			}
+
+		}
+
+		//return the new string contained in result
+		return $result;
+
+	}
+
 }
 
