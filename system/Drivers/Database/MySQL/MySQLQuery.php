@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Database;
+<?php namespace Core\Drivers\Database\MySQL;
 
 /**
  *This class writes MySQLi vendor-specific database code
@@ -11,6 +11,8 @@
  *@license http://opensource.org/licenses/MIT MIT License
  *@version 1.0.1
  */
+
+use Core\Drivers\Utilities\ArrayUtility;
 
 class MySQLQuery {
 
@@ -67,6 +69,18 @@ class MySQLQuery {
 	 *@read
 	 */
 	protected $wheres = array();
+
+	/**
+	 *This stores the database connection instance object
+	 *
+	 **@param object $instance This is the database connection object instance
+	 */
+	public function __construct(array $instance)
+	{
+		//assign the connection object instance to the $this->connnector variable
+		$this->connector = $instance['connector'];
+
+	}
 
 	/**
 	 *This method quotes input data according to how MySQL woudl expect it
@@ -136,15 +150,15 @@ class MySQLQuery {
 	 */
 	public function from($from, $fields = array("*"))
 	{
-		//chekck if from is empty
+		//check if from is empty
 		if ( empty($from)) 
 		{
 			//throw new exception
-			throw new DbException("Invalid argument passed to from clause", 1);
+			throw new MySQLException("Invalid argument passed to from clause", 1);
 
 		}
 
-		//set the protected $from valus
+		//set the protected $from value
 		$this->froms = $from;
 
 		//check if fields is sset
@@ -170,7 +184,7 @@ class MySQLQuery {
 		if ( empty($join) )  
 		{
 			//throw exception for invalid argument
-			throw new Exception("Invalid argument $join passed for the Join Clause", 1);
+			throw new MySQLException("Invalid argument $join passed for the Join Clause", 1);
 
 		}
 
@@ -178,7 +192,7 @@ class MySQLQuery {
 		if ( empty($on) ) 
 		{
 			//throw exception
-			throw new DbException("Invalid argument $on passed for the Join Clause", 1);
+			throw new MySQLException("Invalid argument $on passed for the Join Clause", 1);
 
 		}
 
@@ -203,7 +217,7 @@ class MySQLQuery {
 		if ( empty($limit) ) 
 		{
 			//throw exception if value of limit passed is negative
-			throw new DbException("Empty argument passed for $limit in method limit()", 1);
+			throw new MySQLException("Empty argument passed for $limit in method limit()", 1);
 
 		}
 
@@ -228,7 +242,7 @@ class MySQLQuery {
 		if ( empty($order) ) 
 		{
 			//throw exception
-			throw new DBException("Empty value passed for parameter $order in order() method", 1);
+			throw new MySQLException("Empty value passed for parameter $order in order() method", 1);
 
 		}
 
@@ -237,6 +251,8 @@ class MySQLQuery {
 
 		//set the directions property
 		$this->directions = $direction;
+
+		return $this;
 
 	}
 
@@ -251,10 +267,10 @@ class MySQLQuery {
 		$arguments = func_get_args();
 
 		//throw exception if no arguments passed for the where clause
-		if ( sizeof($arguments < 1) ) 
+		if ( sizeof($arguments) < 1 ) 
 		{
 			//throw exception
-			throw new DbException("No arguments passed for the where clause", 1);
+			throw new MySQLException("No arguments passed for the where clause");
 
 		}
 
@@ -387,7 +403,7 @@ class MySQLQuery {
 		}
 
 		//return the formated query string in the format of $template
-		return sprintf($template, $fields, $$this->froms, $join, $where, $order, $limit);
+		return sprintf($template, $fields, $this->froms, $join, $where, $order, $limit);
 
 	}
 
@@ -405,21 +421,21 @@ class MySQLQuery {
 		$values = array();
 
 		//define a template format for query
-		$template = "INSERT INTO '%s' ('%s') VALUES (%s)";
+		$template = "INSERT INTO %s (%s) VALUES (%s)";
 
 		//loop through the input data
 		foreach ($data as $field => $value) 
 		{
-			//polulate the fields array
+			//populate the fields array
 			$fields[] = $field;
 
 			//populate the values array
-			$values = $this->quote($value);
+			$values[] = $this->quote($value);
 
 		}
 
 		//convert strings array to string
-		$fields = join("', '", $fields);
+		$fields = join(", ", $fields);
 
 		//convert values array to string
 		$values = join(", ", $values);
@@ -437,13 +453,13 @@ class MySQLQuery {
 	protected function buildUpdate($data)
 	{
 		//define the parts container array
-		$parts -= array();
+		$parts = array();
 
 		//define the continer vars initializing to empty
 		$where = $limit = '';
 
 		//define the template format string
-		$format = "UPDATE %s SET %s %s %s";
+		$template = "UPDATE %s SET %s %s %s";
 
 		//loop through the input data array, populating the parts array
 		foreach ($data as $field => $value) 
@@ -562,13 +578,13 @@ class MySQLQuery {
 		}
 
 		//excecute query
-		$result = $this->connector->excecute($sql);
+		$result = $this->connector->execute($sql);
 
 		//check if query execution failure
 		if ( $result === false) 
 		{
 			//throw exception 
-			throw new MySQLException();
+			throw new MySQLException($this->connector->lastError());
 
 		}
 
@@ -697,15 +713,15 @@ class MySQLQuery {
 		}
 
 		//check if the limit offset value is defined
-		if ( $offset ) 
+		if ( $limitOffset ) 
 		{
 			//set the offset value
-			$this->offset = $offset;
+			$this->offset = $limitOffset;
 
 		}
 
-		//return the rows array
-		return $row['rows'];
+		//return the rows count
+		return $row[0]['rows'];
 
 	}
 
@@ -720,7 +736,7 @@ class MySQLQuery {
 		$sql = $this->buildSelect();
 
 		//execute the sql query
-		$result = $this->connector->excecute($sql);
+		$result = $this->connector->execute($sql);
 
 		//check if the query return an error and throw exception
 		if ( $result === false ) 
