@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Database;
+<?php namespace Core\Drivers\Database\MySQL;
 
 /**
  *This class serves as the driver for all MySQL service connections
@@ -12,7 +12,7 @@
  *@version 1.0.1
  */
 
-class MySQl {
+class MySQL {
 
 	/**
 	 *@var object Instance of MySQL object
@@ -42,7 +42,7 @@ class MySQl {
 	 *@var string The database schema
 	 *@readwrite
 	 */
-	protected $schema;
+	protected $database;
 
 	/**
 	 *@var string Server Port number
@@ -69,6 +69,39 @@ class MySQl {
 	protected $connected = false;
 
 	/**
+	 *This method sets the initial database connectivity parameters 
+	 *
+	 *@param array $options Array containing the parameters like username, password e.t.c
+	 */
+	public function __construct(array $options)
+	{
+		//cast the input array into an object
+		$options  = (object)$options;
+
+		//set the database host
+		$this->host = $options->host;
+
+		//set the database username
+		$this->username = $options->username;
+
+		//set the database password
+		$this->password = $options->password;
+
+		//set the database schema
+		$this->database = $options->database;
+
+		//set the database port
+		$this->port = $options->port;
+
+		//set the default charset
+		$this->charset = $options->charset;
+
+		//set the default database engine
+		$this->engine = $options->engine;
+
+	}
+
+	/**
 	 *This method checks if there is a valid database connection instance
 	 *
 	 *@param null
@@ -76,10 +109,10 @@ class MySQl {
 	 */
 	protected function validService()
 	{
-		//check is the service variable is empty
+		//check if the service variable is empty
 		$empty  = empty($this->service);
 
-		//check is this service is an instance if MySQL
+		//check if this service is an instance if MySQL
 		$instance = $this->service instanceof \MySQLi;
 
 		//return true if there is a valid connection and $this->service is an instance of MySQLi
@@ -104,17 +137,17 @@ class MySQl {
 	 */
 	public function connect()
 	{
-		//check if there is a valid servic instance
-		if ($this->validService()) 
+		//check if there is a valid service instance
+		if ( ! $this->validService()) 
 		{
 			//make a connection attempt
-			$this->service = new \MySQLi($this->host,$this->username,$this->password,$this->schema,$this->port);
+			$this->service = new \MySQLi($this->host,$this->username,$this->password,$this->database,$this->port);
 
 			//check is the connection attempt returned an error
 			if ($this->service->connect_error) 
 			{
 				//throw exception
-				throw new DbException("Unable to connect to Database service with the provided settings");
+				throw new MySQLException("Unable to connect to Database service with the provided settings");
 
 			}
 
@@ -140,7 +173,7 @@ class MySQl {
 		if ($this->validService() ) 
 		{
 			//set the connection status to false
-			$this->connected = false;
+			$this->connected = false; 
 
 			//call method to disconnect from database
 			$this->service->close();
@@ -178,7 +211,7 @@ class MySQl {
 		if (! $this->validService() ) 
 		{
 			//throw exceptions
-			throw new DbException("Not connected to a valid database service");
+			throw new MySQLException("Not connected to a valid database service");
 
 		}
 
@@ -200,7 +233,7 @@ class MySQl {
 		if ( ! $this->validService() ) 
 		{
 			//throw exception
-			throw new DbException("Not connected to a valid database service");
+			throw new MySQLException("Not connected to a valid database service");
 			
 		}
 
@@ -222,7 +255,7 @@ class MySQl {
 		if ( ! $this->validService() ) 
 		{
 			//throw exception
-			throw new DbException("Not connected to a valid database service");
+			throw new MySQLException("Not connected to a valid database service");
 
 		}
 
@@ -244,7 +277,7 @@ class MySQl {
 		if ( ! $this->validService() ) 
 		{
 			//throw exception
-			throw new DbException("Not connected to a valid database service");
+			throw new MySQLException("Not connected to a valid database service");
 
 		}
 
@@ -266,7 +299,7 @@ class MySQl {
 		if ( ! $this->validService() ) 
 		{
 			//throw error
-			throw new DbException("Not connected to a valid database service");
+			throw new MySQLException("Not connected to a valid database service");
 
 		}
 

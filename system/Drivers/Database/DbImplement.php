@@ -13,13 +13,15 @@
  *@version 1.0.1
  */
 
+use Core\Drivers\Database\MySQL\MySQL;
+
 trait DbImplement { 
 
 	/**
 	 *@var string The database type
 	 *@readwrite
 	 */
-	protected $type;
+	protected $type; 
 
 	/**
 	 *@var array Database type connection parameters
@@ -45,18 +47,18 @@ trait DbImplement {
 		}
 
 		//check the type of  database provided returning instance
-		//set the parameter to check in switch
+		//set the parameter to check in switch clause
 		switch ($this->type ) 
 		{
 			case 'mysql':
 
-				return new Core\Drivers\Database\MySQL($this->options);
+				return new MySQL($this->options);
 
 				break;
 			
 			default:
 
-				throw new DbException("valid database type provided");
+				throw new DbException("Valid database type provided");
 				
 
 				break;
