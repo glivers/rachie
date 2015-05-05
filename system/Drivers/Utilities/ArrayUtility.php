@@ -109,4 +109,16 @@ class ArrayUtility {
 
 	}
 
+	/**
+	 *
+	 *
+	 *
+	 */
+	public static function first($array)
+	{
+		//
+		return array_slice($array, 0, 1);
+
+	}
+
 }
