@@ -16,5 +16,23 @@ use Core\Drivers\Database\DbImplement;
 
 class BaseDb {
 
+	use DbImplement;
+
+	/**
+	 *This constructor method intializes the database type and sets the options parameters
+	 *
+	 *@param string $name This is the default database name
+	 *@param array $options This is the array containing the database connection paramters
+	 */
+	public function __construct($name, $options)
+	{
+		//assign $name to the database type
+		$this->type = $name;
+
+		//assign the $options to the database connection options
+		$this->options = $options;
+
+	}
+
 
 }
