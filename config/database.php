@@ -9,7 +9,7 @@ return array(
 	/*
 	 *Define the default driver
 	 */
-	'default' => '',
+	'default' => 'mysql',
 	/*
 	 *Settings for the mysql database
 	 */
@@ -17,19 +17,31 @@ return array(
 		/**
 		 *Define the database server hostname
 		 */
-		'host' 		=> '',
+		'host' 		=> 'localhost',
 		/*
 		 *Define the username
 		 */
-		'username' 	=> '',
+		'username' 	=> 'root',
 		/*
 		 *Define the database password
 		 */
-		'password' 	=> '',
+		'password' 	=> 'goliver',
 		/*
 		 *Specify the database to connnect to
 		 */
-		'database' 	=> ''
+		'database' 	=> 'livers',
+		/**
+		 *Specify the database server port
+		 */
+		'port' => '3306',
+		/**
+		 *Set the default charset
+		 */
+		'charset' => 'utf8',
+		/**
+		 *Set the default database engine
+		 */
+		'engine' => 'InnoDB'
 
 		),
 
@@ -49,7 +61,50 @@ return array(
 		/*
 		 *Specify the database to connnect to
 		 */
-		'database' 	=> ''
+		'database' 	=> '',
+		/**
+		 *Specify the database server port
+		 */
+		'port' => '3306',
+		/**
+		 *Set the default charset
+		 */
+		'charset' => 'utf8',
+		/**
+		 *Set the default database engine
+		 */
+		'engine' => 'InnoDB'
+
+	),
+	'postgresql' => array(
+		/**
+		 *Define the database server hostname
+		 */
+		'host' 		=> '',
+		/*
+		 *Define the username
+		 */
+		'username' 	=> '',
+		/*
+		 *Define the database password
+		 */
+		'password' 	=> '',
+		/*
+		 *Specify the database to connnect to
+		 */
+		'database' 	=> '',
+		/**
+		 *Specify the database server port
+		 */
+		'port' => '3306',
+		/**
+		 *Set the default charset
+		 */
+		'charset' => 'utf8',
+		/**
+		 *Set the default database engine
+		 */
+		'engine' => 'InnoDB'
 
 	),
 
