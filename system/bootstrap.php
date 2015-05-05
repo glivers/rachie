@@ -29,6 +29,13 @@ try{
 		
 	}
 
+	//check if the database settings file is present
+	if ( ! file_exists(__DIR__ . '/../config/database.php')) {
+
+		throw new Exception("The system database settings file is missing! Please restore if you deleted. System Exit...");
+		
+	}
+
 	//check if the start.php file is present
 	if ( ! file_exists(__DIR__ . '/start.php')) {
 
@@ -57,6 +64,9 @@ try{
 	
 	//load system configuration settings into array	 
 	$config = require_once __DIR__ . '/../config/config.php';
+
+	//load system database settings into array	 
+	$database = require_once __DIR__ . '/../config/database.php';
 
 	//set the class aliases, so they are available to our closure objects
     //loop through aliases autoloading
