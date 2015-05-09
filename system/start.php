@@ -85,8 +85,14 @@ return	function() use($config, $url){
 			//throw exception if no method can be found
 			if( ! $dispatch->$action() ) throw new Core\Exceptions\BaseException("Access to undefined method " . $controller . '->' . $action);
 			
+			//get the method name
+			$action = $dispatch->$action();
+
 			//fire up application
 			$dispatch->$action();
+
+			//stop further script execution
+			exit();
 
 
 		}
