@@ -34,6 +34,10 @@ class Url {
 	 */
 	public static function base()
 	{
+
+		//get the uri string from url request
+		$url = isset($_GET['url']) ? $_GET['url'] : '';
+
 		//get the server name from global $_SERVER[] array()
 		$base  = $_SERVER['SERVER_NAME']; 
 
@@ -41,10 +45,10 @@ class Url {
 		//$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], str_replace("url=","",$_SERVER['REDIRECT_QUERY_STRING'])));
 		
 		//check if there is a uri string
-		if (isset($_SERVER['REDIRECT_QUERY_STRING'])) 
+		if ( ! empty($url) ) 
 		{
 			//prepend installation folder to server name
-			$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], str_replace("url=","",$_SERVER['REDIRECT_QUERY_STRING'])));
+			$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], $url));
 
 		}
 		//there is no query string, 
@@ -73,14 +77,17 @@ class Url {
 	 */
 	public static function assets()
 	{
+		//get the uri string from url request
+		$url = isset($_GET['url']) ? $_GET['url'] : '';
+
 		//get the server name from global $_SERVER[] array()
 		$base  = $_SERVER['SERVER_NAME']; 
 
 		//check if there is a uri string
-		if (isset($_SERVER['REDIRECT_QUERY_STRING'])) 
+		if ( ! empty($url) ) 
 		{
 			//prepend installation folder to server name
-			$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], str_replace("url=","",$_SERVER['REDIRECT_QUERY_STRING'])));
+			$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], $url));
 
 		}
 		//there is no query string, 
