@@ -29,7 +29,7 @@ try{
 		
 	}
 
-	//check if the database settings file is present
+ 	//check if the database settings file is present
 	if ( ! file_exists(__DIR__ . '/../config/database.php')) {
 
 		throw new Exception("The system database settings file is missing! Please restore if you deleted. System Exit...");
@@ -40,6 +40,13 @@ try{
 	if ( ! file_exists(__DIR__ . '/start.php')) {
 
 		throw new Exception("The System Application Start() file not found! Please restore if you deleted. System Exit...");
+		
+	}
+
+	//check if the constants.php file is present
+	if ( ! file_exists(__DIR__ . '/start.php')) {
+
+		throw new Exception("The constants definition file not found! Please restore if you deleted. System Exit...");
 		
 	}
 
@@ -61,6 +68,9 @@ try{
 
 	//get the composer autoloader.php file
 	require_once __DIR__ . '/../vendor/autoload.php';
+
+	//load the defined constants
+	require_once __DIR__ . '/../application/constants.php';
 	
 	//load system configuration settings into array	 
 	$config = require_once __DIR__ . '/../config/config.php';

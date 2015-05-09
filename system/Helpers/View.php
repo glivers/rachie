@@ -94,6 +94,7 @@ class View {
             //load this file into view
             if (file_exists($path)) 
             {
+                /*
                 //grab the global config array to get the default catch
                 global $config;
 
@@ -116,6 +117,8 @@ class View {
                 //there is not cache for this file, get new file and store in cache
                 else
                 {
+
+                    */
                     // Start output buffering
                     ob_start(); 
 
@@ -150,7 +153,10 @@ class View {
                     //output 
                     echo $contents; // Return the contents
 
-                }
+                    //stop further script execution
+                    exit();
+
+                //}
 
  
 
