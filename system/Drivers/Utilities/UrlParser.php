@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Utilities;
+<?php namespace Drivers\Utilities;
 
 /**
  *This class resolves a Url string to get the controller, method and query parameters
@@ -11,9 +11,6 @@
  *@license http://opensource.org/licenses/MIT MIT License
  *@version 1.0.1
  */
-
-use Drivers\Utilities\ArrayUtility;
-use Drivers\Utilities\StringUtility;
 
 class UrlParser  {
 

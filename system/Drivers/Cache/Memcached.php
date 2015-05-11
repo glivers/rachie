@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Cache;
+<?php namespace Drivers\Cache;
 
 /**
  *This class serves as the driver for all Memcached service connections

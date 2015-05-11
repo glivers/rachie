@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Models;
+<?php namespace Drivers\Models;
 
 /**
  *This class handles all exceptions thrown in the context of model class implementations.

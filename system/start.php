@@ -24,20 +24,20 @@ return	function() use($config, $url){
 		//check of the routes configuration file exists
 		if ( ! file_exists( __DIR__ . '/../application/routes.php'))
 
-			throw new Core\Exceptions\BaseException("The defined routes file cannot be found! Please restore if you deleted");
+			throw new Exceptions\BaseException("The defined routes file cannot be found! Please restore if you deleted");
 		
 		//get the defined routes
 		$routes = include __DIR__ . '/../application/routes.php';
 
 	}
-	catch(Core\Exceptions\BaseException $error){
+	catch(Exceptions\BaseException $error){
 
 		$error->show();
 
 		return;
 	}
 
-	$routeObj = new Core\Drivers\Routes\Implementation();
+	$routeObj = new Drivers\Routes\Implementation();
 
 	//there is a defined route
 	if ( $routeObj->dispatch($url, $routes) ) 
@@ -56,7 +56,7 @@ return	function() use($config, $url){
 	else
 	{
 		//create an instance of the url parser
-		$urlObj = new Core\Drivers\Utilities\UrlParser($url);
+		$urlObj = new Drivers\Utilities\UrlParser($url);
 
 		//get the controller name
 		($controller = $urlObj->getController()) || ($controller = 'Home');
@@ -75,7 +75,7 @@ return	function() use($config, $url){
 		//get the namespaced controller class
 		$controller 	= 'Controllers\\' . ucwords($controller) . 'Controller';
 
-		if( ! class_exists($controller) ) throw new Core\Exceptions\BaseException("The class " . $controller . ' is undefined');
+		if( ! class_exists($controller) ) throw new Exceptions\BaseException("The class " . $controller . ' is undefined');
 		
 		if( ! (int)method_exists($controller, $action) )
 		{
@@ -83,7 +83,7 @@ return	function() use($config, $url){
 			$dispatch = new $controller;
 
 			//throw exception if no method can be found
-			if( ! $dispatch->$action() ) throw new Core\Exceptions\BaseException("Access to undefined method " . $controller . '->' . $action);
+			if( ! $dispatch->$action() ) throw new Exceptions\BaseException("Access to undefined method " . $controller . '->' . $action);
 			
 			//get the method name
 			$action = $dispatch->$action();
@@ -101,14 +101,14 @@ return	function() use($config, $url){
 		else $dispatch = new $controller; call_user_func_array(array($dispatch, $action), $parameters = array());
 
 	}
-	catch(Core\Exceptions\BaseException $error){
+	catch(Exceptions\BaseException $error){
 
 		$error->show();
 
 		return;
 
 	}
-	catch(Core\Exceptions\BaseException $error){
+	catch(Exceptions\BaseException $error){
 
 		$error->show();
 

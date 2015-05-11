@@ -1,4 +1,4 @@
-<?php namespace Core\Helpers;
+<?php namespace Helpers;
 
 /**
  *This class handles post and get input data

@@ -1,4 +1,4 @@
-<?php namespace Core\Exceptions;
+<?php namespace Exceptions;
 
 class BaseException extends \Exception {
 

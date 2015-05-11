@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers;
+<?php namespace Drivers;
 
 /**
  *This class creates and stores instances of objects

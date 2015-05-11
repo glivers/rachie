@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Cache;
+<?php namespace Drivers\Cache;
 
 /**
  *This the base class which all cache drivers extend
@@ -11,8 +11,6 @@
  *@license http://opensource.org/licenses/MIT MIT License
  *@version 1.0.1
  */
-
-use Drivers\Cache\CacheImplementation;
 
 class CacheBase {
 

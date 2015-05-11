@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers;
+<?php namespace Drivers;
 
 /**
  *This class has methods that return the DocComment string values, parse them into associative arrays 

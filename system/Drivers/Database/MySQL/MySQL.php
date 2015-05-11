@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Database\MySQL;
+<?php namespace Drivers\Database\MySQL;
 
 /**
  *This class serves as the driver for all MySQL service connections

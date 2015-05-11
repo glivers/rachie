@@ -1,4 +1,4 @@
-<?php namespace Core\Helpers;
+<?php namespace Helpers;
 
 /**
  *This class handles rendering of view files

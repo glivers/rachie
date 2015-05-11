@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Cache;
+<?php namespace Drivers\Cache;
 
 /**
  *This trait is implemented in the base class. It give the basic initialization code for a cache service

@@ -1,4 +1,4 @@
-<?php namespace Core\Helpers;
+<?php namespace Helpers;
 
 /**
  *This class defines the various paths that will be used in this application
