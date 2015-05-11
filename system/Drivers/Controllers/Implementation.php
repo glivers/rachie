@@ -27,7 +27,7 @@ trait  Implementation {
 		$prefix = ($_SERVER['REQUEST_METHOD'] == 'GET') ? 'get' : 'post';
 
 		$method = $prefix . ucwords($method);
-
+		
 		//check of this method exists and return method name, else return false
 		if (method_exists($this, $method)) return $method;
 		else return false;
