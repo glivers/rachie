@@ -1,6 +1,6 @@
 <?php namespace Core\Exceptions;
 
-use Core\Helpers\Path;
+use Helpers\Path;
 
 class BaseException extends \Exception {
 

@@ -12,7 +12,7 @@
  *@version 1.0.1
  */
 
-use Core\Drivers\Database\DbImplement;
+use Drivers\Database\DbImplement;
 
 class BaseDb {
 

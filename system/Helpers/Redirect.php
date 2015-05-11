@@ -12,7 +12,7 @@
  *@version 1.0.1
  */
 
-use Core\Helpers\Url;
+use Helpers\Url;
 
 class Redirect {
 	

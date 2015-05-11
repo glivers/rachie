@@ -12,13 +12,10 @@
  *@version 1.0.1
  */
 
-use Core\Drivers\Utilities\ArrayUtility;
-use Core\Drivers\StringUtility;
-use Core\Drivers\BaseRouter;
-use Core\Drivers\Registry;
-use Core\Drivers\Inspector;
-use Core\Drivers\Utilities\UrlParser;
-use Core\Exceptions\RouteControllerNotDefinedException;
+use Drivers\Utilities\ArrayUtility;
+use Drivers\Registry;
+use Drivers\Inspector;
+use Drivers\Utilities\UrlParser;
 
 class Implementation extends Base {
 

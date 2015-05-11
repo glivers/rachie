@@ -11,10 +11,10 @@
  *@version 1.0.1
  */
 
-use Core\Drivers\Templates\Map;
-use Core\Drivers\Templates\Exception;
-use Core\Drivers\Utilities\StringUtility;
-use Core\Drivers\Utilities\ArrayUtility;
+use Drivers\Templates\Map;
+use Drivers\Templates\Exception;
+use Drivers\Utilities\StringUtility;
+use Drivers\Utilities\ArrayUtility;
 
 class  Base {
 

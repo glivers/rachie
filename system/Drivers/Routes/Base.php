@@ -14,8 +14,8 @@
  *@version 1.0.1
  */
 
-use Core\Drivers\ArrayUtility;
-use Core\Drivers\StringUtility;
+use Drivers\ArrayUtility;
+use Drivers\StringUtility;
 
 class Base {
 

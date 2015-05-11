@@ -11,7 +11,7 @@
  *@version 1.0.1
  */
 
-use Core\Drivers\Templates\Base;
+use Drivers\Templates\Base;
 
 
 class  Implementation extends Base {

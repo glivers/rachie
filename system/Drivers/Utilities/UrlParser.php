@@ -12,8 +12,8 @@
  *@version 1.0.1
  */
 
-use Core\Drivers\Utilities\ArrayUtility;
-use Core\Drivers\Utilities\StringUtility;
+use Drivers\Utilities\ArrayUtility;
+use Drivers\Utilities\StringUtility;
 
 class UrlParser  {
 

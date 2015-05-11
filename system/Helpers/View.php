@@ -10,9 +10,9 @@
  *@package Core\Helpers\View
  */
 
-use Core\Drivers\Templates\Implementation;
-use Core\Exceptions\BaseException;
-use Core\Drivers\Cache\CacheBase;
+use Drivers\Templates\Implementation;
+use Exceptions\BaseException;
+use Drivers\Cache\CacheBase;
 
 class View {
 

@@ -13,7 +13,7 @@
  *@version 1.0.1
  */
 
-use Core\Drivers\Database\MySQL\MySQL;
+use Drivers\Database\MySQL\MySQL;
 
 trait DbImplement { 
 
