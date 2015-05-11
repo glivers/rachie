@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Database;
+<?php namespace Drivers\Database;
 
 /**
  *This class handles all exceptions throw in the context of caching

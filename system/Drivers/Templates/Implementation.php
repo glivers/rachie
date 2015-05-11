@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Templates;
+<?php namespace Drivers\Templates;
 
 /**
  *This class has method that process template files
@@ -10,9 +10,6 @@
  *@license http://opensource.org/licenses/MIT MIT License
  *@version 1.0.1
  */
-
-use Drivers\Templates\Base;
-
 
 class  Implementation extends Base {
 

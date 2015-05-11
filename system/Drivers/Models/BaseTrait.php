@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Models;
+<?php namespace Drivers\Models;
 
 /**
  *This is the Base Trait class that the Model Class implements

@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Controllers;
+<?php namespace Drivers\Controllers;
 
 /**
  *This trait with magic class provide getters and setters for the base controller class

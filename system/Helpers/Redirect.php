@@ -1,4 +1,4 @@
-<?php namespace Core\Helpers;
+<?php namespace Helpers;
 
 /**
  *This class handles php session re-direction
@@ -11,8 +11,6 @@
  *@license http://opensource.org/licenses/MIT MIT License
  *@version 1.0.1
  */
-
-use Helpers\Url;
 
 class Redirect {
 	

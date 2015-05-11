@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Routes;
+<?php namespace Drivers\Routes;
 
 /**
  *This class performs url resolving. 

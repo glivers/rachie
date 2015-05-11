@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Templates;
+<?php namespace Drivers\Templates;
 
 /**
  *This class handles template processing
@@ -11,8 +11,6 @@
  *@version 1.0.1
  */
 
-use Drivers\Templates\Map;
-use Drivers\Templates\Exception;
 use Drivers\Utilities\StringUtility;
 use Drivers\Utilities\ArrayUtility;
 

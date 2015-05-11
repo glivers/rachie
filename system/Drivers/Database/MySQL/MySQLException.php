@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Database\MySQL;
+<?php namespace Drivers\Database\MySQL;
 
 /**
  *This class handles all exceptions thrown in the context of mysql database operations

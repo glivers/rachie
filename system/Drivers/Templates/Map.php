@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Templates;
+<?php namespace Drivers\Templates;
 
 /**
  *This trait defines the grammar map for our default template parser.

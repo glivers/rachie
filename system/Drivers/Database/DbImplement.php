@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Database;
+<?php namespace Drivers\Database;
 
 /**
  *This trait is implemented in the base class. 

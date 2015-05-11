@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Templates;
+<?php namespace Drivers\Templates;
 
 class Exception extends \Exception {
 

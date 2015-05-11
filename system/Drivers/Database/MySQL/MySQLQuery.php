@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Database\MySQL;
+<?php namespace Drivers\Database\MySQL;
 
 /**
  *This class writes MySQLi vendor-specific database code

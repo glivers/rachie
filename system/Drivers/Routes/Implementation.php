@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Routes;
+<?php namespace Drivers\Routes;
 
 /**
  *This class routes a request to the appropriate controller and action.

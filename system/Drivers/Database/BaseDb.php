@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Database;
+<?php namespace Drivers\Database;
 
 /**
  *This class is the base database class which all subclasses extend

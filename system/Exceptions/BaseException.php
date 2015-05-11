@@ -1,4 +1,4 @@
-<?php namespace Core\Exceptions;
+<?php namespace Exceptions;
 
 use Helpers\Path;
 

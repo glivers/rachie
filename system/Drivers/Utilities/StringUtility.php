@@ -1,4 +1,4 @@
-<?php namespace Core\Drivers\Utilities;
+<?php namespace Drivers\Utilities;
 
 /**
  *This class performs repetative String  functions.
