@@ -32,7 +32,7 @@ class Session {
 	 *@param mixed $input The input data to be stored
 	 *@return void
 	 */
-	public static function  put($key, $data)
+	public static function  set($key, $data)
 	{
 		//store data in session
 		$_SESSION[$key] = $data;
@@ -47,8 +47,14 @@ class Session {
 	 */
 	public static function  get($key)
 	{
-		//return the session data
-		return $_SESSION[$key];
+		//check if this key exists 
+		$exists = (isset($_SESSION[$key])) ? true : false;
+
+		//return check status if false
+		if ( ! $exists)  return $exists;
+
+		//return the session data if found
+		else return $_SESSION[$key];
 
 	}
 
@@ -62,6 +68,7 @@ class Session {
 	{
 		// remove all session variables
 		session_unset();
+
 
 		// destroy the session
 		session_destroy(); 
