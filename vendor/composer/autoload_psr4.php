@@ -7,6 +7,9 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Models\\' => array($baseDir . '/application/models'),
-    'Core\\' => array($baseDir . '/system'),
+    'Libraries\\' => array($baseDir . '/application/libraries'),
+    'Helpers\\' => array($baseDir . '/system/Helpers'),
+    'Exceptions\\' => array($baseDir . '/system/Exceptions'),
+    'Drivers\\' => array($baseDir . '/system/Drivers'),
     'Controllers\\' => array($baseDir . '/application/controllers'),
 );
