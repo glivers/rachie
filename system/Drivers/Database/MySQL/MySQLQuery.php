@@ -91,7 +91,7 @@ class MySQLQuery {
 	protected function quote($value)
 	{
 		//if string, quote and return
-		if ( is_string($value) )  
+		if ( is_string($value) || is_int($value) )  
 		{
 			//call connector method to escape string
 			$escaped = $this->connector->escape($value);
@@ -266,31 +266,60 @@ class MySQLQuery {
 		//get the arguments
 		$arguments = func_get_args();
 
-		//throw exception if no arguments passed for the where clause
-		if ( sizeof($arguments) < 1 ) 
+		//throw exception if argument pairs do ot match
+		if ( is_float( sizeof($arguments) / 2 ) ) 
 		{
 			//throw exception
 			throw new MySQLException("No arguments passed for the where clause");
 
 		}
 
-		//
-		$arguments[0] = preg_replace("#\?#", "%s", $arguments[0]);
-
-		//loop through the arguments array
-		foreach (array_slice($arguments, 1, null, true) as $i => $parameter) 
+		//check if only one argument pair was passed'
+		if ( sizeof($arguments) == 2) 
 		{
-			//quote the argument contect
-			$arguments[$i] = $this->quote($arguments[$i]);
+			//get first argument and replace ? with a placeholder
+			$arguments[0] = preg_replace("#\?#", "%s", $arguments[0]);
+
+			//quote the argument content
+			$arguments[1] = $this->quote($arguments[1]);
+
+			//populate the wheres array
+			$this->wheres[] = call_user_func_array("sprintf", $arguments);
+
+			//return this object instance
+			return $this;	
+
 
 		}
 
-		//populate the wheres array
-		$this->wheres[] = call_user_func_array("sprintf", $arguments);
+		//there are multiple argument supplied
+		else
+		{
+			//get the number of iterations
+			$count = sizeof($arguments) / 2;
 
-		//return this object instance
-		return $this;	
+			//loop through number of iterations population the wheres array
+			for ($i = 0; $i < $count; $i++ ) 
+			{ 
+				//get the batch of array to work with
+				$argumentsPair  = array_splice($arguments, 0, 2);
 
+				//get first argument and replace ? with a placeholder
+				$argumentsPair[0] = preg_replace("#\?#", "%s", $argumentsPair[0]);
+
+				//quote the argument content
+				$argumentsPair[1] = $this->quote($argumentsPair[1]);
+				
+				//populate the wheres array
+				$this->wheres[] = call_user_func_array("sprintf", $argumentsPair);
+
+			}
+
+			//return this object instance
+			return $this;	
+
+		}
+		
 	}
 
 	/**
@@ -415,7 +444,7 @@ class MySQLQuery {
 	protected function buildInsert($data)
 	{
 		//define a fields container array
-		$fields = array();
+		$fields = array(); 
 
 		//define a values container array
 		$values = array();
@@ -423,7 +452,7 @@ class MySQLQuery {
 		//define a template format for query
 		$template = "INSERT INTO %s (%s) VALUES (%s)";
 
-		//loop through the input data
+		//loop through the input data 
 		foreach ($data as $field => $value) 
 		{
 			//populate the fields array
@@ -431,6 +460,67 @@ class MySQLQuery {
 
 			//populate the values array
 			$values[] = $this->quote($value);
+
+		}
+
+		//convert strings array to string
+		$fields = join(", ", $fields);
+
+		//convert values array to string
+		$values = join(", ", $values);
+
+		//return the formated query string
+		return sprintf($template, $this->froms, $fields, $values);
+
+	}
+	/**
+	 *
+	 *
+	 *
+	 */
+	protected function buildBulkInsert($data)
+	{
+		//define a fields container array
+		$fields = array(); 
+
+		//define a values container array
+		$values = array();
+
+		//define a template format for query
+		$template = "INSERT INTO %s (%s) VALUES %s";
+
+		//get the fields array
+		$fieldsArray = $data[0];
+
+		//get the fields
+		foreach ($fieldsArray as $field => $value) 
+		{
+			//populate the fields array
+			$fields[] = $field;
+
+		}
+		//get the count of number of rows
+		$count = sizeof($data);
+
+		//loop through the input data composing input data
+		for ( $i = 0; $i < $count; $i++ ) 
+		{ 
+			//remove the first array and return
+			$array = $data[$i];
+
+			//define array to contain the string components
+			$valuesArray = array();
+
+			//loop through the array composing the values
+			foreach ($array as $field => $value) 
+			{
+				//populate the values array
+				$valuesArray[] = $this->quote($value);
+
+			}
+
+			//convert strings array to string
+			$values[] = '(' . join(", ", $valuesArray) . ')';
 
 		}
 
@@ -502,6 +592,65 @@ class MySQLQuery {
 
 		//return the formated query string
 		return sprintf($template, $this->froms, $parts, $where, $limit);
+
+	}
+	/**
+	 *
+	 *
+	 *
+	 */
+	protected function buildBulkUpdate($data, $fields, $ids)
+	{
+
+		//define the parts container array
+		$parts = array();
+
+		//define the template format string
+		$template = "UPDATE %s SET %s WHERE contact_id IN (%s) ";
+
+		//loop through the fields array composing the array
+		foreach ($fields as $key => $field ) 
+		{
+			//initialize the subparts variable
+			$subparts = $field . ' = (CASE contact_id ';
+
+			//loop through the data array composing parts
+			foreach ($data as $id => $info ) 
+			{
+	            //check if array is not empty
+	            if ( ! empty($info) ) 
+	            {
+					//echo "<pre>";print_r($info);exit();
+					$subparts .=  ' WHEN '. $id . ' THEN ' . $this->quote($info[$field]) . ' ';
+
+	            }
+
+			}
+
+			//finish the subpart
+			$subparts .= ' END) ';
+
+			//add this to the main parts array
+			$parts[] = $subparts;
+
+		}
+
+		//convert parts array into string
+		$parts = join(", ", $parts);
+
+		//get the where clause
+		$queryWhere = $ids;
+
+		//check if where clause is empty
+		if ( ! empty($queryWhere) ) 
+		{
+			//convert where clause array to string
+			$where = join(", ", $queryWhere);
+
+		}
+
+		//return the formated query string
+		return sprintf($template, $this->froms, $parts, $where);
 
 	}
 
@@ -576,6 +725,54 @@ class MySQLQuery {
 			$sql = $this->buildUpdate($data);
 
 		}
+
+		//excecute query
+		$result = $this->connector->execute($sql);
+
+		//check if query execution failure
+		if ( $result === false) 
+		{
+			//throw exception 
+			throw new MySQLException($this->connector->lastError());
+
+		}
+
+		//if this was an insert, get the insert id
+		if( $doInsert )
+		{
+			//get last insert id and retunr
+			return $this->connector->lastInsertId();
+		}
+
+		//if this was update and sucess, return 0 to show operation successful
+		return 0;
+
+	}
+	/**
+	 *
+	 *
+	 *
+	 */
+	public function saveBulk($data, $fields = null , $ids = null )
+	{
+		//get the size of the wheres parameter
+		$doInsert = sizeof($this->wheres) == 0;
+
+		//check if doInsert is true
+		if ( $doInsert ) 
+		{
+			//get insert query string
+			$sql = $this->buildBulkInsert($data);
+
+		}
+
+		//not insert, this should be an update
+		else
+		{
+			//get update query string
+			$sql = $this->buildBulkUpdate($data, $fields, $ids);
+		}
+//echo "<pre>";print_r($sql);exit();
 
 		//excecute query
 		$result = $this->connector->execute($sql);
