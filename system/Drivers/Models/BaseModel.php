@@ -12,10 +12,10 @@
  *@version 1.0.1
  */
 
-use Core\Drivers\Registry;
-use Core\Drivers\Inspector;
-use Core\Drivers\Database\BaseTrait;
-use Core\Drivers\Utilities\StringUtility;
+use Drivers\Registry;
+use Drivers\Inspector;
+use Drivers\Database\BaseTrait;
+use Drivers\Utilities\StringUtility;
 
 
 class BaseModel {

@@ -13,8 +13,8 @@
  *@version 1.0.1
  */
 
-use Core\Drivers\Array;
-use Core\Drivers\String;
+use Drivers\Array;
+use Drivers\String;
 
 
 class Inspector {

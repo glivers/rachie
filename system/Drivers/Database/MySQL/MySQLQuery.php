@@ -12,7 +12,7 @@
  *@version 1.0.1
  */
 
-use Core\Drivers\Utilities\ArrayUtility;
+use Drivers\Utilities\ArrayUtility;
 
 class MySQLQuery {
 

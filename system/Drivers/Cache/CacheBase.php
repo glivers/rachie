@@ -12,7 +12,7 @@
  *@version 1.0.1
  */
 
-use Core\Drivers\Cache\CacheImplementation;
+use Drivers\Cache\CacheImplementation;
 
 class CacheBase {
 

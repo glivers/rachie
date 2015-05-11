@@ -11,7 +11,7 @@
  *@version 1.0.1
  */
 
-use Core\Helpers\Path;
+use Helpers\Path;
 
 class ModelException extends \Exception {
 
