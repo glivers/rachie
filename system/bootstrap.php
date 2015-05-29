@@ -16,42 +16,42 @@
 try{
 
 	//check if the composer/vendor/autoloader file exists
-	if ( ! file_exists( __DIR__ . '/../vendor/autoload.php')) {
+	if ( ! file_exists( __DIR__ . '/../vendor/autoload.php') ) {
 
 		throw new Exception("The composer autoloader file is missing! Please run composer from your terminal to install. System Exit...");
 		
 	}
 
 	//check if the configuration file is present
-	if ( ! file_exists(__DIR__ . '/../config/config.php')) {
+	if ( ! file_exists(__DIR__ . '/../config/config.php') ) {
 
 		throw new Exception("The system configuration file is missing! Please restore if you deleted. System Exit...");
 		
 	}
 
  	//check if the database settings file is present
-	if ( ! file_exists(__DIR__ . '/../config/database.php')) {
+	if ( ! file_exists(__DIR__ . '/../config/database.php') ) {
 
 		throw new Exception("The system database settings file is missing! Please restore if you deleted. System Exit...");
 		
 	}
 
 	//check if the start.php file is present
-	if ( ! file_exists(__DIR__ . '/start.php')) {
+	if ( ! file_exists(__DIR__ . '/start.php') ) {
 
 		throw new Exception("The System Application Start() file not found! Please restore if you deleted. System Exit...");
 		
 	}
 
 	//check if the constants.php file is present
-	if ( ! file_exists(__DIR__ . '/start.php')) {
+	if ( ! file_exists(__DIR__ . '/start.php') ) {
 
 		throw new Exception("The constants definition file not found! Please restore if you deleted. System Exit...");
 		
 	}
 
 	//check if the  base shutdown debug file is present
-	if ( ! file_exists(__DIR__ . '/Exceptions/Debug/BaseShutdown.php')) {
+	if ( ! file_exists(__DIR__ . '/Exceptions/Debug/BaseShutdown.php') ) {
 
 		throw new Exception("The System Application Default ErrorHandler not found! Please restore if you deleted. System Exit...");
 		
@@ -94,7 +94,7 @@ try{
 	$start();
 
 }
-catch(Exception $e){
+catch(Exception $e) {
 
 $error =<<<ERROR
 	<!DOCTYPE html>
@@ -106,7 +106,7 @@ $error =<<<ERROR
 	    <meta name="description" content="">
 	    <meta name="author" content="">
 
-		<title>Gliver MCV Application Launch Error </title>
+		<title>Gliver Error!</title>
 
 	</head>
 	<body>
@@ -144,6 +144,3 @@ echo $error;
 exit();
 
 }
-
-
-

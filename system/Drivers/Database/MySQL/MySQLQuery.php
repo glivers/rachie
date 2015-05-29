@@ -142,6 +142,14 @@ class MySQLQuery {
 
 		}
 
+		//check if empty value was returned
+		if ( empty($value) ) 
+		{
+			//return empty string
+			return "' '";
+
+		}
+
 	}
 
 	/**
@@ -617,7 +625,7 @@ class MySQLQuery {
 			//loop through the data array composing parts
 			foreach ($data as $id => $info ) 
 			{
-	            //check if array is not empty
+	            //check if array is not empty 
 	            if ( ! empty($info) ) 
 	            {
 					//echo "<pre>";print_r($info);exit();
@@ -772,7 +780,7 @@ class MySQLQuery {
 			//get update query string
 			$sql = $this->buildBulkUpdate($data, $fields, $ids);
 		}
-//echo "<pre>";print_r($sql);exit();
+//echo $sql;exit();
 
 		//excecute query
 		$result = $this->connector->execute($sql);
