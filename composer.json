@@ -20,7 +20,12 @@
 		"psr-4" : {
 			"Models\\" : "application/models",
 			"Controllers\\" : "application/controllers",
-			"Core\\" : "system"
+			"Drivers\\" : "system/Drivers",
+			"Helpers\\"  : "system/Helpers",
+			"Exceptions\\"  : "system/Exceptions",
+			"Libraries\\"  : "application/libraries"
 		}
+
 	}
+	
 }
