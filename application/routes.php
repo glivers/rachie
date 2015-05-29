@@ -20,6 +20,6 @@ return array(
  *@param null
  *@return void
  */
-'userspage' => 'HomeController'
+'userspage' => 'home'
 
 );
