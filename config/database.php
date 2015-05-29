@@ -25,11 +25,11 @@ return array(
 		/*
 		 *Define the database password
 		 */
-		'password' 	=> 'goliver',
+		'password' 	=> '',
 		/*
 		 *Specify the database to connnect to
 		 */
-		'database' 	=> 'livers',
+		'database' 	=> '',
 		/**
 		 *Specify the database server port
 		 */

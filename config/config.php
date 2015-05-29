@@ -42,8 +42,9 @@ return array(
 	 *cd 
 	 */
 	'aliases' => array(
-		'Core\Helpers\Url' 				=> 'Url',
-		'Core\Helpers\Path' 			=> 'Path',
+		'Helpers\Url' 				=> 'Url',
+		'Helpers\Path' 				=> 'Path',
+		'Helpers\Session'			=> 'Session'
 
 	),
 	/**
@@ -53,7 +54,7 @@ return array(
 		/**
 		 *Set true|false to turn caching on and off
 		 */
-		'cache' => true,
+		'cache' => false,
 		/**
 		 *Define the default driver
 		 */
