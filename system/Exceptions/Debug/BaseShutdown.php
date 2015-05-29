@@ -137,12 +137,22 @@ function handler( $errNo, $errMsg, $errFile, $errLine ) {
 
     //check if the error number return is also defined in the E_FATAL constant
     //if envionment is production, redirect to predifined error page
-    if(($errNo & E_FATAL) && ENV === 'production'){
+    if( ($errNo & E_FATAL) && ENV === 'production' ) {
 
         header('Location: 500.html');
         header('Status: 500 Internal Server Error');
         exit();
 
+    }
+
+    //Logg error message to file if logging has been set to true
+    if(LOG_ERRORS)
+    {
+        //define the error file definiton
+        $destination = dirname(dirname(dirname((dirname(__FILE__))))) . '/bin/logs/error.log';
+
+        error_log(strip_tags($message) . PHP_EOL, 3, $destination);
+       
     }
 
     //if thi is not part of the erorrs to be reported, exit and return
@@ -154,41 +164,42 @@ function handler( $errNo, $errMsg, $errFile, $errLine ) {
     {
 
         $error =<<<ERROR
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <meta charset="utf-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1">
-                <meta name="description" content="">
-                <meta name="author" content="">
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="description" content="">
+            <meta name="author" content="">
 
-                <title>Gliver MCV Application Launch Error </title>
+            <title>Gliver MCV Application Launch Error </title>
 
-            </head>
-            <body>
+        </head>
+        
+        <body>
 
-            <style type="text/css">
-                
-                .container {
+        <style type="text/css">
+            
+            .container {
 
-                    width : 960px;
-                    min-height: 100px;
-                    background-color: rgba(0,0,0,0.08);
-                    font-size: 16px;
-                    margin: auto;
-                    color: rgba(0, 128, 0, 1);
-                }
+                width : 960px;
+                min-height: 100px;
+                background-color: rgba(0,0,0,0.08);
+                font-size: 16px;
+                margin: auto;
+                color: rgba(0, 128, 0, 1);
+            }
 
-            </style>    
+        </style>    
 
-            <div class="container">
-                
-                <p>{$message}</p>
+        <div class="container">
+            
+            <p>{$message}</p>
 
-            </div>
-            </body>
-            </html>
+        </div>
+        </body>
+        </html>
 ERROR;
     
     //display the error message
@@ -199,15 +210,4 @@ ERROR;
 
     }
 
-    //Logg error message to file if logging has been set to true
-    if(LOG_ERRORS)
-        error_log(strip_tags($message), 0);
-
-
 }
-
-//ob_start();
-
-//$tar = include 'start.php';
-
-//ob_end_flush();
