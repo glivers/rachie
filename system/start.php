@@ -14,7 +14,8 @@ return	function() use($config, $url){
 		error_reporting(E_ALL);
 		ini_set('display_errors', 'Off');
 		ini_set('log_errors', 'On');
-		ini_set('error_log', ROOT.DS.'tmp'.DS.'logs'.DS.'error.log');
+		ini_set('error_log', ROOT . DS . 'tmp' . DS . 'logs' . DS . 'error.log');
+		
 
 	}
 
@@ -94,18 +95,10 @@ return	function() use($config, $url){
 			//stop further script execution
 			exit();
 
-
 		}
 
 		//method exists, go ahead and dispatch
 		else $dispatch = new $controller; call_user_func_array(array($dispatch, $action), $parameters = array());
-
-	}
-	catch(Exceptions\BaseException $error){
-
-		$error->show();
-
-		return;
 
 	}
 	catch(Exceptions\BaseException $error){
