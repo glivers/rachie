@@ -1,9 +1,5 @@
 <?php namespace Models;
 
-class Model  {
+use Drivers\Models\BaseModel;
 
-	function __construct(){}
-
-	function __destruct(){}
-	
-}
+class Model extends BaseModel {}

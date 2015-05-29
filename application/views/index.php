@@ -2,6 +2,7 @@
 <html lang="en-US">
 <head profile="http://www.w3.org/2005/10/profile">
 <link rel="icon" type="image/ico" href="<?php echo Url::assets() . 'img/logo.png'; ?>">
+
     <meta charset="UTF-8">
     <title>Gliver MVC PHP Framework</title>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,700,600' rel='stylesheet' type='text/css'>
@@ -9,10 +10,6 @@
      <!--    LOAD CUSTOM STYLES    -->
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="<?php echo Url::assets() . 'css/style.css'; ?>">
-
-
-
-
 
 </head>
 <body>
@@ -53,7 +50,7 @@
                     <div class="number">2</div>
                     <div class="wrapper">
                         <h4 class="gliver-text">Controller</h4>
-                        <p><a href="<?php echo Url::base() . 'home'; ?>">application/controllers/HomeController/index.php</a></p>
+                        <p><a href="<?php echo Url::base() . 'home'; ?>">application/controllers/HomeController</a></p>
                     </div>
                 </li>
                 <li class="bmarg">

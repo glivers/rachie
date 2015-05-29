@@ -1,14 +1,30 @@
 <?php namespace Controllers;
 
-use Core\Helpers\View;
+/**
+ *This class loads the purchase history for all user types.
+ *@author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
+ *@copyright 2015 - 2020 Geoffrey Oliver
+ *@category Marketplace
+ *@package Marketplace\Controllers\Home
+ *@link mobeoffice.com
+ */
 
-class HomeController extends Controller {
+use Helpers\View;
 
-    public function index()
-    {
-        //load the homepage
-        View::render('index');
+class HomeController extends BaseController {
 
-    }
+	/**
+	 *This method loads the homepage 
+	 *
+	 *@param null
+	 *@return void
+	 */
+	public function getIndex()
+	{
+		//get the ending date today
+		View::render('index');
+
+	}
 
 }
+
