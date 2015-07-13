@@ -35,16 +35,30 @@ class ArrayHelper {
 	/**
 	 *This method explodes a string into an array depending on the separator provided
 	 *
-	 *@param $string The string which is to be exploded into an array
-	 *@param $key The string to use as a separator for exploding the string
-	 *@param $limit The value limits the number of elements to return
+	 *@param string $key The string to use as a separator for exploding the string
+	 *@param string $string The string which is to be exploded into an array
+	 *@param int $limit The value limits the number of elements to return
 	 *@return void
 	 *
 	 */
 	public static function parts($key, $string, $limit = null)
 	{
 		//explode this string and return
-		return explode($key, $string, (! is_null($limit) ) ? $limit );
+		return explode($key, $string, (! is_null($limit) ) ? $limit: null );
+	}
+
+	/**
+	 *This method joins an array into a string based on the joining parameter provided
+	 *
+	 *@param string $glue The string to use to join the array elements into string
+	 *@param aray $array The string which is to be exploded into an array
+	 *@return void
+	 *
+	 */
+	public static function join($glue,array $array)
+	{
+		//explode this string and return
+		return implode($glue, $array);
 	}
 	
 }
