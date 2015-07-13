@@ -58,5 +58,23 @@ class Path {
 		return $config['root'] . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR;
 
 	}
+
+	/**
+	 *This method defines the path to views folder
+	 *
+	 *@param $name The name of the view file for which to return path
+	 *@return void
+	 */
+	public static function view($fileName)
+	{
+		//explode the view files name into array
+        $array = explode("/", $fileName);
+
+		//get the global configuration array
+		global $config;
+
+		return $config['root'] . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . join(DIRECTORY_SEPARATOR, $array) . '.php';
+
+	}
 	
 }
