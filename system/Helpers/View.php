@@ -18,14 +18,26 @@ use Drivers\Registry;
 class View {
 
      
-    public function __construct() {}
+    /**
+     *This is the constructor class. We make this private to avoid creating instances of
+     *this object
+     *
+     *@param null
+     *@return void
+     */
+    private function __construct() {}
+
+    /**
+     *This method stops creation of a copy of this object by making it private
+     *
+     *@param null
+     *@return void
+     *
+     */
+    private function __clone(){}
  
     /**
      *This method parses the input variables and loads the specified views
-     *
-     *This method gets the string $filePath and splits it into array separated by
-     *the '/'. It then composes a directory path with these fragments and loads the
-     *view file
      *
      *@param string $filePath the string that specifies the view file to load
      *@param array $data an array with variables to be passed to the view file
