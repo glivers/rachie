@@ -13,6 +13,9 @@
  *@package Core\Drivers
  *@link core.gliver.io
  */
+use Drivers\Database\DbBase;
+use Drivers\Cache\CacheBase;
+use Drivers\Views\ViewBase;
 
 class Registry {
 
@@ -23,17 +26,23 @@ class Registry {
 	private static $instances = array();
 
 	/**
+	 *
+	 *@var array $instances This stores rejistered resources for  this framework
+	 */
+	private static $resources = array(
+			'database',
+			'cache',
+			'template'
+		);
+
+	/**
 	 *This is the constructor class. We make this private to avoid creating instances of
 	 *this Register object
 	 *
 	 *@param null
 	 *@return void
 	 */
-	private function __construct()
-	{
-		//do something
-
-	}
+	private function __construct() {}
 
 	/**
 	 *This method stops creation of a copy of this object by making it private
@@ -42,11 +51,7 @@ class Registry {
 	 *@return void
 	 *
 	 */
-	private function __clone()
-	{
-		//do something
-
-	}
+	private function __clone(){}
 
 	/**
 	 *This method gets the occurance of an object instances and returns the object instance
@@ -56,8 +61,17 @@ class Registry {
 	 *@return object Object instance or teh default object if nor found
 	 *@throws this method does not throw an error
 	 */
-	public static function get($key, $default = null)
+	public static function get()
 	{
+		//check if there were arguments passed
+		if ( sizeof(func_num_args()) == 0 ){echo 'No arguments passed for this resource'; exit();} //throw an exceptionk
+
+		//get the arguments passed
+		$args = func_get_args();
+
+		//get the resource key
+		$key = array_shift($args);
+
 		//check if this object instance is instanciated already and return
 		if(isset(self::$instances[$key]))
 		{
@@ -65,9 +79,31 @@ class Registry {
 			return self::$instances[$key];
 
 		}
+		//this resource is not defined yet
+		else
+		{
+			//check if this resource is defined
+			if ( in_array($key, self::$resources) )  
+			{
+				//get an object instance of this 
+				$instance = self::getInstance($key, $args);
 
-		//this object instance does not exist, return default
-		return $default;
+				//set this resource instance
+				if( $instance ) $set = self::setInstance($key, $instance);
+
+				//return this object instance
+				if( $set ) return self::$instances[$key]; 
+
+			}
+
+			//this resource is not defined, return an error
+			else
+			{
+				//throw an exception
+				echo "We have decided to throw an exception";
+			}
+
+		}
 
 	}
 
@@ -79,10 +115,47 @@ class Registry {
 	 *@return viod
 	 *@throws This method does not throw an error
 	 */
-	public static function set($key, $instance = null)
-	{
+	public static function set($key, $instance)
+	{		
 		//add new object instance to array
 		self::$instances[$key] = $instance;
+
+	}
+
+	/**
+	 *This method stores object instances in key/instance pairs
+	 *
+	 *@param string $key The key to use for setting and accessing this instance from array
+	 *@param object $instance The object instance to be stored in Registry
+	 *@return viod
+	 *@throws This method does not throw an error
+	 */
+	private static function setInstance($key, $instance)
+	{		
+		//add new object instance to array
+		self::$instances[$key] = $instance;
+
+		return true;
+
+	}
+	/**
+	 *This method gets and returns the object instance of a resource
+	 *
+	 *@param string $key The key to use for setting and accessing this instance from array
+	 *@param object $instance The object instance to be stored in Registry
+	 *@return viod
+	 *@throws This method does not throw an error
+	 */
+	private static function getInstance($key, $args)
+	{
+		//get the name of the method
+		$key = 'get' . ucfirst($key);
+
+		//get an instance of this resource
+		$instance = self::{"{$key}"}($args);
+
+		//return this object instance
+		return $instance;
 
 	}
 
@@ -99,5 +172,20 @@ class Registry {
 		unset(self::$instances[$key]);
 
 	}
+
+	/**
+	 *This method returns an instance of the template class
+	 *
+	 *@param string $key The object index name for accessing this index in array
+	 *@return void
+	 *@throws This method does not throw an error
+	 */
+	public static function getTemplate()
+	{
+		//return the instance of this template
+		return new ViewBase;
+
+	}
+
 
 }
