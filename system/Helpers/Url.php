@@ -11,18 +11,27 @@
  *
  */
 
+use Helpers\ArrayHelper;
+
 class Url {
 
 	/**
-	 *Class constructor
-	 *This class intializes the required variables and object for this task
+	 *This is the constructor class. We make this private to avoid creating instances of
+	 *this object
+	 *
+	 *@param null
+	 *@return void
+	 */
+	private function __construct() {}
+
+	/**
+	 *This method stops creation of a copy of this object by making it private
+	 *
+	 *@param null
+	 *@return void
 	 *
 	 */
-	public function __constructor()
-	{
-		//
-
-	}
+	private function __clone(){}
 
 	/**
 	 *This method returns the base url
@@ -32,7 +41,7 @@ class Url {
 	 *@throws this method does not throw an error
 	 *
 	 */
-	public static function base()
+	public static function base($fileName)
 	{
 
 		//get the uri string from url request
@@ -41,9 +50,6 @@ class Url {
 		//get the server name from global $_SERVER[] array()
 		$base  = $_SERVER['SERVER_NAME']; 
 
-		//prepend installation folder to server name
-		//$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], str_replace("url=","",$_SERVER['REDIRECT_QUERY_STRING'])));
-		
 		//check if there is a uri string
 		if ( ! empty($url) ) 
 		{
@@ -63,7 +69,7 @@ class Url {
     	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";
 
 		//compose the url string
-		return $protocol . '://' . $base;
+		return $protocol . '://' . $base . $fileName;
 
 	}
 
@@ -75,7 +81,7 @@ class Url {
 	 *@throws this method does not throw an error
 	 *
 	 */
-	public static function assets()
+	public static function assets($assetName)
 	{
 		//get the uri string from url request
 		$url = isset($_GET['url']) ? $_GET['url'] : '';
@@ -103,7 +109,7 @@ class Url {
     	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";
 
 		//compose the url string
-		return $protocol . '://' . $base . 'public/';
+		return $protocol . '://' . $base . 'public/' . $assetName;
 
 	}
 

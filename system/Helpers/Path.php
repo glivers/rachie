@@ -8,6 +8,24 @@
 class Path {
 
 	/**
+	 *This is the constructor class. We make this private to avoid creating instances of
+	 *this object
+	 *
+	 *@param null
+	 *@return void
+	 */
+	private function __construct() {}
+
+	/**
+	 *This method stops creation of a copy of this object by making it private
+	 *
+	 *@param null
+	 *@return void
+	 *
+	 */
+	private function __clone(){}
+
+	/**
 	 *This method defines the path to the application folder
 	 *
 	 */
@@ -56,6 +74,24 @@ class Path {
 		global $config;
 
 		return $config['root'] . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR;
+
+	}
+
+	/**
+	 *This method defines the path to views folder
+	 *
+	 *@param $name The name of the view file for which to return path
+	 *@return void
+	 */
+	public static function view($fileName)
+	{
+		//explode the view files name into array
+        $array = explode("/", $fileName);
+
+		//get the global configuration array
+		global $config;
+
+		return $config['root'] . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . join(DIRECTORY_SEPARATOR, $array) . '.php';
 
 	}
 	

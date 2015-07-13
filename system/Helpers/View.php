@@ -13,22 +13,31 @@
 use Drivers\Templates\Implementation;
 use Exceptions\BaseException;
 use Drivers\Cache\CacheBase;
+use Drivers\Registry;
 
 class View {
 
      
-    public function __construct() 
-    {
-        //    
+    /**
+     *This is the constructor class. We make this private to avoid creating instances of
+     *this object
+     *
+     *@param null
+     *@return void
+     */
+    private function __construct() {}
 
-    }
+    /**
+     *This method stops creation of a copy of this object by making it private
+     *
+     *@param null
+     *@return void
+     *
+     */
+    private function __clone(){}
  
     /**
      *This method parses the input variables and loads the specified views
-     *
-     *This method gets the string $filePath and splits it into array separated by
-     *the '/'. It then composes a directory path with these fragments and loads the
-     *view file
      *
      *@param string $filePath the string that specifies the view file to load
      *@param array $data an array with variables to be passed to the view file
@@ -52,123 +61,33 @@ class View {
 
             }
 
-            $viewFileArray = array();
-            $viewFileArray = explode("/", $filePath);
-
             //compose the file full path
-            $path = Path::app() . 'views' . DIRECTORY_SEPARATOR;
+            $path = Path::view($filePath);
 
+            //get an instance of the view template class
+            $template = Registry::get('template');
+            
+            //get the compiled file contents
+            $contents = $template->compiled($path);
 
-            //check if there multiple directories in the $file path
-            if(sizeof($viewFileArray) > 1)
-            {
-                //set the number of iterations
-                $itr = count($viewFileArray);
+            //start the output buffer
+            ob_start();
 
-                //loop though the array concatenating the file path
-                for ($i=0; $i < $itr; $i++) 
-                { 
-                    //if this is the last item, dont add directory separator, instead, add the .php extension
-                    if($i ==  ($itr - 1))
-                    {
-                        $path .= $viewFileArray[$i] . '.php';
+            //evaluate the contents of this view file
+            eval("?>" . $contents . "<?");
 
-                    }
-                    //append the directory separator at the end
-                    else
-                    {
-                        $path .= $viewFileArray[$i] . DIRECTORY_SEPARATOR;
+            //get the evaluated contents
+            $contents = ob_get_contents();
 
-                    }
+            //clean the output buffer
+            ob_end_clean();
 
-                }
+            //return the evaluated contents
+            echo $contents;
 
-            }
-            //no sub-directories, add the file name and extension
-            else
-            {
-                $path .= $viewFileArray[0] . '.php';
-
-            }
-
-            //load this file into view
-            if (file_exists($path)) 
-            {
-                /*
-                //grab the global config array to get the default catch
-                global $config;
-
-                //get cache object intance
-                $cache = new CacheBase($config['cache']['default']);
-
-                //initialize instance
-                $cache = $cache->initialize();
-
-                $connection = $cache->connect();
-
-                $contents = $connection->get('30today');
-
-                //there is a cache for this file
-                if ( $contents ) 
-                {
-                    //get the contents and display
-                    echo $contents;
-                }
-                //there is not cache for this file, get new file and store in cache
-                else
-                {
-
-                    */
-                    // Start output buffering
-                    ob_start(); 
-
-                    $source = file_get_contents($path);
-
-                    /*
-                    $template = new Implementation();
-
-                    $template->parse($source, $template);
-
-                    $template->process(array(
-                                    "name" =>  "Chris",
-                                    "address" =>  "Planet Earth!",
-                                    "stack" =>  array(
-                                        "one" =>  array(1, 2, 3),
-                                        "two" =>  array(4, 5, 6)
-                                    ),
-                                    "empty" =>  array()
-                            )
-                    );
-
-                    */
-                    
-                    eval("?>" . $source . "<?");
-
-                    $contents = ob_get_contents(); // Get the contents of the buffer
-                    ob_end_clean(); // End buffering and discard
-
-                    //put this information into the cache
-                    //$connection->set('3today', $contents, $duration = 120);
-
-                    //output 
-                    echo $contents; // Return the contents
-
-                    //stop further script execution
-                    exit();
-
-                //}
-
- 
-
-            } 
-            //throw throw the appropriate error message
-            else 
-            {
-                //throw FileErrorExcepton
-                throw new BaseException($filePath);
-
-            }
-     
+            //stop further script execution
+            exit();
+   
         }
 
         catch(BaseException $e) {
