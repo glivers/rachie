@@ -31,5 +31,20 @@ class ArrayHelper {
 	 *
 	 */
 	private function __clone(){}
+
+	/**
+	 *This method explodes a string into an array depending on the separator provided
+	 *
+	 *@param $string The string which is to be exploded into an array
+	 *@param $key The string to use as a separator for exploding the string
+	 *@param $limit The value limits the number of elements to return
+	 *@return void
+	 *
+	 */
+	public static function parts($key, $string, $limit = null)
+	{
+		//explode this string and return
+		return explode($key, $string, (! is_null($limit) ) ? $limit );
+	}
 	
 }
