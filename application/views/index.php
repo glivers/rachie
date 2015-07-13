@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head profile="http://www.w3.org/2005/10/profile">
-<link rel="icon" type="image/ico" href="<?php echo Url::assets() . 'img/logo.png'; ?>">
+<link rel="icon" type="image/ico" href="{{ Url::assets() . 'img/logo.png'}}">
 
     <meta charset="UTF-8">
     <title>Gliver MVC PHP Framework</title>
@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
      <!--    LOAD CUSTOM STYLES    -->
     <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="<?php echo Url::assets() . 'css/style.css'; ?>">
+    <link rel="stylesheet" href="{{ Url::assets() . 'css/style.css' }}">
 
 </head>
 <body>
 <div class="gliverContainer clearfix">
     <header>
-        <img src="<?php echo Url::assets() . 'img/logo.png'; ?>" alt="gliver logo" class="gliverLogo">
+        <img src="{{ Url::assets() . 'img/logo.png'}}" alt="gliver logo" class="gliverLogo">
         <div class="headerText">
             <h1>Welcome to Gliver<br><span class="subtext">MVC at it’s finest...</span> </h1>
 
@@ -43,21 +43,21 @@
                     <div class="number">1</div>
                     <div class="wrapper">
                         <h4 class="gliver-text">To edit this page </h4>
-                        <p><a href="<?php echo Url::base() . 'home'; ?>">application/views/index.php</a></p>
+                        <p><a href="{{ Url::base() . 'home'}}">application/views/index.php</a></p>
                     </div>
                 </li>
                 <li>
                     <div class="number">2</div>
                     <div class="wrapper">
                         <h4 class="gliver-text">Controller</h4>
-                        <p><a href="<?php echo Url::base() . 'home'; ?>">application/controllers/HomeController</a></p>
+                        <p><a href="{{ Url::base() . 'home'}}">application/controllers/HomeController</a></p>
                     </div>
                 </li>
                 <li class="bmarg">
                     <div class="number">3</div>
                     <div class="wrapper">
                         <h4 class="gliver-text">Read the users guider found here: </h4>
-                        <p><a href="<?php echo Url::base() . 'home'; ?>">https://getgliver.com/documentation</a></p>
+                        <p><a href="{{ Url::base() . 'home'}}">https://getgliver.com/documentation</a></p>
                     </div>
                 </li>
             </ul>
