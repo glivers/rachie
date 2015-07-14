@@ -3,7 +3,7 @@
 return	function() use($config, $url){
 
 	//set the application environment
-	if($config['environment'] == 'development')
+	if($config['environment'] == 'dev')
 	{
 		error_reporting(E_ALL);
 		ini_set('display_errors', 'Off');
@@ -40,30 +40,30 @@ return	function() use($config, $url){
 
 	$routeObj = new Drivers\Routes\Implementation();
 
-	//there is a defined route
+	//there is a defined route 
 	if ( $routeObj->dispatch($url, $routes) ) 
 	{
 		//get the controller name
-		($controller = $routeObj->getController()) || ($controller = 'Home');
+		($controller = $routeObj->getController()) || ($controller = $config['default']['controller']);
 
 		//get the action name
-		($action = $routeObj->getMethod()) || ($action = 'Index');
+		($action = $routeObj->getMethod()) || ($action = $config['default']['action']);
 
 		//get parameters
 		$parameters = $routeObj->getParameters();
 
 	}
-	//there is no defined route
+	//there is no defined route 
 	else
 	{
 		//create an instance of the url parser
 		$urlObj = new Drivers\Utilities\UrlParser($url);
 
 		//get the controller name
-		($controller = $urlObj->getController()) || ($controller = 'Home');
+		($controller = $urlObj->getController()) || ($controller = $config['default']['controller']);
 
 		//get the action name
-		($action = $urlObj->getMethod()) || ($action = 'Index');
+		($action = $urlObj->getMethod()) || ($action = $config['default']['action']);
 
 		//get parameters
 		$parameters = $urlObj->getParameters();
@@ -75,6 +75,7 @@ return	function() use($config, $url){
 
 		//get the namespaced controller class
 		$controller 	= 'Controllers\\' . ucwords($controller) . 'Controller';
+		$var = new $controller;
 
 		if( ! class_exists($controller) ) throw new Exceptions\BaseException("The class " . $controller . ' is undefined');
 		
