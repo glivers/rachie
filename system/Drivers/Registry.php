@@ -27,13 +27,31 @@ class Registry {
 
 	/**
 	 *
+	 *@var array $instances This stores the configuration of this application
+	 */
+	private static $config = array();
+
+	/**
+	 *
+	 *@var array $instances This stores database settings of this application
+	 */
+	private static $settings = array();
+
+	/**
+	 *
+	 *@var string $url This stores the url string for this request
+	 */
+	private static $url = '';
+
+	/**
+	 *
 	 *@var array $instances This stores rejistered resources for  this framework
 	 */
 	private static $resources = array(
 			'database',
 			'cache',
-			'template'
-		);
+			'template',
+	);
 
 	/**
 	 *This is the constructor class. We make this private to avoid creating instances of
@@ -138,6 +156,49 @@ class Registry {
 		return true;
 
 	}
+
+	/**
+	 *This method sets the configuration settings of this application
+	 *
+	 *@param array The array containing the configuration parameters
+	 *@return void 
+	 *@throws This method does not throw an error
+	 */
+	public static function setConfig($config)
+	{
+		//set the cinfig array
+		self::$config = $config; 
+
+	}
+
+	/**
+	 *This method set the database settings of this application
+	 *
+	 *@param array The array with database settings
+	 *@return void
+	 *@throws This method does not throw an error
+	 */
+	public static function setSettings($database)
+	{
+		//set the database settings
+		return self::$settings = $database; 
+
+	}
+
+	/**
+	 *This method set the url for this request
+	 *
+	 *@param string The url string
+	 *@return void
+	 *@throws This method does not throw an error
+	 */
+	public static function setUrl($url)
+	{
+		//set the database settings
+		return self::$url = $url; 
+
+	}
+
 	/**
 	 *This method gets and returns the object instance of a resource
 	 *
@@ -160,20 +221,6 @@ class Registry {
 	}
 
 	/**
-	 *This method removes an object instance from memory
-	 *
-	 *@param string $key The object index name for accessing this index in array
-	 *@return void
-	 *@throws This method does not throw an error
-	 */
-	public static function erase($key)
-	{
-		//remove this object instance from memory by the key
-		unset(self::$instances[$key]);
-
-	}
-
-	/**
 	 *This method returns an instance of the template class
 	 *
 	 *@param string $key The object index name for accessing this index in array
@@ -187,5 +234,78 @@ class Registry {
 
 	}
 
+	/**
+	 *This method returns an instance of the database class
+	 *
+	 *@return object The instance of this database class.
+	 *@throws This method does not throw an error
+	 */
+	public static function getDatabase()
+	{
+		//get the database settings from global space
+        global $database;
+
+        //create instance of database class
+        $instance = new DbBase($database['default'], $database[$database['default']]);
+
+        //get connection instance and make attempt to connect to the database
+        $instance = $instance->initialize()->connect();
+
+		return $instance; 
+
+	}
+
+	/**
+	 *This method returns the configuration settings of this application
+	 *
+	 *@return array The array containing the configuration parameters
+	 *@throws This method does not throw an error
+	 */
+	public static function getConfig()
+	{
+		//return the cinfig array
+		return self::$config; 
+
+	}
+
+	/**
+	 *This method returns the url string
+	 *
+	 *@return string The url string for this request
+	 *@throws This method does not throw an error
+	 */
+	public static function getUrl()
+	{
+		//return the cinfig array
+		return self::$url; 
+
+	}
+
+	/**
+	 *This method returns the database settings of this application
+	 *
+	 *@return array The array with database settings
+	 *@throws This method does not throw an error
+	 */
+	public static function getSettings()
+	{
+		//return the database settings
+		return self::$settings; 
+
+	}
+
+	/**
+	 *This method removes an object instance from memory
+	 *
+	 *@param string $key The object index name for accessing this index in array
+	 *@return void
+	 *@throws This method does not throw an error
+	 */
+	public static function erase($key)
+	{
+		//remove this object instance from memory by the key
+		unset(self::$instances[$key]);
+
+	}
 
 }

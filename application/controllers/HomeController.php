@@ -19,7 +19,7 @@ class HomeController extends BaseController {
 	 *@param null
 	 *@return void
 	 */
-	public function getIndex()
+	public function index()
 	{
 		//get the ending date today
 		View::render('index');

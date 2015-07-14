@@ -5,6 +5,8 @@
  *
  */
 
+use Drivers\Registry;
+
 class Path {
 
 	/**
@@ -34,7 +36,7 @@ class Path {
 		//get the global configuration array
 		global $config;
 
-		return $config['root'] . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR;
+		return Registry::getConfig()['root'] . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR;
 
 	}
 	
@@ -57,10 +59,8 @@ class Path {
 	 */
 	public static function sys()
 	{
-		//get the global configuration array
-		global $config;
-
-		return $config['root'] . DIRECTORY_SEPARATOR . 'system' . DIRECTORY_SEPARATOR;
+		
+		return Registry::getConfig()['root'] . DIRECTORY_SEPARATOR . 'system' . DIRECTORY_SEPARATOR;
 
 	}
 
@@ -70,10 +70,8 @@ class Path {
 	 */
 	public static function tmp()
 	{
-		//get the global configuration array
-		global $config;
 
-		return $config['root'] . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR;
+		return Registry::getConfig()['root'] . DIRECTORY_SEPARATOR . 'tmp' . DIRECTORY_SEPARATOR;
 
 	}
 
@@ -88,10 +86,7 @@ class Path {
 		//explode the view files name into array
         $array = explode("/", $fileName);
 
-		//get the global configuration array
-		global $config;
-
-		return $config['root'] . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . join(DIRECTORY_SEPARATOR, $array) . '.php';
+		return Registry::getConfig()['root'] . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . join(DIRECTORY_SEPARATOR, $array) . '.php';
 
 	}
 	

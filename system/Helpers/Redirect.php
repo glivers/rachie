@@ -31,7 +31,7 @@ class Redirect {
 	 *
 	 */
 	private function __clone(){}
-	
+
 	/**
 	 *This method redirect to the specified page
 	 *
@@ -41,7 +41,7 @@ class Redirect {
 	public static function to($path, $data = null )
 	{
 		//compose full url
-		$path = Url::base() . $path;
+		$path = Url::base($path);
 
 		//redirect to path
 		header('Location: ' . $path);

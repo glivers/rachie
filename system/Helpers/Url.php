@@ -12,6 +12,7 @@
  */
 
 use Helpers\ArrayHelper;
+use Drivers\Registry;
 
 class Url {
 
@@ -22,7 +23,7 @@ class Url {
 	 *@param null
 	 *@return void
 	 */
-	private function __construct() {}
+	private function __construct(){}
 
 	/**
 	 *This method stops creation of a copy of this object by making it private
@@ -44,17 +45,14 @@ class Url {
 	public static function base($fileName)
 	{
 
-		//get the uri string from url request
-		$url = isset($_GET['url']) ? $_GET['url'] : '';
-
 		//get the server name from global $_SERVER[] array()
 		$base  = $_SERVER['SERVER_NAME']; 
 
 		//check if there is a uri string
-		if ( ! empty($url) ) 
+		if ( ! empty(Registry::getUrl()) ) 
 		{
 			//prepend installation folder to server name
-			$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], $url));
+			$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], Registry::getUrl()));
 
 		}
 		//there is no query string, 
@@ -83,17 +81,14 @@ class Url {
 	 */
 	public static function assets($assetName)
 	{
-		//get the uri string from url request
-		$url = isset($_GET['url']) ? $_GET['url'] : '';
-
 		//get the server name from global $_SERVER[] array()
 		$base  = $_SERVER['SERVER_NAME']; 
 
 		//check if there is a uri string
-		if ( ! empty($url) ) 
+		if ( ! empty(Registry::getUrl()) ) 
 		{
 			//prepend installation folder to server name
-			$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], $url));
+			$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], Registry::getUrl()));
 
 		}
 		//there is no query string, 
@@ -123,13 +118,11 @@ class Url {
 	 */
 	public static function link( $string = null )
 	{
-		global $url;
-
 		//get the server name from global $_SERVER[] array()
 		$base  = $_SERVER['SERVER_NAME']; 
 
 		//prepend installation folder to server name
-		$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], $url));
+		$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], Registry::getUrl()));
 
     	//use https if its defined in the $_SERVER global variable
     	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";

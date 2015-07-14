@@ -14,12 +14,12 @@ return array(
  *@param null
  *@return void
  */
-'homepage' => 'home@index',
+'homepage' => 'Home@index',
 /**
  *This routes loads the search users page.
  *@param null
  *@return void
  */
-'userspage' => 'home'
+'work' => 'Home@index'
 
 );

@@ -15,6 +15,37 @@
 //check if the boostrap file exists and load
 try{
 
+	/**
+	 *This function defines the types of errors to be reported
+	 *@param const The error type to report
+	 *@return void
+	 */
+	error_reporting(E_ALL);
+	/**
+	 *This method  sets the value of a configuration option
+	 *we set it to not display erros so that we can handle this with our custom shutdown
+	 *@param sting The option to set
+	 *@param string The value of the option set
+	 *@return null
+	 */
+	ini_set('display_errors', 'Off');
+	/**
+	 *This method  sets the value of a configuration option
+	 *we set it to write errors to a file so that we can use for debug
+	 *@param sting The option to set
+	 *@param string The value of the option set
+	 *@return null
+	 */
+	ini_set('log_errors', 'On');
+	/**
+	 *This method  sets the value of a configuration option
+	 *we set the file on which to write error so that we are better able to handle errors
+	 *@param sting The option to set
+	 *@param string The value of the option set
+	 *@return null
+	 */
+	ini_set('error_log', dirname(dirname(__FILE__)) . '/bin/logs/error.log');
+	
 	//check if bootstrap.php file exists
 	if ( ! file_exists( __DIR__ . '/../system/bootstrap.php')) {
 		
