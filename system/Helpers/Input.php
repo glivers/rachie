@@ -116,8 +116,6 @@ class Input {
 
 		}
 
-
-
 	}
 
 }
