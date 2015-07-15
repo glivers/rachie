@@ -44,7 +44,7 @@ try{
 	}
 
 	//check if the constants.php file is present
-	if ( ! file_exists(__DIR__ . '/start.php') ) {
+	if ( ! file_exists(__DIR__ . '/../application/constants.php') ) {
 
 		throw new Exception("The constants definition file not found! Please restore if you deleted. System Exit...");
 		
@@ -63,9 +63,6 @@ try{
 	//initilize native session
 	session_start(); 
 
-	//get the uri string from url request
-	$url = isset($_GET['url']) ? $_GET['url'] : '';
-
 	//get the composer autoloader.php file
 	require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -78,22 +75,25 @@ try{
 	//load system database settings into array	 
 	$database = require_once __DIR__ . '/../config/database.php';
 
+	//include the initializatoin file
+	require_once __DIR__ . '/initialize.php';
+
 	//set the class aliases, so they are available to our closure objects
     //loop through aliases autoloading
-    foreach ($config['aliases'] as $aliasNamespace => $aliasName) 
+    foreach (Drivers\Registry::getConfig()['aliases'] as $aliasNamespace => $aliasName) 
     {
         //register and lazy autoload the aliases(class)
         class_alias($aliasNamespace, $aliasName);
 
     }
 
-	//get closure object instance to lauch application
+	//get closure object instance to launch application
 	$start = require_once __DIR__ . '/start.php';
 
 	//lauch application instance
 	$start();
 
-}
+} 
 catch(Exception $e) {
 
 $error =<<<ERROR
