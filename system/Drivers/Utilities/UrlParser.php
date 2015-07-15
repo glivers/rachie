@@ -42,7 +42,7 @@ class UrlParser  {
 	 *@param null
 	 *@return string The controller name
 	 */
-	public function getController()
+	public function getController() 
 	{
 		//break url string into array of substrings
 		$array = explode("/", $this->url);
@@ -66,6 +66,13 @@ class UrlParser  {
 				//return the controller
 				return $array[0];
 
+			}
+			//there are no paramters after filtering, return null
+			else
+			{
+				//return null
+				return null;
+				
 			}
 
 
