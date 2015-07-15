@@ -5,7 +5,7 @@ return array(
 	/**
 	 *Set the application environment. Set true for development, otherwise, set to false
 	 */
-	'environment' => 'development',
+	'dev' => false,
 	/**
 	 *Set the Site Title
 	 */
@@ -29,11 +29,11 @@ return array(
 		/**
 		 *Set the default controller
 		 */
-		'controller' => 'home',
+		'controller' => 'Home',
 		/**
 		 *Set default action
 		 */
-		'action' => 'index'
+		'action' => 'Index'
 
 	),
 
@@ -44,7 +44,13 @@ return array(
 	'aliases' => array(
 		'Helpers\Url' 				=> 'Url',
 		'Helpers\Path' 				=> 'Path',
-		'Helpers\Session'			=> 'Session'
+		'Helpers\Session'			=> 'Session',
+		'Helpers\ArrayHelper'		=> 'Array',
+		'Helpers\Cookie'			=> 'Cookie',
+		'Helpers\Form'				=> 'Form',
+		'Helpers\Input'				=> 'Input',
+		'Helpers\Redirect'			=> 'Redirect',
+		'Helpers\View'				=> 'View',
 
 	),
 	/**
