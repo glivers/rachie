@@ -39,7 +39,7 @@ class Implementation {
 		else
 		{
 			//throw an exception
-			echo "This file was not found";exit();
+			echo "This view file was not found";exit();
 
 		}
 
