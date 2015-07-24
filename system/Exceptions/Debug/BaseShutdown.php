@@ -1,4 +1,7 @@
 <?php
+//check the developement environment
+if ( isset($config) && $config['dev'] == true ) define('DEV', true);
+else define('DEV', false);
 
 /**
  *This method  sets the value of a configuration option
