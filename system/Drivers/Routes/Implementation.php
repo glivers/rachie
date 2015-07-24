@@ -86,7 +86,7 @@ class Implementation extends Base {
 		$urlObj = new UrlParser($url);
 
 		//check for defined route
-		return $this->match($urlObj->getController()) ? true : false;
+		return $this->match($urlObj->getController(), $urlObj->getMethod()) ? true : false;
 
 	}
 
@@ -135,7 +135,7 @@ class Implementation extends Base {
 	 *@param string $name The name of the defined route to match
 	 *@return (bool) true|false True if route exists and false if not
 	 */
-	private function match($name)
+	private function match($name, $method)
 	{
 		//check if this route index exists
 		$match = array_key_exists($name, $this->routes) ? true : false;
@@ -179,7 +179,7 @@ class Implementation extends Base {
 			}
 
 			//set the method
-			$this->method = isset($routeMetaArray[1]) ? $routeMetaArray[1] : null;
+			$this->method = isset($routeMetaArray[1]) ? $routeMetaArray[1] : $method;
 			
 			//set the parameters array
 			$this->parameters = @array_slice($routeMetaArray, 2);
