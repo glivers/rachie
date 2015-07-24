@@ -56,6 +56,12 @@ class MySQLQuery {
 	 *@var
 	 *@read
 	 */
+	protected $distinct = ' ';
+
+	/**
+	 *@var
+	 *@read
+	 */
 	protected $directions;
 
 	/**
@@ -102,7 +108,7 @@ class MySQLQuery {
 		}
 
 		//if input is array, loop through values escaping
-		if ( is_array($value) ) 
+		elseif ( is_array($value) ) 
 		{
 			//define array to contain new quoted values
 			$buffer = array();
@@ -121,34 +127,34 @@ class MySQLQuery {
 
 			}
 
-			//return null if null value was passed
-			if ( is_null($value) ) 
-			{
-				//return null as string
-				return 'NULL';
+		}
 
-			}
+		//return null if null value was passed
+		elseif ( is_null($value) ) 
+		{
+			//return null as string
+			return 'NULL';
 
-			//if boolean, return interger value of boolean
-			if ( is_bool($value) ) 
-			{
-				//get interger value and return
-				return (int)$value;
+		}
 
-			}
-
-			//if input value does not fall among any of these, escape and return output
-			return $this->connector->escape($value);
+		//if boolean, return interger value of boolean
+		elseif ( is_bool($value) ) 
+		{
+			//get interger value and return
+			return (int)$value;
 
 		}
 
 		//check if empty value was returned
-		if ( empty($value) ) 
+		elseif ( empty($value) ) 
 		{
 			//return empty string
 			return "' '";
 
 		}
+
+		//if input value does not fall among any of these, escape and return output
+		else return $this->connector->escape($value);
 
 	}
 
@@ -186,10 +192,10 @@ class MySQLQuery {
 	 *
 	 *
 	 */
-	public function join($join, $on, $fields = array())
+	public function join($join, $table, $on, $fields = array())
 	{
 		//throw exception if $join passed is empty
-		if ( empty($join) )  
+		if ( empty($join) ||  empty($table) || empty($on) )  
 		{
 			//throw exception for invalid argument
 			throw new MySQLException("Invalid argument $join passed for the Join Clause", 1);
@@ -205,10 +211,10 @@ class MySQLQuery {
 		}
 
 		//add to the fields property
-		$this->fields += array($join => $fields);
+		$this->fields += array($table => $fields);
 
 		//populate the joins property
-		$this->joins[] = "JOIN {$join} ON {$on}";
+		$this->joins[] = strtoupper($join) . " JOIN {$table} ON {$on}";
 
 		//return instance of this object
 		return $this;
@@ -233,7 +239,22 @@ class MySQLQuery {
 		$this->limits = $limit;
 
 		//set the offset property
-		$this->offset = $limit * ($page - 1);
+		$this->offset = (int)$limit * ($page - 1);
+
+		//return this object instance
+		return $this;
+
+	}
+	/**
+	 *
+	 *
+	 *
+	 */
+	public function unique()
+	{
+
+		//set the value of distinct
+		$this->distinct = ' DISTINCT ';
 
 		//return this object instance
 		return $this;
@@ -265,9 +286,10 @@ class MySQLQuery {
 	}
 
 	/**
+	 *This method defines the where parameters of the query string
 	 *
-	 *
-	 *
+	 *@param null
+	 *@return object Sets the where parameter and returns this instance of the query object
 	 */
 	public function where()
 	{
@@ -303,7 +325,7 @@ class MySQLQuery {
 		//there are multiple argument supplied
 		else
 		{
-			//get the number of iterations
+			//get the number of iterations 
 			$count = sizeof($arguments) / 2;
 
 			//loop through number of iterations population the wheres array
@@ -331,9 +353,10 @@ class MySQLQuery {
 	}
 
 	/**
+	 *This method builds a select query string 
 	 *
-	 *
-	 *
+	 *@param null
+	 *@return string The select query string formed
 	 */
 	protected function buildSelect()
 	{
@@ -344,7 +367,7 @@ class MySQLQuery {
 		$where = $order = $limit = $join ="";
 
 		//
-		$template = "SELECT %s FROM %s %s %s %s %s";
+		$template = "SELECT %s %s FROM %s %s %s %s %s";
 
 		//loop through the fields
 		foreach ($this->fields as $table => $tableFields) 
@@ -353,7 +376,13 @@ class MySQLQuery {
 			foreach ($tableFields as $field => $alias) 
 			{
 				//if field is string, return field name
-				if ( is_string($field) )
+				if ( is_string($field) && $field != 'COUNT(1)')
+				{
+					//add to fields array
+					$fields[] = "{$table}.{$field} AS {$alias}";
+
+				}
+				elseif (is_string($field) && $field == 'COUNT(1)') 
 				{
 					//add to fields array
 					$fields[] = "{$field} AS {$alias}";
@@ -363,7 +392,7 @@ class MySQLQuery {
 				else
 				{
 					//get alias as field name
-					$fields[] = $alias;
+					$fields[] = "{$table}.{$alias}";
 
 				}
 
@@ -426,7 +455,7 @@ class MySQLQuery {
 			if ( $limitOffset ) 
 			{
 				//get the limit string with offset
-				$limit = "LIMIT {$queryLimit}, {$limitOffset}";
+				$limit = "LIMIT {$limitOffset}, {$queryLimit}";
 
 			}
 			//limit offset undefined
@@ -440,14 +469,15 @@ class MySQLQuery {
 		}
 
 		//return the formated query string in the format of $template
-		return sprintf($template, $fields, $this->froms, $join, $where, $order, $limit);
+		return sprintf($template, $this->distinct, $fields, $this->froms, $join, $where, $order, $limit);
 
 	}
 
 	/**
+	 *This method builds the query string for inserting one row of records into the database
 	 *
-	 *
-	 *
+	 *@param array The row of data to be inserted in associative array
+	 *@return string The formed insert query string
 	 */
 	protected function buildInsert($data)
 	{
@@ -482,9 +512,10 @@ class MySQLQuery {
 
 	}
 	/**
+	 *This method builds the insert query for more than one row of data
 	 *
-	 *
-	 *
+	 *@param array The data to be inserted in associative array
+	 *@return string The formed query string for this insert operation
 	 */
 	protected function buildBulkInsert($data)
 	{
@@ -544,9 +575,10 @@ class MySQLQuery {
 	}
 
 	/**
+	 *This method builds an update query for a single record of data
 	 *
-	 *
-	 *
+	 *@param array The data to be updated into the database
+	 *@return string The forrmed SQL query string for this update operation
 	 */
 	protected function buildUpdate($data)
 	{
@@ -603,24 +635,28 @@ class MySQLQuery {
 
 	}
 	/**
+	 *This method builds the SQL query string for updating large amounts of data
 	 *
 	 *
-	 *
+	 *@param array The data to be updated in multidimensional array
+	 *@param array The field names to be updated in a numeric array
+	 *@param array The unique field ids to use for updating in numberic array
+	 *@return string The formed SQL update query string
 	 */
-	protected function buildBulkUpdate($data, $fields, $ids)
+	protected function buildBulkUpdate($data, $fields, $ids, $key)
 	{
 
 		//define the parts container array
 		$parts = array();
 
 		//define the template format string
-		$template = "UPDATE %s SET %s WHERE contact_id IN (%s) ";
+		$template = "UPDATE %s SET %s WHERE %s IN (%s) ";
 
 		//loop through the fields array composing the array
-		foreach ($fields as $key => $field ) 
+		foreach ($fields as $index => $field ) 
 		{
 			//initialize the subparts variable
-			$subparts = $field . ' = (CASE contact_id ';
+			$subparts = $field . ' = (CASE ' . $key . ' ';
 
 			//loop through the data array composing parts
 			foreach ($data as $id => $info ) 
@@ -658,14 +694,15 @@ class MySQLQuery {
 		}
 
 		//return the formated query string
-		return sprintf($template, $this->froms, $parts, $where);
+		return sprintf($template, $this->froms, $parts, $key, $where);
 
 	}
 
 	/**
+	 *This method builds the SQL query string to perform a delete query
 	 *
-	 *
-	 *
+	 *@param null
+	 *@return string The SQL query string for delete operation.
 	 */
 	protected function buildDelete()
 	{
@@ -709,9 +746,10 @@ class MySQLQuery {
 	}
 
 	/**
+	 *This methods inserts/updates one row of data into the database
 	 *
-	 *
-	 *
+	 *@param array The array containing the data to be inserted
+	 *@return bool true Returns true if the query execution was successful
 	 */
 	public function save($data)
 	{
@@ -733,7 +771,7 @@ class MySQLQuery {
 			$sql = $this->buildUpdate($data);
 
 		}
-
+//echo $sql . '<pre>';print_r($data); exit();
 		//excecute query
 		$result = $this->connector->execute($sql);
 
@@ -753,15 +791,18 @@ class MySQLQuery {
 		}
 
 		//if this was update and sucess, return 0 to show operation successful
-		return 0;
+		return true;
 
 	}
 	/**
+	 *The method perform insert/update of large amounts of data
 	 *
-	 *
-	 *
+	 *@param array The data to be inserted/updated in a multidimensional array
+	 *@param array The fields into which the data is to be inerted ot updated
+	 *@param array For update query, The unique id fields to use for updating
+	 *@return boolean true Return 0 when query execution is success to indicate true
 	 */
-	public function saveBulk($data, $fields = null , $ids = null )
+	public function saveBulk($data, $fields = null , $ids = null, $key = null )
 	{
 		//get the size of the wheres parameter
 		$doInsert = sizeof($this->wheres) == 0;
@@ -778,9 +819,8 @@ class MySQLQuery {
 		else
 		{
 			//get update query string
-			$sql = $this->buildBulkUpdate($data, $fields, $ids);
+			$sql = $this->buildBulkUpdate($data, $fields, $ids, $key);
 		}
-//echo $sql;exit();
 
 		//excecute query
 		$result = $this->connector->execute($sql);
@@ -790,7 +830,7 @@ class MySQLQuery {
 		{
 			//throw exception 
 			throw new MySQLException($this->connector->lastError());
-
+ 
 		}
 
 		//if this was an insert, get the insert id
@@ -806,9 +846,10 @@ class MySQLQuery {
 	}
 
 	/**
+	 *This method deletes a set of rows that match the query parameters provided
 	 *
-	 *
-	 *
+	 *@param null
+	 *@return array The affected rows by this delete action in an array
 	 */
 	public function delete()
 	{
@@ -832,8 +873,10 @@ class MySQLQuery {
 	}
 
 	/**
+	 *This method returns the first row match in a query
 	 *
-	 *
+	 *@param null
+	 *@return array The first element found in an array
 	 */
 	public function first()
 	{
@@ -874,9 +917,11 @@ class MySQLQuery {
 	}
 
 	/**
+	 *This me`thod counts the number of rows returned per query
 	 *
 	 *
-	 *
+	 *@param null
+	 *@return int The count of the number of rows
 	 */
 	public function count()
 	{
@@ -931,9 +976,10 @@ class MySQLQuery {
 	}
 
 	/**
+	 *This method returns all rows that match the query parameters
 	 *
-	 *
-	 *
+	 *@param null
+	 *@return array The query results in array format
 	 */
 	public function all()
 	{

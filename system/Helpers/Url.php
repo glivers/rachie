@@ -48,8 +48,10 @@ class Url {
 		//get the server name from global $_SERVER[] array()
 		$base  = $_SERVER['SERVER_NAME']; 
 
+		$url = Registry::getUrl();
+
 		//check if there is a uri string
-		if ( ! empty(Registry::getUrl()) ) 
+		if ( ! empty($url) ) 
 		{
 			//prepend installation folder to server name
 			$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], Registry::getUrl()));
@@ -84,8 +86,10 @@ class Url {
 		//get the server name from global $_SERVER[] array()
 		$base  = $_SERVER['SERVER_NAME']; 
 
+		$url = Registry::getUrl();
+
 		//check if there is a uri string
-		if ( ! empty(Registry::getUrl()) ) 
+		if ( ! empty($url) ) 
 		{
 			//prepend installation folder to server name
 			$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], Registry::getUrl()));
