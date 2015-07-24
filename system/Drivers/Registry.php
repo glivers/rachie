@@ -13,7 +13,7 @@
  *@package Core\Drivers
  *@link core.gliver.io
  */
-use Drivers\Database\DbBase;
+use Drivers\Database\BaseDb;
 use Drivers\Cache\CacheBase;
 use Drivers\Views\ViewBase;
 
@@ -246,7 +246,7 @@ class Registry {
         global $database;
 
         //create instance of database class
-        $instance = new DbBase($database['default'], $database[$database['default']]);
+        $instance = new BaseDb($database['default'], $database[$database['default']]);
 
         //get connection instance and make attempt to connect to the database
         $instance = $instance->initialize()->connect();
