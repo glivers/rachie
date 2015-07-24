@@ -1,8 +1,8 @@
 <?php
 
-return	function(){
+return	function() use($config){
 	//check the developement environment
-	if ( Drivers\Registry::getConfig()['dev'] == true ) define('DEV', true);
+	if ( $config['dev'] == true ) define('DEV', true);
 	else define('DEV', false);
 
 	//Load the defined routes file into array
@@ -46,10 +46,10 @@ return	function(){
 		$urlObj = new Drivers\Utilities\UrlParser(Drivers\Registry::getUrl());
 
 		//get the controller name
-		($controller = $urlObj->getController()) || ($controller = Drivers\Registry::getConfig()['default']['controller']);
+		($controller = $urlObj->getController()) || ($controller = $config['default']['controller']);
 
 		//get the action name
-		($action = $urlObj->getMethod()) || ($action = Drivers\Registry::getConfig()['default']['action']);
+		($action = $urlObj->getMethod()) || ($action = $config['default']['action']);
 
 		//get parameters
 		$parameters = $urlObj->getParameters();
