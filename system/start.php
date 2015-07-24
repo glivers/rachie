@@ -1,9 +1,6 @@
 <?php
 
 return	function() use($config){
-	//check the developement environment
-	if ( $config['dev'] == true ) define('DEV', true);
-	else define('DEV', false);
 
 	//Load the defined routes file into array
 	try{
