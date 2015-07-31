@@ -1,7 +1,7 @@
 <?php namespace Drivers\Templates;
 
 /**
- *This class has method that process template files
+ *This class processes templates
  *@author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
  *@copyright 2015 - 2020 Geoffrey Oliver
  *@category Core
@@ -11,202 +11,39 @@
  *@version 1.0.1
  */
 
-class  Implementation extends Base {
+class Implementation {
 
 	/**
-	 *This is the 'echo' tag handler
+	 *This method is callesd to parse the provided vie file
 	 *
-	 *@param array $tree
-	 *@param string $source Source string to process
-	 *@return string The processed text
+	 *@param $path The path to the file to compile
+	 *@return string The file path to the compiles string
 	 */
-	protected function getEcho($tree, $content)
+	public function compiled($path)
 	{
-		//parse the contents of the 'echo' tag
-		$raw = $this->script($tree, $content);
-
-		//return the processed content
-		return "\$_text[] = {$raw}";
-
-	}
-
-	/**
-	 *This method processes content within the 'script' tag
-	 *
-	 *@param array $tree
-	 *@param string $content The source string to parse
-	 *@return string Processed string
-	 */
-	protected function getScript($tree, $content)
-	{
-		//return the content of the raw index, or emplty if no contect
-		$raw = ! empty($tree['raw']) ? $tree['raw'] : '';
-
-		//return content
-		return "{$raw};";
-
-	}
-
-	/**
-	 *This method processes the contents within the 'each' tag
-	 *
-	 *@param array $tree
-	 *@param string $content The source string to parse
-	 *@return array Processed content
-	 */
-	protected function getEach($tree, $content)
-	{
-		//get the object name
-		$object = $tree['arguments']['object'];
-
-		//get the elements names
-		$element = $tree['arguments']['element'];
-
-		return $this->loop(
-				$tree,
-				"foreach ({$object} as {$element}_i => {$element}) { {$content} }"
-			);
-
-	}
-
-	/**
-	 *This method processes the content between the for tag
-	 *
-	 *@param array $tree
-	 *@param string $content Source string to parse
-	 *@return array Processed content
-	 */
-	protected function getFor($tree, $content)
-	{
-		//get the object name
-		$object = $tree['arguments']['object'];
-
-		//get the element name
-		$element = $tree['arguments']['element'];
-
-		return $this->loop(
-				$tree,
-				"for ({$element}_i=0; {$element}_i < sizeof({$object}); {$element}_i++) { {$element} = {$object}[{$element}_i]; {$content} } "
-			);
-
-	}
-
-	/**
-	 *This method processes the content within the 'if' tag
-	 *
-	 *@param array $tree
-	 *@param string $content The source content to parse
-	 *@return string Proccessed string
-	 */
-	protected function getIf($tree, $content)
-	{
-		//set the value of raw
-		$raw = $tree['raw'];
-
-		return "if ({$raw}) {{$content}}";
-
-	}
-
-	/**
-	 *This method processes the content within the 'elseif' tag
-	 *
-	 *@param array $tree
-	 *@param string $content The source string to parse
-	 *@return string Processed string
-	 */
-	protected function getElif($tree, $content)
-	{
-		//get the $raw
-		$raw = $tree['raw'];
-
-		//return 
-		return "elseif ({$raw}) {{$content}}";
-
-	}
-
-	/**
-	 *This method processes the content within the 'else' tag
-	 *
-	 *@param array $tree
-	 *@param string $content The source string to parse
-	 *@return string Processed content
-	 */
-	protected function getElse($tree, $content)
-	{
-		//return the content
-		return "else {{$content}}";
-
-	}
-
-	/**
-	 *This method processes the content within the 'macro' tag
-	 *
-	 *@param array $tree
-	 *@param string $content The content of string to parse
-	 *@return string Processed string
-	 */
-	protected function getMacro($tree, $content)
-	{
-		//get the arguments
-		$arguments = $tree['arguments'];
-
-		//get argument name
-		$name = $arguments['name'];
-
-		//get argument args
-		$args = $arguments['args'];
-
-		return "function {$name}({$args}) {
-				\$_text=array();
-				{$content}
-				return implode(\_text);
-				}";
-
-	}
-
-	/**
-	 *This method processes content within the 'literal' tag
-	 *
-	 *@param array $tree
-	 *@param string $content
-	 *@return string Processed content
-	 */
-	protected function getLiteral($tree, $content)
-	{
-		//get the source
-		$source = addslashes($tree['source']);
-
-		//return
-		return "\$_text[]=\"{$source}\";";
-
-	}
-
-	/**
-	 *This method processes the content in the 'loop' tags
-	 *
-	 *@param array $tree
-	 *@param string $content
-	 *@return string Processed content
-	 */
-	protected function loop($tree, $inner)
-	{
-		//get the number
-		$number = $tree['number'];
-
-		//get the object
-		$object = $tree['arguments']['object'];
-
-		//get children
-		$children = $tree['parent']['children'];
-
-		if( ! empty($children[$number +1]['tag']) && $children[$number+1]['tag'] == "else" )
+		//check if this file exists
+		if ( file_exists( $path) ) 
 		{
-			return "if (is_array({$object}) && sizeof({$object}) >0) {{$inner}}";
+			//set the file path
+			$this->path  = $path;
+
+			//compile this template
+			$compiled = $this->compile();
+
+			//return the compiled contents
+			return $compiled;
 
 		}
 
-		return $inner;
+		//throw an exception if this file does not exist
+		else
+		{
+			//throw an exception
+			echo "This view file was not found";exit();
+
+		}
 
 	}
 
 }
+
