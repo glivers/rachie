@@ -15,7 +15,7 @@
  */
 use Drivers\Database\BaseDb;
 use Drivers\Cache\CacheBase;
-use Drivers\Views\ViewBase;
+use Drivers\Templates\ViewBase;
 
 class Registry {
 
