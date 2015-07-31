@@ -1,7 +1,8 @@
 <?php namespace Drivers\Models;
 
 /**
- *This is the Base Model class that all Model Classes extend
+ *This is the Base Model class that all Model Classes extend. All methods in this class
+ *are implemented in a static mannger so no instance of this can be created.
  *
  *@author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
  *@copyright 2015 - 2020 Geoffrey Oliver
@@ -13,290 +14,140 @@
  */
 
 use Drivers\Registry;
-use Drivers\Inspector;
-use Drivers\Database\BaseTrait;
-use Drivers\Utilities\StringUtility;
-
 
 class BaseModel {
 
-	use BaseTrait;
-
 	/**
-	 *@var string Table name
-	 *@readwrite
+	 *This is the constructor class. We make this private to avoid creating instances of
+	 *this Register object
+	 *
+	 *@param null
+	 *@return void
 	 */
-	protected $table;
+	private function __construct() {}
 
 	/**
-	 *@var object Database Connector Object Instance
-	 *@readwrite
-	 */
-	protected $connector;
-
-	/**
-	 *@var array Of the datatype
-	 *@write
-	 */
-	protected $types = array(
-		'autonumber',
-		'text',
-		'integer',
-		'decimal',
-		'boolean',
-		'datetime'
-	);
-
-	/**
-	 *@var 
+	 *This method stops creation of a copy of this object by making it private
+	 *
+	 *@param null
+	 *@return void
 	 *
 	 */
-	protected $columns;
+	private function __clone(){}
 
 	/**
-	 *@var 
-	 *
+	 *@var object Resource Instance of the database object
 	 */
-	protected $primary;
+	protected static $connection;
 
-	public function load()
+	/**
+	 *@var object Instance of the database query object
+	 */
+	protected static $queryObject;
+
+
+
+	/**
+	 *This method returns a query instance
+	 *
+	 *@param null
+	 *@return object Query instance
+	 */
+	public static function Query()
 	{
-		
-		$primary = $this->primaryColumn;
 
-		$raw = $primary["raw"];
+        static::$connection = Registry::get('database');
 
-		$name = $primary["name"];
+        static::$queryObject = static::$connection->query();
 
-		if ( ! empty($this->$raw) )
-		{
-
-			$previous = $this->connector->query()->from($this->table)->where("{$name} = ?", $this->$raw)->first();
-
-		}
-
-		if ($previous == null)
-		{
-
-			throw new Exception\Primary("Primary key value invalid");
-		}
-
-		foreach ($previous as $key => $value)
-		{
-			
-			$prop = "{$key}";
-
-			if ( ! empty($previous->$key) && ! isset($this->$prop))
-			{
-				
-				$this->$key = $previous->$key;
-			}
-
-		}
+        return static::$queryObject;
 
 	}
 
-	public function save()
+	public static function from($from, $fields = array("*"))
 	{
-		
-		$primary = $this->primaryColumn;
-
-		$raw = $primary["raw"];
-
-		$name = $primary["name"];
-
-		$query = $this->connector->query()->from($this->table);
-
-		if ( ! empty($this->$raw) )
-		{
-			
-			$query->where("{$name} = ?", $this->$raw);
-		}
-
-		$data = array();
-
-		foreach ($this->columns as $key => $column)
-		{
-			
-			if (!$column["read"])
-			{
-
-				$prop = $column["raw"];
-
-				$data[$key] = $this->$prop;
-
-				continue;
-			}
-
-			if ($column != $this->primaryColumn && $column)
-			{
-				
-				$method = "get".ucfirst($key);
-
-				$data[$key] = $this->$method();
-
-				continue;
-			}
-
-		}
-
-		$result = $query->save($data);
-
-		if ($result > 0)
-		{
-			
-			$this->$raw = $result;
-		}
-
-		return $result;
+		//call the from method of this query instance
+		static::$queryObject->from($from, $fields);
 
 	}
 
-	public function delete()
+	public static function join($join, $table, $on, $fields = array() )
 	{
-		
-		$primary = $this->primaryColumn;
-
-		$raw = $primary["raw"];
-
-		$name = $primary["name"];
-
-		if ( ! empty($this->$raw) )
-		{
-			
-			return $this->connector->query()->from($this->table)->where("{$name} = ?", $this->$raw)->delete();
-		}
+		//call the join method of the query object
+		static::$queryObject->join($join, $table, $on, $fields);
 
 	}
 
-
-	public static function deleteAll($where = array())
+	public static function limit($limit, $page = 1)
 	{
-		
-		$instance = new static();
-
-		$query = $instance->connector->query()->from($instance->table);
-
-		foreach ($where as $clause => $value)
-		{
-			
-			$query->where($clause, $value);
-		}
-
-		return $query->delete();
-	
-	}
-
-	public static function all($where = array(), $fields = array("*"),$order = null, $direction = null, $limit = null, $page = null)
-	{
-		
-		$model = new static();
-
-		return $model->_all($where, $fields, $order, $direction, $limit, $page);
+		//call the limit method of the query builder object
+		static::$queryObject->limit($limit, $page);
 
 	}
 
-	protected function _all($where = array(), $fields = array("*"),	$order = null, $direction = null, $limit = null, $page = null)
+	public static function unique()
 	{
-		
-		$query = $this->connector->query()->from($this->table, $fields);
-
-		foreach ($where as $clause => $value)
-		{
-			
-			$query->where($clause, $value);
-
-		}
-
-		if ($order != null)
-		{
-			
-			$query->order($order, $direction);
-		}
-
-		if ($limit != null)
-		{
-			
-			$query->limit($limit, $page);
-		}
-
-		$rows = array();
-
-		$class = get_class($this);
-
-		foreach ($query->all() as $row)
-		{
-			$rows[] = new $class( $row );
-		}
-
-		return $rows;
+		//call the unique method of the query builder
+		static::$queryObject->unique();
 
 	}
 
-	public static function first($where = array(), $fields = array("*"), $order = null, $direction = null)
+	public static function order($order, $direction = 'asc')
 	{
-		
-		$model = new static();
-
-		return $model->_first($where, $fields, $order, $direction);
+		//call the order method of the query builder
+		static::$queryObject->order($order, $direction);
 
 	}
 
-	protected function _first($where = array(), $fields = array("*"), $order = null, $direction = null)
+	public static function where()
 	{
-		
-		$query = $this->connector->query()->from($this->table, $fields);
+		//get the arguments that were passed
+		$arguments = func_get_args();
 
-		foreach ($where as $clause => $value)
-		{
-			
-			$query->where($clause, $value);
-
-		}
-
-		if ($order != null)
-		{
-			
-			$query->order($order, $direction);
-		}
-
-		$first = $query->first();
-
-		$class = get_class($this);
-
-		if ($first)
-		{
-			
-			return new $class( $query->first() );
-		}
-
-		return null;
-	
-	}
-
-	public static function count( $where = array() )
-	{
-		
-		$model = new static();
-
-		return $model->_count($where);
+		//call the query builder object where method passing the argument list
+		static::$queryObject->where($arguments);
 
 	}
 
-	protected function _count($where = array())
+	public static function save($data)
 	{
-		
-		$query = $this->connector->query()->from($this->table);
+		//call the query builder save method
+		static::$queryObject->save($data);
 
-		foreach ($where as $clause => $value)
-		{
-			
-			$query->where($clause, $value);
+	}
 
-		}
+	public static function saveBulk($data, $fields = null, $ids = null, $key = null)
+	{
+		//call the query builder save bulk method
+		static::$queryObject->saveBulk($data, $fields, $ids, $key);
 
-		return $query->count();
-	
+	}
+ 
+	public static function delete()
+	{
+		//call the query builder delete method
+		static::$queryObject->delete();
+
+	}
+
+	public static function first()
+	{
+		//call the query builder get first record method
+		static::$queryObject->first();
+	}
+
+	public static function count()
+	{
+		//call the query builder object count method
+		static::$queryObject->count();
+
+	}
+
+	public static function all()
+	{
+		//call the query builder get all method
+		static::$queryObject->all();
+
 	}
 
 }
