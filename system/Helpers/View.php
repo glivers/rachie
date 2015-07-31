@@ -61,14 +61,8 @@ class View {
 
             }
 
-            //compose the file full path
-            $path = Path::view($filePath);
-
-            //get an instance of the view template class
-            $template = Registry::get('template');
-            
-            //get the compiled file contents
-            $contents = $template->compiled($path);
+            //get the parsed contents of the template file
+            $contents = self::getContents($filePath);
 
             //start the output buffer
             ob_start();
@@ -102,6 +96,28 @@ class View {
           echo $e->getMessage();
           
         }
+
+    }
+
+    /**
+     *This method converts the code into valid php code
+     *
+     *@param string $file The name of the view whose contant is to be parsed
+     *@return string $parsedContent The parsed content of the template file
+     */
+    public static function getContents($filePath)
+    {
+        //compose the file full path
+        $path = Path::view($filePath);
+
+        //get an instance of the view template class
+        $template = Registry::get('template');
+        
+        //get the compiled file contents
+        $contents = $template->compiled($path);
+
+        //return the compiled template file contents
+        return $contents;
 
     }
 
