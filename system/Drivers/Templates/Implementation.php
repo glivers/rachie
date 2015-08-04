@@ -19,7 +19,7 @@ class Implementation {
 	 *@param $path The path to the file to compile
 	 *@return string The file path to the compiles string
 	 */
-	public function compiled($path)
+	public function compiled($path, $embeded, $fileName)
 	{
 		//check if this file exists
 		if ( file_exists( $path) ) 
@@ -38,8 +38,22 @@ class Implementation {
 		//throw an exception if this file does not exist
 		else
 		{
+			//check if this is an embeded view file
+			if ( $embeded == true ) 
+			{
+				//compose error message
+				$message = 'The embeded view file \'' . $fileName . '\' cannot be found!';
+
+			}
+			//this is not an embeded file
+			else  
+			{
+				//compose error message
+				$message = 'The  view file ' . $fileName . ' cannot be found!';
+
+			}
 			//throw an exception
-			echo "This view file was not found";exit();
+			echo $message;exit();
 
 		}
 
