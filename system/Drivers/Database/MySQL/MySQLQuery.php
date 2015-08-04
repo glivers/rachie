@@ -291,10 +291,10 @@ class MySQLQuery {
 	 *@param null
 	 *@return object Sets the where parameter and returns this instance of the query object
 	 */
-	public function where($params)
+	public function where()
 	{
 		//get the arguments
-		$arguments = $param;
+		$arguments = func_get_args();
 
 		//throw exception if argument pairs do ot match
 		if ( is_float( sizeof($arguments) / 2 ) ) 
