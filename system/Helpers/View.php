@@ -44,7 +44,7 @@ class View {
      *@return void This method does not return anything, it directly loads the view file
      *@throws 
      */     
-   public static function  render($filePath, array $data = null) 
+   public static function  render($fileName, array $data = null) 
    {
         //this try block is excecuted to enable throwing and catching of errors as appropriate
         try {
@@ -62,7 +62,7 @@ class View {
             }
 
             //get the parsed contents of the template file
-            $contents = self::getContents($filePath);
+            $contents = self::getContents($fileName, false);
 
             //start the output buffer
             ob_start();
@@ -103,18 +103,19 @@ class View {
      *This method converts the code into valid php code
      *
      *@param string $file The name of the view whose contant is to be parsed
+     *@param boolean true|false True if this is an embeded view into another view file
      *@return string $parsedContent The parsed content of the template file
      */
-    public static function getContents($filePath)
+    public static function getContents($fileName, $embeded)
     {
         //compose the file full path
-        $path = Path::view($filePath);
+        $filePath = Path::view($fileName); //echo $path;exit();
 
         //get an instance of the view template class
         $template = Registry::get('template');
         
         //get the compiled file contents
-        $contents = $template->compiled($path);
+        $contents = $template->compiled($filePath, $embeded, $fileName);
 
         //return the compiled template file contents
         return $contents;
