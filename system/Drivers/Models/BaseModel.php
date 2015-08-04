@@ -101,11 +101,8 @@ class BaseModel {
 
 	public static function where()
 	{
-		//get the arguments that were passed
-		$arguments = func_get_args();
-
 		//call the query builder object where method passing the argument list
-		static::$queryObject->where($arguments);
+		static::$queryObject->where();
 
 	}
 
