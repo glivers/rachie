@@ -5,7 +5,7 @@ return array(
 	/**
 	 *Set the application environment. Set true for development, otherwise, set to false
 	 */
-	'dev' => false,
+	'dev' => true,
 	/**
 	 *Set the Site Title
 	 */
@@ -76,11 +76,11 @@ return array(
 				/**
 				 *Set the host name
 				 */
-				'host' => '127.0.0.1',
+				'host' => '',
 				/**
 				 *Set the port for access
 				 */
-				'port' => '11211',
+				'port' => '',
 				/**
 				 *Set the Socket file
 				 */
