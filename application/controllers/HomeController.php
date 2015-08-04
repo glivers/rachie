@@ -10,6 +10,7 @@
  */
 
 use Helpers\View;
+use Models\UsersModel;
 
 class HomeController extends BaseController {
 
@@ -21,10 +22,14 @@ class HomeController extends BaseController {
 	 */
 	public function index()
 	{
+		//define the page title
+		$data['title'] = 'Gliver MVC PHP Framework';
+
 		//get the ending date today
-		View::render('index');
+		View::render('index', $data);
 
 	}
 
+	
 }
 

@@ -4,13 +4,13 @@
 <link rel="icon" type="image/ico" href="{{ Url::assets('img/logo.png') }}">
 
     <meta charset="UTF-8">
-    <title>Gliver MVC PHP Framework</title>
+    <title>{{$title}}</title>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,700,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
      <!--    LOAD CUSTOM STYLES    -->
     <link rel="stylesheet" href="">
     <link rel="stylesheet" href="{{ Url::assets('css/style.css') }}">
-
+    
 </head>
 <body>
 <div class="gliverContainer clearfix">
