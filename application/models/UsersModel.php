@@ -1,26 +1,24 @@
 <?php namespace Models;
 
 /**
- * 
+ *@author ...
+ *@copyright ...
+ *@link ...
  */
 class UsersModel extends Model{
 	
-	public static function store()
+
+	/**
+	 *This function method does what you want it to do and has to be static
+	 *
+	 *@param ...
+	 *@return ...
+	 */
+	public static function yourFuntionName()
 	{
-		echo "We are here. Stop!";
+		#...do something
 
 	}	
 
-	public static function testmethod()
-	{
-		$data = array(
-			'name' => 'BadGirl',
-			'email' => 'Birdgal@example.com',
-			'datecreated' => '2121212121'
-			);
-
-		$results  = static::Query()->from('model')->save($data);
-
-	}
 
 }
