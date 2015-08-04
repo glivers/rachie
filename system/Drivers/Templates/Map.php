@@ -392,9 +392,9 @@ trait Map {
 	 */
 	protected function compileInclude($pathExpression)
 	{
-			$filePath = substr($pathExpression, strpos($pathExpression, '\'') + 1, -(strlen($pathExpression) - strripos($pathExpression, '\'')));
+			$fileName = substr($pathExpression, strpos($pathExpression, '\'') + 1, -(strlen($pathExpression) - strripos($pathExpression, '\'')));
 
-			$includeContent =  ViewHelper::getContents($filePath);
+			$includeContent =  ViewHelper::getContents($fileName, true );
 
 			return $includeContent;
 
