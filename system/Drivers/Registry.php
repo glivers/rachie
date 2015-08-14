@@ -47,7 +47,7 @@ class Registry {
 	 *
 	 *@var string $url This stores the url string for this request
 	 */
-	public static $erroFilePath = '';
+	public static $errorFilePath = '';
 
 	/**
 	 *
@@ -173,8 +173,8 @@ class Registry {
 	public static function setConfig($config)
 	{
 		//set the error file path
-		self::$erroFilePath = dirname(dirname(__FILE__)) . '/Exceptions/';
-		
+		self::$errorFilePath = dirname(dirname(__FILE__)) . '/Exceptions/';
+
 		//set the config array
 		self::$config = $config; 
 

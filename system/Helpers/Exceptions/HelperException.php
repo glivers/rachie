@@ -34,20 +34,20 @@ class HelperException extends BaseException {
 		$errorMessage  = ( $message == null ) ? $this->getCode() . ': Error on line '.$this->getLine().' in '.$this->getFile() .': <b>  "'.$this->getMessage().' " </b> ' : $message;
 		
 		//the variable to be populated with the error message
-		$errorMessage = $this->getCode() . ': Error on line '.$this->getLine().' in '.$this->getFile() .': <b>  "'.$this->getMessage().' " </b> ';
+		//$errorMessage = $this->getCode() . ': Error on line '.$this->getLine().' in '.$this->getFile() .': <b>  "'.$this->getMessage().' " </b> ';
 
 		//display errors if in development environment
 		if (  DEV == TRUE ) 
 		{
 			//load the showError file
-			include Registry::$errorFilePath . 'showError.php';
+			include Registry::$errorFilePath . 'errorShow.php';
 
 		}
 		//production environment, hide error
 		else
 		{
 			//load the hide error file
-			include Registry::$errorFilePath . 'showHide.php';
+			include Registry::$errorFilePath . 'errorHide.php';
 
 		}
 
