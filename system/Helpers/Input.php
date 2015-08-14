@@ -13,6 +13,7 @@
  */
 
 use Helpers\Url;
+use Helpers\Exceptions\HelperException;
 
 class Input {
 
@@ -113,6 +114,31 @@ class Input {
 
 			if ( empty($input) ) return false;
 			else return $input;
+
+		}
+
+	}
+
+	/**
+	 *This method checks if there is a value with a particular name in the input post/get
+	 *
+	 *@param string $key The name with which to access post variable 
+	 */	
+	public static function has($key)
+	{
+		//execute the code in a catch block to enable error handling
+		try{
+
+			//throw error if user input an array
+			if ( is_array($key) ) throw new HelperException('This should be a string, not an array');
+			
+
+
+		}
+		catch(HelperException $error){
+
+			//diplay the error message
+			$error->showError();
 
 		}
 
