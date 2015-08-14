@@ -45,6 +45,12 @@ class Registry {
 
 	/**
 	 *
+	 *@var string $url This stores the url string for this request
+	 */
+	public static $erroFilePath = '';
+
+	/**
+	 *
 	 *@var array $instances This stores rejistered resources for  this framework
 	 */
 	private static $resources = array(
@@ -166,7 +172,10 @@ class Registry {
 	 */
 	public static function setConfig($config)
 	{
-		//set the cinfig array
+		//set the error file path
+		self::$erroFilePath = dirname(dirname(__FILE__)) . '/Exceptions/';
+		
+		//set the config array
 		self::$config = $config; 
 
 	}
