@@ -3,13 +3,13 @@
 /**
  *This boostrap.php file is  the excecution point of this application.
  *All Helper and Core classes are called from here to aid is system excecution
- *@author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
- *@copyright 2015 - 2020 Geoffrey Oliver
- *@category Core
- *@package Bootstrap
- *@link https://github.com/gliver-mvc/gliver
- *@license http://opensource.org/licenses/MIT MIT License
- *@version 1.0.1
+ * @author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
+ * @copyright 2015 - 2020 Geoffrey Oliver
+ * @category Core
+ * @package Bootstrap
+ * @link https://github.com/gliver-mvc/gliver
+ * @license http://opensource.org/licenses/MIT MIT License
+ * @version 1.0.1
  */
 
 //check for the existance of important system configuration files
@@ -57,6 +57,13 @@ try{
 		
 	}
 
+	//load system configuration settings into array	 
+	$config = require_once __DIR__ . '/../config/config.php';
+
+	//define the development environment
+	if ( isset($config) && $config['dev'] == true ) define('DEV', true);
+	else define('DEV', false);
+
 	//get the ErrorHandler
 	require_once __DIR__ . '/Exceptions/Debug/BaseShutdown.php';
 	
@@ -69,9 +76,6 @@ try{
 	//load the defined constants
 	require_once __DIR__ . '/../application/constants.php';
 	
-	//load system configuration settings into array	 
-	$config = require_once __DIR__ . '/../config/config.php';
-
 	//load system database settings into array	 
 	$database = require_once __DIR__ . '/../config/database.php';
 
