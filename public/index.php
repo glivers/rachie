@@ -59,6 +59,17 @@ try{
 }
 catch(Exception $e){
 
+	//check for console request, and reduce verbose error message
+	if ( defined('CONSOLE_INSTANCE' ) ) {
+		
+		//return the error message unformated
+		echo $e->getMessage(); exit();
+
+	} 
+
+	//this is a web request, format message
+	else {
+
 $error =<<<ERROR
 	<!DOCTYPE html>
 	<html>
@@ -97,8 +108,10 @@ $error =<<<ERROR
 	</html>
 ERROR;
 
-//ouput the error
-echo $error;
+	//ouput the error
+	echo $error;
+
+	}
 
 }
 
