@@ -91,14 +91,32 @@ try{
 
     }
 
-	//get closure object instance to launch application
-	$start = require_once __DIR__ . '/start.php';
+    //check for absence of console instance
+    if( ! defined('CONSOLE_INSTANCE') ) {
 
-	//lauch application instance
-	$start();
+		//this is a web request, launch the routing
+		//get closure object instance to launch application
+		$start = require_once __DIR__ . '/start.php';
 
+		//lauch application instance
+		$start();
+
+    }
+    
 } 
 catch(Exception $e) {
+
+	//check for console request, and reduce verbose error message
+	if ( defined('CONSOLE_INSTANCE') ) {
+		
+		//return the error message unformated
+		echo $e->getMessage(); exit();
+
+	} 
+
+	//this is a web request, format message
+	else {
+
 
 $error =<<<ERROR
 	<!DOCTYPE html>
@@ -142,9 +160,12 @@ $error =<<<ERROR
 	</html>
 ERROR;
 
-//ouput the error
-echo $error;
+	//ouput the error
+	echo $error;
 
-exit();
+	exit();
+
+	}
+	
 
 }
