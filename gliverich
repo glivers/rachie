@@ -1,0 +1,41 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ *This is  the single entry point to the console/terminal application.
+ *We load all necessary resources here before being able to execute commands
+ *@author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
+ *@copyright 2015 - 2020 Geoffrey Oliver
+ *@category Console
+ *@package Gliverich
+ *@link https://github.com/gliver-mvc/console
+ *@license http://opensource.org/licenses/MIT MIT License
+ *@version 1.0.1
+ */
+
+//Let's make attempt to gain entry into the web application via the index.php file
+try {
+
+	//check if index.php file exists
+	if ( ! file_exists( __DIR__ . '/public/index.php')) {
+		
+		throw new Exception("The index.php file missing... restore!");
+		
+	}
+
+	//set this console instance CONSTANT to true
+	define('CONSOLE_INSTANCE', true);
+
+	//load the index.php file
+	require_once __DIR__ . '/public/index.php';
+
+	//inialize the gliverich console command loader
+	new Gliverich\Console\Loader();
+
+}
+catch(Exception $e){
+
+	//return error message
+	echo $e->getMessage();
+
+}
