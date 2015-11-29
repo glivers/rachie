@@ -151,29 +151,55 @@ function handler( $errNo, $errMsg, $errFile, $errLine ) {
     if( DEV === false ) 
     {
 
-        //define the site title
-        $title = 'Gliver PHP MVC Framework';
+        //check for console instance
+        if( defined('CONSOLE_INSTANCE') ){
 
-        //load the error hide page
-        include dirname((dirname(__FILE__))) . '/errorHide.php';
+            //remove verbose error message and display
+            echo $errorMessage; exit();
 
-        //stop further script execution
-        exit();
+        }
+        //this is a web request
+        else{
+
+            //define the site title
+            $title = 'Gliver PHP MVC Framework';
+
+            //load the error hide page
+            include dirname((dirname(__FILE__))) . '/errorHide.php';
+
+            //stop further script execution
+            exit();
+
+        }
+
    
     }
 
     //this is development environment, show the error
     else
     {
-        //define the site title
-        $title = 'Gliver PHP MVC Framework';
 
-        //load the show error view file
-        include dirname((dirname(__FILE__))) . '/errorShow.php';
-    
-        //stop further script execution
-        exit();
-   
+        //check for console instance
+        if( defined('CONSOLE_INSTANCE') ){
+
+            //remove verbose error message and display
+            echo $errorMessage; exit();
+
+        }
+        //this is a web request
+        else{
+
+            //define the site title
+            $title = 'Gliver PHP MVC Framework';
+
+            //load the show error view file
+            include dirname((dirname(__FILE__))) . '/errorShow.php';
+        
+            //stop further script execution
+            exit();
+
+        }
+
    }
 
 }
