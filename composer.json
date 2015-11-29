@@ -14,7 +14,8 @@
 		}
 	],
 	"require" : {
-		"php" : ">=5.4.0"
+		"php" : ">=5.4.0",
+		"gliverich/console" : "dev-master"
 	},
 	"autoload" : {
 		"psr-4" : {
