@@ -3,6 +3,27 @@
 return array(
 
 	/**
+	 *Your name as the author of this application
+	 *this would appear in your console generated classes
+	 */
+	'author' => 'Geoffrey Bans <geoffreybans@gmail.com>',
+
+	/**
+	*Your copyright statement
+	*/
+	'copyright' => 'Copyright (c) 2015 - 2020 Geoffrey Bans',
+
+	/*
+	*Your license name and link
+	*/
+	'license' => 'http://opensource.org/licenses/MIT MIT License',
+
+	/*
+	*The version number of this application that you are writing
+	*/
+	'version' => '0.0.1',
+
+	/**
 	 *Set the application environment. Set true for development, otherwise, set to false
 	 */
 	'dev' => true,
