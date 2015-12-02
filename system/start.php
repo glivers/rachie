@@ -8,20 +8,20 @@ return	function() use($config){
 		//check of the routes configuration file exists
 		if ( ! file_exists( __DIR__ . '/../application/routes.php'))
 
-			throw new Exceptions\BaseException("The defined routes file cannot be found! Please restore if you deleted");
+			throw new Exceptions\Routes\RouteException("The defined routes file cannot be found! Please restore if you deleted");
 		
 		//get the defined routes
 		$routes = include __DIR__ . '/../application/routes.php';
 
 	}
-	catch(Exceptions\BaseException $error){
+	catch(Drivers\Routes\RouteException $ExceptionObjectInstance){
 
-		$error->show();
+		//display the error message to the browser
+		$ExceptionObjectInstance->errorShow();
 
-		return;
 	}
 
-	$routeObj = new Drivers\Routes\Implementation();
+	$routeObj = new Drivers\Routes\RouteParser();
 
 	//there is a defined route 
 	if ( $routeObj->dispatch(Drivers\Registry::getUrl(), $routes) ) 
@@ -59,7 +59,7 @@ return	function() use($config){
 		//get the namespaced controller class
 		$controller 	= 'Controllers\\' . ucwords($controller) . 'Controller';
 
-		if( ! class_exists($controller) ) throw new Exceptions\BaseException("The class " . $controller . ' is undefined');
+		if( ! class_exists($controller) ) throw new Drivers\Routes\RouteException("The class " . $controller . ' is undefined');
 		
 		if( ! (int)method_exists($controller, $action) )
 		{
@@ -67,7 +67,7 @@ return	function() use($config){
 			$dispatch = new $controller;
 
 			//throw exception if no method can be found
-			if( ! $dispatch->$action() ) throw new Exceptions\BaseException("Access to undefined method " . $controller . '->' . $action);
+			if( ! $dispatch->$action() ) throw new Drivers\Routes\RouteException("Access to undefined method " . $controller . '->' . $action);
 			
 			//get the method name
 			$action = $dispatch->$action();
@@ -75,20 +75,16 @@ return	function() use($config){
 			//fire up application
 			$dispatch->$action();
 
-			//stop further script execution
-			exit();
-
 		}
 
 		//method exists, go ahead and dispatch
 		else $dispatch = new $controller; call_user_func_array(array($dispatch, $action), $parameters = array());
 
 	}
-	catch(Exceptions\BaseException $error){
+	catch(Drivers\Routes\RouteException $ExceptionObjectInstance){
 
-		$error->show();
-
-		return;
+		//display the error message to the browser
+		$ExceptionObjectInstance->errorShow();
 
 	}
 
