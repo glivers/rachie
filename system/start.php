@@ -21,35 +21,35 @@ return	function() use($config){
 
 	}
 
-	$routeObj = new Drivers\Routes\RouteParser();
+	$RouteParserObject = new Drivers\Routes\RouteParser();
 
 	//there is a defined route 
-	if ( $routeObj->dispatch(Drivers\Registry::getUrl(), $routes) ) 
+	if ( $RouteParserObject->dispatch(Drivers\Registry::getUrl(), $routes) ) 
 	{
 		//get the controller name
-		($controller = $routeObj->getController()) || ($controller = $config['default']['controller']);
+		($controller = $RouteParserObject->getController()) || ($controller = $config['default']['controller']);
 
 		//get the action name
-		($action = $routeObj->getMethod()) || ($action = $config['default']['action']);
+		($action = $RouteParserObject->getMethod()) || ($action = $config['default']['action']);
 
 		//get parameters
-		$parameters = $routeObj->getParameters();
+		$parameters = $RouteParserObject->getParameters();
 
 	}
 	//there is no defined route 
 	else
 	{
 		//create an instance of the url parser
-		$urlObj = new Drivers\Utilities\UrlParser(Drivers\Registry::getUrl());
+		$RouteParserObject = new Drivers\Utilities\UrlParser(Drivers\Registry::getUrl());
 
 		//get the controller name
-		($controller = $urlObj->getController()) || ($controller = $config['default']['controller']);
+		($controller = $RouteParserObject->getController()) || ($controller = $config['default']['controller']);
 
 		//get the action name
-		($action = $urlObj->getMethod()) || ($action = $config['default']['action']);
+		($action = $RouteParserObject->getMethod()) || ($action = $config['default']['action']);
 
 		//get parameters
-		$parameters = $urlObj->getParameters();
+		$parameters = $RouteParserObject->getParameters();
 
 	}
 
