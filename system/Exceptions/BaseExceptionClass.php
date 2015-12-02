@@ -15,7 +15,7 @@
 use Drivers\Registry;
 use Exceptions\Debug\BaseExceptionInterface;
 
-class BaseExceptionClass implements BaseExceptionInterface  extends \Exception {
+class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {
 
 	/**
 	*@var string The site title
@@ -57,13 +57,13 @@ class BaseExceptionClass implements BaseExceptionInterface  extends \Exception {
 		$this->siteTile = Registry::getConfig()['title'];
 
 		//set the default error log file path
-		$this->errorLogFilePath = Registry::getConfig()['error_log_file_path'];
+		$this->errorLogFilePath = Registry::getConfig()['root'] . '/' . Registry::getConfig()['error_log_file_path'];
 
 		//set the value  of the development environment, as defined in the user configuration
 		$this->devENV = Registry::getConfig()['dev'];
 
 		//set the path to the error page html
-		$this->ErrorPageHtml = Registry::getConfig()['root'] . "system/Exceptions/ErrorPageHtml.php";
+		$this->ErrorPageHtml = Registry::getConfig()['root'] . "/system/Exceptions/ErrorPageHtml.php";
 
 	}
 
@@ -93,7 +93,7 @@ class BaseExceptionClass implements BaseExceptionInterface  extends \Exception {
 	public function getErrorMessage(){
 
 		//define and return the error message to show
-		$errorMessageContent = $this->getMessage() . ' ' . $this->getFile() . ' ' . $this->getLine();
+		$this->errorMessageContent = $this->getMessage() . ' ' . $this->getFile() . ' ' . $this->getLine();
 
 		//return this object instance
 		return $this;
@@ -117,7 +117,7 @@ class BaseExceptionClass implements BaseExceptionInterface  extends \Exception {
 		$showErrorMessage = $this->errorMessageContent;
 
 		//check if this is not development environment
-		if($devENV === false){
+		if($this->devENV === false){
 
 			//set the hideErrorMessage parameter
 			$hideErrorMessage = true;
@@ -129,6 +129,9 @@ class BaseExceptionClass implements BaseExceptionInterface  extends \Exception {
 
 		//load the error message page html file
 		include $this->ErrorPageHtml;
+
+		//stop futher script execution
+		exit();
 
 	}
 	
