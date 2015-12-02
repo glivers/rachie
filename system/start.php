@@ -11,20 +11,27 @@ return	function() use($config){
 			throw new Exceptions\Routes\RouteException("The defined routes file cannot be found! Please restore if you deleted");
 		
 		//get the defined routes
-		$routes = include __DIR__ . '/../application/routes.php';
+		$definedRoutes = include __DIR__ . '/../application/routes.php';
 
 	}
 	catch(Drivers\Routes\RouteException $ExceptionObjectInstance){
 
 		//display the error message to the browser
 		$ExceptionObjectInstance->errorShow();
-
+ 
 	}
 
-	$RouteParserObject = new Drivers\Routes\RouteParser();
+	//create an instance of the UrlParser Class, 
+	$UrlParserObjectInstance = new Drivers\Utilities\UrlParser(Drivers\Registry::getUrl());
+
+	//and set controller, method and request parameter
+	$UrlParserObjectInstance->setController()->setMethod()->setParameters();
+
+	//create an instance of the route parser class
+	$RouteParserObject = new Drivers\Routes\RouteParser(Drivers\Registry::getUrl(), $definedRoutes, $UrlParserObjectInstance);
 
 	//there is a defined route 
-	if ( $RouteParserObject->dispatch(Drivers\Registry::getUrl(), $routes) ) 
+	if ( $RouteParserObject->dispatch() ) 
 	{
 		//get the controller name
 		($controller = $RouteParserObject->getController()) || ($controller = $config['default']['controller']);
@@ -39,17 +46,14 @@ return	function() use($config){
 	//there is no defined route 
 	else
 	{
-		//create an instance of the url parser
-		$RouteParserObject = new Drivers\Utilities\UrlParser(Drivers\Registry::getUrl());
-
 		//get the controller name
-		($controller = $RouteParserObject->getController()) || ($controller = $config['default']['controller']);
+		($controller = $UrlParserObjectInstance->getController()) || ($controller = $config['default']['controller']);
 
 		//get the action name
-		($action = $RouteParserObject->getMethod()) || ($action = $config['default']['action']);
+		($action = $UrlParserObjectInstance->getMethod()) || ($action = $config['default']['action']);
 
 		//get parameters
-		$parameters = $RouteParserObject->getParameters();
+		$parameters = $UrlParserObjectInstance->getParameters();
 
 	}
 
