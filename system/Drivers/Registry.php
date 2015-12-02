@@ -15,7 +15,7 @@
  */
 use Drivers\Database\BaseDb;
 use Drivers\Cache\CacheBase;
-use Drivers\Templates\ViewBase;
+use Drivers\Templates\BaseTemplateClass;
 
 class Registry {
 
@@ -239,7 +239,7 @@ class Registry {
 	public static function getTemplate()
 	{
 		//return the instance of this template
-		return new ViewBase;
+		return new BaseTemplateClass;
 
 	}
 
