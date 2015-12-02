@@ -1,23 +1,33 @@
 <?php namespace Drivers\Routes;
 
 /**
- *This class routes a request to the appropriate controller and action.
+ *This Route class maps a request to the appropriate controller and action.
  *
  *@author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
  *@copyright 2015 - 2020 Geoffrey Oliver
- *@category Core
- *@package Core\Drivers
- *@link core.gliver.io
+ *@category Drivers
+ *@package Drivers\Routes\RouteParser
+ *@link https://github.com/gliver-mvc/gliver
  *@license http://opensource.org/licenses/MIT MIT License
  *@version 1.0.1
  */
 
-use Drivers\Utilities\ArrayUtility; 
 use Drivers\Registry;
 use Drivers\Inspector;
+use Helpers\ArrayHelper;
 use Drivers\Utilities\UrlParser;
 
 class RouteParser extends BaseRouteClass {
+
+	/**
+	 *@var string $url The input url string to be parsed for controllers, methods and parameters
+	 */
+	private $urlString;
+
+	/**
+	 *@var array $routes The array of all defined routes
+	 */
+	protected $definedRoutesArray = array();
 
 	/**
 	 *@var array $keys An array of key/value pairs
@@ -26,30 +36,43 @@ class RouteParser extends BaseRouteClass {
 	protected $keys = array();
 
 	/**
-	 *@var string $name The route name string to search
+	 *@var string $name The route name  to search
 	 */
 	protected $name;
 
 	/**
-	 *@var array $routes The array if all defined routes
-	 */
-	protected $routes = array();
+	*This method gets the default parameters for this instance of the RouteParser
+	*
+	*@param string $urlString The Url request string to parser
+	*@param array $definedRoutesArray The defined routes in an array
+	*@return Object \RouteParser
+	*/
+	public function __construct($urlString, array $definedRoutesArray){
+
+		//set the value of the $urlString
+		$this->urlString = $urlString;
+
+		//set the value of the routes property
+		$this->definedRoutesArray = $definedRoutesArray;
+
+		//return this object instance
+		return $this;
+
+	}
 
 	/**
 	 *This method populates the $routes array with all the defined routes
 	 *
 	 *@param array $definedRoutes Array of all the defined routes
-	 *@return void
+	 *@return Object \RouteParser
 	 */
-	private function addRoute(array $definedRoutes)
+	private function setRoutes(array $definedRoutes)
 	{
-		//loop through the input array adding each element to the $routes array
-		foreach ($definedRoutes as $routeName => $routeController) 
-		{
-			//add route
-			$this->routes[$routeName] = $routeController;
+		//assign the value of the input $definedRoutes to the $routes property
+		$this->routes = $definedRoutes;
 
-		}
+		//return this obeject instance
+		return $this;
 
 	}
 
@@ -69,24 +92,17 @@ class RouteParser extends BaseRouteClass {
 	/**
 	 *This methods launches the routing functionality of this class
 	 *
-	 *@param string $url The url string for which to perform match
+	 *@param null
 	 *
 	 */
-	public function dispatch($url, $routes)
+	public function dispatch()
 	{
-		//populate the routes array
-		if ( sizeof($routes) > 0)
-		{
-			//call the add route method
-			$this->addRoute($routes);
-
-		}
 
 		//create instance of the UrlParser object
-		$urlObj = new UrlParser($url);
+		$UrlParserObjectInstance = new UrlParser($url);
 
 		//check for defined route
-		return $this->match($urlObj->getController(), $urlObj->getMethod()) ? true : false;
+		return $this->match($UrlParserObjectInstance->getController(), $UrlParserObjectInstance->getMethod()) ? true : false;
 
 	}
 
@@ -104,7 +120,7 @@ class RouteParser extends BaseRouteClass {
 	}
 
 	/**
-	 *This method returns the action name
+	 *This method returns the method name
 	 *
 	 *@param null
 	 *@return string Method name
@@ -117,7 +133,7 @@ class RouteParser extends BaseRouteClass {
 	}
 
 	/**
-	 *This method returns the action name
+	 *This method returns the parameters array
 	 *
 	 *@param null
 	 *@return string Method name
@@ -130,15 +146,27 @@ class RouteParser extends BaseRouteClass {
 	}
 
 	/**
+	*This method sets the controller value for this url instance
+	*
+	*@param string $controllerToLookUp The controller to try and map
+	*@return Object \RouteParser
+	*/
+	protected function setController($controllerToLookUp){
+
+
+	}
+
+	/**
 	 *This method checks for the existance of a defined route
 	 *
-	 *@param string $name The name of the defined route to match
+	 *@param string $controller The name of the controller to match
+	 *@param string $method The name of the method to match
 	 *@return (bool) true|false True if route exists and false if not
 	 */
-	private function match($name, $method)
+	private function match($inferedController, $inferedMethod)
 	{
 		//check if this route index exists
-		$match = array_key_exists($name, $this->routes) ? true : false;
+		$match = ArrayHelper::KeyExists($inferedController, $this->routes) ? true : false;
 
 		//if this match is true, set the controller and method
 		if($match)
