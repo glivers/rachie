@@ -229,6 +229,23 @@ class ArrayHelper {
 	}
 
 	/**
+	*This method merges the elements of an array
+	*
+	*@param array $array1
+	*@param array $array2
+ 	*@return Object \ArrayHelper;
+	*/
+	public static function Merge(array $array1, array $array2){
+
+		//set the value of the out put element
+		self::$outputElement = array_merge($array1, $array2);
+
+		//return this self same class
+		return self;
+
+	}
+
+	/**
 	*This method returns the output array after method manipulation
 	*
 	*@param null
