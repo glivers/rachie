@@ -11,11 +11,11 @@
  *@version 1.0.1
  */
 
-use Drivers\Controllers\BaseControllerClass;
+use Drivers\Controllers\BaseControllerTrait;
 
 class BaseController {
 
 	//call the trait with the setter/getter classes
-	use BaseControllerClass;
+	use BaseControllerTrait;
 
 }
