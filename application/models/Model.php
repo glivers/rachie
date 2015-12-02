@@ -1,5 +1,5 @@
 <?php namespace Models;
 
-use Drivers\Models\BaseModel;
+use Drivers\Models\BaseModelClass;
 
-class Model extends BaseModel {}
+class Model extends BaseModelClass {}
