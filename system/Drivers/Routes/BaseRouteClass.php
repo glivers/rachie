@@ -24,6 +24,27 @@ class BaseRouteClass {
 	 *@readwrite 
 	 */
 	protected $pattern = '@';
+
+	/**
+	 *@var string $pattern The url string pattern to check for
+	 *@readwrite 
+	 */
+	protected $urlParameterSeparator = '/';
+
+	/**
+	*@var string The route metaData
+	*/
+	protected $routeMetaData;
+
+	/**
+	*@var string The method metaData
+	*/
+	protected $methodMetaData;
+
+	/**
+	*@var array The array containing the methodMetaData
+	*/
+	protected $methodMetaDataArray;
 	/**
 	 *@var string $controller The controller name to launch
 	 *@readwrite
