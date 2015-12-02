@@ -117,53 +117,14 @@ catch(Exception $e) {
 	//this is a web request, format message
 	else {
 
+		$showErrorMessage = $e->getMessage();
 
-$error =<<<ERROR
-	<!DOCTYPE html>
-	<html>
-	<head>
-	    <meta charset="utf-8">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <meta name="description" content="">
-	    <meta name="author" content="">
 
-		<title>Gliver Error!</title>
+        //load the show error view file
+        include dirname(__FILE__) . '/Exceptions/ErrorPageHtml.php';
 
-	</head>
-	<body>
-
-	<style type="text/css">
-		
-		.container {
-
-			width : 960px;
-			min-height: 100px;
-			background-color: rgba(0,0,0,0.08);
-			font-size: 16px;
-			margin: auto;
-			color: rgba(0, 128, 0, 1);
-		}
-
-		span.lead {
-			color : rgba(255,0,0,1);
-		}
-
-	</style>	
-
-	<div class="container">
-		
-		<p> <span class="lead">0x Error : </span>{$e->getMessage()}</p>
-
-	</div>
-	</body>
-	</html>
-ERROR;
-
-	//ouput the error
-	echo $error;
-
-	exit();
+        //stop script execution
+		exit();
 
 	}
 	
