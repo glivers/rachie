@@ -15,7 +15,7 @@
 
 use Drivers\Registry;
 
-class BaseModel {
+class BaseModelClass {
 
 	/**
 	 *This is the constructor class. We make this private to avoid creating instances of
