@@ -13,9 +13,15 @@
  */
 
 use Helpers\Url;
+use Helpers\ArrayHelper;
 use Helpers\Exceptions\HelperException;
 
 class Input {
+
+	/**
+	*@var array The array containing all the INPUT helper class values
+	*/
+	private static $inputData = array();
 
 	/**
 	 *This is the constructor class. We make this private to avoid creating instances of
@@ -34,86 +40,93 @@ class Input {
 	 *
 	 */
 	private function __clone(){}
-	
+
+	/**
+	*this method sets the $_GET parameter
+	*
+	*@param null
+	*@return Object \Input
+	*/
+	public static function setGetData(){
+
+		//populate the get array
+		$getArray = (isset($_GET)) ? $_GET : array();
+
+		//merge the two array
+		self::$inputData = ArrayHelper::Merge(self::$inputData, $getArray);
+
+		//return this self same class instance
+		return self;
+
+	}
+
+	/**
+	*this method sets the $_POST parameter
+	*
+	*@param null
+	*@return Object \Input
+	*/
+	public static function setPostData(){
+
+		//populate the get array
+		$postArray = (isset($_GET)) ? $_POST : array();
+
+		//merge the two array
+		self::$inputData = ArrayHelper::Merge(self::$inputData, $postArray);
+
+		//return this self same class instance
+		return self;
+
+	}
+
+	/**
+	*this method sets the URL parameter request data
+	*
+	*@param array $urlParamArray The values from url parameter to add to the Input Class
+	*@return Object \Input
+	*/
+	public static function setUrlParamRequestData($urlParamArray = array()){
+
+		//merge the two array
+		self::$inputData = ArrayHelper::Merge(self::$inputData, $urlParamArray);
+
+		//return this self same class instance
+		return self;
+
+	}
+
 	/**
 	 *This method return current $_POST or $_GET data
 	 *
-	 *@param string $key The name with which to access post variable 
+	 *@param string $key The name with which to access post variable
+	 *@return mixed 
 	 */	
-	public static function get()
+	public static function get($variableKey = null)
 	{
-		//get the argumants passed to this function
-		$args = func_get_args();
+		//check if key to check was passed
+		if( ! is_null($variableKey)){
 
-		//there were arguments passed
-		if ( sizeof($args) > 0 ) 
-		{
-			//dedine array to contain get data
-			$get = array();
+			//return false if this variableKey doesnt exist
+			if( ! ArrayHelper::KeyExists($variableKey, self::$inputData)) return false;
 
-			//define array to define post data
-			$post = array();
+			//return the value of this key
+			else return self::$inputData[$variableKey];
 
-			//check if there is get data and add
-			if ( isset($_GET) ) 
-			{
-				//the get data is get, add this to array
-				$get = $_GET;
-
-			}
-
-			//check if there is post data and add
-			if ( isset($_POST) ) 
-			{
-				//check the data in post and add this to array
-				$post = $_POST;
-
-			}
-
-			//merge the two arrays into one
-			$input = array_merge($get, $post);
-
-			//check if this index exists and return
-			if ( array_key_exists($args[0], $input) ) 
-			{
-				//return the value of this index
-				return $input[$args[0]];
-
-			}
-			//this value does not exist in array, return false
-			else return false;
-			
 		}
 
+		//return the whole content of the input data
 		else
 		{
-			//dedine array to contain get data
-			$get = array();
+			//check if this array is not empty
+			if(count(self::$inputData) >0){
 
-			//define array to define post data
-			$post = array();
-
-			//check if there is get data and add
-			if ( isset($_GET) ) 
-			{
-				//the get data is get, add this to array
-				$get = $_GET;
+				//return the whole content of the array
+				return self::$inputData;
 
 			}
 
-			//check if there is post data and add
-			if ( isset($_POST) ) 
-			{
-				//check the data in post and add this to array
-				$post = $_POST;
-
-			}
-
-			//merge the two arrays into one
-			$input = array_merge($get, $post);
-
-			if ( empty($input) ) return false;
-			else return $input;
+			//not data in input array, return false
+			return false;
 
 		}
 
@@ -122,25 +135,16 @@ class Input {
 	/**
 	 *This method checks if there is a value with a particular name in the input post/get
 	 *
-	 *@param string $key The name with which to access post variable 
+	 *@param string $variableKey The name with which to access post variable 
 	 */	
-	public static function has($key)
+	public static function has($variableKey)
 	{
-		//execute the code in a catch block to enable error handling
-		try{
+		//return false if this variableKey doesnt exist
+		if( ! ArrayHelper::KeyExists($variableKey, self::$inputData)) return false;
 
-			//throw error if user input an array
-			if ( is_array($key) ) throw new HelperException('This should be a string, not an array');
-			
+		//return true, variableKey exists
+		else return true;
 
-
-		}
-		catch(HelperException $error){
-
-			//diplay the error message
-			$error->showError();
-
-		}
 
 	}
 
