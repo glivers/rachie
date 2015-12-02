@@ -10,6 +10,6 @@ interface BaseExceptionInterface {
 	 * @throws This method does not throw an error
 	 *
 	 */
-	public function errorShow() {}
+	public function errorShow();
 	
 }
