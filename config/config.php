@@ -27,6 +27,12 @@ return array(
 	 *Set the application environment. Set true for development, otherwise, set to false
 	 */
 	'dev' => true,
+
+	/**
+	*The location of the error log file, you can change this to the file of your choice
+	*ensure to use relative path as specified in the default here
+	*/
+	'error_log_file_path' => 'bin/logs/error.log',
 	/**
 	 *Set the Site Title
 	 */
