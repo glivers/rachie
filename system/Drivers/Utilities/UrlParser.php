@@ -61,15 +61,6 @@ class UrlParser  {
 		//call the helper class to split the url string to array components and assign value to $urlComponentsArray property
 		$this->urlComponentsArray = ArrayHelper::parts($this->urlSeparator, $this->urlString)->clean()->trim()->get();
 
-		//call method to set the controller
-		$this->setController();
-
-		//call the method to set the method
-		$this->setMethod();
-
-		//call the method to set the parameters value
-		$this->setParameters();
-
 		//return this object instance
 		return $this;
 
