@@ -31,7 +31,7 @@ return	function() use($config){
 	$RouteParserObject = new Drivers\Routes\RouteParser(Drivers\Registry::getUrl(), $definedRoutes, $UrlParserObjectInstance);
 
 	//there is a defined route 
-	if ( $RouteParserObject->dispatch() ) 
+	if ( $RouteParserObject->matchRoute() ) 
 	{
 		//get the controller name
 		($controller = $RouteParserObject->getController()) || ($controller = $config['default']['controller']);
