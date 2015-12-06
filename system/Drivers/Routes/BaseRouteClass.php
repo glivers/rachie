@@ -14,7 +14,7 @@
  *@version 1.0.1
  */
 
-use Drivers\ArrayUtility;
+use Drivers\ArrayHelper\ArrayHelper;
 use Drivers\StringUtility;
 
 class BaseRouteClass {
@@ -60,19 +60,5 @@ class BaseRouteClass {
 	 *@readwrite
 	 */
 	protected $parameters = null;
-
-	/**
-	 *This exception class is  throw when the specified action cannot be found.
-	 *@param string $method The method name that we attempted to excecute
-	 *@return void
-	 */
-	public function MethodNotFoundException()
-	{
-		//throw the exception error message
-		return new Exception\Implementation("{$method} method not implemented" );
-
-	}
-
-
 
 }
