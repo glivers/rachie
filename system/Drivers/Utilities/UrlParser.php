@@ -13,7 +13,7 @@
  */
 
 use Helpers\StringHelper;
-use Helpers\ArrayHelper;
+use Helpers\ArrayHelper\ArrayHelper;
 
 class UrlParser  {
 
@@ -72,13 +72,16 @@ class UrlParser  {
 	*@param null
 	*@return Object \UrlParser 
 	*/
-	private function setController(){
+	public function setController(){
 
 		//check if the $urlComponentsArray has more than one value
 		if(count($this->urlComponentsArray) > 0){
 
 			//set the value of the controller
 			$this->controller = $this->urlComponentsArray[0];
+
+			//return this class instance
+			return $this;
 
 		}
 
@@ -87,6 +90,9 @@ class UrlParser  {
 
 			//there are no components in the url string set null for infered controller
 			$this->controller = null;
+			
+			//return this class instance
+			return $this;
 
 		}
 
@@ -111,13 +117,16 @@ class UrlParser  {
 	*@param null
 	*@return Object \UrlParser
 	*/
-	private function setMethod(){
+	public function setMethod(){
 
 		//check if the $urlComponentsArray has more than one component
 		if(count($this->urlComponentsArray) > 1){
 
 			//set the value of the $method property
 			$this->method = $this->urlComponentsArray[1];
+
+			//return this class instance
+			return $this;
 
 		}
 
@@ -126,6 +135,9 @@ class UrlParser  {
 
 			//there are no components in the url string set null for infered controller
 			$this->method = null;
+
+			//return this class instance
+			return $this;
 
 		}
 
@@ -151,13 +163,16 @@ class UrlParser  {
 	*@param null
 	*@return Object \UrlParser
 	*/
-	private function setParameters(){
+	public function setParameters(){
 
 		//check if the $urlComponentsArray has more than two element
 		if(count($this->urlComponentsArray) > 2){
 
 			//slice the array and return the parts after the method
 			$this->parameters = ArrayHelper::slice($this->urlComponentsArray, 2)->get();
+
+			//return this class instance
+			return $this;
 
 		}
 
@@ -166,6 +181,9 @@ class UrlParser  {
 
 			//set the null value
 			$this->parameters = null;
+
+			//return this class instance
+			return $this;
 
 		}
 
