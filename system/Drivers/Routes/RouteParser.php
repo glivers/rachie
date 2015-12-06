@@ -14,10 +14,10 @@
 
 use Drivers\Registry;
 use Drivers\Inspector;
-use Helpers\ArrayHelper;
-use Helpers\Input;
 use Drivers\Utilities\UrlParser;
 use Drivers\Routes\RouteException;
+use Helpers\ArrayHelper\ArrayHelper;
+use Helpers\Input\Input;
 
 class RouteParser extends BaseRouteClass {
 
@@ -109,7 +109,7 @@ class RouteParser extends BaseRouteClass {
 	public function matchRoute()
 	{
 
-		//check if this route index exists
+		//check if this route key exists
 		$RouteMatch = (ArrayHelper::KeyExists($this->UrlParserObjectInstance->getController(), $this->definedRoutesArray)) ? true : false;
 
 		//a matching route was found, set params and return true
