@@ -92,10 +92,12 @@ class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {
 	*/
 	public function getErrorMessage(){
 
-		//define and return the error message to show
-		$this->errorMessageContent = $this->getMessage() . ' ' . $this->getFile() . ' ' . $this->getLine();
+		$backTrace = $this->getTraceAsString(); $appendPrevious = substr($backTrace, 0, strpos($backTrace, "#1"));
 
-		//return this object instance
+		//define and return the error message to show
+		$this->errorMessageContent = $this->getMessage() . ' ' . $this->getFile() . ' ' . $this->getLine() . ' ' . $appendPrevious;
+
+		//return this object instance 
 		return $this;
 
 	}
