@@ -44,7 +44,7 @@ class BaseRouteClass {
 	/**
 	*@var array The array containing the methodMetaData
 	*/
-	protected $methodMetaDataArray;
+	protected $methodMetaDataArray = array();
 	/**
 	 *@var string $controller The controller name to launch
 	 *@readwrite
@@ -59,6 +59,6 @@ class BaseRouteClass {
 	 *@var array $parameters The url request parameters
 	 *@readwrite
 	 */
-	protected $parameters = null;
+	protected $parameters = array();
 
 }
