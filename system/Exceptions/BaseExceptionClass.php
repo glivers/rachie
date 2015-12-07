@@ -92,10 +92,13 @@ class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {
 	*/
 	public function getErrorMessage(){
 
-		$backTrace = $this->getTraceAsString(); $appendPrevious = substr($backTrace, 0, strpos($backTrace, "#1"));
+		$backTrace = $this->getTraceAsString(); $appendPrevious = substr($backTrace, 2, strpos($backTrace, "#1") - 2);
 
 		//define and return the error message to show
-		$this->errorMessageContent = $this->getMessage() . ' ' . $this->getFile() . ' ' . $this->getLine() . ' ' . $appendPrevious;
+		$this->errorMessageContent = '<b>' . $this->getMessage() . ' ' . $this->getFile() . '(' . $this->getLine() . ')</b> As called in ' . $appendPrevious;
+	    
+	    //remove repeated absolute path from the error message
+	    $this->errorMessageContent = str_replace(Registry::getConfig()['root'], '', $this->errorMessageContent);
 
 		//return this object instance 
 		return $this;
