@@ -30,30 +30,51 @@ return	function() use($config){
 	//create an instance of the route parser class
 	$RouteParserObject = new Drivers\Routes\RouteParser(Drivers\Registry::getUrl(), $definedRoutes, $UrlParserObjectInstance);
 
-	//there is a defined route 
-	if ( $RouteParserObject->matchRoute() ) 
-	{
-		//get the controller name
-		($controller = $RouteParserObject->getController()) || ($controller = $config['default']['controller']);
+	//check if there is infered controller from url string
+	if($UrlParserObjectInstance->getController() !== null){
 
-		//get the action name
-		($action = $RouteParserObject->getMethod()) || ($action = $config['default']['action']);
+		//check if there is a defined route matched
+		if ( $RouteParserObject->matchRoute() ) 
+		{
+			//if there is a defined route, set the controller, method and parameter properties
+			$RouteParserObject->setController()->setMethod()->setParameters();
 
-		//get parameters
-		$parameters = $RouteParserObject->getParameters();
+			//set the value of the controller
+			$controller = $RouteParserObject->getController();
+
+			//set the value of the method
+			($action = $RouteParserObject->getMethod()) || ($action = $config['default']['action']);
+
+		}
+
+		//there is no defined routes, infer controller and method from the url string
+		else{
+
+			//set the parameter properties
+			$RouteParserObject->setParameters();
+
+			//get the controller name
+			$controller = $UrlParserObjectInstance->getController();
+
+			//set the value of the method
+			($action = $UrlParserObjectInstance->getMethod()) || ($action = $config['default']['action']);
+
+
+		}
 
 	}
-	//there is no defined route 
+
+	//there is no infered controller from url string, get the defaults 
 	else
 	{
-		//get the controller name
-		($controller = $UrlParserObjectInstance->getController()) || ($controller = $config['default']['controller']);
+		//set the parameter properties
+		$RouteParserObject->setParameters();
 
-		//get the action name
-		($action = $UrlParserObjectInstance->getMethod()) || ($action = $config['default']['action']);
+		//get the default controller name
+		$controller = $config['default']['controller'];
 
-		//get parameters
-		$parameters = $UrlParserObjectInstance->getParameters();
+		//get the default action name
+		$action = $config['default']['action'];
 
 	}
 
