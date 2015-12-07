@@ -72,10 +72,10 @@ return array(
 		'Helpers\Url' 				=> 'Url',
 		'Helpers\Path' 				=> 'Path',
 		'Helpers\Session'			=> 'Session',
-		'Helpers\ArrayHelper'		=> 'Array',
+		'Helpers\ArrayHelper\ArrayHelper'		=> 'Array',
 		'Helpers\Cookie'			=> 'Cookie',
 		'Helpers\Form'				=> 'Form',
-		'Helpers\Input'				=> 'Input',
+		'Helpers\Input\Input'				=> 'Input',
 		'Helpers\Redirect'			=> 'Redirect',
 		'Helpers\View'				=> 'View',
 
