@@ -49,11 +49,14 @@ class Input {
 	public static function setInputData(){
 
 		//first, call the setInputClassInstance() method to set $InputClassInstance 
-		self::$setInputClassInstance();
+		self::setInputClassInstance();
 
 		//set the input data
 		self::setGet()->setPost();
 
+		//return the static instance
+		return new static;
+	
 	}
 	
 	/**
@@ -65,11 +68,14 @@ class Input {
 	public static function setUrl(array $params = array()){
 
 		//begin by setting the input class instance
-		self::$setInputClassInstance();
+		self::setInputClassInstance();
 
 		//call implementation method to set url data
 		self::$InputClassInstance->setUrl($params);
 
+		//return the static instance
+		return new static;
+	
 	}
 
 	/**
@@ -81,7 +87,7 @@ class Input {
 	public static function getUrl($name = null){
 
 		//call implementation class to get url paramters
-		self::$InputClassInstance->getUrl($name);
+		return self::$InputClassInstance->getUrl($name);
 
 	}
 
@@ -94,7 +100,7 @@ class Input {
 	public static function urlHas($name){
 
 		//call the implementation method to check for this key in url params
-		self::$InputClassInstance->urlHas($name);
+		return self::$InputClassInstance->urlHas($name);
 
 	}
 
@@ -105,9 +111,15 @@ class Input {
 	*@return Object \Input
 	*/
 	public static function setGet(){
+		
+		//begin by setting the input class instance
+		self::setInputClassInstance();
 
 		//call the implementation method to set get data
 		self::$InputClassInstance->setGet();
+
+		//return the static instance
+		return new static;
 
 	}
 
@@ -120,7 +132,7 @@ class Input {
 	public static function getGet($name = null){
 
 		//call implementation method to get GET data
-		self::$InputClassInstance->getGet($name);
+		return self::$InputClassInstance->getGet($name);
 
 	}
 
@@ -133,7 +145,7 @@ class Input {
 	public static function getHas($name){
 
 		//call the implementation method to check for the existance of key
-		self::$InputClassInstance->getHas($name);
+		return self::$InputClassInstance->getHas($name);
 
 	}
 
@@ -144,9 +156,15 @@ class Input {
 	*@return Object \Input
 	*/
 	public static function setPost(){
+		
+		//begin by setting the input class instance
+		self::setInputClassInstance();
 
 		//call implementation method to set post data
 		self::$InputClassInstance->setPost();
+
+		//return the static instance
+		return new static;
 
 	}
 
@@ -159,7 +177,7 @@ class Input {
 	public static function getPost($name = null){
 
 		//call the implementation method to get post paramter
-		self::$InputClassInstance->getPost($name);
+		return self::$InputClassInstance->getPost($name);
 
 	}
 
@@ -172,7 +190,7 @@ class Input {
 	public static function postHas($name){
 
 		//call the miplementaion method to check for this key in the post
-		self::$InputClassInstance->postHas($name);
+		return self::$InputClassInstance->postHas($name);
 
 	}
 
@@ -186,7 +204,7 @@ class Input {
 	public static function get($name = null)
 	{
 		//call the implementation method to get the input data
-		self::$InputClassInstance->get($name);
+		return self::$InputClassInstance->get($name);
 
 	}
 
@@ -199,7 +217,7 @@ class Input {
 	public static function has($name)
 	{
 		//call the moethod to check for the key
-		self::$InputClassInstance->has($name);
+		return self::$InputClassInstance->has($name);
 
 	}
 
