@@ -132,15 +132,26 @@ function handler( $errNo, $errMsg, $errFile, $errLine ) {
 
     }
 
+    //define the root directory, full path
+    $rootPath = dirname(dirname(dirname((dirname(__FILE__)))));
+
+    $exceptionObject = new Exception;$backTrace = $exceptionObject->getTraceAsString();
+    $appendPrevious = substr($backTrace, 2, strpos($backTrace, "#1") - 2);
 
     //compose an error message to display
-    $showErrorMessage = "<b>$errorType: </b>$errMsg in <b>$errFile</b> on line <b>$errLine</b><br/>";
+    $showErrorMessage = "<b>$errorType: $errMsg in $errFile on line($errLine)</b> As called in $appendPrevious";
+
+    //remove repeated absolute path from the error message
+    $showErrorMessage = str_replace($rootPath, '', $showErrorMessage);
 
     //compose error message to writ to the log files
-    $logErrorMessage = "$errorType $errMsg in $errFile on line $errLine";
+    $logErrorMessage = "$errorType $errMsg in $errFile on line ($errLine) As called in $appendPrevious";
 
+    //remove repeated absolute path from the error message
+    $logErrorMessage = str_replace($rootPath, '', $logErrorMessage);
+    
     //define the error.log file definiton
-    $filePath = dirname(dirname(dirname((dirname(__FILE__))))) . '/bin/logs/error.log';
+    $filePath =  $rootPath . '/bin/logs/error.log';
    
     /**
      *This methods writes this error messages to file.
