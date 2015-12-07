@@ -11,7 +11,7 @@
  *
  */
 
-use Helpers\ArrayHelper;
+use Helpers\ArrayHelper\ArrayHelper;
 use Drivers\Registry;
 
 class Url {
@@ -69,7 +69,7 @@ class Url {
     	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";
 
 		//compose the url string
-		return $protocol . '://' . $base . $fileName;
+		return $protocol . '://' . $base .'/'. $fileName;
 
 	}
 
@@ -108,7 +108,7 @@ class Url {
     	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";
 
 		//compose the url string
-		return $protocol . '://' . $base . 'public/' . $assetName;
+		return $protocol . '://' . $base .'/'. 'public/' . $assetName;
 
 	}
 
