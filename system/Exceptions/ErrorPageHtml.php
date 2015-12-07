@@ -1,3 +1,4 @@
+</pre></pre></pre>
 <!DOCTYPE html>
 <html>
     <head profile="http://www.w3.org/2005/10/profile">
@@ -9,9 +10,7 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,700,600' rel='stylesheet' type='text/css'>
 	
 	<title><?php $title = (isset($title)) ? $title: 'Gliver @Error!'; echo $title; ?> </title>
-
 	<style type="text/css">
-
 	    body {
 	        margin:0;
 	        font-family:'Lato', sans-serif;
@@ -72,7 +71,6 @@
 
     <?php endif; ?>
 
-</div>
 </body>
 </html>
 
