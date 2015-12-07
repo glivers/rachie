@@ -84,12 +84,12 @@ class InputClass {
 	*@param string $name The paramter name whose value we want to retrieve
 	*@return mixed bool false if paramter not set or the value of the parameter, whole url param array if null supplied
 	*/
-	public static function getUrl($name){
+	public function getUrl($name){
 
 		//returnt he whole array if null is supplied
 		if($name === null){
 
-			//return the whole array
+			//return the whole url input array
 			return $this->urlInputData;
 
 		}
