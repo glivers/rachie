@@ -139,16 +139,13 @@ function handler( $errNo, $errMsg, $errFile, $errLine ) {
     $appendPrevious = substr($backTrace, 2, strpos($backTrace, "#1") - 2);
 
     //compose an error message to display
-    $showErrorMessage = "<b>$errorType: $errMsg in $errFile on line($errLine)</b> As called in $appendPrevious";
+    $showErrorMessage = "<b>$errorType: $errMsg in $errFile on line($errLine)</b> As seen from $appendPrevious";
 
-    //remove repeated absolute path from the error message
-    $showErrorMessage = str_replace($rootPath, '', $showErrorMessage);
+    //remove repeated absolute path and .php from the error message
+    $showErrorMessage = str_replace(array($rootPath, '.php'), '', $showErrorMessage);
 
     //compose error message to writ to the log files
-    $logErrorMessage = "$errorType $errMsg in $errFile on line ($errLine) As called in $appendPrevious";
-
-    //remove repeated absolute path from the error message
-    $logErrorMessage = str_replace($rootPath, '', $logErrorMessage);
+    $logErrorMessage = "$errorType $errMsg in $errFile on line ($errLine) As seen from $appendPrevious";
     
     //define the error.log file definiton
     $filePath =  $rootPath . '/bin/logs/error.log';
