@@ -57,7 +57,7 @@ class RouteParser extends BaseRouteClass {
 	*/
 	public function __construct($urlString, array $definedRoutesArray, UrlParser $UrlParserObjectInstance){
 
-		//set the value of the $urlString
+		//set the value of the $urlString 
 		$this->urlString = $urlString;
 
 		//set the value of the routes property
@@ -110,7 +110,7 @@ class RouteParser extends BaseRouteClass {
 	{
 
 		//check if this route key exists
-		$RouteMatch = (ArrayHelper::KeyExists($this->UrlParserObjectInstance->getController(), $this->definedRoutesArray)) ? true : false;
+		$RouteMatch = (ArrayHelper::KeyExists($this->UrlParserObjectInstance->getController(), $this->definedRoutesArray)->get()) ? true : false;
 
 		//a matching route was found, set params and return true
 		if($RouteMatch)
@@ -142,16 +142,15 @@ class RouteParser extends BaseRouteClass {
 	*@param string $controllerToLookUp The controller to try and map
 	*@return Object \RouteParser
 	*/
-	protected function setController($controllerToLookUp){
+	public function setController(){
 		
 		//explode the metaData into controller and method
 		$routeMetaDataArray = ArrayHelper::parts($this->pattern, $this->routeMetaData)->clean()->trim()->get();
 
-
 		//check if  a controller is defined for this route
 		try{
 
-			if ( ! (int)ArrayHelper::KeyExists(0, $routeMetaDataArray) || empty($routeMetaDataArray[0])) {
+			if ( ! (int)ArrayHelper::KeyExists(0, $routeMetaDataArray)->get() || empty($routeMetaDataArray[0])) {
 
 				throw new RouteException("There is no controller associated with this route! -> " . $this->routeName);
 				
@@ -173,12 +172,6 @@ class RouteParser extends BaseRouteClass {
 			$RouteExceptionObjectInstance->errorShow();
 
 		}
-
-		//set the method
-		$this->method = isset($routeMetaArray[1]) ? $routeMetaArray[1] : $method;
-		
-		//set the parameters array
-		$this->parameters = @array_slice($routeMetaArray, 2);
 
 	}
 
@@ -204,11 +197,25 @@ class RouteParser extends BaseRouteClass {
 	 */
 	public function setMethod()
 	{
-		//check if method metadata is not null
+		//check if method metadata is null
 		if(is_null($this->methodMetaData)){
 
-			//set method to null and return this object instace without parsing anything
-			$this->method = null;
+			//if there was no method metaData check if there are names url param keys  in the controller name
+			$requestParamKeys = ArrayHelper::parts($this->urlParameterSeparator, $this->controller)->clean()->trim()->get();
+
+			//check if there are parameter found
+			if(count($requestParamKeys) > 1){
+
+				//set the new value of the controller
+				$this->controller = $requestParamKeys[0];
+
+				//set a value for the methodMetaData
+				$this->methodMetaDataArray = $requestParamKeys;
+
+			}
+
+			//there is no method frm the routes, get the route from the UrlParser instance
+			$this->method = $this->UrlParserObjectInstance->getMethod();
 
 			return $this;
 
@@ -218,16 +225,48 @@ class RouteParser extends BaseRouteClass {
 		else{
 
 			//get the methodMetaDataArray
-			$methodMetaDataArray = ArrayHelper::parts($urlParameterSeparator, $methodMetaData)->clean()->trim()->get();
+			$methodMetaDataArray = ArrayHelper::parts($this->urlParameterSeparator, $this->methodMetaData)->clean()->trim()->get();
 			
-			//set the value of the method property
-			$this->method = (count($methodMetaDataArray) > 0) ? $methodMetaDataArray[0] : null;
+			//put this in a try...catch block to enhance error handlign
+			try{
 
-			//set the methodMetaDataArray property
-			$this->methodMetaDataArray = $methodMetaDataArray;
+				if(count($methodMetaDataArray) > 0){
+				 	
+				 	//set the value of the method property
+					$this->method = $methodMetaDataArray[0];
+					
+					//check if the value of method from url parse is not null
+					if($this->UrlParserObjectInstance->getMethod() !== null){
 
-			//returnt this class instance
-			return $this;
+						//if the method name can be got from the methodMetaData, then lets prepend the value of method to the urlParser parameters
+						$this->UrlParserObjectInstance->setParameters($this->UrlParserObjectInstance->getMethod(), false);
+
+					}
+
+					//set the methodMetaDataArray property
+					$this->methodMetaDataArray = $methodMetaDataArray;
+					
+					//returnt this class instance
+					return $this;
+
+				}
+
+				//there was not method data found after parsing metaData, this is wrong, throw an error
+				else{
+
+					//throw an exception
+					throw new RouteException("The method name specified after this named route " . $this->routeName . " => " . $this->controller . "@" . $this->methodMetaData . " is invalid format", 1);
+					
+				}
+
+			}
+
+			catch(RouteException $RouteExceptionObjectInstance){
+
+				//display the error message
+				$RouteExceptionObjectInstance->errorShow();
+
+			}
 
 		}
 
@@ -255,11 +294,8 @@ class RouteParser extends BaseRouteClass {
 	public function setParameters()
 	{
 		//set the requestParamKeys
-		$requestParamKeys = (count($methodMetaDataArray) > 1) ? ArrayHelper::slice($methodMetaDataArray, 2)->get() : null;
+		$this->requestParamKeys = (count($this->methodMetaDataArray) > 1) ? ArrayHelper::slice($this->methodMetaDataArray, 1)->get() : array();
 		
-		//set the requestParamKeys
-		$this->requestParamKeys = $requestParamKeys;
-
 		//check if the requestParamKeys contain values
 		if(count($this->requestParamKeys) > 0){
 
@@ -267,7 +303,7 @@ class RouteParser extends BaseRouteClass {
 			$requestParamValues = $this->UrlParserObjectInstance->getParameters();
 
 			//get the number of keys
-			$requestParamKeysLen = count($requestParamKeys);
+			$requestParamKeysLen = count($this->requestParamKeys);
 
 			//check if the keys are more than then values
 			if($requestParamKeysLen >= count($requestParamValues)){
@@ -276,10 +312,10 @@ class RouteParser extends BaseRouteClass {
 				$requestParamValues = array_pad($requestParamValues, $requestParamKeysLen, null);
 
 				//combine the two arrays into one
-				$requestParams =  array_combine($requestParamKeys, $requestParamValues);
+				$requestParams =  array_combine($this->requestParamKeys, $requestParamValues);
 
 				//populate the Input Class data
-				Input::setGetData()->setPostData()->setUrlParamRequestData($requestParams);
+				Input::setGet()->setPost()->setUrl($requestParams);
 				
 				//return this object instance
 				return $this;
@@ -289,14 +325,14 @@ class RouteParser extends BaseRouteClass {
 			//the values are more than the keys
 			else{
 
-				//split the array to only remain with the numeber defined inthe keys
-				$requestParamValues = ArrayHelper::slice($requestParamValues, 1, $requestParamKeysLen)->get();
+				//split the array to only remain with the number defined inthe keys
+				$requestParamValues = ArrayHelper::slice($requestParamValues, 0, $requestParamKeysLen)->get();
 				
 				//combine the two arrays into one
-				$requestParams =  array_combine($requestParamKeys, $requestParamValues);
+				$requestParams =  array_combine($this->requestParamKeys, $requestParamValues);
 
 				//populate the Input Class data
-				Input::setGetData()->setPostData()->setUrlParamRequestData($requestParams);
+				Input::setGet()->setPost()->setUrl($requestParams);
 				
 				//return this object instance
 				return $this;
@@ -309,7 +345,7 @@ class RouteParser extends BaseRouteClass {
 		else{
 
 			//populate the Input Class data
-			Input::setGetData()->setPostData()->setUrlParamRequestData($this->UrlParserObjectInstance->getParameters());
+			Input::setUrl($this->UrlParserObjectInstance->getParameters())->setGet()->setPost();
 			
 			//return this object instance
 			return $this;
