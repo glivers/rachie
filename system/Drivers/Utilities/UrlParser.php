@@ -14,7 +14,7 @@
 
 use Helpers\StringHelper;
 use Helpers\ArrayHelper\ArrayHelper;
-
+ 
 class UrlParser  {
 
 	/**
@@ -45,7 +45,7 @@ class UrlParser  {
 	/**
 	 *@var array $parameters Parsed url string parameters
 	 */
-	private $parameters = null;
+	private $parameters = array();
 
 	/**
 	 *This constructor initializes the $url string variable
@@ -90,11 +90,12 @@ class UrlParser  {
 
 			//there are no components in the url string set null for infered controller
 			$this->controller = null;
-			
+
 			//return this class instance
 			return $this;
 
 		}
+
 
 	}
 
@@ -158,34 +159,40 @@ class UrlParser  {
 	}
 
 	/**
-	*This method sets the url string request parameterd for this input string
+	*This method sets the url string request parameters for this input string
 	*
-	*@param null
+	*@param sting $value The new value to add to the parameters array
+	*@param bool True|False Flag to indicated whether the additional value is to be prepended or appended
 	*@return Object \UrlParser
 	*/
-	public function setParameters(){
-
+	public function setParameters($value = null, $appendParameter = true){
+			
 		//check if the $urlComponentsArray has more than two element
-		if(count($this->urlComponentsArray) > 2){
+		$this->parameters = (count($this->urlComponentsArray) > 2) ? ArrayHelper::slice($this->urlComponentsArray, 2)->get() : array();
 
-			//slice the array and return the parts after the method
-			$this->parameters = ArrayHelper::slice($this->urlComponentsArray, 2)->get();
+		//check if there is an additonal parameter to add to parameters array
+		if($value !== null){
 
-			//return this class instance
-			return $this;
+			//check if this parameter is to be prepended or appended
+			if($appendParameter === true){
+
+				//append
+				$this->parameters[] = $value;
+
+			}
+
+			//prepend to the parameters array
+			else{
+
+				//prepend
+				array_unshift($this->parameters, $value);
+
+			}
 
 		}
 
-		//there are no request parameters, set a value of null
-		else{
-
-			//set the null value
-			$this->parameters = null;
-
-			//return this class instance
-			return $this;
-
-		}
+		//return this class instance
+		return $this;
 
 	}
 	/**
