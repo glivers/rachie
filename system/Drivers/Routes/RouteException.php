@@ -14,22 +14,4 @@
 
 use Exceptions\BaseExceptionClass;
 
-class RouteException extends BaseExceptionClass {
-
-	/**
-	*This method modifes the error message to be returned, displayed
-	*
-	*@param null
-	*@return string The error message content
-	*/
-	public function getErrorMessage(){
-
-		//define and return the error message to show
-		$this->errorMessageContent = $this->getMessage();
-
-		//return this object instance
-		return $this;
-
-	}
-
-}
+class RouteException extends BaseExceptionClass {}
