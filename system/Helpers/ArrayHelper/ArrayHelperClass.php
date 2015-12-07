@@ -47,20 +47,10 @@ class ArrayHelperClass {
 	public function setMethodArgs($argName, $argValue){
 
 		//get the array that contains the methodArgs, and set this value
-		if($this->methodArgs[$argName] = $argValue){
+		$this->methodArgs[$argName] = $argValue;
 
-			//return this instance
-			return $this;
-
-		}
-
-		//return false in failure
-		else{
-
-			//return false
-			return "Unable to set method args";
-
-		}
+		//return this instance
+		return $this;
 
 	}
 
@@ -132,7 +122,7 @@ class ArrayHelperClass {
 	 *@param int $limit The value limits the number of elements to return
 	 *@return Object \ArrayHelperClass
 	 */
-	public function parts($delimiter, $string, $limit)
+	public function parts($delimiter, $string, $limitSet = false, $limit = null)
 	{
 		//set the parameters
 		$this->setMethodArgs('delimiter', $delimiter)->setMethodArgs('limit', $limit);
@@ -140,8 +130,21 @@ class ArrayHelperClass {
 		//set the inputElement property
 		$this->inputElement = $string;
 
-		//explode this string into an array
-		$arrayComponents = explode($delimiter, $string, ( ! is_null($limit) ) ? $limit: null );
+		//check if limit is set
+		if($limitSet === true){
+
+			//explode this string into an array
+			$arrayComponents = explode($delimiter, $string, $limit);
+
+		}
+
+		//limit is not set
+		else{
+
+			//explode this string into an array
+			$arrayComponents = explode($delimiter, $string);
+
+		}
 
 		//check $arrayComponents and set $outputElement
 		$this->outputElement = (count($arrayComponents) > 0) ? $arrayComponents : null;
@@ -348,7 +351,7 @@ class ArrayHelperClass {
 	public function get(){
 
 		//call the method to get the value of the outputElement
-		$this->getOutputElement();
+		return $this->getOutputElement();
 
 	}
 
