@@ -97,11 +97,9 @@ class ArrayHelper {
 
 			//set the value of the string argument
 			$string = ( ! is_null($string)) ? $string : self::$ArrayHelperClassInstance->getOutputElement();
-
+			
 			//set the value of the limit parameter/argument
 			$limit = (!is_null($limit)) ? $limit : self::$ArrayHelperClassInstance->getMethodArgs('limit');
-
-
 
 			//check if the delimiter methodArg value has been set
 			if( $delimiter === null ) throw new ArrayHelperException("NULL \$delimiter value passed as the delimiter for splitting string into array to ArrayHelper::parts() method. A string value is expected!", 1);
@@ -109,8 +107,22 @@ class ArrayHelper {
 			//check if the string value has been set
 			if( $string === null) throw new ArrayHelperException("NULL \$string value has been passed as the string to be split into an array by the ArrayHelper::parts() method. A string value is expected!", 1);
 			
-			//call the implmentation method to split string into array
-			self::$ArrayHelperClassInstance->parts($delimiter, $string, $limit);
+
+			//check if the value of the limit parameter is set
+			if($limit === null){
+				
+				//call the implmentation method to split string into array
+				self::$ArrayHelperClassInstance->parts($delimiter, $string);
+
+			}
+
+			//limit value is set, pass the value of limit
+			else{
+
+				//call the implmentation method to split string into array
+				self::$ArrayHelperClassInstance->parts($delimiter, $string, true, $limit);
+
+			}
 
 			//return the static instance
 			return new static;
