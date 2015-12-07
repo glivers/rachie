@@ -38,9 +38,19 @@ class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {
 	public $ErrorPageHtml;
 
 	/**
-	*@var string This property stores the error message for this exception
+	*@var string This property stores the error message
 	*/
 	public $errorMessageContent;
+
+	/**
+	*@var string This property stores the error message to show
+	*/
+	public $errorMessageContentToShow;
+
+	/**
+	*@var string This property stores the error message to log
+	*/
+	public $errorMessageContentToLog;
 
 	/**
 	 *This constructor method sets the default values of this class properties
@@ -76,7 +86,7 @@ class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {
 	public function logErrorMessage(){
 
 		//write the message content to file
-		error_log($this->errorMessageContent . PHP_EOL, 3, $this->errorLogFilePath);
+		error_log($this->errorMessageContentToLog . PHP_EOL, 3, $this->errorLogFilePath);
 
 		//return this object instance
 		return $this;
@@ -95,10 +105,13 @@ class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {
 		$backTrace = $this->getTraceAsString(); $appendPrevious = substr($backTrace, 2, strpos($backTrace, "#1") - 2);
 
 		//define and return the error message to show
-		$this->errorMessageContent = '<b>' . $this->getMessage() . ' ' . $this->getFile() . '(' . $this->getLine() . ')</b> As called in ' . $appendPrevious;
+		$this->errorMessageContent = '<b>' . $this->getMessage() . ' ' . $this->getFile() . '(' . $this->getLine() . ')</b> As seen from ' . $appendPrevious;
 	    
 	    //remove repeated absolute path from the error message
-	    $this->errorMessageContent = str_replace(Registry::getConfig()['root'], '', $this->errorMessageContent);
+	    $this->errorMessageContentToShow = str_replace(array(Registry::getConfig()['root'], '.php'), '', $this->errorMessageContent);
+		
+		//define and return the error message to log excluding the the <b> tags
+	    $this->errorMessageContentToLog = str_replace(array('<b>', '</b>'), '', $this->errorMessageContent);
 
 		//return this object instance 
 		return $this;
@@ -119,7 +132,7 @@ class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {
 		$this->getErrorMessage()->logErrorMessage();
 
 		//define the error message to show
-		$showErrorMessage = $this->errorMessageContent;
+		$showErrorMessage = $this->errorMessageContentToShow;
 
 		//check if this is not development environment
 		if($this->devENV === false){
