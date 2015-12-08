@@ -1,4 +1,4 @@
-<?php namespace Helpers;
+<?php namespace Helpers\Url;
 
 /**
  *This class resolves urls and returns the appropriate url string required

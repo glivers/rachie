@@ -12,7 +12,7 @@
  *@version 1.0.1
  */
 
-use Helpers\StringHelper;
+use Helpers\StringHelper\StringHelper;
 use Helpers\ArrayHelper\ArrayHelper;
  
 class UrlParser  {

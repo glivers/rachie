@@ -11,7 +11,7 @@
  *@version 1.0.1
  */
 
-use Helpers\View;
+use Helpers\View\View;
 use Helpers\Input\Input;
 use Libraries\CronLibrary\SampleCronController;
 

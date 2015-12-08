@@ -1,4 +1,4 @@
-<?php namespace Helpers;
+<?php namespace Helpers\Redirect;
 
 /**
  *This class handles php session re-direction
