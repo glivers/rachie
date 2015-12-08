@@ -1,17 +1,19 @@
 <?php namespace Models;
 
 /**
- *This models handles all user management datatabase operations
+ *This models updates user information in the database
  *@author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
  *@copyright 2015 - 2020 Geoffrey Oliver
- *@category Models
- *@package Models\UsersModel
+ *@category Cron\Models
+ *@package Cron\Models\Sample
  *@link https://github.com/gliver-mvc/gliver
  *@license http://opensource.org/licenses/MIT MIT License
  *@version 1.0.1
  */
 
-class UsersModel extends Model{
+use Models\Model;
+
+class SampleCronModel extends Model{
 
 	/**
 	*@var string The name of the table associated with this model
@@ -24,13 +26,13 @@ class UsersModel extends Model{
 	 *@param null
 	 *@return array The users data in an array format
 	 */
-	public static function all()
+	public static function activateAllUsers()
 	{
-		//excecute query to return all users
-		$users = static::Query()->from(self::$table)->all();
+		//excecute query to set all users to activated status
+		$usersActivate = static::Query()->from(self::$table)->where('status = ?', 'inactive')->save(array('status' => 'active'));
 
-		//return the rows found
-		return $users;
+		//return the status of this operation
+		return $usersActivate;
 
 	}
 

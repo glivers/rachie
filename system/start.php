@@ -8,48 +8,73 @@ return	function() use($config){
 		//check of the routes configuration file exists
 		if ( ! file_exists( __DIR__ . '/../application/routes.php'))
 
-			throw new Exceptions\BaseException("The defined routes file cannot be found! Please restore if you deleted");
+			throw new Exceptions\Routes\RouteException("The defined routes file cannot be found! Please restore if you deleted");
 		
 		//get the defined routes
-		$routes = include __DIR__ . '/../application/routes.php';
+		$definedRoutes = include __DIR__ . '/../application/routes.php';
 
 	}
-	catch(Exceptions\BaseException $error){
+	catch(Drivers\Routes\RouteException $ExceptionObjectInstance){
 
-		$error->show();
-
-		return;
+		//display the error message to the browser
+		$ExceptionObjectInstance->errorShow();
+ 
 	}
 
-	$routeObj = new Drivers\Routes\Implementation();
+	//create an instance of the UrlParser Class, 
+	$UrlParserObjectInstance = new Drivers\Utilities\UrlParser(Drivers\Registry::getUrl());
 
-	//there is a defined route 
-	if ( $routeObj->dispatch(Drivers\Registry::getUrl(), $routes) ) 
-	{
-		//get the controller name
-		($controller = $routeObj->getController()) || ($controller = $config['default']['controller']);
+	//and set controller, method and request parameter
+	$UrlParserObjectInstance->setController()->setMethod()->setParameters();
 
-		//get the action name
-		($action = $routeObj->getMethod()) || ($action = $config['default']['action']);
+	//create an instance of the route parser class
+	$RouteParserObject = new Drivers\Routes\RouteParser(Drivers\Registry::getUrl(), $definedRoutes, $UrlParserObjectInstance);
 
-		//get parameters
-		$parameters = $routeObj->getParameters();
+	//check if there is infered controller from url string
+	if($UrlParserObjectInstance->getController() !== null){
+
+		//check if there is a defined route matched
+		if ( $RouteParserObject->matchRoute() ) 
+		{
+			//if there is a defined route, set the controller, method and parameter properties
+			$RouteParserObject->setController()->setMethod()->setParameters();
+
+			//set the value of the controller
+			$controller = $RouteParserObject->getController();
+
+			//set the value of the method
+			($action = $RouteParserObject->getMethod()) || ($action = $config['default']['action']);
+
+		}
+
+		//there is no defined routes, infer controller and method from the url string
+		else{
+
+			//set the parameter properties
+			$RouteParserObject->setParameters();
+
+			//get the controller name
+			$controller = $UrlParserObjectInstance->getController();
+
+			//set the value of the method
+			($action = $UrlParserObjectInstance->getMethod()) || ($action = $config['default']['action']);
+
+
+		}
 
 	}
-	//there is no defined route 
+
+	//there is no infered controller from url string, get the defaults 
 	else
 	{
-		//create an instance of the url parser
-		$urlObj = new Drivers\Utilities\UrlParser(Drivers\Registry::getUrl());
+		//set the parameter properties
+		$RouteParserObject->setParameters();
 
-		//get the controller name
-		($controller = $urlObj->getController()) || ($controller = $config['default']['controller']);
+		//get the default controller name
+		$controller = $config['default']['controller'];
 
-		//get the action name
-		($action = $urlObj->getMethod()) || ($action = $config['default']['action']);
-
-		//get parameters
-		$parameters = $urlObj->getParameters();
+		//get the default action name
+		$action = $config['default']['action'];
 
 	}
 
@@ -59,7 +84,7 @@ return	function() use($config){
 		//get the namespaced controller class
 		$controller 	= 'Controllers\\' . ucwords($controller) . 'Controller';
 
-		if( ! class_exists($controller) ) throw new Exceptions\BaseException("The class " . $controller . ' is undefined');
+		if( ! class_exists($controller) ) throw new Drivers\Routes\RouteException("The class " . $controller . ' is undefined');
 		
 		if( ! (int)method_exists($controller, $action) )
 		{
@@ -67,7 +92,7 @@ return	function() use($config){
 			$dispatch = new $controller;
 
 			//throw exception if no method can be found
-			if( ! $dispatch->$action() ) throw new Exceptions\BaseException("Access to undefined method " . $controller . '->' . $action);
+			if( ! $dispatch->$action() ) throw new Drivers\Routes\RouteException("Access to undefined method " . $controller . '->' . $action);
 			
 			//get the method name
 			$action = $dispatch->$action();
@@ -75,20 +100,16 @@ return	function() use($config){
 			//fire up application
 			$dispatch->$action();
 
-			//stop further script execution
-			exit();
-
 		}
 
 		//method exists, go ahead and dispatch
 		else $dispatch = new $controller; call_user_func_array(array($dispatch, $action), $parameters = array());
 
 	}
-	catch(Exceptions\BaseException $error){
+	catch(Drivers\Routes\RouteException $ExceptionObjectInstance){
 
-		$error->show();
-
-		return;
+		//display the error message to the browser
+		$ExceptionObjectInstance->errorShow();
 
 	}
 

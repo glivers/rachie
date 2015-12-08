@@ -14,16 +14,37 @@
  *@version 1.0.1
  */
 
-use Drivers\ArrayUtility;
+use Drivers\ArrayHelper\ArrayHelper;
 use Drivers\StringUtility;
 
-class Base {
+class BaseRouteClass {
 
 	/**
 	 *@var string $pattern The url string pattern to check for
 	 *@readwrite 
 	 */
 	protected $pattern = '@';
+
+	/**
+	 *@var string $pattern The url string pattern to check for
+	 *@readwrite 
+	 */
+	protected $urlParameterSeparator = '/';
+
+	/**
+	*@var string The route metaData
+	*/
+	protected $routeMetaData;
+
+	/**
+	*@var string The method metaData
+	*/
+	protected $methodMetaData;
+
+	/**
+	*@var array The array containing the methodMetaData
+	*/
+	protected $methodMetaDataArray = array();
 	/**
 	 *@var string $controller The controller name to launch
 	 *@readwrite
@@ -38,20 +59,6 @@ class Base {
 	 *@var array $parameters The url request parameters
 	 *@readwrite
 	 */
-	protected $parameters = null;
-
-	/**
-	 *This exception class is  throw when the specified action cannot be found.
-	 *@param string $method The method name that we attempted to excecute
-	 *@return void
-	 */
-	public function MethodNotFoundException()
-	{
-		//throw the exception error message
-		return new Exception\Implementation("{$method} method not implemented" );
-
-	}
-
-
+	protected $parameters = array();
 
 }

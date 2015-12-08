@@ -1,4 +1,4 @@
-<?php namespace Drivers\Utilities;
+<?php namespace Helpers;
 
 /**
  *This class performs repetative String  functions.
@@ -14,7 +14,7 @@
  *@version 1.0.1
  */
 
-class StringUtility {
+class StringHelper {
 
 	/**
 	 *@var string $delimiter Used to sanitize regular expression pattern

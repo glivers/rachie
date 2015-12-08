@@ -11,7 +11,7 @@
  *@version 1.0.1
  */
 
-trait  Implementation {
+trait  BaseControllerTrait {
 
 	/**
 	 *This magic method determines the request method and composes a method based on the value.

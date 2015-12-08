@@ -10,9 +10,7 @@
  *@package Core\Helpers\View
  */
 
-use Drivers\Templates\Implementation;
-use Exceptions\BaseException;
-use Drivers\Cache\CacheBase;
+use Helpers\Exceptions\HelperException;
 use Drivers\Registry;
 
 class View {
@@ -84,17 +82,11 @@ class View {
    
         }
 
-        catch(BaseException $e) {
+        catch(HelperException $HelperExceptionObjectInstance) {
 
-            //echo $e->getMessage();
-            $e->show();
+            //display the error message
+            $HelperException->errorShow();
 
-        }
-
-        catch(Exception $e) {
-
-          echo $e->getMessage();
-          
         }
 
     }

@@ -11,7 +11,7 @@
  *
  */
 
-use Helpers\ArrayHelper;
+use Helpers\ArrayHelper\ArrayHelper;
 use Drivers\Registry;
 
 class Url {

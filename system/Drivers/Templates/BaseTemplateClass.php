@@ -11,13 +11,13 @@
  *@version 1.0.1
  */
 
-use Drivers\Templates\Map;
-use Drivers\Templates\Implementation;
+use Drivers\Templates\GrammarMapTrait;
+use Drivers\Templates\TemplateParserClass;
 
-class ViewBase extends Implementation {
+class BaseTemplateClass extends TemplateParserClass {
 
 	//use the class tha define s the grammar map
-	use Map;
+	use GrammarMapTrait;
 
 }
 

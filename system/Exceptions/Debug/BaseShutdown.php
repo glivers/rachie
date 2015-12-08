@@ -132,12 +132,23 @@ function handler( $errNo, $errMsg, $errFile, $errLine ) {
 
     }
 
+    //define the root directory, full path
+    $rootPath = dirname(dirname(dirname((dirname(__FILE__)))));
+
+    $exceptionObject = new Exception;$backTrace = $exceptionObject->getTraceAsString();
+    $appendPrevious = substr($backTrace, 2, strpos($backTrace, "#1") - 2);
 
     //compose an error message to display
-    $errorMessage = '<b>'.$errorType.': </b>'.$errMsg.' in <b>'.$errFile.'</b> on line <b>'.$errLine.'</b><br/>';
+    $showErrorMessage = "<b>$errorType: $errMsg in $errFile on line($errLine)</b> As seen from $appendPrevious";
 
+    //remove repeated absolute path and .php from the error message
+    $showErrorMessage = str_replace(array($rootPath, '.php'), '', $showErrorMessage);
+
+    //compose error message to writ to the log files
+    $logErrorMessage = "$errorType $errMsg in $errFile on line ($errLine) As seen from $appendPrevious";
+    
     //define the error.log file definiton
-    $filePath = dirname(dirname(dirname((dirname(__FILE__))))) . '/bin/logs/error.log';
+    $filePath =  $rootPath . '/bin/logs/error.log';
    
     /**
      *This methods writes this error messages to file.
@@ -145,7 +156,7 @@ function handler( $errNo, $errMsg, $errFile, $errLine ) {
      *@param string $filePath The full path of the error.log file
      *@return This method does not throw an error
      */
-    error_log(preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $errorMessage). PHP_EOL, 3, $filePath);
+    error_log($logErrorMessage . PHP_EOL, 3, $filePath);
 
     //production environment, hide the error mesage
     if( DEV === false ) 
@@ -155,17 +166,17 @@ function handler( $errNo, $errMsg, $errFile, $errLine ) {
         if( defined('CONSOLE_INSTANCE') ){
 
             //remove verbose error message and display
-            echo $errorMessage; exit();
+            echo $logErrorMessage; exit();
 
         }
         //this is a web request
         else{
 
-            //define the site title
-            $title = 'Gliver PHP MVC Framework';
+            //set the error hide parameter to true
+            $hideErrorMessage = true;
 
             //load the error hide page
-            include dirname((dirname(__FILE__))) . '/errorHide.php';
+            include dirname((dirname(__FILE__))) . '/ErrorPageHtml.php';
 
             //stop further script execution
             exit();
@@ -183,17 +194,14 @@ function handler( $errNo, $errMsg, $errFile, $errLine ) {
         if( defined('CONSOLE_INSTANCE') ){
 
             //remove verbose error message and display
-            echo $errorMessage; exit();
+            echo $logErrorMessage; exit();
 
         }
         //this is a web request
         else{
 
-            //define the site title
-            $title = 'Gliver PHP MVC Framework';
-
             //load the show error view file
-            include dirname((dirname(__FILE__))) . '/errorShow.php';
+            include dirname((dirname(__FILE__))) . '/ErrorPageHtml.php';
         
             //stop further script execution
             exit();

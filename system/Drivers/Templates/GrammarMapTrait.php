@@ -13,7 +13,7 @@
 
 use Helpers\View as ViewHelper;
 
-trait Map {
+trait GrammarMapTrait {
 
 	/**
 	 * The file currently being compiled.
