@@ -1,4 +1,4 @@
-<?php namespace Helpers;
+<?php namespace Helpers\View;
 
 /**
  *This class handles rendering of view files
@@ -12,6 +12,7 @@
 
 use Helpers\Exceptions\HelperException;
 use Drivers\Registry;
+use Helpers\Path\Path;
 
 class View {
 

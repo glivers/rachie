@@ -1,4 +1,4 @@
-<?php namespace Helpers;
+<?php namespace Helpers\Session;
 /**
  *This class handles php session operations
  *

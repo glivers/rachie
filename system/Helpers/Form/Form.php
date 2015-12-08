@@ -1,4 +1,4 @@
-<?php namespace Helpers;
+<?php namespace Helpers\Form;
 
 /**
  *This class handles Form related functionlity

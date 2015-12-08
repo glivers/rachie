@@ -1,7 +1,7 @@
-<?php namespace Helpers;
+<?php namespace Helpers\Date;
 
-class Cookie {
-	
+class Date {
+
 	/**
 	 *This is the constructor class. We make this private to avoid creating instances of
 	 *this object

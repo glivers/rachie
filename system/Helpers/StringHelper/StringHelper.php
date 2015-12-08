@@ -1,4 +1,4 @@
-<?php namespace Helpers;
+<?php namespace Helpers\StringHelper;
 
 /**
  *This class performs repetative String  functions.

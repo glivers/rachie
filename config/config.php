@@ -69,15 +69,15 @@ return array(
 	 *cd 
 	 */
 	'aliases' => array(
-		'Helpers\Url' 				=> 'Url',
-		'Helpers\Path' 				=> 'Path',
-		'Helpers\Session'			=> 'Session',
-		'Helpers\ArrayHelper\ArrayHelper'		=> 'Array',
-		'Helpers\Cookie'			=> 'Cookie',
-		'Helpers\Form'				=> 'Form',
+		'Helpers\Url\Url' 					=> 'Url',
+		'Helpers\Path\Path' 				=> 'Path',
+		'Helpers\Session\Session'			=> 'Session',
+		'Helpers\ArrayHelper\ArrayHelper'	=> 'ArrayHelper',
+		'Helpers\Cookie\Cookie'				=> 'Cookie',
+		'Helpers\Form\Form'					=> 'Form',
 		'Helpers\Input\Input'				=> 'Input',
-		'Helpers\Redirect'			=> 'Redirect',
-		'Helpers\View'				=> 'View',
+		'Helpers\Redirect\Redirect'			=> 'Redirect',
+		'Helpers\View\View'					=> 'View',
 
 	),
 	/**
