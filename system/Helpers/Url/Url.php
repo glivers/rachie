@@ -120,7 +120,7 @@ class Url {
 	 *@throws malformed string
 	 *
 	 */
-	public static function link( $string = null )
+	public static function link2( $string = null )
 	{
 		//get the server name from global $_SERVER[] array()
 		$base  = $_SERVER['SERVER_NAME']; 
@@ -136,6 +136,46 @@ class Url {
 
 
 	}
+
+	/**
+	 *This method returns the base url
+	 *
+	 *@param null
+	 *@return string $url the base url for this application
+	 *@throws this method does not throw an error
+	 *
+	 */
+	public static function link($fileName)
+	{
+
+		//get the server name from global $_SERVER[] array()
+		$base  = $_SERVER['SERVER_NAME']; 
+
+		$url = Registry::getUrl();
+
+		//check if there is a uri string
+		if ( ! empty($url) ) 
+		{
+			//prepend installation folder to server name
+			$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], Registry::getUrl()));
+
+		}
+		//there is no query string, 
+		else
+		{
+			//prepend installation folder to server name
+			$base .= substr($_SERVER['REQUEST_URI'], 0);
+
+		}
+
+    	//use https if its defined in the $_SERVER global variable
+    	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";
+
+		//compose the url string
+		return $protocol . '://' . $base . $fileName;
+
+	}
+
 
 	
 }
