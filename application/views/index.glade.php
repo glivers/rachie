@@ -65,7 +65,7 @@
 
     </div>
 
-
+@include('subview')
 
 </div><!--EO gliverContainer-->
 </body>
