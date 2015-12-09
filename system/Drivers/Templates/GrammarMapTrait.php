@@ -11,7 +11,7 @@
  *@version 1.0.1
  */
 
-use Helpers\View as ViewHelper;
+use Helpers\View\View as ViewHelper;
 
 trait GrammarMapTrait {
 
