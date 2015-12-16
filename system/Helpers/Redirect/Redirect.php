@@ -12,6 +12,8 @@
  *@version 1.0.1
  */
 
+use Helpers\Url\Url;
+
 class Redirect {
 
 	/**
