@@ -335,7 +335,7 @@ class InputClass {
 		else{
 
 			//return bool false
-			return false;
+			return null;
 
 		}
 
