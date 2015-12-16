@@ -12,7 +12,6 @@
  */
 
 use Helpers\View\View;
-use Helpers\Input\Input;
 use Libraries\CronLibrary\SampleCronController;
 
 class HomeController extends BaseController {
@@ -28,7 +27,7 @@ class HomeController extends BaseController {
 		//define the page title
 		$data['title'] = 'Gliver MVC PHP Framework';
 
-		//get the ending date today
+		//load the framework homepage
 		View::render('index', $data);
 
 	}
