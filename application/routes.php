@@ -16,17 +16,16 @@
 return array(
 
 /**
- *The home route.
- *This route loads the home controller
- *@param null
- *@return void
+ *The home route.This route loads the home controller and getUser() method
+ *@param int $id The user id for which to load profile
+ *@param string $mode Whether to load profile in edit or view mode
  */
-'homepage' => 'Home@index/id/sessid',
+'adminhome' => 'Home@getUser/id/mode',
 /**
- *This routes loads the search users page.
- *@param null
- *@return void
+ *This routes loads the controller that display blog posts
+ *@param string $category The category from which to get blog content
+ *@param int $id The id of the post to load in this category
  */
-'work' => 'Home/id/sessid'
+'blog' => 'Load/category/id'
 
 );
