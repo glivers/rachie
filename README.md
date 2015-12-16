@@ -3,7 +3,6 @@
 Gliver Framework offers you very lightweight and therefore lightning fast MVC environment for writing Web Applications using PHP! An open source framework for rapid application development. Gliver has almost no learning curve and is a best bet for newbies as well as seasoned developers.
 
 To make things more interesting Gliver implements the latest technologies for example <a href="https://getcomposer.org/">Composer</a> for package management and use of <a href="https://packagist.org/">Packagist</a> libraries. Lightweight templating engine with efficient ORM - sure this is all you need for an amazing application. But still gives you flexibility to extend the core functionality with custom code...
-Gliver is as to install via composer as  a package management tool.
 
 # Official Documentation
 
