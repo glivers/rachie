@@ -103,7 +103,7 @@ return	function() use($config){
 		}
 
 		//method exists, go ahead and dispatch
-		else $dispatch = new $controller; call_user_func_array(array($dispatch, $action), $parameters = array());
+		else $dispatch = new $controller; $dispatch->$action();
 
 	}
 	catch(Drivers\Routes\RouteException $ExceptionObjectInstance){
