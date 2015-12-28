@@ -98,12 +98,12 @@ return	function() use($config){
 			$action = $dispatch->$action();
 
 			//fire up application
-			$dispatch->$action();
+			$dispatch->set_gliver_fr_controller_trait_properties()->$action();
 
 		}
 
 		//method exists, go ahead and dispatch
-		else $dispatch = new $controller; call_user_func_array(array($dispatch, $action), $parameters = array());
+		else $dispatch = new $controller; $dispatch->set_gliver_fr_controller_trait_properties()->$action();
 
 	}
 	catch(Drivers\Routes\RouteException $ExceptionObjectInstance){

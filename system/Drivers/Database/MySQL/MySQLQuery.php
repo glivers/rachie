@@ -13,6 +13,7 @@
  */
 
 use Drivers\Utilities\ArrayUtility;
+use Drivers\Database\MySQL\MySQLResultObject;
 
 class MySQLQuery {
 
@@ -986,8 +987,17 @@ class MySQLQuery {
 		//build the select query
 		$sql = $this->buildSelect();
 
+		//set the query excecution start time
+		$query_start_time = microtime(true);
+
 		//execute the sql query
 		$result = $this->connector->execute($sql);
+
+		//set the query excecution end time
+		$query_stop_time = microtime(true);
+
+		//get the query_excecution
+		$query_excec_time = $query_stop_time - $query_start_time;
 
 		//check if the query return an error and throw exception
 		if ( $result === false ) 
@@ -1001,18 +1011,26 @@ class MySQLQuery {
 		}
 
 		//define container rows() array
-		$rows = array();
+		$result_array = array();
 
-		//loop through the result object composing the rows array
-		for( $i = 0; $i < $result->num_rows; $i++ )
-		{
-			//add to the rows array
-			$rows[] = $result->fetch_array(MYSQLI_ASSOC);
+		//loop through resultset setting the values of arrays and objects
+		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+
+			$result_array[] = $row;
 
 		}
 
-		//return the full rows array
-		return $rows;
+		//get the response object instance
+		$response = (new MySQLResponseObject())
+			->setQueryString($sql)
+			->setQueryTime($query_excec_time)
+			->setFieldCount($result->field_count)
+			->setNumRows($result->num_rows)
+			->setQueryFields($result->fetch_fields())
+			->setResultArray($result_array);
+
+		//return the full response object
+		return $response;
 	}
 
 }

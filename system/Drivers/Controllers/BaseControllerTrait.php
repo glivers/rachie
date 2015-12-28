@@ -11,7 +11,19 @@
  *@version 1.0.1
  */
 
+use Drivers\Registry;
+
 trait  BaseControllerTrait {
+
+	/**
+	*@var float The request start time
+	*/
+	public $request_start_time;
+
+	/**
+	*@var string The site title as defined in the config
+	*/
+	public $site_title;
 
 	/**
 	 *This magic method determines the request method and composes a method based on the value.
@@ -32,6 +44,38 @@ trait  BaseControllerTrait {
 		if (method_exists($this, $method)) return $method;
 		else return false;
 
+	}
+
+	/**
+	*this method sets the basic app properties in controller
+	*
+	*@param null
+	*@return \Object $this instance of the controller for the purposes of chaining
+	*/
+	public function set_gliver_fr_controller_trait_properties()
+	{
+		//set the request_start_time
+		$this->request_start_time = Registry::$gliver_app_start;
+
+		//set the site title
+		$this->site_title = Registry::getConfig()['title'];
+
+		//return this object instance
+		return $this;
+
+	}
+
+	/**
+	*This method returns the current request execution time
+	*
+	*@param null
+	*@return float The duration of the request up to the point where this method is called
+	*/
+	public function request_exec_time()
+	{
+		//return the time different
+		return microtime(true) - $this->request_start_time;
+		
 	}
 
 }

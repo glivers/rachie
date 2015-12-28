@@ -20,6 +20,11 @@ use Drivers\Templates\BaseTemplateClass;
 class Registry {
 
 	/**
+	*@var float The application start time in seconds
+	*/
+	public static $gliver_app_start;
+
+	/**
 	 *
 	 *@var array $instances This stores instances of objects in key/instance pairs
 	 */

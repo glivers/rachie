@@ -3,6 +3,11 @@
 return array(
 
 	/**
+	*The timezone to use with your application DateFunctions
+	*/
+	'timezone' => 'America/New_York',
+
+	/**
 	 *Your name as the author of this application
 	 *this would appear in your console generated classes
 	 */
@@ -76,8 +81,8 @@ return array(
 		'Helpers\Cookie\Cookie'				=> 'Cookie',
 		'Helpers\Form\Form'					=> 'Form',
 		'Helpers\Input\Input'				=> 'Input',
-		'Helpers\Redirect\Redirect'			=> 'Redirect',
 		'Helpers\View\View'					=> 'View',
+		'Drivers\Registry'					=> 'Registry',
 
 	),
 	/**
