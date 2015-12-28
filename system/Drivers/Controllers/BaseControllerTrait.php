@@ -14,6 +14,11 @@
 trait  BaseControllerTrait {
 
 	/**
+	*@var float The request start time
+	*/
+	public $request_start_time;
+
+	/**
 	 *This magic method determines the request method and composes a method based on the value.
 	 *It checks to see if the method exists
 	 *
