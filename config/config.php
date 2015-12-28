@@ -76,8 +76,8 @@ return array(
 		'Helpers\Cookie\Cookie'				=> 'Cookie',
 		'Helpers\Form\Form'					=> 'Form',
 		'Helpers\Input\Input'				=> 'Input',
-		'Helpers\Redirect\Redirect'			=> 'Redirect',
 		'Helpers\View\View'					=> 'View',
+		'Drivers\Registry'					=> 'Registry',
 
 	),
 	/**
