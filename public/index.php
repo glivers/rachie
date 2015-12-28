@@ -14,6 +14,9 @@
 
 //check if the boostrap file exists and load
 try{
+	
+	//start the php_engine_launch timer
+	$gliver_app_start = microtime(true);
 
 	/**
 	 *This function defines the types of errors to be reported
