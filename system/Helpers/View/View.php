@@ -34,6 +34,35 @@ class View {
      *
      */
     private function __clone(){}
+
+    /**
+    *This method gets the header content for importing classes
+    *
+    *@param null
+    *@return string The content of the header section
+    */
+    private static function getHeaderContent()
+    {
+        //get the content of the aliases array
+        $class_aliases_namespaces = Registry::getConfig()['aliases'];
+
+        //define array to contain numeric class_alias_namesplace
+        $class_alias_array = array();
+
+        //convert associative array to indexed array
+        foreach($class_aliases_namespaces as $namespace => $alias)
+        {
+            //add elements to the class_alias_array array
+            $class_alias_array[] = "use $namespace as $alias;";
+
+        }
+
+        //convert aliases array to string
+        $class_alias_string = implode('', $class_alias_array);
+
+        return sprintf('<?php %s function request_time(){return microtime(true) - Registry::$gliver_app_start;}?>', $class_alias_string);
+
+    } 
  
     /**
      *This method parses the input variables and loads the specified views
@@ -45,6 +74,7 @@ class View {
      */     
    public static function  render($fileName, array $data = null) 
    {
+
         //this try block is excecuted to enable throwing and catching of errors as appropriate
         try {
 
@@ -61,7 +91,16 @@ class View {
             }
 
             //get the parsed contents of the template file
-            $contents = self::getContents($fileName, false);
+            $contents = self::getHeaderContent() . self::getContents($fileName, false);
+
+            //write contents to file
+            $file_write_path  = Registry::getConfig()['root'] . '/bin/tmp/' . md5(Registry::getConfig()['title']);
+
+            file_put_contents($file_write_path, $contents);
+
+            include $file_write_path;
+
+            /*
 
             //start the output buffer
             ob_start();
@@ -80,6 +119,8 @@ class View {
 
             //stop further script execution
             exit();
+
+            */
    
         }
 
