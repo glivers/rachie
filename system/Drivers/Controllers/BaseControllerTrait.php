@@ -62,6 +62,19 @@ trait  BaseControllerTrait {
 
 		//return this object instance
 		return $this;
+
+	}
+
+	/**
+	*This method returns the current request execution time
+	*
+	*@param null
+	*@return float The duration of the request up to the point where this method is called
+	*/
+	public function request_exec_time()
+	{
+		//return the time different
+		return microtime(true) - $this->request_start_time;
 		
 	}
 
