@@ -41,15 +41,19 @@ return array(
 	/**
 	 *Set the Site Title
 	 */
-	'title' => 'Gliver MVC Framework',
+	'title' => 'Gliver Framework',
 	/**
 	 *Set the protocol for this url
 	 */
 	'protocol' => 'http',
 	/**
-	 *Set the server name for this url for example localhost or example.com for a domain
+	 *The server name for this application
 	 */
 	'servername' => 'localhost',
+	/**
+	*The default upload file path
+	*/
+	'upload_path' => 'public/uploads/',
 	/**
 	 *Define the root directory
 	 */

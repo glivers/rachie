@@ -190,4 +190,22 @@ class View {
 
     }
 
+    /**
+    *This method returns result object as json object
+    *@param array $data The data to send in the form of json object
+    *@return json/header
+    */
+    public static function renderJson(array $data = null)
+    {
+        //set the json headers
+        header('Content-Type: application/json');
+
+        //echo out the array/object in json format
+        echo json_encode($data);
+
+        //terminate script execution
+        exit();
+
+    }
+
 }
