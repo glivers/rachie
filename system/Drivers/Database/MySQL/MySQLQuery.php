@@ -974,6 +974,18 @@ class MySQLQuery {
 		//return the rows count
 		return $row[0]['rows'];
 
+		//get the response object instance
+		$response = (new MySQLResponseObject())
+			->setQueryString($sql)
+			->setQueryTime($query_excec_time)
+			->setFieldCount($result->field_count)
+			->setNumRows($result->num_rows)
+			->setQueryFields($result->fetch_fields())
+			->setResultArray($result_array);
+
+		//return the full response object
+		return $response;
+
 	}
 
 	/**
