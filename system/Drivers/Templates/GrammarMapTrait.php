@@ -11,7 +11,7 @@
  *@version 1.0.1
  */
 
-use Helpers\View\View as ViewHelper;
+use Drivers\Templates\View as ViewHelper;
 
 trait GrammarMapTrait {
 
@@ -90,7 +90,7 @@ trait GrammarMapTrait {
 	{
 		$result = '';
 
-		// Here we will loop through all of the tokens returned by the Zend lexer and
+		// Here we will loop through all of the tokens returned by the Zend engine's lexical scanner and
 		// parse each one into the corresponding valid PHP. We will then have this
 		// template as the correctly rendered PHP that can be rendered natively.
 		foreach (token_get_all($string) as $token)
@@ -114,7 +114,7 @@ trait GrammarMapTrait {
 	 * Parse the tokens from the template.
 	 *
 	 * @param  array  $token
-	 * @return string The compiles template contents
+	 * @return string The compiled template contents
 	 */
 	protected function parseToken($token)
 	{
@@ -133,7 +133,7 @@ trait GrammarMapTrait {
 	}
 
 	/**
-	 * Compile Blade echos into valid PHP.
+	 * Compile Glade echos into valid PHP.
 	 *
 	 * @param  string  $value
 	 * @return string
@@ -309,7 +309,7 @@ trait GrammarMapTrait {
 	 *
 	 * @param  string  $expression
 	 * @return string
-	 */
+	 */ 
 	protected function compileEmpty($expression)
 	{
 		$empty = '$__empty_' . $this->forelseCounter--;

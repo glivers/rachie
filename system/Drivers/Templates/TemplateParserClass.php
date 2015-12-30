@@ -28,7 +28,7 @@ class TemplateParserClass {
 		try{
 
 			//check if this file exists
-			if ( ! file_exists( $path) ) throw new TemplateException( "The view file named '$fileName'  cannot be found!", 1);
+			if ( ! file_exists( $path) ) throw new TemplateException( get_class(new TemplateException). ": The view file named '$fileName'  cannot be found!", 1);
 			
 			//set the file path
 			$this->path  = $path;
