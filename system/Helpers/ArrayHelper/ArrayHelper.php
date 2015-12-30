@@ -268,7 +268,7 @@ class ArrayHelper {
 	 *@param array $return The return array
 	 *@return Object \ArrayHelper
 	 */
-	public function flatten($array = null, $return = array())
+	public static function flatten($array = null, $return = array())
 	{
 		//check for the existance of the implementation class
 		self::setImplmentationClass();
