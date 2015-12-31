@@ -136,7 +136,8 @@ function handler( $errNo, $errMsg, $errFile, $errLine ) {
     $rootPath = dirname(dirname(dirname((dirname(__FILE__)))));
 
     $exceptionObject = new Exception;$backTrace = $exceptionObject->getTraceAsString();
-    $appendPrevious = $backTrace;//substr($backTrace, 2, strpos($backTrace, "#4") - 2);
+
+    $appendPrevious = substr($backTrace, 2, (strpos($backTrace, "#4")) ? strpos($backTrace, "#4") - 2 : 1000);
 
     //compose an error message to display
     $showErrorMessage = "<b>$errorType: $errMsg in $errFile on line($errLine)</b> As seen from $appendPrevious";
