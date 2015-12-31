@@ -50,6 +50,31 @@ class MySQLResponseObject {
 	private $result_object;
 
 	/**
+	*@var int The count() of resultset
+	*/
+	private $count;
+
+	/**
+	*@var array The first row of a query resultset
+	*/
+	private $first;
+
+	/**
+	*@var int The rows affected by a delete or update query
+	*/
+	private $affectedRows;
+
+	/**
+	*@var int The last insert id
+	*/
+	private $lastInsertId;
+
+	/**
+	*@var bool Update query success
+	*/
+	private $updateSuccess;
+
+	/**
 	*This method sets the query excecution time
 	*
 	*@param int $microtime The query excecution time
@@ -202,6 +227,74 @@ class MySQLResponseObject {
 
 	}
 
+	/**
+	*This method sets the value of the affectedRows property
+	*@param int $affected_rows The affected rows after delete or update query
+	*@return \Object $this
+	*/
+	public function setAffectedRows($affected_rows)
+	{
+		$this->affectedRows = $affected_rows;
+
+		return $this;
+	}
+
+	/**
+	*This methods gets and returns the value of affected rows
+	*@param null
+	*@return int The affected rows
+	*/
+	public function affectedRows()
+	{
+		return $this->affectedRows;
+
+	}
+
+	/**
+	*This method sets the value of the last_insert_id
+	*@param int $last_insert_id
+	*@return \Object $this
+	*/
+	public function setLastInsertId($last_insert_id)
+	{
+		$this->lastInsertId = $last_insert_id;
+
+		return $this;
+	}
+
+	/**
+	*This method gets and returns the value of the last insert id
+	*@param null
+	*@return int The value of the lastInsertId
+	*/
+	public function lastInsertId()
+	{
+		return $this->lastInsertId;
+
+	}
+
+	/**
+	*This method sets the value of the update success
+	*@param bool $update_status The status of the update query
+	*@return \Object $this
+	*/
+	public function setUpdateSuccess($update_status)
+	{
+		$this->updateSuccess = $update_status;
+
+		return $this;
+	}
+
+	/**
+	*This method returns the value of the update_query status
+	*@param null
+	*@return bool The updateSuccess status
+	*/
+	public function updateSuccess()
+	{
+		return $this->updateSuccess;
+		
+	}
 	/**
 	*This method sets the number of rows in array format
 	*
