@@ -10,7 +10,57 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,700,600' rel='stylesheet' type='text/css'>
 	
 	<title><?php $title = (isset($title)) ? $title: 'Gliver @Error!'; echo $title; ?> </title>
+
 	<style type="text/css">
+		@font-face {
+		  font-family: 'Lato';
+		  font-style: normal;
+		  font-weight: 300;
+		  src: local('Lato Light'), local('Lato-Light'), url(http://fonts.gstatic.com/s/lato/v11/KT3KS9Aol4WfR6Vas8kNcg.woff) format('woff');
+		}
+		@font-face {
+		  font-family: 'Lato';
+		  font-style: normal;
+		  font-weight: 400;
+		  src: local('Lato Regular'), local('Lato-Regular'), url(http://fonts.gstatic.com/s/lato/v11/9k-RPmcnxYEPm8CNFsH2gg.woff) format('woff');
+		}
+		@font-face {
+		  font-family: 'Lato';
+		  font-style: normal;
+		  font-weight: 700;
+		  src: local('Lato Bold'), local('Lato-Bold'), url(http://fonts.gstatic.com/s/lato/v11/wkfQbvfT_02e2IWO3yYueQ.woff) format('woff');
+		}
+		@font-face {
+		  font-family: 'Lato';
+		  font-style: italic;
+		  font-weight: 300;
+		  src: local('Lato Light Italic'), local('Lato-LightItalic'), url(http://fonts.gstatic.com/s/lato/v11/2HG_tEPiQ4Z6795cGfdivD8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+		}
+		@font-face {
+		  font-family: 'Lato';
+		  font-style: italic;
+		  font-weight: 400;
+		  src: local('Lato Italic'), local('Lato-Italic'), url(http://fonts.gstatic.com/s/lato/v11/oUan5VrEkpzIazlUe5ieaA.woff) format('woff');
+		}
+		@font-face {
+		  font-family: 'Lato';
+		  font-style: italic;
+		  font-weight: 700;
+		  src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(http://fonts.gstatic.com/s/lato/v11/HkF_qI1x_noxlxhrhMQYED8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+		}
+	</style>
+	<style type="text/css">
+
+		body,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+		    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+		    /*font-weight: 700;*/
+		}
 	    body {
 	        margin:0;
 	        font-family:'Lato', sans-serif;
