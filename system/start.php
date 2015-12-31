@@ -8,7 +8,7 @@ return	function() use($config){
 		//check of the routes configuration file exists
 		if ( ! file_exists( __DIR__ . '/../application/routes.php'))
 
-			throw new Exceptions\Routes\RouteException("The defined routes file cannot be found! Please restore if you deleted");
+			throw new Drivers\Routes\RouteException("The defined routes.php file cannot be found! Please restore if you deleted");
 		
 		//get the defined routes
 		$definedRoutes = include __DIR__ . '/../application/routes.php';
