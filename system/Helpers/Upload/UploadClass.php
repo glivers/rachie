@@ -26,6 +26,11 @@ class UploadClass {
 	private $file_name;
 
 	/**
+	*@var string The target file name
+	*/
+	private $target_file_name;
+
+	/**
 	*@var string The target directory for the file upload
 	*/
 	private $target_dir;
@@ -105,24 +110,6 @@ class UploadClass {
 	}
 
 	/**
-	*This method sets the target file name
-	*
-	*@param null
-	*@return \Object $this instance
-	*/
-	public function setTargetfile()
-	{
-		//set the upload_path_relative
-		$this->upload_path_relative = $this->upload_path . basename($_FILES[$this->file_name]["name"]);
-
-		//set the full target file path
-		$this->target_file = $this->target_dir . basename($_FILES[$this->file_name]["name"]);
-
-		return $this;
-
-	}
-
-	/**
 	*This method sets the file type of the uploaded file
 	*
 	*@param null
@@ -131,11 +118,64 @@ class UploadClass {
 	public function setFiletype()
 	{
 		//set the value of the file type
-		$this->file_type =  pathinfo($this->target_file,PATHINFO_EXTENSION);
+		$this->file_type =  pathinfo($_FILES[$this->file_name]['name'],PATHINFO_EXTENSION);
 
 		return $this;
 
 	}
+
+	/**
+	*This method sets a unique target file name
+	*
+	*@param null
+	*@return \Object $this instance
+	*/
+	public function setTargetfilename()
+	{
+		//set the value of target file name
+		$this->target_file_name = sprintf('%s.%s',sha1_file($_FILES[$this->file_name]['tmp_name']),$this->file_type);
+
+		return $this;
+
+	}
+
+	/**
+	*This method sets the target file name
+	*
+	*@param null
+	*@return \Object $this instance
+	*/
+	public function setTargetfile()
+	{
+		//set the upload_path_relative
+		$this->upload_path_relative = $this->upload_path . $this->target_file_name;
+
+		//set the full target file path
+		$this->target_file = $this->target_dir . $this->target_file_name;
+
+		return $this;
+
+	}
+
+
+	/**
+	*This method checks if a valid file type was uploaded
+	*@param string $file_type The name of the file type to check
+	*@return \Object $this instance
+	*/
+	public function checkFiletype($file_type)
+	{
+		//check if the type was specified
+		if( null !== $file_type)
+		{
+
+			return $this;
+		}
+
+		else return $this;
+
+	}
+
 
 	/**
 	*This method sets the uploaded filesize
