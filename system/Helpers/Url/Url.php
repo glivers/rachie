@@ -69,7 +69,7 @@ class Url {
     	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";
 
 		//compose the url string
-		return $protocol . '://' . $base . $fileName;
+		return $protocol . '://' . $base;
 
 	}
 
