@@ -2,8 +2,8 @@
 
 /**
  *This models handles all user management datatabase operations
- *@author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
- *@copyright 2015 - 2020 Geoffrey Oliver
+ *@author Geoffrey Bans <geoffreybans@gmail.com>
+ *@copyright 2015 - 2020 Geoffrey Bans
  *@category Models
  *@package Models\UsersModel
  *@link https://github.com/gliver-mvc/gliver
@@ -11,12 +11,12 @@
  *@version 1.0.1
  */
 
-class UsersModel extends Model{
+class UsersModel extends Model {
 
 	/**
 	*@var string The name of the table associated with this model
 	*/
-	protected $table = 'users';	
+	protected static $table = 'users';	
 
 	/**
 	 *This method gets the records of all users from the database
@@ -29,8 +29,8 @@ class UsersModel extends Model{
 		//excecute query to return all users
 		$users = static::Query()->from(self::$table)->all();
 
-		//return the rows found
-		return $users;
+		//return the rows found in object notation
+		return $users->result();
 
 	}
 

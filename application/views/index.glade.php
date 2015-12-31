@@ -19,7 +19,7 @@
         <div class="headerText">
             <h1>Welcome to Gliver<br><span class="subtext">MVC at it’s finest...</span> </h1>
 
-            <p>Gliver is a powerful open-source PHP framework with a very small footprint.
+            <p>Request Time = {{$request_time}} Gliver is a powerful open-source PHP framework with a very small footprint.
                 Was made to be a simple and elegant toolkit, enabling rapid application development
                 of both web sites and web applications.
             </p>
@@ -36,20 +36,7 @@
             </ul>
         </div>
 
-        <div class="right-col">
-
-            @if(isset($users) AND count($users) > 0)
-
-                @foreach($users as $user)
-                    <tr>
-                        <td>{{$user['name']}} </td><td>{{$user['email']}} </td><td>{{$user['profile_photo']}} </td>
-                    </tr>
-
-                @endforeach
-
-            @endif
-
-        </div>
+@include('subview')
 
             <ul class="circles">
                 <li>

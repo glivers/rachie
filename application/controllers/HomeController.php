@@ -11,7 +11,7 @@
  *@version 1.0.1
  */
 
-use Helpers\View\View;
+use Drivers\Templates\View;
 use Libraries\CronLibrary\SampleCronController;
 
 class HomeController extends BaseController {
@@ -22,10 +22,11 @@ class HomeController extends BaseController {
 	 *@param null
 	 *@return void
 	 */
-	public function index()
+	public function getIndex()
 	{
 		//define the page title
-		$data['title'] = 'Gliver MVC PHP Framework';
+		$data['title'] = $this->site_title;
+		$data['request_time'] = $this->request_exec_time();
 
 		//load the framework homepage
 		View::render('index', $data);
