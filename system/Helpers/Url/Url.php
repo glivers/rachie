@@ -42,7 +42,7 @@ class Url {
 	 *@throws this method does not throw an error
 	 *
 	 */
-	public static function base($fileName)
+	public static function base()
 	{
 
 		//get the server name from global $_SERVER[] array()
