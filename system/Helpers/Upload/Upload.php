@@ -96,6 +96,37 @@ class Upload {
 	}
 
 	/**
+	*This method sets the file type of the uploaded file
+	*
+	*@param null
+	*@return \Object This static class instance
+	*/
+	protected static function setFiletype()
+	{
+		//call the method to set the file type
+		self::$uploadClassInstance->setFiletype();
+
+		return new static;
+
+	}
+
+	/**
+	*This method sets a unique target file name
+	*
+	*@param null
+	*@return \Object This static class instance
+	*/
+	protected static function setTargetfilename()
+	{
+		//call the method to set the target file
+		self::$uploadClassInstance->setTargetfilename();
+
+		return new static;
+
+	}
+
+
+	/**
 	*This method sets the target file name
 	*
 	*@param null
@@ -111,15 +142,14 @@ class Upload {
 	}
 
 	/**
-	*This method sets the file type of the uploaded file
-	*
-	*@param null
+	*This method checks if a valid file type was uploaded
+	*@param string $file_type The name of the file type to check
 	*@return \Object This static class instance
 	*/
-	protected static function setFiletype()
+	protected static function checkFiletype($file_type)
 	{
 		//call the method to check for the file type
-		self::$uploadClassInstance->setFiletype();
+		self::$uploadClassInstance->checkFiletype($file_type);
 
 		return new static;
 
@@ -155,8 +185,10 @@ class Upload {
 			->setUploadpath($target_dir)
 			->setFilename($file_name)
 			->setTargetdir()
-			->setTargetfile()
 			->setFiletype()
+			->setTargetfilename()
+			->setTargetfile()		
+			->checkFiletype($file_type)
 			->setFilesize();
 
 		//call method to upload file
