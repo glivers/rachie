@@ -331,21 +331,16 @@ class MySQLResponseObject {
 	*/
 	public function getResultObject(array $result_array)
 	{
+		$result_object = array();
 		//loop through, converting to objects
 		foreach($result_array as $key => $value)
 		{
-			//check for nested array 
-			if(is_array($value))
-			{
-				//call getResultObject recursively
-				$result_array[$key] = $this->getResultObject($value);
-
-			}
-
 			//cast to object and return
-			return (object)$result_array;
+			$result_object[] = (object)$value;
 
 		} 
+
+		return (object)$result_object;
 
 	}
 
