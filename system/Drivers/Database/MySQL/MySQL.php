@@ -12,6 +12,8 @@
  *@version 1.0.1
  */
 
+use Drivers\Database\MySQL\MySQLException;
+
 class MySQL {
 
 	/**
@@ -140,20 +142,34 @@ class MySQL {
 		//check if there is a valid service instance
 		if ( ! $this->validService()) 
 		{
-			//make a connection attempt
-			$this->service = new \MySQLi($this->host,$this->username,$this->password,$this->database,$this->port);
 
-			//check is the connection attempt returned an error
-			if ($this->service->connect_error) 
-			{
-				//throw exception
-				throw new MySQLException("Unable to connect to Database service with the provided settings");
+			//put this in try...catch block for better error handling
+			try{
+				
+				//make a connection attempt
+				$this->service = new \MySQLi($this->host,$this->username,$this->password,$this->database,$this->port);
+
+				//check is the connection attempt returned an error
+				if ($this->service->connect_error) 
+				{
+					//throw exception
+					throw new MySQLException("Unable to connect to Database service with the provided settings");
+
+				}
+
+				//set the connection variable to true
+				$this->connected = true;
 
 			}
 
-			//set the connection variable to true
-			$this->connected = true;
+			//diplay error message
+			catch(MySQLException $MySQLExceptionObject){
 
+				//display error message
+				$MySQLExceptionObject->errorShow();
+
+			}
+			
 		}
 
 		//return this connection instance
@@ -207,16 +223,30 @@ class MySQL {
 	 */
 	public function execute($sql)
 	{
-		//check if there is a valid service instance
-		if (! $this->validService() ) 
-		{
-			//throw exceptions
-			throw new MySQLException("Not connected to a valid database service");
+
+		//put this in try...catch block for better error handling
+		try{
+
+			//check if there is a valid service instance
+			if (! $this->validService() ) 
+			{
+				//throw exceptions
+				throw new MySQLException("Not connected to a valid database service");
+
+			}
+
+			//execute query and return response object
+			return $this->service->query($sql);
 
 		}
 
-		//execute query and return response object
-		return $this->service->query($sql);
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
+
+		}
 
 	}
 
@@ -229,17 +259,31 @@ class MySQL {
 	 */
 	public function escape($value)
 	{
-		//check if there is a valid service instance
-		if ( ! $this->validService() ) 
-		{
-			//throw exception
-			throw new MySQLException("Not connected to a valid database service");
-			
+
+		//put this in try...catch block for better error handling
+		try{
+
+			//check if there is a valid service instance
+			if (! $this->validService() ) 
+			{
+				//throw exceptions
+				throw new MySQLException("Not connected to a valid database service");
+
+			}
+
+			//escape and return output
+			return $this->service->real_escape_string($value);
+
 		}
 
-		//escape and return output
-		return $this->service->real_escape_string($value);
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
 
+			//display error message
+			$MySQLExceptionObject->errorShow();
+
+		}
+		
 	}
 
 	/**
@@ -251,17 +295,31 @@ class MySQL {
 	 */
 	public function lastInsertId()
 	{
-		//chekc is there is a valid service connection isntance
-		if ( ! $this->validService() ) 
-		{
-			//throw exception
-			throw new MySQLException("Not connected to a valid database service");
+
+		//put this in try...catch block for better error handling
+		try{
+
+			//chekc is there is a valid service connection isntance
+			if ( ! $this->validService() ) 
+			{
+				//throw exception
+				throw new MySQLException("Not connected to a valid database service");
+
+			}
+
+			//get and return the last insert is
+			return $this->service->insert_id;
 
 		}
 
-		//get and return the last insert is
-		return $this->service->insert_id;
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
 
+			//display error message
+			$MySQLExceptionObject->errorShow();
+
+		}
+		
 	}
 
 	/**
@@ -273,16 +331,30 @@ class MySQL {
 	 */
 	public function affectedRows()
 	{
-		//check if there is valid service instance
-		if ( ! $this->validService() ) 
-		{
-			//throw exception
-			throw new MySQLException("Not connected to a valid database service");
+
+		//put this in try...catch block for better error handling
+		try{
+
+			//check if there is valid service instance
+			if ( ! $this->validService() ) 
+			{
+				//throw exception
+				throw new MySQLException("Not connected to a valid database service");
+
+			}
+
+			//get number of affected rows and return
+			return $this->service->affected_rows;
 
 		}
 
-		//get number of affected rows and return
-		return $this->service->affected_rows;
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
+
+		}
 
 	}
 
@@ -295,16 +367,30 @@ class MySQL {
 	 */
 	public function lastError()
 	{
-		//check if there is a valid service instance
-		if ( ! $this->validService() ) 
-		{
-			//throw error
-			throw new MySQLException("Not connected to a valid database service");
+
+		//put this in try...catch block for better error handling
+		try{
+
+			//check if there is a valid service instance
+			if ( ! $this->validService() ) 
+			{
+				//throw error
+				throw new MySQLException("Not connected to a valid database service");
+
+			}
+
+			//get the error message and return
+			return $this->service->error;
 
 		}
 
-		//get the error message and return
-		return $this->service->error;
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
+
+		}
 
 	}
 
