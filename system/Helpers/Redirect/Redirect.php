@@ -17,6 +17,11 @@ use Helpers\Url\Url;
 class Redirect {
 
 	/**
+	*@var string The query string to append to the url string
+	*/
+	private static $query_string;
+
+	/**
 	 *This is the constructor class. We make this private to avoid creating instances of
 	 *this object
 	 *
@@ -40,16 +45,36 @@ class Redirect {
 	 *@param string $path The path to redirect to 
 	 *@param mixed $data The data with which to do redirect
 	 */	
-	public static function to($path, $data = null )
+	public static function to($path, array $data = null )
 	{
+		//compose query string if data was set
+		($data !== null) ? self::with($data) : '';
+
 		//compose full url
-		$path = Url::base($path);
+		$path = (self::$query_string === null) ?  Url::link($path) : Url::link($path) . '?' . self::$query_string;
 
 		//redirect to path
 		header('Location: ' . $path);
 
 		//stop any further html output
 		exit();
+
+	}
+
+	/**
+	*This method sets the url parameters to redirect with in the $_GET data
+	*@param array $query_data
+	*@return \Object this static instance
+	*/
+	public static function with(array $query_data)
+	{
+		//compose url string
+		$query_string = http_build_query($query_data);
+
+		//set the value of query string
+		self::$query_string .= $query_string;
+
+		return new static;
 
 	}
 
