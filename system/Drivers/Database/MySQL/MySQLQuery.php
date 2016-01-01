@@ -14,6 +14,7 @@
 
 use Helpers\ArrayHelper\ArrayHelper as ArrayUtility;
 use Drivers\Database\MySQL\MySQLResultObject;
+use Drivers\Database\MySQL\MySQLException;
 
 class MySQLQuery {
 
@@ -173,13 +174,28 @@ class MySQLQuery {
 	 */
 	public function from($from, $fields = array("*"))
 	{
-		//check if from is empty
-		if ( empty($from)) 
-		{
-			//throw new exception
-			throw new MySQLException("Invalid argument passed to from clause", 1);
+		
+		//put this in try...catch block for better error handling
+		try{
+
+			//check if from is empty
+			if ( empty($from)) 
+			{
+				//throw new exception
+				throw new MySQLException("Invalid argument passed to from clause", 1);
+
+			}
 
 		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
+
+		}
+
 
 		//set the protected $from value
 		$this->froms = $from;
@@ -203,19 +219,33 @@ class MySQLQuery {
 	 */
 	public function join($join, $table, $on, $fields = array())
 	{
-		//throw exception if $join passed is empty
-		if ( empty($join) ||  empty($table) || empty($on) )  
-		{
-			//throw exception for invalid argument
-			throw new MySQLException("Invalid argument $join passed for the Join Clause", 1);
 
+		//put this in try...catch block for better error handling
+		try{
+
+			//throw exception if $join passed is empty
+			if ( empty($join) ||  empty($table) || empty($on) )  
+			{
+				//throw exception for invalid argument
+				throw new MySQLException("Invalid argument $join passed for the Join Clause", 1);
+
+			}
+
+			//throw exception if the $on passed is empty
+			if ( empty($on) ) 
+			{
+				//throw exception
+				throw new MySQLException("Invalid argument $on passed for the Join Clause", 1);
+
+			}
+			
 		}
 
-		//throw exception if the $on passed is empty
-		if ( empty($on) ) 
-		{
-			//throw exception
-			throw new MySQLException("Invalid argument $on passed for the Join Clause", 1);
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
 
 		}
 
@@ -237,10 +267,24 @@ class MySQLQuery {
 	 */
 	public function limit($limit, $page = 1)
 	{
-		if ( empty($limit) ) 
-		{
-			//throw exception if value of limit passed is negative
-			throw new MySQLException("Empty argument passed for $limit in method limit()", 1);
+
+		//put this in try...catch block for better error handling
+		try{
+
+			if ( empty($limit) ) 
+			{
+				//throw exception if value of limit passed is negative
+				throw new MySQLException("Empty argument passed for $limit in method limit()", 1);
+
+			}
+
+		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
 
 		}
 
@@ -276,11 +320,25 @@ class MySQLQuery {
 	 */
 	public function order($order, $direction = 'asc')
 	{
-		//throw esception if empty value for $order was passed
-		if ( empty($order) ) 
-		{
-			//throw exception
-			throw new MySQLException("Empty value passed for parameter $order in order() method", 1);
+
+		//put this in try...catch block for better error handling
+		try{
+
+			//throw esception if empty value for $order was passed
+			if ( empty($order) ) 
+			{
+				//throw exception
+				throw new MySQLException("Empty value passed for parameter $order in order() method", 1);
+
+			}
+			
+		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
 
 		}
 
@@ -305,13 +363,27 @@ class MySQLQuery {
 		//get the arguments
 		$arguments = func_get_args();
 
-		//throw exception if argument pairs do ot match
-		if ( is_float( sizeof($arguments) / 2 ) ) 
-		{
-			//throw exception
-			throw new MySQLException("No arguments passed for the where clause");
+		//put this in try...catch block for better error handling
+		try{
+
+			//throw exception if argument pairs do ot match
+			if ( is_float( sizeof($arguments) / 2 ) ) 
+			{
+				//throw exception
+				throw new MySQLException("No arguments passed for the where clause");
+
+			}
+			
+		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
 
 		}
+
 
 		//check if only one argument pair was passed'
 		if ( sizeof($arguments) == 2) 
@@ -797,11 +869,25 @@ class MySQLQuery {
 		$this->responseObject
 			->setQueryTime($query_excec_time);
 
-		//check if query execution failure
-		if ( $result === false) 
-		{
-			//throw exception 
-			throw new MySQLException($this->connector->lastError());
+		//put this in try...catch block for better error handling
+		try{
+
+			//check if query execution failure
+			if ( $result === false) 
+			{
+				//throw exception 
+				throw new MySQLException($this->connector->lastError());
+
+			}
+
+
+		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
 
 		}
 
@@ -865,13 +951,27 @@ class MySQLQuery {
 		$query_excec_time = $query_stop_time - $query_start_time;
 		$this->setQueryTime($query_excec_time);
 
-		//check if query execution failure
-		if ( $result === false) 
-		{
-			//throw exception 
-			throw new MySQLException($this->connector->lastError());
- 
+		//put this in try...catch block for better error handling
+		try{
+
+			//check if query execution failure
+			if ( $result === false) 
+			{
+				//throw exception 
+				throw new MySQLException($this->connector->lastError());
+	 
+			}
+
 		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
+
+		}
+
 
 		//if this was an insert, get the insert id
 		if( $doInsert )
@@ -919,13 +1019,27 @@ class MySQLQuery {
 		$query_excec_time = $query_stop_time - $query_start_time;
 		$this->responseObject->setQueryTime($query_excec_time);
 
-		//throw error if there was an error perfrorming this query
-		if ( $result === false ) 
-		{
-			//throw excepton
-			throw new MySQLException();
+		//put this in try...catch block for better error handling
+		try{
+
+			//throw error if there was an error perfrorming this query
+			if ( $result === false ) 
+			{
+				//throw excepton
+				throw new MySQLException();
+				
+			}
 			
 		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
+
+		}
+
 
 		//if delete was successfull, get and return the number of affected rows
 		$this->responseObject
@@ -1073,16 +1187,31 @@ class MySQLQuery {
 		//get the query_excecution
 		$query_excec_time = $query_stop_time - $query_start_time;
 
-		//check if the query return an error and throw exception
-		if ( $result === false ) 
-		{
-			//get the erro message
-			$error = $this->connector->lastError();
 
-			//throw exception
-			throw new MySQLException("There was an error with your SQL Query : {$error}");
+		//put this in try...catch block for better error handling
+		try{
+
+			//check if the query return an error and throw exception
+			if ( $result === false ) 
+			{
+				//get the erro message
+				$error = $this->connector->lastError();
+
+				//throw exception
+				throw new MySQLException("There was an error with your SQL Query : {$error}");
+
+			}
+			
+		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
 
 		}
+
 
 		//define container rows() array
 		$result_array = array();
