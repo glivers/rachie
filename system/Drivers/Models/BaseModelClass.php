@@ -53,7 +53,7 @@ class BaseModelClass {
 	 *@param null
 	 *@return object Query instance
 	 */
-	public static function Query()
+	protected static function Query()
 	{
 
         static::$connection = Registry::get('database');
@@ -64,83 +64,83 @@ class BaseModelClass {
 
 	}
 
-	public static function from($from, $fields = array("*"))
+	protected static function from($from, $fields = array("*"))
 	{
 		//call the from method of this query instance
 		static::$queryObject->from($from, $fields);
 
 	}
 
-	public static function join($join, $table, $on, $fields = array() )
+	final public static function join($join, $table, $on, $fields = array() )
 	{
 		//call the join method of the query object
 		static::$queryObject->join($join, $table, $on, $fields);
 
 	}
 
-	public static function limit($limit, $page = 1)
+	final public static function limit($limit, $page = 1)
 	{
 		//call the limit method of the query builder object
 		static::$queryObject->limit($limit, $page);
 
 	}
 
-	public static function unique()
+	final public static function unique()
 	{
 		//call the unique method of the query builder
 		static::$queryObject->unique();
 
 	}
 
-	public static function order($order, $direction = 'asc')
+	final public static function order($order, $direction = 'asc')
 	{
 		//call the order method of the query builder
 		static::$queryObject->order($order, $direction);
 
 	}
 
-	public static function where()
+	final public static function where()
 	{
 		//call the query builder object where method passing the argument list
 		static::$queryObject->where();
 
 	}
 
-	public static function save($data)
+	final public static function save($data)
 	{
 		//call the query builder save method
 		static::$queryObject->save($data);
 
 	}
 
-	public static function saveBulk($data, $fields = null, $ids = null, $key = null)
+	final public static function saveBulk($data, $fields = null, $ids = null, $key = null)
 	{
 		//call the query builder save bulk method
 		static::$queryObject->saveBulk($data, $fields, $ids, $key);
 
 	}
  
-	public static function delete()
+	final public static function delete()
 	{
 		//call the query builder delete method
 		static::$queryObject->delete();
 
 	}
 
-	public static function first()
+	final public static function first()
 	{
 		//call the query builder get first record method
 		static::$queryObject->first();
 	}
 
-	public static function count()
+	final public static function count()
 	{
 		//call the query builder object count method
 		static::$queryObject->count();
 
 	}
 
-	public static function all()
+	final public static function all()
 	{
 		//call the query builder get all method
 		static::$queryObject->all();
