@@ -100,10 +100,33 @@ return	function() use($config){
 		}
 
 		//method exists, go ahead and dispatch
-		else $dispatch = new $controller; 
+		else $dispatch = new $controller;
+
+		//ensure the controller is an instance of the Controllers\BaseController class
+		if( ! $dispatch instanceof Controllers\BaseController) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : $controller class must extend Controllers\BaseController class!");
 		
-		//fire up application
-		$dispatch->set_gliver_fr_controller_trait_properties()->$action();
+		//set the controller defaults
+		$dispatch->set_gliver_fr_controller_trait_properties();
+
+		//get the number of parameters from the reflector
+		$method_params_count = count(Drivers\Utilities\Inspector::Create($dispatch)->getMethod($action)->getParameters());
+		
+		//get the method parameters passed
+		$method_params_array = $RouteParserObject->getParameters();
+
+		//get the number of keys
+		$requestParamKeysLen = $method_params_count;
+
+		//check if the keys are more than then values
+		if($method_params_count > count($method_params_array)){
+
+			//padd the $method_params_array with null values
+			$method_params_array = array_pad($method_params_array, $method_params_count, null);
+
+		}
+
+		//launch the infered method for this request
+		call_user_func_array(array($dispatch, $action), $method_params_array);
 
 	}
 	catch(Drivers\Routes\RouteException $ExceptionObjectInstance){
