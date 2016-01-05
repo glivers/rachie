@@ -8,7 +8,7 @@ return	function() use($config){
 		//check of the routes configuration file exists
 		if ( ! file_exists( __DIR__ . '/../application/routes.php'))
 
-			throw new Drivers\Routes\RouteException("The defined routes.php file cannot be found! Please restore if you deleted");
+			throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The defined routes.php file cannot be found! Please restore if you deleted");
 		
 		//get the defined routes
 		$definedRoutes = include __DIR__ . '/../application/routes.php';
@@ -84,7 +84,7 @@ return	function() use($config){
 		//get the namespaced controller class
 		$controller 	= 'Controllers\\' . ucwords($controller) . 'Controller';
 
-		if( ! class_exists($controller) ) throw new Drivers\Routes\RouteException("The class " . $controller . ' is undefined');
+		if( ! class_exists($controller) ) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The class " . $controller . ' is undefined');
 		
 		if( ! (int)method_exists($controller, $action) )
 		{
@@ -92,18 +92,18 @@ return	function() use($config){
 			$dispatch = new $controller;
 
 			//throw exception if no method can be found
-			if( ! $dispatch->$action() ) throw new Drivers\Routes\RouteException("Access to undefined method " . $controller . '->' . $action);
+			if( ! $dispatch->$action() ) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : Access to undefined method " . $controller . '->' . $action);
 			
 			//get the method name
 			$action = $dispatch->$action();
 
-			//fire up application
-			$dispatch->set_gliver_fr_controller_trait_properties()->$action();
-
 		}
 
 		//method exists, go ahead and dispatch
-		else $dispatch = new $controller; $dispatch->set_gliver_fr_controller_trait_properties()->$action();
+		else $dispatch = new $controller; 
+		
+		//fire up application
+		$dispatch->set_gliver_fr_controller_trait_properties()->$action();
 
 	}
 	catch(Drivers\Routes\RouteException $ExceptionObjectInstance){
