@@ -202,13 +202,8 @@ class MySQLQuery {
 		//set the protected $from value
 		$this->froms = $from;
 
-		//check if fields is sset
-		if($fields)
-		{
-			//set the fields param
-			$this->fields[$from] = $fields;
-
-		}
+		//check if fields is sset and set the fields param
+		if($fields) $this->fields[$from] = $fields;
 
 		//return this object instance
 		return $this;
@@ -307,6 +302,7 @@ class MySQLQuery {
 		return $this;
 
 	}
+
 	/**
 	 *This method sets the DISTINCT param in query string to only return non duplicated values in a column.
 	 *@param null
@@ -367,14 +363,12 @@ class MySQLQuery {
 
 	/**
 	 *This method defines the where parameters of the query string.
-	 *@param mixed Thie method expects an undefined number of arguments
+	 *@param array $argument The array containing the arguments passed.
 	 *@return Object $this
 	 *@throws \MySQLException if an uneven number of arguments was passed
 	 */
-	public function where()
+	public function where($arguments)
 	{
-		//get the arguments
-		$arguments = func_get_args();
 
 		//put this in try...catch block for better error handling
 		try{
@@ -570,10 +564,11 @@ class MySQLQuery {
 	/**
 	 *This method builds the query string for inserting one row of records into the database.
 	 *@param array The row of data to be inserted in associative array
+	 *@param bool $set_timestamps Sets whether to fill the created_at and updated_at fields
 	 *@return string The formed insert query string
 	 *@throws This method does not throw an error
 	 */
-	protected function buildInsert($data)
+	protected function buildInsert($data, $set_timestamps)
 	{
 		//define a fields container array
 		$fields = array(); 
@@ -583,6 +578,9 @@ class MySQLQuery {
 
 		//define a template format for query
 		$template = "INSERT INTO %s (%s) VALUES (%s)";
+
+		//check if the $set_timestamp is true and add created_at fields
+		if($set_timestamps) $data['date_created'] = date('Y-m-d h:i:s');
 
 		//loop through the input data 
 		foreach ($data as $field => $value) 
@@ -608,10 +606,11 @@ class MySQLQuery {
 	/**
 	 *This method builds the insert query for more than one row of data.
 	 *@param array The data to be inserted in associative array
+	 *@param bool $set_timestamps Sets whether to fill the created_at and updated_at fields
 	 *@return string The formed query string for this insert operation
 	 *@throws This method does not throw an error
 	 */
-	protected function buildBulkInsert($data)
+	protected function buildBulkInsert($data, $set_timestamps)
 	{
 		//define a fields container array
 		$fields = array(); 
@@ -671,19 +670,23 @@ class MySQLQuery {
 	/**
 	 *This method builds an update query for a single record of data.
 	 *@param array The data to be updated into the database
+	 *@param bool $set_timestamps Sets whether to fill the created_at and updated_at fields
 	 *@return string The formed SQL query string for this update operation
 	 *@throws This method does not throw an error
 	 */
-	protected function buildUpdate($data)
+	protected function buildUpdate($data, $set_timestamps)
 	{
 		//define the parts container array
 		$parts = array();
 
-		//define the continer vars initializing to empty
+		//define the container vars initializing to empty
 		$where = $limit = '';
 
 		//define the template format string
 		$template = "UPDATE %s SET %s %s %s";
+
+		//check if the $set_timestamp is true and add update_at fields
+		if($set_timestamps) $data['date_modified'] = date('Y-m-d h:i:s');
 
 		//loop through the input data array, populating the parts array
 		foreach ($data as $field => $value) 
@@ -703,7 +706,7 @@ class MySQLQuery {
 		if ( ! empty($queryWhere) ) 
 		{
 			//convert where clause array to string
-			$joined = join(", ", $queryWhere);
+			$joined = join(" AND ", $queryWhere);
 
 			//set the where var valus
 			$where = "WHERE {$joined}";
@@ -757,7 +760,7 @@ class MySQLQuery {
 	            //check if array is not empty 
 	            if ( ! empty($info) ) 
 	            {
-					//echo "<pre>";print_r($info);exit();
+
 					$subparts .=  ' WHEN '. $id . ' THEN ' . $this->quote($info[$field]) . ' ';
 
 	            }
@@ -812,7 +815,7 @@ class MySQLQuery {
 		if ( ! empty($queryWhere) ) 
 		{
 			//convert where clause array to string
-			$joined = join(", ", $queryWhere);
+			$joined = join(" AND ", $queryWhere);
 
 			//compose the where string
 			$where = "WHERE {$joined}";
@@ -841,29 +844,20 @@ class MySQLQuery {
 	/**
 	 *This methods inserts/updates one row of data into the database.
 	 *@param array The array containing the data to be inserted
+	 *@param bool $set_timestamps Sets whether to fill the created_at and updated_at fields
 	 *@return \MySQLResponseObject
 	 *@throws \MySQLException if there was an error in query execution
 	 */
-	public function save($data)
+	public function save($data, $set_timestamps)
 	{
 		//get the size of the wheres parameter
 		$doInsert = sizeof($this->wheres) == 0;
 
-		//check if doInsert is true
-		if ( $doInsert ) 
-		{
-			//get insert query string
-			$sql = $this->buildInsert($data);
+		//check if doInsert is true, //get insert query string
+		if ( $doInsert ) $sql = $this->buildInsert($data, $set_timestamps);
 
-		}
-
-		//not insert, this should be an update
-		else
-		{
-			//get update query string
-			$sql = $this->buildUpdate($data);
-
-		}
+		//not insert, this should be an update //get update query string
+		else $sql = $this->buildUpdate($data, $set_timestamps);
 
 		//set the value of the query string
 		$this->responseObject
@@ -888,7 +882,7 @@ class MySQLQuery {
 			if ( $result === false) 
 			{
 				//throw exception 
-				throw new MySQLException($this->connector->lastError());
+				throw new MySQLException(get_class(new MySQLException) . ' ' .$this->connector->lastError() . '<span class="query-string"> (' . $sql . ') </span>');
 
 			}
 
@@ -922,33 +916,26 @@ class MySQLQuery {
 		}
 
 	}
+
 	/**
 	 *The method perform insert/update of large amounts of data.
 	 *@param array The data to be inserted/updated in a multidimensional array
 	 *@param array The fields into which the data is to be inserted ot updated
 	 *@param array For update query, The unique id fields to use for updating
+	 *@param bool $set_timestamps Sets whether to fill the created_at and updated_at fields
 	 *@return \MySQLResponseObject
 	 *@throws \MySQLException if query execution return an error message
 	 */
-	public function saveBulk($data, $fields = null , $ids = null, $key = null )
+	public function saveBulk($data, $fields = null , $ids = null, $key = null, $set_timestamps )
 	{
 		//get the size of the wheres parameter
 		$doInsert = sizeof($this->wheres) == 0;
 
-		//check if doInsert is true
-		if ( $doInsert ) 
-		{
-			//get insert query string
-			$sql = $this->buildBulkInsert($data);
+		//check if doInsert is true //get insert query string
+		if ( $doInsert ) $sql = $this->buildBulkInsert($data, $set_timestamps);
 
-		}
-
-		//not insert, this should be an update
-		else
-		{
-			//get update query string
-			$sql = $this->buildBulkUpdate($data, $fields, $ids, $key);
-		}
+		//not insert, this should be an update, //get update query string
+		else $sql = $this->buildBulkUpdate($data, $fields, $ids, $key, $set_timestamps);
 
 		//set the value of the query string
 		$this->responseObject
@@ -970,7 +957,7 @@ class MySQLQuery {
 			if ( $result === false) 
 			{
 				//throw exception 
-				throw new MySQLException($this->connector->lastError());
+				throw new MySQLException(get_class(new MySQLException) . ' ' .$this->connector->lastError() . '<span class="query-string"> (' . $sql . ') </span>');
 	 
 			}
 
@@ -1038,7 +1025,7 @@ class MySQLQuery {
 			if ( $result === false ) 
 			{
 				//throw excepton
-				throw new MySQLException();
+				throw new MySQLException(get_class(new MySQLException) . ' ' .$this->connector->lastError() . '<span class="query-string"> (' . $sql . ') </span>');
 				
 			}
 			
@@ -1209,7 +1196,7 @@ class MySQLQuery {
 				$error = $this->connector->lastError();
 
 				//throw exception
-				throw new MySQLException("There was an error with your SQL Query : {$error}");
+				throw new MySQLException(get_class(new MySQLException) . ' ' .$this->connector->lastError() . '<span class="query-string"> (' . $sql . ') </span>');
 
 			}
 			
@@ -1245,6 +1232,40 @@ class MySQLQuery {
 
 		//return the full response object
 		return $this->responseObject;
+	}
+
+	/**
+	 *This method executes a raw query in the database.
+	 *@param string $query_string The query string to execute
+	 *@return \MySQLResponseObject
+	 *@throws \MySQLException if query returned an error message string
+	 */
+	public function rawQuery($query_string)
+	{
+		try{
+			//execute the sql query and return response object
+		 	$result = $this->connector->execute($query_string);
+
+			//check if the query return an error and throw exception
+			if ( $result === false ) 
+			{
+				//get the erro message
+				$error = $this->connector->lastError();
+
+				//throw exception
+				throw new MySQLException(get_class(new MySQLException) . ' ' .$this->connector->lastError() . '<span class="query-string"> (' . $sql . ') </span>');
+
+			}
+
+			else return $result;
+
+		}
+
+		catch(MySQLException $MySQLExceptionObject){
+
+			$MySQLExceptionObject->errorShow();
+		}
+
 	}
 
 }
