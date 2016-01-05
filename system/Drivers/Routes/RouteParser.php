@@ -13,7 +13,6 @@
  */
 
 use Drivers\Registry;
-use Drivers\Inspector;
 use Drivers\Utilities\UrlParser;
 use Drivers\Routes\RouteException;
 use Helpers\ArrayHelper\ArrayHelper;
