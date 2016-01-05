@@ -76,6 +76,9 @@ class BaseModelClass {
 		//call the from method of this query instance
 		static::$queryObject->from($from, $fields);
 
+		//return static class
+		return new static;
+
 	}
 
 	/**
@@ -92,6 +95,9 @@ class BaseModelClass {
 		//call the join method of the query object
 		static::$queryObject->join($join, $table, $on, $fields);
 
+		//return static class
+		return new static;
+
 	}
 
 	/**
@@ -106,6 +112,9 @@ class BaseModelClass {
 		//call the limit method of the query builder object
 		static::$queryObject->limit($limit, $page);
 
+		//return static class
+		return new static;
+
 	}
 	
 	/**
@@ -118,6 +127,9 @@ class BaseModelClass {
 	{
 		//call the unique method of the query builder
 		static::$queryObject->unique();
+
+		//return static class
+		return new static;
 
 	}
 
@@ -133,6 +145,9 @@ class BaseModelClass {
 		//call the order method of the query builder
 		static::$queryObject->order($order, $direction);
 
+		//return static class
+		return new static;
+
 	}
 
 	/**
@@ -146,6 +161,9 @@ class BaseModelClass {
 		//call the query builder object where method passing the argument list
 		static::$queryObject->where();
 
+		//return static class
+		return new static;
+
 	}
 
 	/**
@@ -156,8 +174,8 @@ class BaseModelClass {
 	 */
 	final public static function save($data)
 	{
-		//call the query builder save method
-		static::$queryObject->save($data);
+		//call the query builder save method and return response object
+		return static::$queryObject->save($data);
 
 	}
 	
@@ -171,11 +189,11 @@ class BaseModelClass {
 	 */
 	final public static function saveBulk($data, $fields = null, $ids = null, $key = null)
 	{
-		//call the query builder save bulk method
-		static::$queryObject->saveBulk($data, $fields, $ids, $key);
+		//call the query builder save bulk method and return response object
+		return static::$queryObject->saveBulk($data, $fields, $ids, $key);
 
 	}
-	
+
 	/**
 	 *This method deletes a set of rows that match the query parameters provided.
 	 *@param null
@@ -184,8 +202,8 @@ class BaseModelClass {
 	 */ 
 	final public static function delete()
 	{
-		//call the query builder delete method
-		static::$queryObject->delete();
+		//call the query builder delete method and return response object
+		return static::$queryObject->delete();
 
 	}
 
@@ -197,8 +215,8 @@ class BaseModelClass {
 	 */
 	final public static function first()
 	{
-		//call the query builder get first record method
-		static::$queryObject->first();
+		//call the query builder get first record method and return response object
+		return static::$queryObject->first();
 	}
 
 	/**
@@ -209,8 +227,8 @@ class BaseModelClass {
 	 */
 	final public static function count()
 	{
-		//call the query builder object count method
-		static::$queryObject->count();
+		//call the query builder object count method and return response object
+		return static::$queryObject->count();
 
 	}
 
@@ -222,8 +240,8 @@ class BaseModelClass {
 	 */
 	final public static function all()
 	{
-		//call the query builder get all method
-		static::$queryObject->all();
+		//call the query builder get all method and return response object
+		return static::$queryObject->all();
 
 	}
 
