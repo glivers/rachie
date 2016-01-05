@@ -125,9 +125,6 @@ class View {
 
             if($load_view = include $file_write_path) unlink($file_write_path);
 
-            //stop further script executions
-            exit();
-
         }
 
         catch(HelperException $HelperExceptionObjectInstance) {
