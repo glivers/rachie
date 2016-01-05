@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,700,600' rel='stylesheet' type='text/css'>
 	
-	<title><?php $title = (isset($title)) ? $title: 'Gliver @Error!'; echo $title; ?> </title>
+	<title><?php $title = (isset($title)) ? $title: 'Gliver @Error!'; echo "@Error! $title"; ?> </title>
 
 	<style type="text/css">
 		@font-face {
@@ -96,6 +96,11 @@
 			margin: auto;
 			color: rgba(0, 128, 0, 1);
 
+		}
+
+		span.query-string {
+
+			color: black;
 		}
 
 	</style>	
