@@ -13,4 +13,16 @@
 
 use Drivers\Models\BaseModelClass;
 
-class Model extends BaseModelClass {}
+class Model extends BaseModelClass {
+
+	/**
+	*@var string The name of the table associated with this model
+	*/
+	protected static $table;
+
+	/**
+	*@var bool Set whether query timestamps should be updated
+	*/	
+	protected static $update_timestamps;
+
+}
