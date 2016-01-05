@@ -64,13 +64,29 @@ class BaseModelClass {
 
 	}
 
-	protected static function from($from, $fields = array("*"))
+	/**
+	 *This method sets the table name and fields upon which to perform database queries.
+	 *@param string $from The table name upon which to perform query
+	 *@param array $fields The names of the fields to select in numeric array
+	 *@return object $this
+	 *@throws \MySQLException If an empty table name was passed
+	 */
+	final public static function from($from, $fields = array("*"))
 	{
 		//call the from method of this query instance
 		static::$queryObject->from($from, $fields);
 
 	}
 
+	/**
+	 *This method builds query string for joining tables in query.
+	 *@param string $join The type of join to performa
+	 *@param string $table the table to perform join on
+	 *@param string $on The conditions for the join
+	 *@param array $fields The fields name to join in numeric array
+	 *@return object $this
+	 *@throws \MySQLException if $join, $table or $on have empty string values 
+	 */
 	final public static function join($join, $table, $on, $fields = array() )
 	{
 		//call the join method of the query object
@@ -78,13 +94,26 @@ class BaseModelClass {
 
 	}
 
+	/**
+	 *This method sets the limit for the number of rows to return.
+	 *@param int $limit The maximum number of rows to return per query
+	 *@param int $page An interger used to define the offset of the select query
+	 *@return object $this
+	 *@throws \MySQLException if $limit has an empty value
+	 */
 	final public static function limit($limit, $page = 1)
 	{
 		//call the limit method of the query builder object
 		static::$queryObject->limit($limit, $page);
 
 	}
-
+	
+	/**
+	 *This method sets the DISTINCT param in query string to only return non duplicated values in a column.
+	 *@param null
+	 *@return Object $this
+	 *@throws This method does not throw an error
+	 */
 	final public static function unique()
 	{
 		//call the unique method of the query builder
@@ -92,6 +121,13 @@ class BaseModelClass {
 
 	}
 
+	/**
+	 *This method sets the order in which to sort the query results.
+	 *@param string $order The name of the field to use for sorting
+	 *@param string $direction This specifies whether sorting should be in ascending or descending order
+	 *@return Object $this
+	 *@throws \MySQLException if $order has an empty value
+	 */
 	final public static function order($order, $direction = 'asc')
 	{
 		//call the order method of the query builder
@@ -99,6 +135,12 @@ class BaseModelClass {
 
 	}
 
+	/**
+	 *This method defines the where parameters of the query string.
+	 *@param mixed Thie method expects an undefined number of arguments
+	 *@return Object $this
+	 *@throws \MySQLException if an uneven number of arguments was passed
+	 */
 	final public static function where()
 	{
 		//call the query builder object where method passing the argument list
@@ -106,20 +148,40 @@ class BaseModelClass {
 
 	}
 
+	/**
+	 *This methods inserts/updates one row of data into the database.
+	 *@param array The array containing the data to be inserted
+	 *@return \MySQLResponseObject
+	 *@throws \MySQLException if there was an error in query execution
+	 */
 	final public static function save($data)
 	{
 		//call the query builder save method
 		static::$queryObject->save($data);
 
 	}
-
+	
+	/**
+	 *The method perform insert/update of large amounts of data.
+	 *@param array The data to be inserted/updated in a multidimensional array
+	 *@param array The fields into which the data is to be inserted ot updated
+	 *@param array For update query, The unique id fields to use for updating
+	 *@return \MySQLResponseObject
+	 *@throws \MySQLException if query execution return an error message
+	 */
 	final public static function saveBulk($data, $fields = null, $ids = null, $key = null)
 	{
 		//call the query builder save bulk method
 		static::$queryObject->saveBulk($data, $fields, $ids, $key);
 
 	}
- 
+	
+	/**
+	 *This method deletes a set of rows that match the query parameters provided.
+	 *@param null
+	 *@return \MySQLResponseObject
+	 *@throws \MySQLException 
+	 */ 
 	final public static function delete()
 	{
 		//call the query builder delete method
@@ -127,12 +189,24 @@ class BaseModelClass {
 
 	}
 
+	/**
+	 *This method returns the first row match in a query.
+	 *@param null
+	 *@return \MySQLResponseObject
+	 *@throws This method does not throw an error
+	 */
 	final public static function first()
 	{
 		//call the query builder get first record method
 		static::$queryObject->first();
 	}
 
+	/**
+	 *This method counts the number of rows returned by query.
+	 *@param null
+	 *@return \MySQLResponseObject
+	 *@throws This method does not throw an error
+	 */
 	final public static function count()
 	{
 		//call the query builder object count method
@@ -140,6 +214,12 @@ class BaseModelClass {
 
 	}
 
+	/**
+	 *This method returns all rows that match the query parameters.
+	 *@param null
+	 *@return \MySQLResponseObject
+	 *@throws \MySQLException if query returned an error message string
+	 */
 	final public static function all()
 	{
 		//call the query builder get all method
