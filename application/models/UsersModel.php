@@ -16,22 +16,11 @@ class UsersModel extends Model {
 	/**
 	*@var string The name of the table associated with this model
 	*/
-	protected static $table = 'users';	
+	protected static $table = 'users';
 
 	/**
-	 *This method gets the records of all users from the database
-	 *
-	 *@param null
-	 *@return array The users data in an array format
-	 */
-	public static function all()
-	{
-		//excecute query to return all users
-		$users = static::Query()->from(self::$table)->all();
-
-		//return the rows found in object notation
-		return $users->result();
-
-	}
+	*@var bool Set whether query timestamps should be updated
+	*/	
+	protected static $update_timestamps = true;
 
 }
