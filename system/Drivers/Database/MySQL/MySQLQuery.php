@@ -99,8 +99,7 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method quotes input data according to how MySQL woudl expect it
-	 *
+	 *This method quotes input data according to how MySQL woudl expect it.
 	 *@param mixed String|Array Input to be quoted
 	 *@return mixed Output after input is quoted
 	 */
@@ -169,8 +168,11 @@ class MySQLQuery {
 	}
 
 	/**
-	 *
-	 *
+	 *This method sets the table name and fields upon which to perform database queries.
+	 *@param string $from The table name upon which to perform query
+	 *@param array $fields The names of the fields to select in numeric array
+	 *@return object $this
+	 *@throws \MySQLException If an empty table name was passed
 	 */
 	public function from($from, $fields = array("*"))
 	{
@@ -214,8 +216,13 @@ class MySQLQuery {
 	}
 
 	/**
-	 *
-	 *
+	 *This method builds query string for joining tables in query.
+	 *@param string $join The type of join to performa
+	 *@param string $table the table to perform join on
+	 *@param string $on The conditions for the join
+	 *@param array $fields The fields name to join in numeric array
+	 *@return object $this
+	 *@throws \MySQLException if $join, $table or $on have empty string values 
 	 */
 	public function join($join, $table, $on, $fields = array())
 	{
@@ -261,9 +268,11 @@ class MySQLQuery {
 	}
 
 	/**
-	 *
-	 *
-	 *
+	 *This method sets the limit for the number of rows to return.
+	 *@param int $limit The maximum number of rows to return per query
+	 *@param int $page An interger used to define the offset of the select query
+	 *@return object $this
+	 *@throws \MySQLException if $limit has an empty value
 	 */
 	public function limit($limit, $page = 1)
 	{
@@ -299,9 +308,10 @@ class MySQLQuery {
 
 	}
 	/**
-	 *
-	 *
-	 *
+	 *This method sets the DISTINCT param in query string to only return non duplicated values in a column.
+	 *@param null
+	 *@return Object $this
+	 *@throws This method does not throw an error
 	 */
 	public function unique()
 	{
@@ -315,8 +325,11 @@ class MySQLQuery {
 	}
 
 	/**
-	 *
-	 *
+	 *This method sets the order in which to sort the query results.
+	 *@param string $order The name of the field to use for sorting
+	 *@param string $direction This specifies whether sorting should be in ascending or descending order
+	 *@return Object $this
+	 *@throws \MySQLException if $order has an empty value
 	 */
 	public function order($order, $direction = 'asc')
 	{
@@ -353,10 +366,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method defines the where parameters of the query string
-	 *
-	 *@param null
-	 *@return object Sets the where parameter and returns this instance of the query object
+	 *This method defines the where parameters of the query string.
+	 *@param mixed Thie method expects an undefined number of arguments
+	 *@return Object $this
+	 *@throws \MySQLException if an uneven number of arguments was passed
 	 */
 	public function where()
 	{
@@ -434,10 +447,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method builds a select query string 
-	 *
+	 *This method builds a select query string.
 	 *@param null
 	 *@return string The select query string formed
+	 *@throws This method does not throw an error
 	 */
 	protected function buildSelect()
 	{
@@ -555,10 +568,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method builds the query string for inserting one row of records into the database
-	 *
+	 *This method builds the query string for inserting one row of records into the database.
 	 *@param array The row of data to be inserted in associative array
 	 *@return string The formed insert query string
+	 *@throws This method does not throw an error
 	 */
 	protected function buildInsert($data)
 	{
@@ -593,10 +606,10 @@ class MySQLQuery {
 
 	}
 	/**
-	 *This method builds the insert query for more than one row of data
-	 *
+	 *This method builds the insert query for more than one row of data.
 	 *@param array The data to be inserted in associative array
 	 *@return string The formed query string for this insert operation
+	 *@throws This method does not throw an error
 	 */
 	protected function buildBulkInsert($data)
 	{
@@ -656,10 +669,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method builds an update query for a single record of data
-	 *
+	 *This method builds an update query for a single record of data.
 	 *@param array The data to be updated into the database
-	 *@return string The forrmed SQL query string for this update operation
+	 *@return string The formed SQL query string for this update operation
+	 *@throws This method does not throw an error
 	 */
 	protected function buildUpdate($data)
 	{
@@ -716,13 +729,12 @@ class MySQLQuery {
 
 	}
 	/**
-	 *This method builds the SQL query string for updating large amounts of data
-	 *
-	 *
+	 *This method builds the SQL query string for updating large amounts of data.
 	 *@param array The data to be updated in multidimensional array
 	 *@param array The field names to be updated in a numeric array
 	 *@param array The unique field ids to use for updating in numberic array
 	 *@return string The formed SQL update query string
+	 *@throws This method does not throw an error
 	 */
 	protected function buildBulkUpdate($data, $fields, $ids, $key)
 	{
@@ -780,10 +792,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method builds the SQL query string to perform a delete query
-	 *
+	 *This method builds the SQL query string to perform a delete query.
 	 *@param null
 	 *@return string The SQL query string for delete operation.
+	 *@throws This method does not throw an error
 	 */
 	protected function buildDelete()
 	{
@@ -827,10 +839,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This methods inserts/updates one row of data into the database
-	 *
+	 *This methods inserts/updates one row of data into the database.
 	 *@param array The array containing the data to be inserted
-	 *@return bool true Returns true if the query execution was successful
+	 *@return \MySQLResponseObject
+	 *@throws \MySQLException if there was an error in query execution
 	 */
 	public function save($data)
 	{
@@ -911,12 +923,12 @@ class MySQLQuery {
 
 	}
 	/**
-	 *The method perform insert/update of large amounts of data
-	 *
+	 *The method perform insert/update of large amounts of data.
 	 *@param array The data to be inserted/updated in a multidimensional array
-	 *@param array The fields into which the data is to be inerted ot updated
+	 *@param array The fields into which the data is to be inserted ot updated
 	 *@param array For update query, The unique id fields to use for updating
-	 *@return boolean true Return 0 when query execution is success to indicate true
+	 *@return \MySQLResponseObject
+	 *@throws \MySQLException if query execution return an error message
 	 */
 	public function saveBulk($data, $fields = null , $ids = null, $key = null )
 	{
@@ -996,10 +1008,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method deletes a set of rows that match the query parameters provided
-	 *
+	 *This method deletes a set of rows that match the query parameters provided.
 	 *@param null
-	 *@return array The affected rows by this delete action in an array
+	 *@return \MySQLResponseObject
+	 *@throws \MySQLException 
 	 */
 	public function delete()
 	{
@@ -1050,10 +1062,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method returns the first row match in a query
-	 *
+	 *This method returns the first row match in a query.
 	 *@param null
-	 *@return array The first element found in an array
+	 *@return \MySQLResponseObject
+	 *@throws This method does not throw an error
 	 */
 	public function first()
 	{
@@ -1098,11 +1110,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This me`thod counts the number of rows returned per query
-	 *
-	 *
+	 *This method counts the number of rows returned by query.
 	 *@param null
-	 *@return int The count of the number of rows
+	 *@return \MySQLResponseObject
+	 *@throws This method does not throw an error
 	 */
 	public function count()
 	{
@@ -1162,10 +1173,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method returns all rows that match the query parameters
-	 *
+	 *This method returns all rows that match the query parameters.
 	 *@param null
-	 *@return array The query results in array format
+	 *@return \MySQLResponseObject
+	 *@throws \MySQLException if query returned an error message string
 	 */
 	public function all()
 	{
