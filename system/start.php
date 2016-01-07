@@ -97,7 +97,7 @@ return	function() use($config){
 			//get the method name
 			$action = $dispatch->$action();
 
-		}
+		} 
 
 		//method exists, go ahead and dispatch
 		else $dispatch = new $controller;
@@ -108,14 +108,14 @@ return	function() use($config){
 		//set the controller defaults
 		$dispatch->set_gliver_fr_controller_trait_properties();
 
+		//get the Inspector class object
+		$inspector = (new ReflectionClass($dispatch))->getMethod($action);
+
 		//get the number of parameters from the reflector
-		$method_params_count = count(Drivers\Utilities\Inspector::Create($dispatch)->getMethod($action)->getParameters());
+		$method_params_count = count($inspector->getParameters());
 		
 		//get the method parameters passed
 		$method_params_array = $RouteParserObject->getParameters();
-
-		//get the number of keys
-		$requestParamKeysLen = $method_params_count;
 
 		//check if the keys are more than then values
 		if($method_params_count > count($method_params_array)){
@@ -125,8 +125,73 @@ return	function() use($config){
 
 		}
 
-		//launch the infered method for this request
-		call_user_func_array(array($dispatch, $action), $method_params_array);
+		//check if method filter are set, and process filter
+		if ($dispatch->enable_method_filters === true) 
+		{
+			//get  method metadata
+		    $filter_methods = Drivers\Utilities\Inspector::checkFilter($inspector->getdoccomment());
+
+		    try {
+
+		    	if($filter_methods === false){
+
+					//launch the infered method for this request
+					call_user_func_array(array($dispatch, $action), $method_params_array);
+
+		    	}
+
+		    	else {
+
+		    		if(isset($filter_methods['before'])) {
+
+			    		if( ! (int)method_exists($controller, $filter_methods['before'][0])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The method {$filter_methods['before'][0]} specified as filter in $controller :: $action is undefined.", 1);
+						
+						//call the before filter
+						$dispatch->$filter_methods['before'][0]();
+
+		    		}
+
+
+		    		if(isset($filter_methods['after'])){
+
+				    	if( ! (int)method_exists($dispatch, $filter_methods['after'][0])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The method {$filter_methods['after'][0]} specified as filter in $controller :: $action is undefined.", 1);
+	    				
+	    				//launch the controller class filter method
+						call_user_func_array(array($dispatch, $action), $method_params_array);
+		
+	    				//call the after filter
+						$dispatch->$filter_methods['after'][0]();
+
+		    		}
+
+		    		else{
+
+						//launch the controller class filter method
+						call_user_func_array(array($dispatch, $action), $method_params_array);
+	    			
+		    		}
+					
+		    	}
+		    			    	
+		    } 
+
+		    catch (Drivers\Routes\RouteException $e) {
+
+		    	//dislpay the error message
+		    	$e->errorShow();
+		    	
+		    }
+
+		}
+
+		//no filters set, proceed to load controller class method
+		else 
+		{
+			//launch the infered method for this request
+			call_user_func_array(array($dispatch, $action), $method_params_array);
+
+		}
+		
 
 	}
 	catch(Drivers\Routes\RouteException $ExceptionObjectInstance){
