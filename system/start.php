@@ -144,23 +144,64 @@ return	function() use($config){
 
 		    		if(isset($filter_methods['before'])) {
 
-			    		if( ! (int)method_exists($controller, $filter_methods['before'][0])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The method {$filter_methods['before'][0]} specified as filter in $controller :: $action is undefined.", 1);
-						
-						//call the before filter
-						$dispatch->$filter_methods['before'][0]();
+		    			switch (count($filter_methods['before'])) 
+		    			{
+		    				case 1:
+		    					//thow exception if the filter method does not exist.
+					    		if( ! (int)method_exists($controller, $filter_methods['before'][0])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The method {$filter_methods['before'][0]} specified as filter in $controller :: $action is undefined.", 1);
+								
+								//call the before filter
+								$dispatch->$filter_methods['before'][0]();
+
+		    					break;
+		    				
+		    				case 2:
+
+		    					//check the filter class and method
+		    					//thow exception if the filter method does not exist.
+		    					if( ! class_exists($filter_methods['before'][0])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The class {$filter_methods['before'][0]} specified as filter in $controller :: $action is undefined.", 1);
+		    					
+					    		if( ! (int)method_exists($filter_methods['before'][0], $filter_methods['before'][1])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The method {$filter_methods['before'][1]} specified as filter in $controller :: $action is undefined.", 1);
+								
+								//call the before filter
+								(new $filter_methods['before'][0]())->$filter_methods['before'][1]();
+
+		    					break;
+		    			}
 
 		    		}
 
 
 		    		if(isset($filter_methods['after'])){
 
-				    	if( ! (int)method_exists($dispatch, $filter_methods['after'][0])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The method {$filter_methods['after'][0]} specified as filter in $controller :: $action is undefined.", 1);
+		    			switch (count($filter_methods['after'])) 
+		    			{
+		    				case 1:
+		    					//check if the method specified in teh after filter does not exists and throw error
+					    		if( ! (int)method_exists($dispatch, $filter_methods['after'][0])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The method {$filter_methods['after'][0]} specified as filter in $controller :: $action is undefined.", 1);
 	    				
-	    				//launch the controller class filter method
-						call_user_func_array(array($dispatch, $action), $method_params_array);
-		
-	    				//call the after filter
-						$dispatch->$filter_methods['after'][0]();
+			    				//launch the controller class filter method
+								call_user_func_array(array($dispatch, $action), $method_params_array);
+				
+			    				//call the after filter
+								$dispatch->$filter_methods['after'][0]();
+
+		    					break;
+		    				
+		    				case 2:
+		    					//check if the class and method specified in the after filter does not exists and throw error
+		    					if( ! class_exists($filter_methods['after'][0])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The class {$filter_methods['after'][0]} specified as filter in $controller :: $action is undefined.", 1);
+					    		if( ! (int)method_exists($filter_methods['after'][0], $filter_methods['after'][1])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The method {$filter_methods['after'][1]} specified as filter in $controller :: $action is undefined.", 1);
+	    				
+			    				//launch the controller class filter method
+								call_user_func_array(array($dispatch, $action), $method_params_array);
+				
+			    				//call the after filter
+								(new $filter_methods['after'][0]())->$filter_methods['after'][1]();
+
+		    					break;
+
+		    			}
 
 		    		}
 
