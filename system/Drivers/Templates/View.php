@@ -21,6 +21,11 @@ class View {
     *@var \Object The template parser class instance
     */
     private static $BaseTemplateObject = null;
+
+    /**
+    *@var array The variables to be injected into the view files
+    */
+    private static $variables = array();
      
     /**
      *This is the constructor class. We make this private to avoid creating instances of
@@ -88,6 +93,21 @@ class View {
         return sprintf('<?php %s function request_exec_time(){return microtime(true) - Registry::$gliver_app_start;}?>', $class_alias_string);
 
     } 
+
+    /**
+    *This method sets the view file variables to be injected in view file.
+    *@param array $data The data in array format to inject into the view file
+    *@return static class
+    */
+    public  static function with(array $data)
+    {
+        //set the value of the $variables property
+        self::$variables[] = $data;
+
+        //return the static class
+        return new static;
+
+    }
  
     /**
      *This method parses the input variables and loads the specified views
@@ -100,20 +120,24 @@ class View {
    public static function  render($fileName, array $data = null) 
    {
 
+        //set the value of the variables property, if data is provided
+        if( $data !== null) self::$variables[] = $data;
+
         //this try block is excecuted to enable throwing and catching of errors as appropriate
         try {
 
-            //get the variables passed and make them available to the view
-            if ( $data != null)
+            //loop through the $variables property setting the respective variable values
+            foreach (self::$variables as $variable) 
             {
-                //loop through the array setting the respective variables
-                foreach ($data as $key => $value) 
-                {
+                //extact the variables
+                foreach($variable as $key => $value){
+
                     $$key = $value;
 
                 }
 
             }
+
 
             //get the parsed contents of the template file
             $contents = self::getHeaderContent() . self::getContents($fileName, false);
@@ -137,10 +161,8 @@ class View {
     }
 
     /**
-    *This method returns the parsed contents of a template view code in valid html
-    *
+    *This method returns the parsed contents of a template view code in valid html.
     *@param string The filename whose contents to parse
-    *@param array The variables to pass to view
     *@return string The string contents of the file
     */
     public static function get($fileName)
@@ -199,9 +221,6 @@ class View {
 
         //echo out the array/object in json format
         echo json_encode($data);
-
-        //terminate script execution
-        exit();
 
     }
 
