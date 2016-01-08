@@ -18,4 +18,9 @@ class BaseController {
 	//call the trait with the setter/getter methods
 	use BaseControllerTrait;
 
+	/**
+	*@var bool Set to true to enable method filters in this controller
+	*/
+	public $enable_method_filters = false;
+
 }

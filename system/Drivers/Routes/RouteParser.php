@@ -13,7 +13,6 @@
  */
 
 use Drivers\Registry;
-use Drivers\Inspector;
 use Drivers\Utilities\UrlParser;
 use Drivers\Routes\RouteException;
 use Helpers\ArrayHelper\ArrayHelper;
@@ -152,7 +151,7 @@ class RouteParser extends BaseRouteClass {
 
 			if ( ! (int)ArrayHelper::KeyExists(0, $routeMetaDataArray)->get() || empty($routeMetaDataArray[0])) {
 
-				throw new RouteException("There is no controller associated with this route! -> " . $this->routeName);
+				throw new RouteException(get_class(new RouteException) ." : There is no controller associated with this route! -> " . $this->routeName);
 				
 			}
 
@@ -255,7 +254,7 @@ class RouteParser extends BaseRouteClass {
 				else{
 
 					//throw an exception
-					throw new RouteException("The method name specified after this named route " . $this->routeName . " => " . $this->controller . "@" . $this->methodMetaData . " is invalid format", 1);
+					throw new RouteException(get_class(new RouteException) ." : The method name specified after this named route " . $this->routeName . " => " . $this->controller . "@" . $this->methodMetaData . " is invalid format", 1);
 					
 				}
 
@@ -292,65 +291,15 @@ class RouteParser extends BaseRouteClass {
 	 *@return Object \RouteParser
 	 */
 	public function setParameters()
-	{
-		//set the requestParamKeys
-		$this->requestParamKeys = (count($this->methodMetaDataArray) > 1) ? ArrayHelper::slice($this->methodMetaDataArray, 1)->get() : array();
+	{		
+		//set the url parameter from the UrlParserObjectInstance
+		$this->parameters = $this->UrlParserObjectInstance->getParameters();
+
+		//populate the Input Class data
+		Input::setGet()->setPost();
 		
-		//check if the requestParamKeys contain values
-		if(count($this->requestParamKeys) > 0){
-
-			//get the url parameter from the UrlParserObjectInstance
-			$requestParamValues = $this->UrlParserObjectInstance->getParameters();
-
-			//get the number of keys
-			$requestParamKeysLen = count($this->requestParamKeys);
-
-			//check if the keys are more than then values
-			if($requestParamKeysLen >= count($requestParamValues)){
-
-				//padd the $requestParamValues with null values
-				$requestParamValues = array_pad($requestParamValues, $requestParamKeysLen, null);
-
-				//combine the two arrays into one
-				$requestParams =  array_combine($this->requestParamKeys, $requestParamValues);
-
-				//populate the Input Class data
-				Input::setGet()->setPost()->setUrl($requestParams);
-				
-				//return this object instance
-				return $this;
-
-			}
-
-			//the values are more than the keys
-			else{
-
-				//split the array to only remain with the number defined inthe keys
-				$requestParamValues = ArrayHelper::slice($requestParamValues, 0, $requestParamKeysLen)->get();
-				
-				//combine the two arrays into one
-				$requestParams =  array_combine($this->requestParamKeys, $requestParamValues);
-
-				//populate the Input Class data
-				Input::setGet()->setPost()->setUrl($requestParams);
-				
-				//return this object instance
-				return $this;
-
-			}
-
-		}
-
-		//no predefined keys, so we assign all values to Input Class
-		else{
-
-			//populate the Input Class data
-			Input::setUrl($this->UrlParserObjectInstance->getParameters())->setGet()->setPost();
-			
-			//return this object instance
-			return $this;
-
-		} 
+		//return this object instance
+		return $this;
 
 	}
 

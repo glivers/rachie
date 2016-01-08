@@ -14,6 +14,7 @@
 
 use Helpers\ArrayHelper\ArrayHelper as ArrayUtility;
 use Drivers\Database\MySQL\MySQLResultObject;
+use Drivers\Database\MySQL\MySQLException;
 
 class MySQLQuery {
 
@@ -98,8 +99,7 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method quotes input data according to how MySQL woudl expect it
-	 *
+	 *This method quotes input data according to how MySQL woudl expect it.
 	 *@param mixed String|Array Input to be quoted
 	 *@return mixed Output after input is quoted
 	 */
@@ -168,29 +168,42 @@ class MySQLQuery {
 	}
 
 	/**
-	 *
-	 *
+	 *This method sets the table name and fields upon which to perform database queries.
+	 *@param string $from The table name upon which to perform query
+	 *@param array $fields The names of the fields to select in numeric array
+	 *@return object $this
+	 *@throws \MySQLException If an empty table name was passed
 	 */
 	public function from($from, $fields = array("*"))
 	{
-		//check if from is empty
-		if ( empty($from)) 
-		{
-			//throw new exception
-			throw new MySQLException("Invalid argument passed to from clause", 1);
+		
+		//put this in try...catch block for better error handling
+		try{
+
+			//check if from is empty
+			if ( empty($from)) 
+			{
+				//throw new exception
+				throw new MySQLException("Invalid argument passed to from clause", 1);
+
+			}
 
 		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
+
+		}
+
 
 		//set the protected $from value
 		$this->froms = $from;
 
-		//check if fields is sset
-		if($fields)
-		{
-			//set the fields param
-			$this->fields[$from] = $fields;
-
-		}
+		//check if fields is sset and set the fields param
+		if($fields) $this->fields[$from] = $fields;
 
 		//return this object instance
 		return $this;
@@ -198,24 +211,43 @@ class MySQLQuery {
 	}
 
 	/**
-	 *
-	 *
+	 *This method builds query string for joining tables in query.
+	 *@param string $join The type of join to performa
+	 *@param string $table the table to perform join on
+	 *@param string $on The conditions for the join
+	 *@param array $fields The fields name to join in numeric array
+	 *@return object $this
+	 *@throws \MySQLException if $join, $table or $on have empty string values 
 	 */
 	public function join($join, $table, $on, $fields = array())
 	{
-		//throw exception if $join passed is empty
-		if ( empty($join) ||  empty($table) || empty($on) )  
-		{
-			//throw exception for invalid argument
-			throw new MySQLException("Invalid argument $join passed for the Join Clause", 1);
 
+		//put this in try...catch block for better error handling
+		try{
+
+			//throw exception if $join passed is empty
+			if ( empty($join) ||  empty($table) || empty($on) )  
+			{
+				//throw exception for invalid argument
+				throw new MySQLException("Invalid argument $join passed for the Join Clause", 1);
+
+			}
+
+			//throw exception if the $on passed is empty
+			if ( empty($on) ) 
+			{
+				//throw exception
+				throw new MySQLException("Invalid argument $on passed for the Join Clause", 1);
+
+			}
+			
 		}
 
-		//throw exception if the $on passed is empty
-		if ( empty($on) ) 
-		{
-			//throw exception
-			throw new MySQLException("Invalid argument $on passed for the Join Clause", 1);
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
 
 		}
 
@@ -231,16 +263,32 @@ class MySQLQuery {
 	}
 
 	/**
-	 *
-	 *
-	 *
+	 *This method sets the limit for the number of rows to return.
+	 *@param int $limit The maximum number of rows to return per query
+	 *@param int $page An interger used to define the offset of the select query
+	 *@return object $this
+	 *@throws \MySQLException if $limit has an empty value
 	 */
 	public function limit($limit, $page = 1)
 	{
-		if ( empty($limit) ) 
-		{
-			//throw exception if value of limit passed is negative
-			throw new MySQLException("Empty argument passed for $limit in method limit()", 1);
+
+		//put this in try...catch block for better error handling
+		try{
+
+			if ( empty($limit) ) 
+			{
+				//throw exception if value of limit passed is negative
+				throw new MySQLException("Empty argument passed for $limit in method limit()", 1);
+
+			}
+
+		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
 
 		}
 
@@ -254,10 +302,12 @@ class MySQLQuery {
 		return $this;
 
 	}
+
 	/**
-	 *
-	 *
-	 *
+	 *This method sets the DISTINCT param in query string to only return non duplicated values in a column.
+	 *@param null
+	 *@return Object $this
+	 *@throws This method does not throw an error
 	 */
 	public function unique()
 	{
@@ -271,16 +321,33 @@ class MySQLQuery {
 	}
 
 	/**
-	 *
-	 *
+	 *This method sets the order in which to sort the query results.
+	 *@param string $order The name of the field to use for sorting
+	 *@param string $direction This specifies whether sorting should be in ascending or descending order
+	 *@return Object $this
+	 *@throws \MySQLException if $order has an empty value
 	 */
 	public function order($order, $direction = 'asc')
 	{
-		//throw esception if empty value for $order was passed
-		if ( empty($order) ) 
-		{
-			//throw exception
-			throw new MySQLException("Empty value passed for parameter $order in order() method", 1);
+
+		//put this in try...catch block for better error handling
+		try{
+
+			//throw esception if empty value for $order was passed
+			if ( empty($order) ) 
+			{
+				//throw exception
+				throw new MySQLException("Empty value passed for parameter $order in order() method", 1);
+
+			}
+			
+		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
 
 		}
 
@@ -295,23 +362,35 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method defines the where parameters of the query string
-	 *
-	 *@param null
-	 *@return object Sets the where parameter and returns this instance of the query object
+	 *This method defines the where parameters of the query string.
+	 *@param array $argument The array containing the arguments passed.
+	 *@return Object $this
+	 *@throws \MySQLException if an uneven number of arguments was passed
 	 */
-	public function where()
+	public function where($arguments)
 	{
-		//get the arguments
-		$arguments = func_get_args();
 
-		//throw exception if argument pairs do ot match
-		if ( is_float( sizeof($arguments) / 2 ) ) 
-		{
-			//throw exception
-			throw new MySQLException("No arguments passed for the where clause");
+		//put this in try...catch block for better error handling
+		try{
+
+			//throw exception if argument pairs do ot match
+			if ( is_float( sizeof($arguments) / 2 ) ) 
+			{
+				//throw exception
+				throw new MySQLException("No arguments passed for the where clause");
+
+			}
+			
+		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
 
 		}
+
 
 		//check if only one argument pair was passed'
 		if ( sizeof($arguments) == 2) 
@@ -362,10 +441,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method builds a select query string 
-	 *
+	 *This method builds a select query string.
 	 *@param null
 	 *@return string The select query string formed
+	 *@throws This method does not throw an error
 	 */
 	protected function buildSelect()
 	{
@@ -483,12 +562,13 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method builds the query string for inserting one row of records into the database
-	 *
+	 *This method builds the query string for inserting one row of records into the database.
 	 *@param array The row of data to be inserted in associative array
+	 *@param bool $set_timestamps Sets whether to fill the created_at and updated_at fields
 	 *@return string The formed insert query string
+	 *@throws This method does not throw an error
 	 */
-	protected function buildInsert($data)
+	protected function buildInsert($data, $set_timestamps)
 	{
 		//define a fields container array
 		$fields = array(); 
@@ -498,6 +578,9 @@ class MySQLQuery {
 
 		//define a template format for query
 		$template = "INSERT INTO %s (%s) VALUES (%s)";
+
+		//check if the $set_timestamp is true and add created_at fields
+		if($set_timestamps) $data['date_created'] = date('Y-m-d h:i:s');
 
 		//loop through the input data 
 		foreach ($data as $field => $value) 
@@ -521,12 +604,13 @@ class MySQLQuery {
 
 	}
 	/**
-	 *This method builds the insert query for more than one row of data
-	 *
+	 *This method builds the insert query for more than one row of data.
 	 *@param array The data to be inserted in associative array
+	 *@param bool $set_timestamps Sets whether to fill the created_at and updated_at fields
 	 *@return string The formed query string for this insert operation
+	 *@throws This method does not throw an error
 	 */
-	protected function buildBulkInsert($data)
+	protected function buildBulkInsert($data, $set_timestamps)
 	{
 		//define a fields container array
 		$fields = array(); 
@@ -584,21 +668,25 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method builds an update query for a single record of data
-	 *
+	 *This method builds an update query for a single record of data.
 	 *@param array The data to be updated into the database
-	 *@return string The forrmed SQL query string for this update operation
+	 *@param bool $set_timestamps Sets whether to fill the created_at and updated_at fields
+	 *@return string The formed SQL query string for this update operation
+	 *@throws This method does not throw an error
 	 */
-	protected function buildUpdate($data)
+	protected function buildUpdate($data, $set_timestamps)
 	{
 		//define the parts container array
 		$parts = array();
 
-		//define the continer vars initializing to empty
+		//define the container vars initializing to empty
 		$where = $limit = '';
 
 		//define the template format string
 		$template = "UPDATE %s SET %s %s %s";
+
+		//check if the $set_timestamp is true and add update_at fields
+		if($set_timestamps) $data['date_modified'] = date('Y-m-d h:i:s');
 
 		//loop through the input data array, populating the parts array
 		foreach ($data as $field => $value) 
@@ -618,7 +706,7 @@ class MySQLQuery {
 		if ( ! empty($queryWhere) ) 
 		{
 			//convert where clause array to string
-			$joined = join(", ", $queryWhere);
+			$joined = join(" AND ", $queryWhere);
 
 			//set the where var valus
 			$where = "WHERE {$joined}";
@@ -644,13 +732,12 @@ class MySQLQuery {
 
 	}
 	/**
-	 *This method builds the SQL query string for updating large amounts of data
-	 *
-	 *
+	 *This method builds the SQL query string for updating large amounts of data.
 	 *@param array The data to be updated in multidimensional array
 	 *@param array The field names to be updated in a numeric array
 	 *@param array The unique field ids to use for updating in numberic array
 	 *@return string The formed SQL update query string
+	 *@throws This method does not throw an error
 	 */
 	protected function buildBulkUpdate($data, $fields, $ids, $key)
 	{
@@ -673,7 +760,7 @@ class MySQLQuery {
 	            //check if array is not empty 
 	            if ( ! empty($info) ) 
 	            {
-					//echo "<pre>";print_r($info);exit();
+
 					$subparts .=  ' WHEN '. $id . ' THEN ' . $this->quote($info[$field]) . ' ';
 
 	            }
@@ -708,10 +795,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method builds the SQL query string to perform a delete query
-	 *
+	 *This method builds the SQL query string to perform a delete query.
 	 *@param null
 	 *@return string The SQL query string for delete operation.
+	 *@throws This method does not throw an error
 	 */
 	protected function buildDelete()
 	{
@@ -728,7 +815,7 @@ class MySQLQuery {
 		if ( ! empty($queryWhere) ) 
 		{
 			//convert where clause array to string
-			$joined = join(", ", $queryWhere);
+			$joined = join(" AND ", $queryWhere);
 
 			//compose the where string
 			$where = "WHERE {$joined}";
@@ -755,31 +842,22 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This methods inserts/updates one row of data into the database
-	 *
+	 *This methods inserts/updates one row of data into the database.
 	 *@param array The array containing the data to be inserted
-	 *@return bool true Returns true if the query execution was successful
+	 *@param bool $set_timestamps Sets whether to fill the created_at and updated_at fields
+	 *@return \MySQLResponseObject
+	 *@throws \MySQLException if there was an error in query execution
 	 */
-	public function save($data)
+	public function save($data, $set_timestamps)
 	{
 		//get the size of the wheres parameter
 		$doInsert = sizeof($this->wheres) == 0;
 
-		//check if doInsert is true
-		if ( $doInsert ) 
-		{
-			//get insert query string
-			$sql = $this->buildInsert($data);
+		//check if doInsert is true, //get insert query string
+		if ( $doInsert ) $sql = $this->buildInsert($data, $set_timestamps);
 
-		}
-
-		//not insert, this should be an update
-		else
-		{
-			//get update query string
-			$sql = $this->buildUpdate($data);
-
-		}
+		//not insert, this should be an update //get update query string
+		else $sql = $this->buildUpdate($data, $set_timestamps);
 
 		//set the value of the query string
 		$this->responseObject
@@ -797,11 +875,25 @@ class MySQLQuery {
 		$this->responseObject
 			->setQueryTime($query_excec_time);
 
-		//check if query execution failure
-		if ( $result === false) 
-		{
-			//throw exception 
-			throw new MySQLException($this->connector->lastError());
+		//put this in try...catch block for better error handling
+		try{
+
+			//check if query execution failure
+			if ( $result === false) 
+			{
+				//throw exception 
+				throw new MySQLException(get_class(new MySQLException) . ' ' .$this->connector->lastError() . '<span class="query-string"> (' . $sql . ') </span>');
+
+			}
+
+
+		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
 
 		}
 
@@ -824,33 +916,26 @@ class MySQLQuery {
 		}
 
 	}
+
 	/**
-	 *The method perform insert/update of large amounts of data
-	 *
+	 *The method perform insert/update of large amounts of data.
 	 *@param array The data to be inserted/updated in a multidimensional array
-	 *@param array The fields into which the data is to be inerted ot updated
+	 *@param array The fields into which the data is to be inserted ot updated
 	 *@param array For update query, The unique id fields to use for updating
-	 *@return boolean true Return 0 when query execution is success to indicate true
+	 *@param bool $set_timestamps Sets whether to fill the created_at and updated_at fields
+	 *@return \MySQLResponseObject
+	 *@throws \MySQLException if query execution return an error message
 	 */
-	public function saveBulk($data, $fields = null , $ids = null, $key = null )
+	public function saveBulk($data, $fields = null , $ids = null, $key = null, $set_timestamps )
 	{
 		//get the size of the wheres parameter
 		$doInsert = sizeof($this->wheres) == 0;
 
-		//check if doInsert is true
-		if ( $doInsert ) 
-		{
-			//get insert query string
-			$sql = $this->buildBulkInsert($data);
+		//check if doInsert is true //get insert query string
+		if ( $doInsert ) $sql = $this->buildBulkInsert($data, $set_timestamps);
 
-		}
-
-		//not insert, this should be an update
-		else
-		{
-			//get update query string
-			$sql = $this->buildBulkUpdate($data, $fields, $ids, $key);
-		}
+		//not insert, this should be an update, //get update query string
+		else $sql = $this->buildBulkUpdate($data, $fields, $ids, $key, $set_timestamps);
 
 		//set the value of the query string
 		$this->responseObject
@@ -865,13 +950,27 @@ class MySQLQuery {
 		$query_excec_time = $query_stop_time - $query_start_time;
 		$this->setQueryTime($query_excec_time);
 
-		//check if query execution failure
-		if ( $result === false) 
-		{
-			//throw exception 
-			throw new MySQLException($this->connector->lastError());
- 
+		//put this in try...catch block for better error handling
+		try{
+
+			//check if query execution failure
+			if ( $result === false) 
+			{
+				//throw exception 
+				throw new MySQLException(get_class(new MySQLException) . ' ' .$this->connector->lastError() . '<span class="query-string"> (' . $sql . ') </span>');
+	 
+			}
+
 		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
+
+		}
+
 
 		//if this was an insert, get the insert id
 		if( $doInsert )
@@ -896,10 +995,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method deletes a set of rows that match the query parameters provided
-	 *
+	 *This method deletes a set of rows that match the query parameters provided.
 	 *@param null
-	 *@return array The affected rows by this delete action in an array
+	 *@return \MySQLResponseObject
+	 *@throws \MySQLException 
 	 */
 	public function delete()
 	{
@@ -919,13 +1018,27 @@ class MySQLQuery {
 		$query_excec_time = $query_stop_time - $query_start_time;
 		$this->responseObject->setQueryTime($query_excec_time);
 
-		//throw error if there was an error perfrorming this query
-		if ( $result === false ) 
-		{
-			//throw excepton
-			throw new MySQLException();
+		//put this in try...catch block for better error handling
+		try{
+
+			//throw error if there was an error perfrorming this query
+			if ( $result === false ) 
+			{
+				//throw excepton
+				throw new MySQLException(get_class(new MySQLException) . ' ' .$this->connector->lastError() . '<span class="query-string"> (' . $sql . ') </span>');
+				
+			}
 			
 		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
+
+		}
+
 
 		//if delete was successfull, get and return the number of affected rows
 		$this->responseObject
@@ -936,10 +1049,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method returns the first row match in a query
-	 *
+	 *This method returns the first row match in a query.
 	 *@param null
-	 *@return array The first element found in an array
+	 *@return \MySQLResponseObject
+	 *@throws This method does not throw an error
 	 */
 	public function first()
 	{
@@ -984,11 +1097,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This me`thod counts the number of rows returned per query
-	 *
-	 *
+	 *This method counts the number of rows returned by query.
 	 *@param null
-	 *@return int The count of the number of rows
+	 *@return \MySQLResponseObject
+	 *@throws This method does not throw an error
 	 */
 	public function count()
 	{
@@ -1048,10 +1160,10 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method returns all rows that match the query parameters
-	 *
+	 *This method returns all rows that match the query parameters.
 	 *@param null
-	 *@return array The query results in array format
+	 *@return \MySQLResponseObject
+	 *@throws \MySQLException if query returned an error message string
 	 */
 	public function all()
 	{
@@ -1073,16 +1185,31 @@ class MySQLQuery {
 		//get the query_excecution
 		$query_excec_time = $query_stop_time - $query_start_time;
 
-		//check if the query return an error and throw exception
-		if ( $result === false ) 
-		{
-			//get the erro message
-			$error = $this->connector->lastError();
 
-			//throw exception
-			throw new MySQLException("There was an error with your SQL Query : {$error}");
+		//put this in try...catch block for better error handling
+		try{
+
+			//check if the query return an error and throw exception
+			if ( $result === false ) 
+			{
+				//get the erro message
+				$error = $this->connector->lastError();
+
+				//throw exception
+				throw new MySQLException(get_class(new MySQLException) . ' ' .$this->connector->lastError() . '<span class="query-string"> (' . $sql . ') </span>');
+
+			}
+			
+		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
 
 		}
+
 
 		//define container rows() array
 		$result_array = array();
@@ -1105,6 +1232,40 @@ class MySQLQuery {
 
 		//return the full response object
 		return $this->responseObject;
+	}
+
+	/**
+	 *This method executes a raw query in the database.
+	 *@param string $query_string The query string to execute
+	 *@return \MySQLResponseObject
+	 *@throws \MySQLException if query returned an error message string
+	 */
+	public function rawQuery($query_string)
+	{
+		try{
+			//execute the sql query and return response object
+		 	$result = $this->connector->execute($query_string);
+
+			//check if the query return an error and throw exception
+			if ( $result === false ) 
+			{
+				//get the erro message
+				$error = $this->connector->lastError();
+
+				//throw exception
+				throw new MySQLException(get_class(new MySQLException) . ' ' .$this->connector->lastError() . '<span class="query-string"> (' . $sql . ') </span>');
+
+			}
+
+			else return $result;
+
+		}
+
+		catch(MySQLException $MySQLExceptionObject){
+
+			$MySQLExceptionObject->errorShow();
+		}
+
 	}
 
 }

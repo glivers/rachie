@@ -45,7 +45,15 @@ class BaseModelClass {
 	 */
 	protected static $queryObject;
 
+	/**
+	*@var bool Sets whether the query table has been set
+	*/
+	protected static $queryTableSet = false;
 
+	/**
+	*@var bool Stores whether database connection made
+	*/
+	protected static $dbConnectionMade = false;
 
 	/**
 	 *This method returns a query instance
@@ -53,97 +61,238 @@ class BaseModelClass {
 	 *@param null
 	 *@return object Query instance
 	 */
-	public static function Query()
+	protected static function Query()
 	{
+		//get the connection resource, if not set yet
+        if(static::$connection === null) static::$connection = Registry::get('database');
 
-        static::$connection = Registry::get('database');
+        //set the query builder instance, if not set
+        if(static::$queryObject === null) static::$queryObject = static::$connection->query();
 
-        static::$queryObject = static::$connection->query();
+        //set the value of $dbConnectionMade to true, if false
+        if(static::$dbConnectionMade === false) static::$dbConnectionMade = true;
 
+        //return the query object
         return static::$queryObject;
 
 	}
 
-	public static function from($from, $fields = array("*"))
+	/**
+	 *This method sets the table name and fields upon which to perform database queries.
+	 *@param string $from The table name upon which to perform query
+	 *@param array $fields The names of the fields to select in numeric array
+	 *@return object $this
+	 */
+	final public static function from($from = null, $fields = array("*"))
 	{
-		//call the from method of this query instance
-		static::$queryObject->from($from, $fields);
+		//call the from method of this query instance to set table name and fields if table name provided
+		if(static::$queryTableSet === false AND $from !== null) {
+
+			//call method to set table and field names
+			static::Query()->from($from, $fields);
+
+			//set the $queryTableSet = true
+			static::$queryTableSet = true;
+
+	        //return the static class
+	        return new static;
+
+		} 
+
+		//table name not provided, get the table name from class property
+		elseif(static::$queryTableSet === false AND $from === null){
+
+			//call method to set table and field names
+			static::Query()->from(static::$table, $fields);
+
+			//set the $queryTableSet = true
+			static::$queryTableSet = true;
+			
+	        //return the static class
+	        return new static;
+
+		}
+
+		//the table name and fields are already set, return query object
+		else{
+
+	        //return the static class
+	        return new static;
+
+		}
 
 	}
 
-	public static function join($join, $table, $on, $fields = array() )
+	/**
+	 *This method builds query string for joining tables in query.
+	 *@param string $join The type of join to performa
+	 *@param string $table the table to perform join on
+	 *@param string $on The conditions for the join
+	 *@param array $fields The fields name to join in numeric array
+	 *@return object $this
+	 */
+	final public static function join($join, $table, $on, $fields = array() )
 	{
 		//call the join method of the query object
-		static::$queryObject->join($join, $table, $on, $fields);
+		static::Query()->join($join, $table, $on, $fields);
+
+		//return static class
+		return new static;
 
 	}
 
-	public static function limit($limit, $page = 1)
+	/**
+	 *This method sets the limit for the number of rows to return.
+	 *@param int $limit The maximum number of rows to return per query
+	 *@param int $page An interger used to define the offset of the select query
+	 *@return object $this
+	 */
+	final public static function limit($limit, $page = 1)
 	{
 		//call the limit method of the query builder object
-		static::$queryObject->limit($limit, $page);
+		static::Query()->limit($limit, $page);
+
+		//return static class
+		return new static;
 
 	}
-
-	public static function unique()
+	
+	/**
+	 *This method sets the DISTINCT param in query string to only return non duplicated values in a column.
+	 *@param null
+	 *@return Object $this
+	 */
+	final public static function unique()
 	{
 		//call the unique method of the query builder
-		static::$queryObject->unique();
+		static::Query()->unique();
+
+		//return static class
+		return new static;
 
 	}
 
-	public static function order($order, $direction = 'asc')
+	/**
+	 *This method sets the order in which to sort the query results.
+	 *@param string $order The name of the field to use for sorting
+	 *@param string $direction This specifies whether sorting should be in ascending or descending order
+	 *@return Object $this
+	 */
+	final public static function order($order, $direction = 'asc')
 	{
 		//call the order method of the query builder
-		static::$queryObject->order($order, $direction);
+		static::Query()->order($order, $direction);
+
+		//return static class
+		return new static;
 
 	}
 
-	public static function where()
+	/**
+	 *This method defines the where parameters of the query string.
+	 *@param mixed Thie method expects an undefined number of arguments
+	 *@return Object static class
+	 */
+	final public static function where()
 	{
 		//call the query builder object where method passing the argument list
-		static::$queryObject->where();
+		static::Query()->where(func_get_args());
+
+		//return static class
+		return new static;
 
 	}
 
-	public static function save($data)
+	/**
+	 *This methods inserts/updates one row of data into the database.
+	 *@param array The array containing the data to be inserted
+	 *@return \MySQLResponseObject
+	 */
+	final public static function save($data)
 	{
-		//call the query builder save method
-		static::$queryObject->save($data);
+		//call the from method and return response object
+		static::from();
+		return static::$queryObject->save($data, static::$update_timestamps);
+
+	}
+	
+	/**
+	 *The method perform insert/update of large amounts of data.
+	 *@param array The data to be inserted/updated in a multidimensional array
+	 *@param array The fields into which the data is to be inserted ot updated
+	 *@param array For update query, The unique id fields to use for updating
+	 *@return \MySQLResponseObject
+	 */
+	final public static function saveBulk($data, $fields = null, $ids = null, $key = null)
+	{
+		//call the from method and return response object
+		static::from();
+		return static::$queryObject->saveBulk($data, $fields, $ids, $key, static::$update_timestamps);
 
 	}
 
-	public static function saveBulk($data, $fields = null, $ids = null, $key = null)
+	/**
+	 *This method deletes a set of rows that match the query parameters provided.
+	 *@param null
+	 *@return \MySQLResponseObject
+	 */ 
+	final public static function delete()
 	{
-		//call the query builder save bulk method
-		static::$queryObject->saveBulk($data, $fields, $ids, $key);
-
-	}
- 
-	public static function delete()
-	{
-		//call the query builder delete method
-		static::$queryObject->delete();
-
-	}
-
-	public static function first()
-	{
-		//call the query builder get first record method
-		static::$queryObject->first();
-	}
-
-	public static function count()
-	{
-		//call the query builder object count method
-		static::$queryObject->count();
+		//call the from method and return response object
+		static::from();
+		return static::$queryObject->delete();
 
 	}
 
-	public static function all()
+	/**
+	 *This method returns the first row match in a query.
+	 *@param null
+	 *@return \MySQLResponseObject
+	 */
+	final public static function first()
 	{
-		//call the query builder get all method
-		static::$queryObject->all();
+		//call the from method and return response object
+		static::from();
+		return static::$queryObject->first();
+
+	}
+
+	/**
+	 *This method counts the number of rows returned by query.
+	 *@param null
+	 *@return \MySQLResponseObject
+	 */
+	final public static function count()
+	{
+		//call the from method and return response object
+		static::from();
+		return static::$queryObject->count();
+
+	}
+
+	/**
+	 *This method returns all rows that match the query parameters.
+	 *@param null
+	 *@return \MySQLResponseObject
+	 */
+	final public static function all()
+	{
+		//call the from method and return response object
+		static::from();
+		return static::$queryObject->all();
+
+	}
+
+	/**
+	 *This method executes a raw query in the database.
+	 *@param string $query_string The query string to execute
+	 *@return \MySQLResponseObject
+	 *@throws \MySQLException if query returned an error message string
+	 */
+	final public static function rawQuery($query_string)
+	{
+		//call the raw method and return response object
+		return static::Query()->rawQuery($query_string);
 
 	}
 

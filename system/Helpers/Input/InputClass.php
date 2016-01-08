@@ -183,7 +183,7 @@ class InputClass {
 		elseif ($this->KeyExists($name, $this->getInputData)) {
 			
 			//return the value of this key
-			return $this->getInputData[$name];
+			return htmlentities($this->getInputData[$name], ENT_QUOTES);
 
 		}
 
@@ -267,7 +267,7 @@ class InputClass {
 		elseif ($this->KeyExists($name, $this->postInputData)) {
 			
 			//return the value of this key
-			return $this->postInputData[$name];
+			return htmlentities($this->postInputData[$name], ENT_QUOTES);
 
 		}
 
@@ -327,7 +327,7 @@ class InputClass {
 		elseif ($this->KeyExists($name, $this->inputData)) {
 			
 			//return the value of this key
-			return $this->inputData[$name];
+			return htmlentities($this->inputData[$name], ENT_QUOTES);
 
 		}
 
