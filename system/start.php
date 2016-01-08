@@ -105,6 +105,8 @@ return	function() use($config){
 		//ensure the controller is an instance of the Controllers\BaseController class
 		if( ! $dispatch instanceof Controllers\BaseController) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : $controller class must extend Controllers\BaseController class!");
 		
+		//check if the controller class uses the Drivers\Controllers\BaseControllerTrait
+		if( ! array_key_exists('Controllers\BaseController', class_uses('Controllers\BaseController', true))) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : Controllers\BaseController class must use Drivers\Controllers\BaseControllerTrait!");
 		//set the controller defaults
 		$dispatch->set_gliver_fr_controller_trait_properties();
 
