@@ -22,7 +22,7 @@ return	function() use($config){
 	}
 
 	//create an instance of the UrlParser Class, 
-	$UrlParserObjectInstance = new Drivers\Utilities\UrlParser(Drivers\Registry::getUrl());
+	$UrlParserObjectInstance = new Drivers\Utilities\UrlParser(Drivers\Registry::getUrl(), Drivers\Registry::getConfig()['url_component_separator']);
 
 	//and set controller, method and request parameter
 	$UrlParserObjectInstance->setController()->setMethod()->setParameters();
