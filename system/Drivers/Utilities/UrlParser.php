@@ -25,7 +25,7 @@ class UrlParser  {
 	/**
 	*@var string The delimited to use for spliting up an url string
 	*/
-	private $urlSeparator = '/';
+	private $urlSeparator;
 
 	/**
 	*@var array The seprated url components put together into an array 
@@ -51,15 +51,17 @@ class UrlParser  {
 	 *This constructor initializes the $url string variable
 	 *
 	 *@param string $url The url request string
+	 *@param char $urlSeparator The url component separator character
 	 *@return Object \UrlParser
 	 */
-	public function __construct($url)
+	public function __construct($url, $urlSeparator)
 	{
 		//assign the input string value to the $urlString property
 		$this->urlString = StringHelper::removeTags($url);
+		$this->$urlSeparator = $urlSeparator;
 
 		//call the helper class to split the url string to array components and assign value to $urlComponentsArray property
-		$this->urlComponentsArray = ArrayHelper::parts($this->urlSeparator, $this->urlString)->clean()->trim()->get();
+		$this->urlComponentsArray = ArrayHelper::parts($this->$urlSeparator, $this->urlString)->clean()->trim()->get();
 
 		//return this object instance
 		return $this;
