@@ -51,6 +51,10 @@ return array(
 	 */
 	'servername' => 'localhost',
 	/**
+	 *The url component separator character
+	 */
+	'url_component_separator' => '.',
+	/**
 	*The default upload file path
 	*/
 	'upload_path' => 'public/uploads/',
