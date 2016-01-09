@@ -138,15 +138,18 @@ class Url {
 	}
 
 	/**
-	 *This method returns the base url
+	 *This method returns the url string
 	 *
-	 *@param null
+	 *@param mixed $linkParams The params to add to the link to generate
 	 *@return string $url the base url for this application
 	 *@throws this method does not throw an error
 	 *
 	 */
-	public static function link($fileName)
+	public static function link($linkParams)
 	{
+		//compose link params
+
+		$link_params = (is_array($linkParams)) ?  join(Registry::getConfig()['url_component_separator'], $linkParams) : $linkParams;
 
 		//get the server name from global $_SERVER[] array()
 		$base  = $_SERVER['SERVER_NAME']; 
@@ -172,7 +175,7 @@ class Url {
     	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";
 
 		//compose the url string
-		return $protocol . '://' . $base . $fileName;
+		return $protocol . '://' . $base . $link_params;
 
 	}
 
