@@ -20,61 +20,51 @@ class MySQLQuery {
 
 	/**
 	 *@var object MySQL connection instance object
-	 *@readwrite
 	 */
 	protected $connector;
 
 	/**
-	 *@var 
-	 *@read
+	 *@var string The name of the table on which to perform query
 	 */
 	protected $froms;
 
 	/**
-	 *@var
-	 *@read
+	 *@var array The array of table fields to select
 	 */
 	protected $fields;
 
 	/**
-	 *@var 
-	 *@read
+	 *@var int The max number of rows to return per query
 	 */
 	protected $limits;
 
 	/**
-	 *@var 
-	 *@read
+	 *@var int The row number from where to start returning rows
 	 */
 	protected $offset;
 
 	/**
-	 *@var
-	 *@read
+	 *@var string The column name of method to sort the selected data
 	 */
 	protected $orders;
 
 	/**
-	 *@var
-	 *@read
+	 *@var string Set to DISTINCT to only return unique fields.
 	 */
 	protected $distinct = ' ';
 
 	/**
 	 *@var
-	 *@read
 	 */
 	protected $directions;
 
 	/**
-	 *@var 
-	 *@read
+	 *@var string This specifies the joins to be performed on the table
 	 */
 	protected $joins = array();
 
 	/**
-	 *@var
-	 *@read
+	 *@var string The where parameters to use in performing query
 	 */
 	protected $wheres = array();
 
@@ -1249,9 +1239,6 @@ class MySQLQuery {
 			//check if the query return an error and throw exception
 			if ( $result === false ) 
 			{
-				//get the erro message
-				$error = $this->connector->lastError();
-
 				//throw exception
 				throw new MySQLException(get_class(new MySQLException) . ' ' .$this->connector->lastError() . '<span class="query-string"> (' . $sql . ') </span>');
 
@@ -1267,5 +1254,5 @@ class MySQLQuery {
 		}
 
 	}
-
+	
 }
