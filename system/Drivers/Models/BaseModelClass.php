@@ -6,14 +6,15 @@
  *
  *@author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
  *@copyright 2015 - 2020 Geoffrey Oliver
- *@category Core
- *@package Core\Drivers\Models
+ *@category Drivers
+ *@package Drivers\Models\BaseModelClass
  *@link https://github.com/gliver-mvc/gliver
  *@license http://opensource.org/licenses/MIT MIT License
  *@version 1.0.1
  */
 
 use Drivers\Registry;
+use Drivers\Database\MySQL\MySQLTable;
 
 class BaseModelClass {
 
@@ -293,6 +294,31 @@ class BaseModelClass {
 	{
 		//call the raw method and return response object
 		return static::Query()->rawQuery($query_string);
+
+	}
+
+	/**
+	*This method creates a new table associated with this model.
+	*@param null
+	*@return bool true if table create success
+	*/
+	final public static function createTable()
+	{
+		//call the method to create a table in the database
+		return (new MySQLTable(static::$table, get_called_class(), Registry::get('database')))->createTable();
+
+	}
+
+	/**
+	*This model updates a table structure in the database.
+	*@param null
+	*@return bool true if update structure success
+	*/
+	final public static function updateTable()
+	{
+		//call the method to update table structure in the database
+		return static::Query()->updateTable(static::$table, get_called_class());
+
 
 	}
 
