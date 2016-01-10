@@ -13,23 +13,23 @@
 
 use Drivers\Templates\View;
 use Libraries\CronLibrary\SampleCronController;
+use Models\UsersModel;
+use Helpers\Url\Url;
 
 class HomeController extends BaseController {
 
 	/**
 	 *This method loads the homepage 
-	 *
-	 *@param null
+	 *@param int $id The user id
 	 *@return void
 	 */
-	public function getIndex()
+	public function getIndex( $id)
 	{
-		//define the page title
+
 		$data['title'] = $this->site_title;
 		$data['request_time'] = $this->request_exec_time();
 
-		//load the framework homepage
-		View::render('index', $data);
+		View::render('index',$data);
 
 	}
 
