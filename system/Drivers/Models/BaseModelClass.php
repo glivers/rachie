@@ -317,7 +317,7 @@ class BaseModelClass {
 	final public static function updateTable()
 	{
 		//call the method to update table structure in the database
-		return static::Query()->updateTable(static::$table, get_called_class());
+		return (new MySQLTable(static::$table, get_called_class(), Registry::get('database')))->updateTable();
 
 
 	}
