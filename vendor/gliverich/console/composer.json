@@ -1,0 +1,23 @@
+{
+    "name": "gliverich/console",
+    "description": "This is the entry point into the gliverich console commands",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Geoffrey Okongo",
+            "email": "geoffreyokongo2@gmail.com"
+        }
+    ],
+    "require" : {
+        "php" : ">=5.4.0",
+        "symfony/console": "^2.7",
+        "symfony/filesystem" : "^2.7",
+        "symfony/finder" : "^2.7"
+    },
+    "autoload": {
+        "psr-4": { 
+            "Gliverich\\Console\\": "" 
+        }
+    }
+}
