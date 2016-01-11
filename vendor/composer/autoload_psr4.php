@@ -6,14 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
-    'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
-    'Symfony\\Component\\Filesystem\\' => array($vendorDir . '/symfony/filesystem'),
-    'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'Models\\' => array($baseDir . '/application/models'),
     'Libraries\\' => array($baseDir . '/application/libraries'),
     'Helpers\\' => array($baseDir . '/system/Helpers'),
-    'Gliverich\\Console\\' => array($vendorDir . '/gliverich/console'),
     'Exceptions\\' => array($baseDir . '/system/Exceptions'),
     'Drivers\\' => array($baseDir . '/system/Drivers'),
     'Controllers\\' => array($baseDir . '/application/controllers'),
