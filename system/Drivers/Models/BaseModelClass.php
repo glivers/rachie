@@ -297,8 +297,8 @@ class BaseModelClass {
 
 			if(!isset($data['id'])) throw new ModelException(get_class(new ModelException) ." : The unique ID field for update records was not found in the input array to method updateById()");
 						
-			$id = $data['id'];
-			$data = unset($data['id']);
+			$id['id'] = $data['id'];
+			$data = array_diff_key($data, $id);
 
 			if(empty($data)) throw new ModelException(get_class(new ModelException) ." : There is no data to update in the query submitted by method updateById() ");
 			
@@ -306,7 +306,7 @@ class BaseModelClass {
 			static::Query()->where(array('id = ?', $id));
 			//call the from method and return response object
 			static::from();
-			$result = static::$queryObject->save($data);
+			$result = static::$queryObject->save($data, static::$update_timestamps);
 			static::$queryObject = null;
 			return $result;
 			
