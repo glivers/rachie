@@ -62,14 +62,15 @@ class Redirect {
 	}
 
 	/**
-	*This method sets the url parameters to redirect with in the $_GET data
-	*@param array $query_data
-	*@return \Object this static instance
-	*/
-	public static function with(array $query_data)
+	 * This method sets the url parameters to redirect with in the $_GET data.
+	 * @param string $key The key with which to pass this data
+	 * @param mixed $value of this key
+	 * @return \Object this static instance
+	 */
+	public static function with($key, $query_data)
 	{
 		//compose url string
-		$query_string = http_build_query($query_data);
+		$query_string = http_build_query(array($key => $query_data));
 
 		//set the value of query string
 		self::$query_string .= $query_string;
