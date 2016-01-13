@@ -86,41 +86,11 @@ class BaseModelClass {
 	 */
 	final public static function from($from = null, $fields = array("*"))
 	{
-		//call the from method of this query instance to set table name and fields if table name provided
-		if(static::$queryTableSet === false AND $from !== null) {
-
-			//call method to set table and field names
-			static::Query()->from($from, $fields);
-
-			//set the $queryTableSet = true
-			static::$queryTableSet = true;
-
-	        //return the static class
-	        return new static;
-
-		} 
-
-		//table name not provided, get the table name from class property
-		elseif(static::$queryTableSet === false AND $from === null){
-
-			//call method to set table and field names
-			static::Query()->from(static::$table, $fields);
-
-			//set the $queryTableSet = true
-			static::$queryTableSet = true;
-			
-	        //return the static class
-	        return new static;
-
-		}
-
-		//the table name and fields are already set, return query object
-		else{
-
-	        //return the static class
-	        return new static;
-
-		}
+		//call method to set table and field names
+		static::Query()->from(static::$table, $fields);
+		
+        //return the static class
+        return new static;
 
 	}
 
@@ -213,7 +183,9 @@ class BaseModelClass {
 	{
 		//call the from method and return response object
 		static::from();
-		return static::$queryObject->save($data, static::$update_timestamps);
+		$result = static::$queryObject->save($data, static::$update_timestamps);
+		static::$queryObject = null;
+		return $result;
 
 	}
 	
@@ -228,7 +200,9 @@ class BaseModelClass {
 	{
 		//call the from method and return response object
 		static::from();
-		return static::$queryObject->saveBulk($data, $fields, $ids, $key, static::$update_timestamps);
+		$result =static::$queryObject->saveBulk($data, $fields, $ids, $key, static::$update_timestamps);
+		static::$queryObject = null;
+		return $result;
 
 	}
 
@@ -241,7 +215,9 @@ class BaseModelClass {
 	{
 		//call the from method and return response object
 		static::from();
-		return static::$queryObject->delete();
+		$result = static::$queryObject->delete();
+		static::$queryObject = null;
+		return $result;
 
 	}
 
@@ -254,7 +230,9 @@ class BaseModelClass {
 	{
 		//call the from method and return response object
 		static::from();
-		return static::$queryObject->first();
+		$result = static::$queryObject->first();
+		static::$queryObject = null;
+		return $result;
 
 	}
 
@@ -267,7 +245,10 @@ class BaseModelClass {
 	{
 		//call the from method and return response object
 		static::from();
-		return static::$queryObject->count();
+		$result = static::$queryObject->count();
+		static::$queryObject = null;
+		return $result;
+
 
 	}
 
@@ -280,7 +261,9 @@ class BaseModelClass {
 	{
 		//call the from method and return response object
 		static::from();
-		return static::$queryObject->all();
+		$result = static::$queryObject->all();
+		static::$queryObject = null;
+		return $result;
 
 	}
 
