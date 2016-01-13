@@ -15,6 +15,7 @@
 
 use Drivers\Registry;
 use Drivers\Database\MySQL\MySQLTable;
+use Drivers\ModelException;
 
 class BaseModelClass {
 
@@ -268,9 +269,9 @@ class BaseModelClass {
 	}
 
 	/**
-	 *This method returns rows found based on a match on the 'id' column.
-	 *@param int $id The id to use for getting the data
-	 *@return MySQLResponseObject
+	 * This method returns rows found based on a match on the 'id' column.
+	 * @param int $id The id to use for getting the data
+	 * @return MySQLResponseObject
 	 */
 	final public static function getById($id)
 	{
@@ -281,6 +282,75 @@ class BaseModelClass {
 		$result = static::$queryObject->all();
 		static::$queryObject = null;
 		return $result;
+	}
+
+	/**
+	 *This method saves the data provide by the value in the id column.
+	 *@param array $data
+	 *@return \MySQLReponseObject
+	 *@throws \ModelException if id field not found or array empty after removing id field.
+	 */
+	final public static function saveById($data)
+	{
+		
+		try{	
+
+			if(!isset($data['id'])) throw new ModelException(get_class(new ModelException) ." : The unique ID field for update records was not found in the input array to method updateById()");
+						
+			$id = $data['id'];
+			$data = unset($data['id']);
+
+			if(empty($data)) throw new ModelException(get_class(new ModelException) ." : There is no data to update in the query submitted by method updateById() ");
+			
+			//call the query builder object where method passing the argument list
+			static::Query()->where(array('id = ?', $id));
+			//call the from method and return response object
+			static::from();
+			$result = static::$queryObject->save($data);
+			static::$queryObject = null;
+			return $result;
+			
+		}
+
+		catch (ModelException $e){
+			$e->errorShow();
+		}	
+
+	}
+
+	/**
+	 *This method returns rows found by matching date created fields.
+	 *@param string The date string to use to fetch data
+	 *@return \MySQLResponseObject
+	 */
+	final public static function getByDateCreated($dateCreated)
+	{
+		//call the query builder object where method passing the argument list
+		static::Query()->where(array('date_created = ?', $dateCreated));
+		//call the from method and return response object
+		static::from();
+		$result = static::$queryObject->all();
+		static::$queryObject = null;
+		return $result;
+		
+	}
+
+	/**
+	 *This method returns rows found by matching date modified fields.
+	 *@param string The date string to use to fetch data
+	 *@return \MySQLResponseObject
+	 */
+	final public static function getByDateModified($dateModified)
+	{
+		
+		//call the query builder object where method passing the argument list
+		static::Query()->where(array('date_modified = ?', $dateModified));
+		//call the from method and return response object
+		static::from();
+		$result = static::$queryObject->all();
+		static::$queryObject = null;
+		return $result;
+
 	}
 
 	/**
