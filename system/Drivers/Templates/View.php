@@ -103,7 +103,7 @@ class View {
     public  static function with($key, $data)
     {
         //set the value of the $variables property
-        self::$variables[$key] = $data;
+        self::$variables[] = array($key => $data);
 
         //return the static class
         return new static;
