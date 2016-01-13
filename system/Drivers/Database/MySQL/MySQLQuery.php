@@ -1240,7 +1240,7 @@ class MySQLQuery {
 			if ( $result === false ) 
 			{
 				//throw exception
-				throw new MySQLException(get_class(new MySQLException) . ' ' .$this->connector->lastError() . '<span class="query-string"> (' . $sql . ') </span>');
+				throw new MySQLException(get_class(new MySQLException) . ' ' .$this->connector->lastError() . '<span class="query-string"> (' . $query_string . ') </span>');
 
 			}
 
