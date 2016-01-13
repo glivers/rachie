@@ -268,6 +268,22 @@ class BaseModelClass {
 	}
 
 	/**
+	 *This method returns rows found based on a match on the 'id' column.
+	 *@param int $id The id to use for getting the data
+	 *@return MySQLResponseObject
+	 */
+	final public static function getById($id)
+	{
+		//call the query builder object where method passing the argument list
+		static::Query()->where(array('id = ?', $id));
+		//call the from method and return response object
+		static::from();
+		$result = static::$queryObject->all();
+		static::$queryObject = null;
+		return $result;
+	}
+
+	/**
 	 *This method executes a raw query in the database.
 	 *@param string $query_string The query string to execute
 	 *@return \MySQLResponseObject
