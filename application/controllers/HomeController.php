@@ -19,9 +19,14 @@ use Helpers\Url\Url;
 class HomeController extends BaseController {
 
 	/**
-	 *This method loads the homepage 
-	 *@param int $id The user id
-	 *@return void
+	 * @var bool Set to true to enable method filters in this controller
+	 */
+	public $enable_method_filters = false;
+
+	/**
+	 * This method loads the homepage. 
+	 * @param int $id The user id
+	 * @return void
 	 */
 	public function getIndex( $id)
 	{
@@ -34,12 +39,12 @@ class HomeController extends BaseController {
 	}
 
 	/**
-	*This method initializes a cron job in the library which executes a series of queries in the 
-	*database to keep user information in synch
-	*
-	*@param null
-	*@return void
-	*/
+	 * This method initializes a cron job in the library which executes a series of queries in the 
+	 * database to keep user information in synch
+	 *
+	 * @param null
+	 * @return void
+	 */
 	public function CronInit(){
 
 		//create an instance of the cronController class
