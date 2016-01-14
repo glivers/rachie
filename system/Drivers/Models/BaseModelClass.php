@@ -319,6 +319,23 @@ class BaseModelClass {
 	}
 
 	/**
+	 * This method deletes a database entry based on the unique id.
+	 * @param int $id The unique id value to use for deleting
+	 * @return \MySQLResponseObject
+	 */
+	final public static function deleteById($id)
+	{
+		//call the query builder object where method passing the argument list
+		static::Query()->where(array('id = ?', $id));
+		//call the from method and return response object
+		static::from();
+		$result = static::$queryObject->delete();
+		static::$queryObject = null;
+		return $result;
+
+	}
+
+	/**
 	 *This method returns rows found by matching date created fields.
 	 *@param string The date string to use to fetch data
 	 *@return \MySQLResponseObject
