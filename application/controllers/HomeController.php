@@ -13,33 +13,38 @@
 
 use Drivers\Templates\View;
 use Libraries\CronLibrary\SampleCronController;
+use Models\UsersModel;
+use Helpers\Url\Url;
 
 class HomeController extends BaseController {
 
 	/**
-	 *This method loads the homepage 
-	 *
-	 *@param null
-	 *@return void
+	 * @var bool Set to true to enable method filters in this controller
 	 */
-	public function getIndex()
+	public $enable_method_filters = false;
+
+	/**
+	 * This method loads the homepage. 
+	 * @param int $id The user id
+	 * @return void
+	 */
+	public function getIndex( $id)
 	{
-		//define the page title
+
 		$data['title'] = $this->site_title;
 		$data['request_time'] = $this->request_exec_time();
 
-		//load the framework homepage
-		View::render('index', $data);
+		View::render('index',$data);
 
 	}
 
 	/**
-	*This method initializes a cron job in the library which executes a series of queries in the 
-	*database to keep user information in synch
-	*
-	*@param null
-	*@return void
-	*/
+	 * This method initializes a cron job in the library which executes a series of queries in the 
+	 * database to keep user information in synch
+	 *
+	 * @param null
+	 * @return void
+	 */
 	public function CronInit(){
 
 		//create an instance of the cronController class

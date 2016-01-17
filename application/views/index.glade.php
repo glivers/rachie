@@ -43,21 +43,21 @@
                     <div class="number">1</div>
                     <div class="wrapper">
                         <h4 class="gliver-text">To edit this page </h4>
-                        <p><a href="{{ Url::base('home') }}">application/views/index.php</a></p>
+                        <p><a href="{{ Url::link(array('home','index')) }}">application/views/index.php</a></p>
                     </div>
                 </li>
                 <li>
                     <div class="number">2</div>
                     <div class="wrapper">
                         <h4 class="gliver-text">Controller</h4>
-                        <p><a href="{{ Url::base('home') }}">application/controllers/HomeController</a></p>
+                        <p><a href="{{ Url::link(array('home','index')) }}">application/controllers/HomeController</a></p>
                     </div>
                 </li>
                 <li class="bmarg">
                     <div class="number">3</div>
                     <div class="wrapper">
                         <h4 class="gliver-text">Read the users guider found here: </h4>
-                        <p><a href="{{ Url::base('home') }}">https://getgliver.com/documentation{{ '@{{' }}  {{ '@' }}for</a></p>
+                        <p><a href="{{ Url::link(array('home','index')) }}">https://getgliver.com/documentation{{ '@{{' }}  {{ '@' }}for</a></p>
                     </div>
                 </li>
             </ul>

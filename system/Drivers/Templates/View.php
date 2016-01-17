@@ -95,14 +95,15 @@ class View {
     } 
 
     /**
-    *This method sets the view file variables to be injected in view file.
-    *@param array $data The data in array format to inject into the view file
-    *@return static class
-    */
-    public  static function with(array $data)
+     * This method sets the view file variables to be injected in view file.
+     * @param string $key The key with which to store the data
+     * @param mixed $data The data in any format to inject into the view file
+     * @return static class
+     */
+    public  static function with($key, $data)
     {
         //set the value of the $variables property
-        self::$variables[] = $data;
+        self::$variables[] = array($key => $data);
 
         //return the static class
         return new static;

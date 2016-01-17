@@ -113,40 +113,29 @@ class Url {
 	}
 
 	/**
-	 *This method returns the assets url
-	 *
-	 *@param string $string the string to use to compose this url
-	 *@return string $url the full url for this request
-	 *@throws malformed string
-	 *
+	 * This method returns the url string.
+	 * @param mixed $linkParams The params to add to the link to generate
+	 * @return string $url the base url for this application
+	 * @throws this method does not throw an error
 	 */
-	public static function link2( $string = null )
+	public static function link($linkParams = null)
 	{
-		//get the server name from global $_SERVER[] array()
-		$base  = $_SERVER['SERVER_NAME']; 
+		if($linkParams === null){
 
-		//prepend installation folder to server name
-		$base .= substr($_SERVER['REQUEST_URI'], 0,  strpos($_SERVER['REQUEST_URI'], Registry::getUrl()));
+			$link_params = null;
+		}
 
-    	//use https if its defined in the $_SERVER global variable
-    	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";
+		elseif(is_array($linkParams)){
 
-		//compose the url string
-		return $protocol . '://' . $base . '<br />';
+			$link_params = join(Registry::getConfig()['url_component_separator'], $linkParams);
+		
+		}
 
+		else{
 
-	}
-
-	/**
-	 *This method returns the base url
-	 *
-	 *@param null
-	 *@return string $url the base url for this application
-	 *@throws this method does not throw an error
-	 *
-	 */
-	public static function link($fileName)
-	{
+			$params = func_get_args();
+			$link_params = join(Registry::getConfig()['url_component_separator'], $params);
+		}
 
 		//get the server name from global $_SERVER[] array()
 		$base  = $_SERVER['SERVER_NAME']; 
@@ -172,7 +161,7 @@ class Url {
     	$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != "off") ? "https" : "http";
 
 		//compose the url string
-		return $protocol . '://' . $base . $fileName;
+		return $protocol . '://' . $base . $link_params;
 
 	}
 

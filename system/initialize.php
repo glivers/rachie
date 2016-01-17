@@ -13,7 +13,7 @@ Drivers\Registry::setSettings($database);
 //unset($database);
 
 //store the request URI and free the memory
-Drivers\Registry::setUrl( ( isset($_GET['url']) ) ? $_GET['url'] : '');
+Drivers\Registry::setUrl( ( isset($_GET['url8g6l67i6v4chdgetrcswyr']) ) ? $_GET['url8g6l67i6v4chdgetrcswyr'] : '');
 
 //set the application start time
 Drivers\Registry::$gliver_app_start = $gliver_app_start;

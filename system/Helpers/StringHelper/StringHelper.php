@@ -139,7 +139,7 @@ class StringHelper {
 		//set the flags to use to perform the preg_split
 		$flags = PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE;
 
-		//split string and return array
+		//split string and return array,
 		return preg_split(self::normalize($pattern), $string, $limit, $flags);
 
 	}

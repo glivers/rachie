@@ -6,14 +6,16 @@
  *
  *@author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
  *@copyright 2015 - 2020 Geoffrey Oliver
- *@category Core
- *@package Core\Drivers\Models
+ *@category Drivers
+ *@package Drivers\Models\BaseModelClass
  *@link https://github.com/gliver-mvc/gliver
  *@license http://opensource.org/licenses/MIT MIT License
  *@version 1.0.1
  */
 
 use Drivers\Registry;
+use Drivers\Database\MySQL\MySQLTable;
+use Drivers\ModelException;
 
 class BaseModelClass {
 
@@ -85,41 +87,11 @@ class BaseModelClass {
 	 */
 	final public static function from($from = null, $fields = array("*"))
 	{
-		//call the from method of this query instance to set table name and fields if table name provided
-		if(static::$queryTableSet === false AND $from !== null) {
-
-			//call method to set table and field names
-			static::Query()->from($from, $fields);
-
-			//set the $queryTableSet = true
-			static::$queryTableSet = true;
-
-	        //return the static class
-	        return new static;
-
-		} 
-
-		//table name not provided, get the table name from class property
-		elseif(static::$queryTableSet === false AND $from === null){
-
-			//call method to set table and field names
-			static::Query()->from(static::$table, $fields);
-
-			//set the $queryTableSet = true
-			static::$queryTableSet = true;
-			
-	        //return the static class
-	        return new static;
-
-		}
-
-		//the table name and fields are already set, return query object
-		else{
-
-	        //return the static class
-	        return new static;
-
-		}
+		//call method to set table and field names
+		static::Query()->from(static::$table, $fields);
+		
+        //return the static class
+        return new static;
 
 	}
 
@@ -212,7 +184,9 @@ class BaseModelClass {
 	{
 		//call the from method and return response object
 		static::from();
-		return static::$queryObject->save($data, static::$update_timestamps);
+		$result = static::$queryObject->save($data, static::$update_timestamps);
+		static::$queryObject = null;
+		return $result;
 
 	}
 	
@@ -227,7 +201,9 @@ class BaseModelClass {
 	{
 		//call the from method and return response object
 		static::from();
-		return static::$queryObject->saveBulk($data, $fields, $ids, $key, static::$update_timestamps);
+		$result =static::$queryObject->saveBulk($data, $fields, $ids, $key, static::$update_timestamps);
+		static::$queryObject = null;
+		return $result;
 
 	}
 
@@ -240,7 +216,9 @@ class BaseModelClass {
 	{
 		//call the from method and return response object
 		static::from();
-		return static::$queryObject->delete();
+		$result = static::$queryObject->delete();
+		static::$queryObject = null;
+		return $result;
 
 	}
 
@@ -253,7 +231,9 @@ class BaseModelClass {
 	{
 		//call the from method and return response object
 		static::from();
-		return static::$queryObject->first();
+		$result = static::$queryObject->first();
+		static::$queryObject = null;
+		return $result;
 
 	}
 
@@ -266,7 +246,10 @@ class BaseModelClass {
 	{
 		//call the from method and return response object
 		static::from();
-		return static::$queryObject->count();
+		$result = static::$queryObject->count();
+		static::$queryObject = null;
+		return $result;
+
 
 	}
 
@@ -279,7 +262,111 @@ class BaseModelClass {
 	{
 		//call the from method and return response object
 		static::from();
-		return static::$queryObject->all();
+		$result = static::$queryObject->all();
+		static::$queryObject = null;
+		return $result;
+
+	}
+
+	/**
+	 * This method returns rows found based on a match on the 'id' column.
+	 * @param int $id The id to use for getting the data
+	 * @return MySQLResponseObject
+	 */
+	final public static function getById($id)
+	{
+		//call the query builder object where method passing the argument list
+		static::Query()->where(array('id = ?', $id));
+		//call the from method and return response object
+		static::from();
+		$result = static::$queryObject->all();
+		static::$queryObject = null;
+		return $result;
+	}
+
+	/**
+	 *This method saves the data provide by the value in the id column.
+	 *@param array $data
+	 *@return \MySQLReponseObject
+	 *@throws \ModelException if id field not found or array empty after removing id field.
+	 */
+	final public static function saveById($data)
+	{
+		
+		try{	
+
+			if(!isset($data['id'])) throw new ModelException(get_class(new ModelException) ." : The unique ID field for update records was not found in the input array to method updateById()");
+						
+			$id['id'] = $data['id'];
+			$data = array_diff_key($data, $id);
+
+			if(empty($data)) throw new ModelException(get_class(new ModelException) ." : There is no data to update in the query submitted by method updateById() ");
+			
+			//call the query builder object where method passing the argument list
+			static::Query()->where(array('id = ?', $id));
+			//call the from method and return response object
+			static::from();
+			$result = static::$queryObject->save($data, static::$update_timestamps);
+			static::$queryObject = null;
+			return $result;
+			
+		}
+
+		catch (ModelException $e){
+			$e->errorShow();
+		}	
+
+	}
+
+	/**
+	 * This method deletes a database entry based on the unique id.
+	 * @param int $id The unique id value to use for deleting
+	 * @return \MySQLResponseObject
+	 */
+	final public static function deleteById($id)
+	{
+		//call the query builder object where method passing the argument list
+		static::Query()->where(array('id = ?', $id));
+		//call the from method and return response object
+		static::from();
+		$result = static::$queryObject->delete();
+		static::$queryObject = null;
+		return $result;
+
+	}
+
+	/**
+	 *This method returns rows found by matching date created fields.
+	 *@param string The date string to use to fetch data
+	 *@return \MySQLResponseObject
+	 */
+	final public static function getByDateCreated($dateCreated)
+	{
+		//call the query builder object where method passing the argument list
+		static::Query()->where(array('date_created = ?', $dateCreated));
+		//call the from method and return response object
+		static::from();
+		$result = static::$queryObject->all();
+		static::$queryObject = null;
+		return $result;
+		
+	}
+
+	/**
+	 *This method returns rows found by matching date modified fields.
+	 *@param string The date string to use to fetch data
+	 *@return \MySQLResponseObject
+	 */
+	final public static function getByDateModified($dateModified)
+	{
+		
+		//call the query builder object where method passing the argument list
+		static::Query()->where(array('date_modified = ?', $dateModified));
+		//call the from method and return response object
+		static::from();
+		$result = static::$queryObject->all();
+		static::$queryObject = null;
+		return $result;
 
 	}
 
@@ -293,6 +380,31 @@ class BaseModelClass {
 	{
 		//call the raw method and return response object
 		return static::Query()->rawQuery($query_string);
+
+	}
+
+	/**
+	*This method creates a new table associated with this model.
+	*@param null
+	*@return bool true if table create success
+	*/
+	final public static function createTable()
+	{
+		//call the method to create a table in the database
+		return (new MySQLTable(static::$table, get_called_class(), Registry::get('database')))->createTable();
+
+	}
+
+	/**
+	*This model updates a table structure in the database.
+	*@param null
+	*@return bool true if update structure success
+	*/
+	final public static function updateTable()
+	{
+		//call the method to update table structure in the database
+		return (new MySQLTable(static::$table, get_called_class(), Registry::get('database')))->updateTable();
+
 
 	}
 

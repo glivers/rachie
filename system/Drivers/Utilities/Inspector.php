@@ -21,11 +21,11 @@ class Inspector {
 	public static function checkFilter($comment_string)
 	{
 		//define the regular expression pattern to use for string matching
-		$pattern = "(@[a-zA-Z]+\s*[a-zA-Z0-9, ()_]*)";
+		$pattern = "#(@[a-zA-Z]+\s*[a-zA-Z0-9, ()_].*)#";
 
 		//perform the regular expression on the string provided
 		preg_match_all($pattern, $comment_string, $matches, PREG_PATTERN_ORDER);
-		
+
 		//get the meta elements in array
 		$meta_data_array = $matches[0];
 
@@ -44,6 +44,7 @@ class Inspector {
 					
 					$strb = explode(' ', trim($value)); $strb = self::clean($strb);
 					(isset($strb[1])) ? $beforeFilters[] = $strb[1] : ''; 
+					(isset($strb[2])) ? $beforeFilters[] = $strb[2] : ''; 
 					
 				}
 
@@ -52,6 +53,8 @@ class Inspector {
 
 					$stra = explode(' ', trim($value)); $stra = self::clean($stra);
 					(isset($stra[1])) ? $afterFilters[] = $stra[1] : ''; 
+					(isset($stra[2])) ? $afterFilters[] = $stra[2] : '';
+
 				}
 
 			}
