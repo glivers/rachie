@@ -158,23 +158,20 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method sets the table name and fields upon which to perform database queries.
-	 *@param string $from The table name upon which to perform query
-	 *@param array $fields The names of the fields to select in numeric array
-	 *@return object $this
-	 *@throws \MySQLException If an empty table name was passed
+	 * This method sets the table name to be selected
+	 * @param string $table The name of the table
+	 * @return $this
 	 */
-	public function from($from, $fields = array("*"))
-	{
-		
+	public function setTable($table){
+
 		//put this in try...catch block for better error handling
 		try{
 
 			//check if from is empty
-			if ( empty($from)) 
+			if ( empty($table)) 
 			{
 				//throw new exception
-				throw new MySQLException("Invalid argument passed to from clause", 1);
+				throw new MySQLException("Invalid argument passed for table name", 1);
 
 			}
 
@@ -186,18 +183,47 @@ class MySQLQuery {
 			//display error message
 			$MySQLExceptionObject->errorShow();
 
-		}
-
+		}		
 
 		//set the protected $from value
-		$this->froms = $from;
+		$this->froms = $table;
+		if(!isset($this->fields[$table])) $this->fields[$table] = array("*");
+		return $this;
+			
+	}
+
+	/** 
+	 * This method sets the columns for a table to be selected
+	 * @param string $table The name of the table
+	 * @param array $fields The numeric array of table column names
+	 * @return $this
+	 */
+	public function setFields($table, $fields = array("*")){
+
+		//put this in try...catch block for better error handling
+		try{
+
+			//check if from is empty
+			if ( empty($table)) 
+			{
+				//throw new exception
+				throw new MySQLException("Invalid argument passed for table name", 1);
+
+			}
+
+		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
+
+		}		
 
 		//check if fields is sset and set the fields param
-		if($fields) $this->fields[$from] = $fields;
-
-		//return this object instance
-		return $this;
-
+		$this->froms = $table;
+		$this->fields[$table] = $fields;
 	}
 
 	/**
