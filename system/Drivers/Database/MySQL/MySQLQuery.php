@@ -228,32 +228,31 @@ class MySQLQuery {
 
 	/**
 	 *This method builds query string for joining tables in query.
-	 *@param string $join The type of join to performa
 	 *@param string $table the table to perform join on
-	 *@param string $on The conditions for the join
-	 *@param array $fields The fields name to join in numeric array
+	 *@param string $condition The conditions for the join
+	 *@param array $fields The table column name to join in numeric array
 	 *@return object $this
-	 *@throws \MySQLException if $join, $table or $on have empty string values 
+	 *@throws \MySQLException if $table or $condition have empty string values 
 	 */
-	public function join($join, $table, $on, $fields = array())
+	public function leftJoin($table, $condition, $fields = array("*"))
 	{
 
 		//put this in try...catch block for better error handling
 		try{
 
-			//throw exception if $join passed is empty
-			if ( empty($join) ||  empty($table) || empty($on) )  
+			//throw exception if $table passed is empty
+			if ( empty($table) )  
 			{
 				//throw exception for invalid argument
-				throw new MySQLException("Invalid argument $join passed for the Join Clause", 1);
+				throw new MySQLException("Invalid table argument $table passed for the leftJoin Clause", 1);
 
 			}
 
-			//throw exception if the $on passed is empty
-			if ( empty($on) ) 
+			//throw exception if the $condition passed is empty
+			if ( empty($condition) ) 
 			{
 				//throw exception
-				throw new MySQLException("Invalid argument $on passed for the Join Clause", 1);
+				throw new MySQLException("Invalid argument $condition passed for the leftJoin Clause", 1);
 
 			}
 			
@@ -271,7 +270,8 @@ class MySQLQuery {
 		$this->fields += array($table => $fields);
 
 		//populate the joins property
-		$this->joins[] = strtoupper($join) . " JOIN {$table} ON {$on}";
+		$this->joins['tables'][] = $table; //= " LEFT JOIN {$table} ON {$condition} ";
+		$this->joins['conditions'][] = $condition;
 
 		//return instance of this object
 		return $this;
@@ -513,8 +513,10 @@ class MySQLQuery {
 		//check if the join parameter is empty
 		if ( ! empty($queryJoin) ) 
 		{
+			$joinTables = "(" . join(", ", $queryJoin['tables']) . ")";
+			$joinConditions = "(" . join(" AND ", $queryJoin['conditions']) . ")";
 			//add the joins
-			$join = join(" ", $queryJoin);
+			$join = " LEFT JOIN $joinTables ON $joinConditions";
 
 		}
 

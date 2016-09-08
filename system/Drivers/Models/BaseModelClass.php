@@ -105,17 +105,15 @@ class BaseModelClass {
 	}
 
 	/**
-	 *This method builds query string for joining tables in query.
-	 *@param string $join The type of join to performa
-	 *@param string $table the table to perform join on
-	 *@param string $on The conditions for the join
-	 *@param array $fields The fields name to join in numeric array
-	 *@return object $this
+	 * This method specifies the LEFT JOIN clause
+	 * @param string $table The name of the table to join
+	 * @param string $condition The string specifying the table join condition
+	 * @param array $fields The array of table columns from the joined table to be selected
+	 * @return new static
 	 */
-	final public static function join($join, $table, $on, $fields = array() )
-	{
+	final public static function leftJoin($table, $condition, $fields = array("*")){
 		//call the join method of the query object
-		static::Query()->join($join, $table, $on, $fields);
+		static::Query()->leftJoin($table, $condition, $fields);
 
 		//return static class
 		return new static;
