@@ -158,23 +158,20 @@ class MySQLQuery {
 	}
 
 	/**
-	 *This method sets the table name and fields upon which to perform database queries.
-	 *@param string $from The table name upon which to perform query
-	 *@param array $fields The names of the fields to select in numeric array
-	 *@return object $this
-	 *@throws \MySQLException If an empty table name was passed
+	 * This method sets the table name to be selected
+	 * @param string $table The name of the table
+	 * @return $this
 	 */
-	public function from($from, $fields = array("*"))
-	{
-		
+	public function setTable($table){
+
 		//put this in try...catch block for better error handling
 		try{
 
 			//check if from is empty
-			if ( empty($from)) 
+			if ( empty($table)) 
 			{
 				//throw new exception
-				throw new MySQLException("Invalid argument passed to from clause", 1);
+				throw new MySQLException("Invalid argument passed for table name", 1);
 
 			}
 
@@ -186,48 +183,76 @@ class MySQLQuery {
 			//display error message
 			$MySQLExceptionObject->errorShow();
 
-		}
-
+		}		
 
 		//set the protected $from value
-		$this->froms = $from;
+		$this->froms = $table;
+		if(!isset($this->fields[$table])) $this->fields[$table] = array("*");
+		return $this;
+			
+	}
+
+	/** 
+	 * This method sets the columns for a table to be selected
+	 * @param string $table The name of the table
+	 * @param array $fields The numeric array of table column names
+	 * @return $this
+	 */
+	public function setFields($table, $fields = array("*")){
+
+		//put this in try...catch block for better error handling
+		try{
+
+			//check if from is empty
+			if ( empty($table)) 
+			{
+				//throw new exception
+				throw new MySQLException("Invalid argument passed for table name", 1);
+
+			}
+
+		}
+
+		//diplay error message
+		catch(MySQLException $MySQLExceptionObject){
+
+			//display error message
+			$MySQLExceptionObject->errorShow();
+
+		}		
 
 		//check if fields is sset and set the fields param
-		if($fields) $this->fields[$from] = $fields;
-
-		//return this object instance
-		return $this;
-
+		$this->froms = $table;
+		$this->fields[$table] = $fields;
 	}
 
 	/**
 	 *This method builds query string for joining tables in query.
-	 *@param string $join The type of join to performa
 	 *@param string $table the table to perform join on
-	 *@param string $on The conditions for the join
-	 *@param array $fields The fields name to join in numeric array
+	 *@param string $condition The conditions for the join
+	 *@param array $fields The table column name to join in numeric array
 	 *@return object $this
-	 *@throws \MySQLException if $join, $table or $on have empty string values 
+	 *@throws \MySQLException if $table or $condition have empty string values 
 	 */
-	public function join($join, $table, $on, $fields = array())
+	public function leftJoin($table, $condition, $fields = array("*"))
 	{
 
 		//put this in try...catch block for better error handling
 		try{
 
-			//throw exception if $join passed is empty
-			if ( empty($join) ||  empty($table) || empty($on) )  
+			//throw exception if $table passed is empty
+			if ( empty($table) )  
 			{
 				//throw exception for invalid argument
-				throw new MySQLException("Invalid argument $join passed for the Join Clause", 1);
+				throw new MySQLException("Invalid table argument $table passed for the leftJoin Clause", 1);
 
 			}
 
-			//throw exception if the $on passed is empty
-			if ( empty($on) ) 
+			//throw exception if the $condition passed is empty
+			if ( empty($condition) ) 
 			{
 				//throw exception
-				throw new MySQLException("Invalid argument $on passed for the Join Clause", 1);
+				throw new MySQLException("Invalid argument $condition passed for the leftJoin Clause", 1);
 
 			}
 			
@@ -245,7 +270,8 @@ class MySQLQuery {
 		$this->fields += array($table => $fields);
 
 		//populate the joins property
-		$this->joins[] = strtoupper($join) . " JOIN {$table} ON {$on}";
+		$this->joins['tables'][] = $table; //= " LEFT JOIN {$table} ON {$condition} ";
+		$this->joins['conditions'][] = $condition;
 
 		//return instance of this object
 		return $this;
@@ -487,8 +513,10 @@ class MySQLQuery {
 		//check if the join parameter is empty
 		if ( ! empty($queryJoin) ) 
 		{
+			$joinTables = "(" . join(", ", $queryJoin['tables']) . ")";
+			$joinConditions = "(" . join(" AND ", $queryJoin['conditions']) . ")";
 			//add the joins
-			$join = join(" ", $queryJoin);
+			$join = " LEFT JOIN $joinTables ON $joinConditions";
 
 		}
 

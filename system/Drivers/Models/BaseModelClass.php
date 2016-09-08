@@ -80,15 +80,24 @@ class BaseModelClass {
 	}
 
 	/**
-	 *This method sets the table name and fields upon which to perform database queries.
-	 *@param string $from The table name upon which to perform query
+	 * This method sets the table name to perform the query on
+	 * @param null
+	 * @return $this
+	 */
+	final private static function setTable(){
+		//call method to set table and field names
+		static::Query()->setTable(static::$table);
+	}
+
+	/**
+	 *This method sets the fields upon which to perform database queries.
 	 *@param array $fields The names of the fields to select in numeric array
 	 *@return object $this
 	 */
-	final public static function from($from = null, $fields = array("*"))
+	final public static function select($fields = array("*"))
 	{
 		//call method to set table and field names
-		static::Query()->from(static::$table, $fields);
+		static::Query()->setFields(static::$table, $fields);
 		
         //return the static class
         return new static;
@@ -96,17 +105,15 @@ class BaseModelClass {
 	}
 
 	/**
-	 *This method builds query string for joining tables in query.
-	 *@param string $join The type of join to performa
-	 *@param string $table the table to perform join on
-	 *@param string $on The conditions for the join
-	 *@param array $fields The fields name to join in numeric array
-	 *@return object $this
+	 * This method specifies the LEFT JOIN clause
+	 * @param string $table The name of the table to join
+	 * @param string $condition The string specifying the table join condition
+	 * @param array $fields The array of table columns from the joined table to be selected
+	 * @return new static
 	 */
-	final public static function join($join, $table, $on, $fields = array() )
-	{
+	final public static function leftJoin($table, $condition, $fields = array("*")){
 		//call the join method of the query object
-		static::Query()->join($join, $table, $on, $fields);
+		static::Query()->leftJoin($table, $condition, $fields);
 
 		//return static class
 		return new static;
@@ -182,8 +189,8 @@ class BaseModelClass {
 	 */
 	final public static function save($data)
 	{
-		//call the from method and return response object
-		static::from();
+		//set the query table
+		static::setTable();
 		$result = static::$queryObject->save($data, static::$update_timestamps);
 		static::$queryObject = null;
 		return $result;
@@ -199,8 +206,8 @@ class BaseModelClass {
 	 */
 	final public static function saveBulk($data, $fields = null, $ids = null, $key = null)
 	{
-		//call the from method and return response object
-		static::from();
+		//set the query table
+		static::setTable();
 		$result =static::$queryObject->saveBulk($data, $fields, $ids, $key, static::$update_timestamps);
 		static::$queryObject = null;
 		return $result;
@@ -214,8 +221,8 @@ class BaseModelClass {
 	 */ 
 	final public static function delete()
 	{
-		//call the from method and return response object
-		static::from();
+		//set the query table
+		static::setTable();
 		$result = static::$queryObject->delete();
 		static::$queryObject = null;
 		return $result;
@@ -229,8 +236,8 @@ class BaseModelClass {
 	 */
 	final public static function first()
 	{
-		//call the from method and return response object
-		static::from();
+		//set the query table
+		static::setTable();
 		$result = static::$queryObject->first();
 		static::$queryObject = null;
 		return $result;
@@ -244,8 +251,8 @@ class BaseModelClass {
 	 */
 	final public static function count()
 	{
-		//call the from method and return response object
-		static::from();
+		//set the query table
+		static::setTable();
 		$result = static::$queryObject->count();
 		static::$queryObject = null;
 		return $result;
@@ -260,8 +267,8 @@ class BaseModelClass {
 	 */
 	final public static function all()
 	{
-		//call the from method and return response object
-		static::from();
+		//set the query table
+		static::setTable();
 		$result = static::$queryObject->all();
 		static::$queryObject = null;
 		return $result;
@@ -277,8 +284,8 @@ class BaseModelClass {
 	{
 		//call the query builder object where method passing the argument list
 		static::Query()->where(array('id = ?', $id));
-		//call the from method and return response object
-		static::from();
+		//set the query table
+		static::setTable();
 		$result = static::$queryObject->all();
 		static::$queryObject = null;
 		return $result;
@@ -304,8 +311,8 @@ class BaseModelClass {
 			
 			//call the query builder object where method passing the argument list
 			static::Query()->where(array('id = ?', $id));
-			//call the from method and return response object
-			static::from();
+			//set the query table
+			static::setTable();
 			$result = static::$queryObject->save($data, static::$update_timestamps);
 			static::$queryObject = null;
 			return $result;
@@ -327,8 +334,8 @@ class BaseModelClass {
 	{
 		//call the query builder object where method passing the argument list
 		static::Query()->where(array('id = ?', $id));
-		//call the from method and return response object
-		static::from();
+		//set the query table
+		static::setTable();
 		$result = static::$queryObject->delete();
 		static::$queryObject = null;
 		return $result;
@@ -344,8 +351,8 @@ class BaseModelClass {
 	{
 		//call the query builder object where method passing the argument list
 		static::Query()->where(array('date_created = ?', $dateCreated));
-		//call the from method and return response object
-		static::from();
+		//set the query table
+		static::setTable();
 		$result = static::$queryObject->all();
 		static::$queryObject = null;
 		return $result;
@@ -362,8 +369,8 @@ class BaseModelClass {
 		
 		//call the query builder object where method passing the argument list
 		static::Query()->where(array('date_modified = ?', $dateModified));
-		//call the from method and return response object
-		static::from();
+		//set query table
+		static::setTable();
 		$result = static::$queryObject->all();
 		static::$queryObject = null;
 		return $result;
