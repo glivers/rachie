@@ -1,5 +1,5 @@
 {
-	"name" : "gliver/core",
+	"name" : "gliver/gliver",
 	"type" : "project",
 	"description" : "The base foundation for the gliver mvc PHP framework",
 	"keywords" : ["gliver", "mvc", "gliver-mvc", "php framework"],
@@ -7,15 +7,15 @@
 	"license" : "MIT",
 	"authors" : [
 		{
-			"name" : "Geoffrey Oliver",
-			"email" : "geoffrey.oliver2@gmail.com",
-			"homepage" : "http://getgliver.com",
-			"role" : "Developer"
+			"name" : "Geoffrey Bans",
+			"email" : "geoffreybans@gmail.com",
+			"homepage" : "http://loudprogrammer.net",
+			"role" : "developer"
 		}
 	],
 	"require" : {
 		"php" : ">=5.5.0",
-		"gliverich/console" : "dev-master"
+		"gliver/console" : "1.*"
 	},
 	"autoload" : {
 		"psr-4" : {
