@@ -7,22 +7,20 @@
 	"license" : "MIT",
 	"authors" : [
 		{
-			"name" : "Geoffrey Bans",
+			"name" : "Geoffrey Barnes",
 			"email" : "geoffreybans@gmail.com",
-			"homepage" : "http://loudprogrammer.net",
+			"homepage" : "https://gliver.org",
 			"role" : "developer"
 		}
 	],
 	"require" : {
 		"php" : ">=5.5.0",
-		"gliver/console" : "1.*"
+		"gliver/routes" : "dev-master"
 	},
 	"autoload" : {
 		"psr-4" : {
 			"Models\\" : "application/models",
 			"Controllers\\" : "application/controllers",
-			"Drivers\\" : "system/Drivers",
-			"Helpers\\"  : "system/Helpers",
 			"Exceptions\\"  : "system/Exceptions",
 			"Libraries\\"  : "application/libraries"
 		}
