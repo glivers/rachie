@@ -22,13 +22,13 @@ return	function() use($config){
 	}
 
 	//create an instance of the UrlParser Class, 
-	$UrlParserObjectInstance = new Drivers\Utilities\UrlParser(Drivers\Registry::getUrl(), Drivers\Registry::getConfig()['url_component_separator']);
+	$UrlParserObjectInstance = new Drivers\Utilities\UrlParser(Drivers\Registry\Registry::getUrl(), Drivers\Registry\Registry::getConfig()['url_component_separator']);
 
 	//and set controller, method and request parameter
 	$UrlParserObjectInstance->setController()->setMethod()->setParameters();
 
 	//create an instance of the route parser class
-	$RouteParserObject = new Drivers\Routes\RouteParser(Drivers\Registry::getUrl(), $definedRoutes, $UrlParserObjectInstance);
+	$RouteParserObject = new Drivers\Routes\RouteParser(Drivers\Registry\Registry::getUrl(), $definedRoutes, $UrlParserObjectInstance);
 
 	//check if there is infered controller from url string
 	if($UrlParserObjectInstance->getController() !== null){
