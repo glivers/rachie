@@ -2,11 +2,11 @@
 
 /**
  * This is the base controller from which all named controllers derive by extending.
- * @author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
- * @copyright 2015 - 2020 Geoffrey Oliver
+ * @author Geoffrey Barnes <geoffreybans@gmail.com>
+ * @copyright 2015 - 2030 Geoffrey Barnes
  * @category Controllers
  * @package Controllers\BaseController
- * @link https://github.com/gliver-mvc/gliver
+ * @link https://github.com/gliverphp/gliver
  * @license http://opensource.org/licenses/MIT MIT License
  * @version 1.0.1
  */

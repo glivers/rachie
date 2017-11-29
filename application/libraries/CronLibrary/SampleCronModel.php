@@ -2,11 +2,11 @@
 
 /**
  *This models updates user information in the database
- *@author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
- *@copyright 2015 - 2020 Geoffrey Oliver
+ *@author Geoffrey Barnes <geoffreybans@gmail.com>
+ *@copyright 2015 - 2030 Geoffrey Barnes
  *@category Cron\Models
  *@package Cron\Models\Sample
- *@link https://github.com/gliver-mvc/gliver
+ *@link https://github.com/gliverphp/gliver
  *@license http://opensource.org/licenses/MIT MIT License
  *@version 1.0.1
  */
