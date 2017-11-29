@@ -2,11 +2,11 @@
 
 /**
  * This is the base Model from which all named models derive by extending.
- * @author Geoffrey Bans <geoffreybans@gmail.com>
- * @copyright 2015 - 2020 Geoffrey Bans
+ * @author Geoffrey Barnes <geoffreybans@gmail.com>
+ * @copyright 2015 - 2030 Geoffrey Barnes
  * @category Models
  * @package Models\BaseModel
- * @link https://github.com/gliver-mvc/gliver
+ * @link https://github.com/gliverphp/gliver
  * @license http://opensource.org/licenses/MIT MIT License
  * @version 1.0.1
  */
