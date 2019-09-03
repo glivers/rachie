@@ -1,0 +1,19 @@
+{
+    "name": "gliver/registry",
+    "description": "This package contains the classes that define the registry configuration",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Geoffrey Barnes",
+            "email": "geoffreybans@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": { 
+            "Drivers\\Registry\\": "src" 
+        }
+    }
+}

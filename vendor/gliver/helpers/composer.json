@@ -1,0 +1,19 @@
+{
+    "name": "gliver/helpers",
+    "description": "This package contains all the helper classes for the Gliver framework",
+    "type": "package",
+    "require": {},
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Geoffrey Barnes",
+            "email": "geoffreybans@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": { 
+            "Helpers\\": "src" 
+        }
+    }
+}

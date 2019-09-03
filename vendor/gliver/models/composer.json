@@ -1,0 +1,19 @@
+{
+    "name": "gliver/models",
+    "description": "The package defines the model classes that enable access and manipulation of the databases in a object relational format",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Geoffrey Barnes",
+            "email": "geoffreybans@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": { 
+            "Drivers\\Models\\": "src" 
+        }
+    }
+}

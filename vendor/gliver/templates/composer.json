@@ -1,0 +1,19 @@
+{
+    "name": "gliver/templates",
+    "description": "This package contains the classes that define the templating engine and grammar map for Gliver views",
+    "type": "pakcage",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Geoffrey Barnes",
+            "email": "geoffreybans@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": { 
+            "Drivers\\Templates\\": "src" 
+        }
+    }
+}
