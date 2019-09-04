@@ -8,15 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Models\\' => array($baseDir . '/application/models'),
     'Libraries\\' => array($baseDir . '/application/libraries'),
-    'Helpers\\' => array($vendorDir . '/gliver/helpers/src'),
+    'Gliver\\' => array($vendorDir . '/gliver/core/src'),
     'Exceptions\\' => array($baseDir . '/system/Exceptions'),
-    'Drivers\\Utilities\\' => array($vendorDir . '/gliver/utilities/src'),
-    'Drivers\\Templates\\' => array($vendorDir . '/gliver/templates/src'),
-    'Drivers\\Routes\\' => array($vendorDir . '/gliver/routes/src'),
-    'Drivers\\Registry\\' => array($vendorDir . '/gliver/registry/src'),
-    'Drivers\\Models\\' => array($vendorDir . '/gliver/models/src'),
-    'Drivers\\Database\\' => array($vendorDir . '/gliver/database/src'),
-    'Drivers\\Controllers\\' => array($vendorDir . '/gliver/controllers/src'),
-    'Drivers\\Cache\\' => array($vendorDir . '/gliver/cache/src'),
     'Controllers\\' => array($baseDir . '/application/controllers'),
 );

@@ -11,12 +11,12 @@ return array(
 	 *Your name as the author of this application
 	 *this would appear in your console generated classes
 	 */
-	'author' => 'Geoffrey Bans <geoffreybans@gmail.com>',
+	'author' => 'Geoffrey Okongo <georizhq@gmail.com>',
 
 	/**
 	*Your copyright statement
 	*/
-	'copyright' => 'Copyright (c) 2015 - 2020 Geoffrey Bans',
+	'copyright' => 'Copyright (c) 2015 - 2030 Geoffrey Okongo',
 
 	/*
 	*Your license name and link

@@ -1,0 +1,19 @@
+{
+    "name": "gliver/core",
+    "description": "This is a collection of all the PHP classes that make Gliver a real MVC framework",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Geoffrey Okongo",
+            "email": "georizhq@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": { 
+            "Gliver\\": "src" 
+        }
+    }
+}

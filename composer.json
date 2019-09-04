@@ -3,19 +3,19 @@
 	"type" : "project",
 	"description" : "The base foundation for the gliver mvc PHP framework",
 	"keywords" : ["gliver", "mvc", "gliver-mvc", "php framework"],
-	"homepage" : "http://github.com/gliver-mvc/gliver",
+	"homepage" : "http://github.com/gliverphp/gliver",
 	"license" : "MIT",
 	"authors" : [
 		{
-			"name" : "Geoffrey Barnes",
-			"email" : "geoffreybans@gmail.com",
+			"name" : "Geoffrey Okongo",
+			"email" : "georizhq@gmail.com",
 			"homepage" : "https://gliver.org",
 			"role" : "developer"
 		}
 	],
 	"require" : {
 		"php" : ">=5.6.0",
-		"gliver/routes" : "1.*"
+		"gliver/core" : "1.*"
 	},
 	"autoload" : {
 		"psr-4" : {

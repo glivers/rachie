@@ -1,95 +1,25 @@
 [
     {
-        "name": "gliver/cache",
-        "version": "v1.0",
-        "version_normalized": "1.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/gliverphp/cache.git",
-            "reference": "26497862308d2814a7ae58507e3d5a35ce4f0cbb"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/gliverphp/cache/zipball/26497862308d2814a7ae58507e3d5a35ce4f0cbb",
-            "reference": "26497862308d2814a7ae58507e3d5a35ce4f0cbb",
-            "shasum": ""
-        },
-        "time": "2017-11-28T19:12:28+00:00",
-        "type": "package",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Drivers\\Cache\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Geoffrey Barnes",
-                "email": "geoffreybans@gmail.com"
-            }
-        ],
-        "description": "This package handles resource caching in Gliver applications"
-    },
-    {
-        "name": "gliver/controllers",
-        "version": "v1.0.1",
-        "version_normalized": "1.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/gliverphp/controllers.git",
-            "reference": "509306b5b622da13eadf24cdbbf1064b4a16eefb"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/gliverphp/controllers/zipball/509306b5b622da13eadf24cdbbf1064b4a16eefb",
-            "reference": "509306b5b622da13eadf24cdbbf1064b4a16eefb",
-            "shasum": ""
-        },
-        "time": "2017-11-29T08:45:54+00:00",
-        "type": "package",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Drivers\\Controllers\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Geoffrey Barnes",
-                "email": "geoffreybans@gmail.com"
-            }
-        ],
-        "description": "This package forms the base class from which all controllers inherit"
-    },
-    {
-        "name": "gliver/database",
+        "name": "gliver/core",
         "version": "v1.0.0",
         "version_normalized": "1.0.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/gliverphp/database.git",
-            "reference": "b998bd3d24cb2f269b9bd54438c7df8751377ba9"
+            "url": "https://github.com/gliverphp/core.git",
+            "reference": "78b2b0c0d75f3610447547bcf3a9bae695034f80"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/gliverphp/database/zipball/b998bd3d24cb2f269b9bd54438c7df8751377ba9",
-            "reference": "b998bd3d24cb2f269b9bd54438c7df8751377ba9",
+            "url": "https://api.github.com/repos/gliverphp/core/zipball/78b2b0c0d75f3610447547bcf3a9bae695034f80",
+            "reference": "78b2b0c0d75f3610447547bcf3a9bae695034f80",
             "shasum": ""
         },
-        "time": "2017-11-28T19:11:44+00:00",
+        "time": "2019-09-03T03:46:46+00:00",
         "type": "package",
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Drivers\\Database\\": "src"
+                "Gliver\\": "src"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -98,230 +28,10 @@
         ],
         "authors": [
             {
-                "name": "Geoffrey Barnes",
-                "email": "geoffreybans@gmail.com"
+                "name": "Geoffrey Okongo",
+                "email": "georizhq@gmail.com"
             }
         ],
-        "description": "This package handles database connection and query execution for Gliver applications"
-    },
-    {
-        "name": "gliver/helpers",
-        "version": "v1.0.1",
-        "version_normalized": "1.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/gliverphp/helpers.git",
-            "reference": "c5204df8169fad55f5b273422e45f56164373ab8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/gliverphp/helpers/zipball/c5204df8169fad55f5b273422e45f56164373ab8",
-            "reference": "c5204df8169fad55f5b273422e45f56164373ab8",
-            "shasum": ""
-        },
-        "time": "2017-11-29T08:45:26+00:00",
-        "type": "package",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Helpers\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Geoffrey Barnes",
-                "email": "geoffreybans@gmail.com"
-            }
-        ],
-        "description": "This package contains all the helper classes for the Gliver framework"
-    },
-    {
-        "name": "gliver/models",
-        "version": "v1.0.0",
-        "version_normalized": "1.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/gliverphp/models.git",
-            "reference": "75babcf6791c9a336d029165209c15be6532294f"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/gliverphp/models/zipball/75babcf6791c9a336d029165209c15be6532294f",
-            "reference": "75babcf6791c9a336d029165209c15be6532294f",
-            "shasum": ""
-        },
-        "time": "2017-11-28T19:10:58+00:00",
-        "type": "package",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Drivers\\Models\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Geoffrey Barnes",
-                "email": "geoffreybans@gmail.com"
-            }
-        ],
-        "description": "The package defines the model classes that enable access and manipulation of the databases in a object relational format"
-    },
-    {
-        "name": "gliver/registry",
-        "version": "v1.0.1",
-        "version_normalized": "1.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/gliverphp/registry.git",
-            "reference": "a656edc0912a6a096b522ad3c49cf80ed7f9e8eb"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/gliverphp/registry/zipball/a656edc0912a6a096b522ad3c49cf80ed7f9e8eb",
-            "reference": "a656edc0912a6a096b522ad3c49cf80ed7f9e8eb",
-            "shasum": ""
-        },
-        "time": "2017-11-29T08:44:57+00:00",
-        "type": "package",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Drivers\\Registry\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Geoffrey Barnes",
-                "email": "geoffreybans@gmail.com"
-            }
-        ],
-        "description": "This package contains the classes that define the registry configuration"
-    },
-    {
-        "name": "gliver/routes",
-        "version": "v1.0.2",
-        "version_normalized": "1.0.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/gliverphp/routes.git",
-            "reference": "40811b1712bd33d12d4e8164bd6201f5d9afac54"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/gliverphp/routes/zipball/40811b1712bd33d12d4e8164bd6201f5d9afac54",
-            "reference": "40811b1712bd33d12d4e8164bd6201f5d9afac54",
-            "shasum": ""
-        },
-        "require": {
-            "gliver/cache": "1.*",
-            "gliver/controllers": "1.*",
-            "gliver/database": "1.*",
-            "gliver/helpers": "1.*",
-            "gliver/models": "1.*",
-            "gliver/registry": "1.*",
-            "gliver/templates": "1.*",
-            "gliver/utilities": "1.*"
-        },
-        "time": "2017-11-29T05:54:39+00:00",
-        "type": "package",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Drivers\\Routes\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Geoffrey Barnes",
-                "email": "geoffreybans@gmail.com"
-            }
-        ],
-        "description": "The package contains the routing classes that parse and map url requests to the respective class and method pairs"
-    },
-    {
-        "name": "gliver/templates",
-        "version": "v1.0.1",
-        "version_normalized": "1.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/gliverphp/templates.git",
-            "reference": "1ee0099ad241bfe0dbab94a21f7ed04cca0a1e2a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/gliverphp/templates/zipball/1ee0099ad241bfe0dbab94a21f7ed04cca0a1e2a",
-            "reference": "1ee0099ad241bfe0dbab94a21f7ed04cca0a1e2a",
-            "shasum": ""
-        },
-        "time": "2017-11-29T09:01:18+00:00",
-        "type": "pakcage",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Drivers\\Templates\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Geoffrey Barnes",
-                "email": "geoffreybans@gmail.com"
-            }
-        ],
-        "description": "This package contains the classes that define the templating engine and grammar map for Gliver views"
-    },
-    {
-        "name": "gliver/utilities",
-        "version": "v1.0.0",
-        "version_normalized": "1.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/gliverphp/utilities.git",
-            "reference": "9c0c3db3d0c72cfc4fabf701d37db398c007ade5"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/gliverphp/utilities/zipball/9c0c3db3d0c72cfc4fabf701d37db398c007ade5",
-            "reference": "9c0c3db3d0c72cfc4fabf701d37db398c007ade5",
-            "shasum": ""
-        },
-        "time": "2017-11-28T19:10:13+00:00",
-        "type": "package",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Drivers\\Utilities\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Geoffrey Barnes",
-                "email": "geoffreybans@gmail.com"
-            }
-        ],
-        "description": "This package This package contains the utility classes needed for bootstraping the gliver framework at lauch"
+        "description": "This is a collection of all the PHP classes that make Gliver a real MVC framework"
     }
 ]
