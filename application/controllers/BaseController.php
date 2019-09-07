@@ -11,7 +11,7 @@
  * @version 1.0.1
  */
 
-use Drivers\Controllers\BaseControllerTrait;
+use Gliver\Controllers\BaseControllerTrait;
 
 class BaseController {
 
