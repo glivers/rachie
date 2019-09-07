@@ -1,0 +1,8 @@
+E_ERROR Uncaught Error: Class 'Drivers\Registry\Registry' not found in C:\xampp\htdocs\dev\gliver\system\initialize.php:4
+Stack trace:
+#0 C:\xampp\htdocs\dev\gliver\system\bootstrap.php(83): require_once()
+#1 C:\xampp\htdocs\dev\gliver\public\index.php(60): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\dev\gliver\system\initialize.php on line (4) As seen from  C:\xampp\htdocs\dev\gliver\system\Exceptions\Debug\BaseShutdown.php(38): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 4)
+#1 [internal function]: shut()
+#2 {main}
