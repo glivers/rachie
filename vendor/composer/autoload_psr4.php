@@ -8,7 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'Models\\' => array($baseDir . '/application/models'),
     'Libraries\\' => array($baseDir . '/application/libraries'),
-    'Gliver\\' => array($vendorDir . '/gliver/core/src'),
     'Exceptions\\' => array($baseDir . '/system/Exceptions'),
     'Controllers\\' => array($baseDir . '/application/controllers'),
 );
