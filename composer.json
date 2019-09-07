@@ -8,13 +8,14 @@
 	"authors" : [
 		{
 			"name" : "Geoffrey Okongo",
-			"email" : "georizhq@gmail.com",
+			"email" : "geoffrey@gliver.org",
 			"homepage" : "https://gliver.org",
 			"role" : "developer"
 		}
 	],
 	"require" : {
-		"php" : ">=5.6.0"
+		"php" : ">=5.6.0",
+		"gliver/framework" : "2.*"
 	},
 	"autoload" : {
 		"psr-4" : {
