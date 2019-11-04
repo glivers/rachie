@@ -4,42 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0edd41a5c1795b1d79bf2b226e64a7d0",
-    "packages": [
-        {
-            "name": "gliver/framework",
-            "version": "v2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/gliverphp/framework.git",
-                "reference": "1c419d8d349d877244f5d71558b410ce65f059cc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/gliverphp/framework/zipball/1c419d8d349d877244f5d71558b410ce65f059cc",
-                "reference": "1c419d8d349d877244f5d71558b410ce65f059cc",
-                "shasum": ""
-            },
-            "type": "package",
-            "autoload": {
-                "psr-4": {
-                    "Gliver\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Geoffrey Okongo",
-                    "email": "geoffrey@gliver.org"
-                }
-            ],
-            "description": "This is a collection of all the PHP classes that make Gliver a real MVC framework",
-            "time": "2019-09-07T02:31:39+00:00"
-        }
-    ],
+    "content-hash": "f72e11d63ad2d10a5c5fa0cef9c69618",
+    "packages": [],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",

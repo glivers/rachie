@@ -15,10 +15,6 @@ class ComposerStaticInit93eb133c40e1d705e7fc135aba839ad9
         array (
             'Libraries\\' => 10,
         ),
-        'G' => 
-        array (
-            'Gliver\\' => 7,
-        ),
         'E' => 
         array (
             'Exceptions\\' => 11,
@@ -37,10 +33,6 @@ class ComposerStaticInit93eb133c40e1d705e7fc135aba839ad9
         'Libraries\\' => 
         array (
             0 => __DIR__ . '/../..' . '/application/libraries',
-        ),
-        'Gliver\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/gliver/framework/src',
         ),
         'Exceptions\\' => 
         array (
