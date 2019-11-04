@@ -8,13 +8,13 @@ return	function() use($config){
 		//check of the routes configuration file exists
 		if ( ! file_exists( __DIR__ . '/../application/routes.php'))
 
-			throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The defined routes.php file cannot be found! Please restore if you deleted");
+			throw new Gliver\Routes\RouteException("Gliver\Routes\RouteException : The defined routes.php file cannot be found! Please restore if you deleted");
 		
 		//get the defined routes
 		$definedRoutes = include __DIR__ . '/../application/routes.php';
 
 	}
-	catch(Drivers\Routes\RouteException $ExceptionObjectInstance){
+	catch(Gliver\Routes\RouteException $ExceptionObjectInstance){
 
 		//display the error message to the browser
 		$ExceptionObjectInstance->errorShow();
@@ -22,13 +22,13 @@ return	function() use($config){
 	}
 
 	//create an instance of the UrlParser Class, 
-	$UrlParserObjectInstance = new Drivers\Utilities\UrlParser(Drivers\Registry\Registry::getUrl(), Drivers\Registry\Registry::getConfig()['url_component_separator']);
+	$UrlParserObjectInstance = new Gliver\Utilities\UrlParser(Gliver\Registry\Registry::getUrl(), Gliver\Registry\Registry::getConfig()['url_component_separator']);
 
 	//and set controller, method and request parameter
 	$UrlParserObjectInstance->setController()->setMethod()->setParameters();
 
 	//create an instance of the route parser class
-	$RouteParserObject = new Drivers\Routes\RouteParser(Drivers\Registry\Registry::getUrl(), $definedRoutes, $UrlParserObjectInstance);
+	$RouteParserObject = new Gliver\Routes\RouteParser(Gliver\Registry\Registry::getUrl(), $definedRoutes, $UrlParserObjectInstance);
 
 	//check if there is infered controller from url string
 	if($UrlParserObjectInstance->getController() !== null){
@@ -84,7 +84,7 @@ return	function() use($config){
 		//get the namespaced controller class
 		$controller 	= 'Controllers\\' . ucwords($controller) . 'Controller';
 
-		if( ! class_exists($controller) ) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The class " . $controller . ' is undefined');
+		if( ! class_exists($controller) ) throw new Gliver\Routes\RouteException("Gliver\Routes\RouteException : The class " . $controller . ' is undefined');
 		
 		if( ! (int)method_exists($controller, $action) )
 		{
@@ -92,7 +92,7 @@ return	function() use($config){
 			$dispatch = new $controller;
 
 			//throw exception if no method can be found
-			if( ! $dispatch->$action() ) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : Access to undefined method " . $controller . '->' . $action);
+			if( ! $dispatch->$action() ) throw new Gliver\Routes\RouteException("Gliver\Routes\RouteException : Access to undefined method " . $controller . '->' . $action);
 			
 			//get the method name
 			$action = $dispatch->$action();
@@ -103,10 +103,10 @@ return	function() use($config){
 		else $dispatch = new $controller;
 
 		//ensure the controller is an instance of the Controllers\BaseController class
-		if( ! $dispatch instanceof Controllers\BaseController) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : $controller class must extend Controllers\BaseController class!");
+		if( ! $dispatch instanceof Controllers\BaseController) throw new Gliver\Routes\RouteException("Gliver\Routes\RouteException : $controller class must extend Controllers\BaseController class!");
 		
-		//check if the controller class uses the Drivers\Controllers\BaseControllerTrait
-		//if( ! array_key_exists('[Controllers\BaseController]', class_uses('Controllers\BaseController', true))) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : Controllers\BaseController class must use Drivers\Controllers\BaseControllerTrait!");
+		//check if the controller class uses the Gliver\Controllers\BaseControllerTrait
+		//if( ! array_key_exists('[Controllers\BaseController]', class_uses('Controllers\BaseController', true))) throw new Gliver\Routes\RouteException("Gliver\Routes\RouteException : Controllers\BaseController class must use Gliver\Controllers\BaseControllerTrait!");
 		
 		//set the controller defaults
 		$dispatch->set_gliver_fr_controller_trait_properties();
@@ -132,7 +132,7 @@ return	function() use($config){
 		if ($dispatch->enable_method_filters === true) 
 		{
 			//get  method metadata
-		    $filter_methods = Drivers\Utilities\Inspector::checkFilter($inspector->getdoccomment());
+		    $filter_methods = Gliver\Utilities\Inspector::checkFilter($inspector->getdoccomment());
 
 		    try {
 
@@ -151,7 +151,7 @@ return	function() use($config){
 		    			{
 		    				case 1:
 		    					//thow exception if the filter method does not exist.
-					    		if( ! (int)method_exists($controller, $filter_methods['before'][0])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The method {$filter_methods['before'][0]} specified as filter in $controller :: $action is undefined.", 1);
+					    		if( ! (int)method_exists($controller, $filter_methods['before'][0])) throw new Gliver\Routes\RouteException("Gliver\Routes\RouteException : The method {$filter_methods['before'][0]} specified as filter in $controller :: $action is undefined.", 1);
 								
 								//call the before filter
 								$dispatch->$filter_methods['before'][0]();
@@ -162,9 +162,9 @@ return	function() use($config){
 
 		    					//check the filter class and method
 		    					//thow exception if the filter method does not exist.
-		    					if( ! class_exists($filter_methods['before'][0])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The class {$filter_methods['before'][0]} specified as filter in $controller :: $action is undefined.", 1);
+		    					if( ! class_exists($filter_methods['before'][0])) throw new Gliver\Routes\RouteException("Gliver\Routes\RouteException : The class {$filter_methods['before'][0]} specified as filter in $controller :: $action is undefined.", 1);
 		    					
-					    		if( ! (int)method_exists($filter_methods['before'][0], $filter_methods['before'][1])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The method {$filter_methods['before'][1]} specified as filter in $controller :: $action is undefined.", 1);
+					    		if( ! (int)method_exists($filter_methods['before'][0], $filter_methods['before'][1])) throw new Gliver\Routes\RouteException("Gliver\Routes\RouteException : The method {$filter_methods['before'][1]} specified as filter in $controller :: $action is undefined.", 1);
 								
 								//call the before filter
 								(new $filter_methods['before'][0]())->$filter_methods['before'][1]();
@@ -181,7 +181,7 @@ return	function() use($config){
 		    			{
 		    				case 1:
 		    					//check if the method specified in teh after filter does not exists and throw error
-					    		if( ! (int)method_exists($dispatch, $filter_methods['after'][0])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The method {$filter_methods['after'][0]} specified as filter in $controller :: $action is undefined.", 1);
+					    		if( ! (int)method_exists($dispatch, $filter_methods['after'][0])) throw new Gliver\Routes\RouteException("Gliver\Routes\RouteException : The method {$filter_methods['after'][0]} specified as filter in $controller :: $action is undefined.", 1);
 	    				
 			    				//launch the controller class filter method
 								call_user_func_array(array($dispatch, $action), $method_params_array);
@@ -193,8 +193,8 @@ return	function() use($config){
 		    				
 		    				case 2:
 		    					//check if the class and method specified in the after filter does not exists and throw error
-		    					if( ! class_exists($filter_methods['after'][0])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The class {$filter_methods['after'][0]} specified as filter in $controller :: $action is undefined.", 1);
-					    		if( ! (int)method_exists($filter_methods['after'][0], $filter_methods['after'][1])) throw new Drivers\Routes\RouteException("Drivers\Routes\RouteException : The method {$filter_methods['after'][1]} specified as filter in $controller :: $action is undefined.", 1);
+		    					if( ! class_exists($filter_methods['after'][0])) throw new Gliver\Routes\RouteException("Gliver\Routes\RouteException : The class {$filter_methods['after'][0]} specified as filter in $controller :: $action is undefined.", 1);
+					    		if( ! (int)method_exists($filter_methods['after'][0], $filter_methods['after'][1])) throw new Gliver\Routes\RouteException("Gliver\Routes\RouteException : The method {$filter_methods['after'][1]} specified as filter in $controller :: $action is undefined.", 1);
 	    				
 			    				//launch the controller class filter method
 								call_user_func_array(array($dispatch, $action), $method_params_array);
@@ -219,7 +219,7 @@ return	function() use($config){
 		    			    	
 		    } 
 
-		    catch (Drivers\Routes\RouteException $e) {
+		    catch (Gliver\Routes\RouteException $e) {
 
 		    	//dislpay the error message
 		    	$e->errorShow();
@@ -238,7 +238,7 @@ return	function() use($config){
 		
 
 	}
-	catch(Drivers\Routes\RouteException $ExceptionObjectInstance){
+	catch(Gliver\Routes\RouteException $ExceptionObjectInstance){
 
 		//display the error message to the browser
 		$ExceptionObjectInstance->errorShow();

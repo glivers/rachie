@@ -82,15 +82,15 @@ return array(
 	 *cd 
 	 */
 	'aliases' => array(
-		'Helpers\Url\Url' 					=> 'Url',
-		'Helpers\Path\Path' 				=> 'Path',
-		'Helpers\Session\Session'			=> 'Session',
-		'Helpers\ArrayHelper\ArrayHelper'	=> 'ArrayHelper',
-		'Helpers\Cookie\Cookie'				=> 'Cookie',
-		'Helpers\Form\Form'					=> 'Form',
-		'Helpers\Input\Input'				=> 'Input',
-		'Helpers\View\View'					=> 'View',
-		'Drivers\Registry'					=> 'Registry',
+		'Gliver\Url\Url' 					=> 'Url',
+		'Gliver\Path\Path' 					=> 'Path',
+		'Gliver\Session\Session'			=> 'Session',
+		'Gliver\ArrayHelper\ArrayHelper'	=> 'ArrayHelper',
+		'Gliver\Cookie\Cookie'				=> 'Cookie',
+		'Gliver\Form\Form'					=> 'Form',
+		'Gliver\Input\Input'				=> 'Input',
+		'Gliver\View\View'					=> 'View',
+		'Gliver\Registry\Registry'			=> 'Registry',
 
 	),
 	/**

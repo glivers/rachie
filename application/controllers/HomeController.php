@@ -11,10 +11,10 @@
  *@version 1.0.1
  */
 
-use Drivers\Templates\View;
+use Gliver\Templates\View;
 use Libraries\CronLibrary\SampleCronController;
 use Models\UsersModel;
-use Helpers\Url\Url;
+use Gliver\Url\Url;
 
 class HomeController extends BaseController {
 
