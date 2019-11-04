@@ -3,8 +3,8 @@
 /**
  *This boostrap.php file is  the excecution point of this application.
  *All Helper and Core classes are called from here to aid is system excecution
- * @author Geoffrey Barnes <geoffreybans@gmail.com>
- * @copyright 2015 - 2030 Geoffrey Barnes
+ * @author Geoffrey Okongo <code@gliver.org>
+ * @copyright 2015 - 2030 Geoffrey Okongo
  * @category Core
  * @package Bootstrap
  * @link https://github.com/gliverphp/gliver

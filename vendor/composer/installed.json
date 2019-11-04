@@ -1,1 +1,37 @@
-[]
+[
+    {
+        "name": "gliver/framework",
+        "version": "v2.0.2",
+        "version_normalized": "2.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/gliverphp/framework.git",
+            "reference": "cfe10e0a73c653e236dd9b8e5a57848c0e08d190"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/gliverphp/framework/zipball/cfe10e0a73c653e236dd9b8e5a57848c0e08d190",
+            "reference": "cfe10e0a73c653e236dd9b8e5a57848c0e08d190",
+            "shasum": ""
+        },
+        "time": "2019-11-04T11:56:50+00:00",
+        "type": "package",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Gliver\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Geoffrey Okongo",
+                "email": "geoffrey@gliver.org"
+            }
+        ],
+        "description": "This is a collection of all the PHP classes that make Gliver a real MVC framework"
+    }
+]

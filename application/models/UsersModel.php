@@ -2,13 +2,13 @@
 
 /**
  * This models handles all user management datatabase operations.
- * @author Geoffrey Barnes <geoffreybans@gmail.com>
- * @copyright 2015 - 2030 Geoffrey Barnes
+ * @author Geoffrey Okongo <code@gliver.org>
+ * @copyright 2015 - 2030 Geoffrey Okongo
  * @category Models
  * @package Models\UsersModel
  * @link https://github.com/gliverphp/gliver
  * @license http://opensource.org/licenses/MIT MIT License
- * @version 1.0.1
+ * @version 2.0.1
  */
 
 class UsersModel extends Model {

@@ -3,8 +3,8 @@
 /**
  *This class handles all exceptions thrown and is extended by other classes
  *
- *@author Geoffrey Barnes <geoffreybans@gmail.com>
- *@copyright 2015 - 2030 Geoffrey Barnes
+ *@author Geoffrey Okongo <code@gliver.org>
+ *@copyright 2015 - 2030 Geoffrey Okongo
  *@category Core
  *@package Core\Exceptions\BaseException
  *@link https://github.com/gliverphp/gliver
@@ -12,7 +12,7 @@
  *@version 1.0.1
  */
 
-use Drivers\Registry\Registry;
+use Gliver\Registry\Registry;
 use Exceptions\Debug\BaseExceptionInterface;
 
 class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {
