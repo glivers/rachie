@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "gliver/framework",
-            "version": "v2.0.1",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gliverphp/framework.git",
-                "reference": "1c419d8d349d877244f5d71558b410ce65f059cc"
+                "reference": "cfe10e0a73c653e236dd9b8e5a57848c0e08d190"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gliverphp/framework/zipball/1c419d8d349d877244f5d71558b410ce65f059cc",
-                "reference": "1c419d8d349d877244f5d71558b410ce65f059cc",
+                "url": "https://api.github.com/repos/gliverphp/framework/zipball/cfe10e0a73c653e236dd9b8e5a57848c0e08d190",
+                "reference": "cfe10e0a73c653e236dd9b8e5a57848c0e08d190",
                 "shasum": ""
             },
             "type": "package",
@@ -37,7 +37,7 @@
                 }
             ],
             "description": "This is a collection of all the PHP classes that make Gliver a real MVC framework",
-            "time": "2019-09-07T02:31:39+00:00"
+            "time": "2019-11-04T11:56:50+00:00"
         }
     ],
     "packages-dev": [],

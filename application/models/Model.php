@@ -2,13 +2,13 @@
 
 /**
  * This is the base Model from which all named models derive by extending.
- * @author Geoffrey Barnes <geoffreybans@gmail.com>
- * @copyright 2015 - 2030 Geoffrey Barnes
+ * @author Geoffrey Okongo <code@gliver.org>
+ * @copyright 2015 - 2030 Geoffrey Okongo
  * @category Models
  * @package Models\BaseModel
  * @link https://github.com/gliverphp/gliver
  * @license http://opensource.org/licenses/MIT MIT License
- * @version 1.0.1
+ * @version 2.0.1
  */
 
 use Drivers\Models\BaseModelClass;

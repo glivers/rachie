@@ -2,13 +2,13 @@
 	"name" : "gliver/gliver",
 	"type" : "project",
 	"description" : "The base foundation for the gliver mvc PHP framework",
-	"keywords" : ["gliver", "mvc", "gliver-mvc", "php framework"],
+	"keywords" : ["gliver", "mvc", "gliver-mvc", "php framework", "mvc framework"],
 	"homepage" : "http://github.com/gliverphp/gliver",
 	"license" : "MIT",
 	"authors" : [
 		{
 			"name" : "Geoffrey Okongo",
-			"email" : "geoffrey@gliver.org",
+			"email" : "code@gliver.org",
 			"homepage" : "https://gliver.org",
 			"role" : "developer"
 		}

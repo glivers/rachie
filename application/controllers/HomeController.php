@@ -2,8 +2,8 @@
 
 /**
  *This class loads the application homepage
- *@author Geoffrey Barnes <geoffreybans@gmail.com>
- *@copyright 2015 - 2030 Geoffrey Barnes
+ *@author Geoffrey Okongo <code@gliver.org>
+ *@copyright 2015 - 2030 Geoffrey Okongo
  *@category Controllers
  *@package Controllers\Home
  *@link https://github.com/gliverphp/gliver
