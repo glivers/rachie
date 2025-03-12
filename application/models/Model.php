@@ -2,7 +2,7 @@
 
 /**
  * This is the base Model from which all named models derive by extending.
- * @author Geoffrey Okongo <hello@rachie.dev>
+ * @author Geoffrey Okongo <code@rachie.dev>
  * @copyright 2015 - 2030 Geoffrey Okongo
  * @category Models
  * @package Models\BaseModel
