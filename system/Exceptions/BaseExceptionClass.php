@@ -12,7 +12,7 @@
  *@version 1.0.1
  */
 
-use Rachie\Registry\Registry;
+use Rackage\Registry\Registry;
 use Exceptions\Debug\BaseExceptionInterface;
 
 class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {

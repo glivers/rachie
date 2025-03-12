@@ -2,16 +2,16 @@
 
 /**
  * This is the base controller from which all named controllers derive by extending.
- * @author Geoffrey Okongo <code@gliver.org>
+ * @author Geoffrey Okongo <hello@rachie.dev>
  * @copyright 2015 - 2030 Geoffrey Okongo
  * @category Controllers
  * @package Controllers\BaseController
- * @link https://github.com/gliverphp/gliver
+ * @link https://github.com/glivers/rachie
  * @license http://opensource.org/licenses/MIT MIT License
  * @version 2.0.1
  */
 
-use Gliver\Controllers\BaseControllerTrait;
+use Rackage\Controllers\BaseControllerTrait;
 
 class BaseController {
 

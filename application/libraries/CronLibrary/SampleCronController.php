@@ -2,11 +2,11 @@
 
 /**
  *This class launches the cron job to activate all users database
- *@author Geoffrey Okongo <code@gliver.org>
+ *@author Geoffrey Okongo <hello@rachie.dev>
  *@copyright 2015 - 2030 Geoffrey Okongo
  *@category Cron\Controllers
  *@package Cron\Controllers\Sample
- *@link https://github.com/gliverphp/gliver
+ *@link https://github.com/glivers/rachie
  *@license http://opensource.org/licenses/MIT MIT License
  *@version 2.0.1
  */
