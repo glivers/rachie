@@ -2,11 +2,11 @@
 
 /**
  * This is the base Model from which all named models derive by extending.
- * @author Geoffrey Okongo <code@gliver.org>
+ * @author Geoffrey Okongo <hello@rachie.dev>
  * @copyright 2015 - 2030 Geoffrey Okongo
  * @category Models
  * @package Models\BaseModel
- * @link https://github.com/gliverphp/gliver
+ * @link https://github.com/glivers/rachie
  * @license http://opensource.org/licenses/MIT MIT License
  * @version 2.0.1
  */

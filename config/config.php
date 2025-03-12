@@ -11,7 +11,7 @@ return array(
 	 *Your name as the author of this application
 	 *this would appear in your console generated classes
 	 */
-	'author' => 'Geoffrey Okongo <georizhq@gmail.com>',
+	'author' => 'Geoffrey Okongo <code@rachie.dev>',
 
 	/**
 	*Your copyright statement
@@ -41,7 +41,7 @@ return array(
 	/**
 	 *Set the Site Title
 	 */
-	'title' => 'Gliver Framework',
+	'title' => 'Rachie Framework',
 	/**
 	 *Set the protocol for this url
 	 */
@@ -82,15 +82,15 @@ return array(
 	 *cd 
 	 */
 	'aliases' => array(
-		'Gliver\Url\Url' 					=> 'Url',
-		'Gliver\Path\Path' 					=> 'Path',
-		'Gliver\Session\Session'			=> 'Session',
-		'Gliver\ArrayHelper\ArrayHelper'	=> 'ArrayHelper',
-		'Gliver\Cookie\Cookie'				=> 'Cookie',
-		'Gliver\Form\Form'					=> 'Form',
-		'Gliver\Input\Input'				=> 'Input',
-		'Gliver\View\View'					=> 'View',
-		'Gliver\Registry\Registry'			=> 'Registry',
+		'Rackage\Url\Url' 					=> 'Url',
+		'Rackage\Path\Path' 					=> 'Path',
+		'Rackage\Session\Session'			=> 'Session',
+		'Rackage\ArrayHelper\ArrayHelper'	=> 'ArrayHelper',
+		'Rackage\Cookie\Cookie'				=> 'Cookie',
+		'Rackage\Form\Form'					=> 'Form',
+		'Rackage\Input\Input'				=> 'Input',
+		'Rackage\View\View'					=> 'View',
+		'Rackage\Registry\Registry'			=> 'Registry',
 
 	),
 	/**

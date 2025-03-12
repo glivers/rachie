@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0edd41a5c1795b1d79bf2b226e64a7d0",
+    "content-hash": "06f59a8a6dc8963eed1d3cac6bbde813",
     "packages": [
         {
             "name": "gliver/framework",
@@ -37,6 +37,10 @@
                 }
             ],
             "description": "This is a collection of all the PHP classes that make Gliver a real MVC framework",
+            "support": {
+                "issues": "https://github.com/gliverphp/framework/issues",
+                "source": "https://github.com/gliverphp/framework/tree/v2.0.2"
+            },
             "time": "2019-11-04T11:56:50+00:00"
         }
     ],
@@ -49,5 +53,6 @@
     "platform": {
         "php": ">=5.6.0"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }

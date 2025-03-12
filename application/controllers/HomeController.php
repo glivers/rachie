@@ -2,19 +2,19 @@
 
 /**
  *This class loads the application homepage
- *@author Geoffrey Okongo <code@gliver.org>
+ *@author Geoffrey Okongo <code@rachie.dev>
  *@copyright 2015 - 2030 Geoffrey Okongo
  *@category Controllers
  *@package Controllers\Home
- *@link https://github.com/gliverphp/gliver
+ *@link https://github.com/glivers/rachie
  *@license http://opensource.org/licenses/MIT MIT License
  *@version 1.0.1
  */
 
-use Gliver\Templates\View;
+use Rackage\Templates\View;
 use Libraries\CronLibrary\SampleCronController;
 use Models\UsersModel;
-use Gliver\Url\Url;
+use Rackage\Url\Url;
 
 class HomeController extends BaseController {
 

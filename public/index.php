@@ -3,11 +3,11 @@
 /**
  *This index.php file is  the single entry point to this application.
  *All Helper and Core classes are called from here to aid is system excecution
- *@author Geoffrey Oliver <geoffrey.oliver2@gmail.com>
- *@copyright 2015 - 2020 Geoffrey Oliver
+ *@author Geoffrey Okongo <code@rachie.dev>
+ *@copyright 2015 - 2020 Geoffrey Okongo
  *@category Core
  *@package Index
- *@link https://github.com/gliver-mvc/gliver
+ *@link https://github.com/glivers/rachie
  *@license http://opensource.org/licenses/MIT MIT License
  *@version 1.0.1
  */
@@ -16,7 +16,7 @@
 try{
 	
 	//start the php_engine_launch timer
-	$gliver_app_start = microtime(true);
+	$rachie_app_start = microtime(true);
 
 	/**
 	 *This function defines the types of errors to be reported

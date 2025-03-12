@@ -2,11 +2,11 @@
 
 /**
  *This models updates user information in the database
- *@author Geoffrey Okongo <code@gliver.org>
+ *@author Geoffrey Okongo <code@rachie.dev>
  *@copyright 2015 - 2030 Geoffrey Okongo
  *@category Cron\Models
  *@package Cron\Models\Sample
- *@link https://github.com/gliverphp/gliver
+ *@link https://github.com/glivers/rachie
  *@license http://opensource.org/licenses/MIT MIT License
  *@version 2.0.1
  */
