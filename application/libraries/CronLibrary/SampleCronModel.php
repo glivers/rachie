@@ -2,7 +2,7 @@
 
 /**
  *This models updates user information in the database
- *@author Geoffrey Okongo <hello@rachie.dev>
+ *@author Geoffrey Okongo <code@rachie.dev>
  *@copyright 2015 - 2030 Geoffrey Okongo
  *@category Cron\Models
  *@package Cron\Models\Sample

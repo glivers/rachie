@@ -3,7 +3,7 @@
 /**
  *This boostrap.php file is  the excecution point of this application.
  *All Helper and Core classes are called from here to aid is system excecution
- * @author Geoffrey Okongo <hello@rachie.dev>
+ * @author Geoffrey Okongo <code@rachie.dev>
  * @copyright 2015 - 2030 Geoffrey Okongo
  * @category Core
  * @package Bootstrap

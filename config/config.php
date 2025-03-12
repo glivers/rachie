@@ -11,7 +11,7 @@ return array(
 	 *Your name as the author of this application
 	 *this would appear in your console generated classes
 	 */
-	'author' => 'Geoffrey Okongo <hello@rachie.dev>',
+	'author' => 'Geoffrey Okongo <code@rachie.dev>',
 
 	/**
 	*Your copyright statement

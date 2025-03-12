@@ -3,7 +3,7 @@
 /**
  *This class handles all exceptions thrown and is extended by other classes
  *
- *@author Geoffrey Okongo <hello@rachie.dev>
+ *@author Geoffrey Okongo <code@rachie.dev>
  *@copyright 2015 - 2030 Geoffrey Okongo
  *@category Core
  *@package Core\Exceptions\BaseException

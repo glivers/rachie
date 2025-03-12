@@ -2,7 +2,7 @@
 
 /**
  * This models handles all user management datatabase operations.
- * @author Geoffrey Okongo <hello@rachie.dev>
+ * @author Geoffrey Okongo <code@rachie.dev>
  * @copyright 2015 - 2030 Geoffrey Okongo
  * @category Models
  * @package Models\UsersModel

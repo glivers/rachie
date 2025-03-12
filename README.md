@@ -20,7 +20,7 @@ For detailed installation instructions please visit the <a href="http://rachie.d
 
 # Security Vulnerabilities
 
-The security of the information you handle with your application is at the core of Rachie. We have already addressed the major security vulnerabilites that are associated with PHP applications, but should you spot any vulnerability please send an email to hello@rachie.dev and this would be fixed ASAP!
+The security of the information you handle with your application is at the core of Rachie. We have already addressed the major security vulnerabilites that are associated with PHP applications, but should you spot any vulnerability please send an email to code@rachie.dev and this would be fixed ASAP!
 
 # License
 

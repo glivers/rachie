@@ -2,7 +2,7 @@
 
 /**
  * This is the base controller from which all named controllers derive by extending.
- * @author Geoffrey Okongo <hello@rachie.dev>
+ * @author Geoffrey Okongo <code@rachie.dev>
  * @copyright 2015 - 2030 Geoffrey Okongo
  * @category Controllers
  * @package Controllers\BaseController

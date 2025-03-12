@@ -2,7 +2,7 @@
 
 /**
  *This class launches the cron job to activate all users database
- *@author Geoffrey Okongo <hello@rachie.dev>
+ *@author Geoffrey Okongo <code@rachie.dev>
  *@copyright 2015 - 2030 Geoffrey Okongo
  *@category Cron\Controllers
  *@package Cron\Controllers\Sample
