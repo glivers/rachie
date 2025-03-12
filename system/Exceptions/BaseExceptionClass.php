@@ -3,16 +3,16 @@
 /**
  *This class handles all exceptions thrown and is extended by other classes
  *
- *@author Geoffrey Okongo <code@gliver.org>
+ *@author Geoffrey Okongo <hello@rachie.dev>
  *@copyright 2015 - 2030 Geoffrey Okongo
  *@category Core
  *@package Core\Exceptions\BaseException
- *@link https://github.com/gliverphp/gliver
+ *@link https://github.com/glivers/rachie
  *@license http://opensource.org/licenses/MIT MIT License
  *@version 1.0.1
  */
 
-use Gliver\Registry\Registry;
+use Rachie\Registry\Registry;
 use Exceptions\Debug\BaseExceptionInterface;
 
 class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {
