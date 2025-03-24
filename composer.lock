@@ -4,26 +4,26 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06f59a8a6dc8963eed1d3cac6bbde813",
+    "content-hash": "c2729231e230aaaa1cc55d7ef4947e40",
     "packages": [
         {
-            "name": "gliver/framework",
-            "version": "v2.0.2",
+            "name": "glivers/rackage",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/gliverphp/framework.git",
-                "reference": "cfe10e0a73c653e236dd9b8e5a57848c0e08d190"
+                "url": "https://github.com/glivers/rackage.git",
+                "reference": "1d67d53e4e84383ce6a25e9c655bf9fbf7f327b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gliverphp/framework/zipball/cfe10e0a73c653e236dd9b8e5a57848c0e08d190",
-                "reference": "cfe10e0a73c653e236dd9b8e5a57848c0e08d190",
+                "url": "https://api.github.com/repos/glivers/rackage/zipball/1d67d53e4e84383ce6a25e9c655bf9fbf7f327b4",
+                "reference": "1d67d53e4e84383ce6a25e9c655bf9fbf7f327b4",
                 "shasum": ""
             },
             "type": "package",
             "autoload": {
                 "psr-4": {
-                    "Gliver\\": "src"
+                    "Rackage\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -33,15 +33,15 @@
             "authors": [
                 {
                     "name": "Geoffrey Okongo",
-                    "email": "geoffrey@gliver.org"
+                    "email": "code@rachie.dev"
                 }
             ],
-            "description": "This is a collection of all the PHP classes that make Gliver a real MVC framework",
+            "description": "This is a collection of all the PHP classes that make Rachie a real MVC framework",
             "support": {
-                "issues": "https://github.com/gliverphp/framework/issues",
-                "source": "https://github.com/gliverphp/framework/tree/v2.0.2"
+                "issues": "https://github.com/glivers/rackage/issues",
+                "source": "https://github.com/glivers/rackage/tree/v3.0.0"
             },
-            "time": "2019-11-04T11:56:50+00:00"
+            "time": "2025-03-12T06:20:46+00:00"
         }
     ],
     "packages-dev": [],
@@ -54,5 +54,5 @@
         "php": ">=5.6.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.2.0"
 }
