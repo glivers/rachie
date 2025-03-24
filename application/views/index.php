@@ -13,21 +13,19 @@
     
 </head>
 <body>
-<div class="gliverContainer clearfix">
+<div class="rachieContainer clearfix">
     <header>
-        <img src="{{ Url::assets('img/logo.png') }}" alt="gliver logo" class="gliverLogo">
+        <img src="{{ Url::assets('img/logo.png') }}" alt="rachie logo" class="rachieLogo">
         <div class="headerText">
-            <h1>Welcome to Gliver<br><span class="subtext">MVC at it’s finest...</span> </h1>
+            <h1>Welcome to Rachie<br><span class="subtext"> MVC at it’s finest...</span> </h1>
 
-            <p>Request Time = {{$request_time}} Gliver is a powerful open-source PHP framework with a very small footprint.
-                Was made to be a simple and elegant toolkit, enabling rapid application development
-                of both web sites and web applications.
+            <p>Request Time = {{$request_time}} Rachie is a powerful open-source PHP framework with a very small footprint. Was made to be a simple and elegant toolkit, enabling rapid application development of both web sites and web applications.
             </p>
         </div>
     </header>
     <div class="content">
         <div class="left-col">
-            <h2>Why you need Gliver MVC </h2>
+            <h2>Why you need Rachie MVC </h2>
             <ul class="arrow">
                 <li>Package Management is a snap due to Composer</li>
                 <li>Implements caching in Memcache or Redis, faster applications.</li>
@@ -42,22 +40,22 @@
                 <li>
                     <div class="number">1</div>
                     <div class="wrapper">
-                        <h4 class="gliver-text">To edit this page </h4>
+                        <h4 class="rachie-text">To edit this page </h4>
                         <p><a href="{{ Url::link(array('home','index')) }}">application/views/index.php</a></p>
                     </div>
                 </li>
                 <li>
                     <div class="number">2</div>
                     <div class="wrapper">
-                        <h4 class="gliver-text">Controller</h4>
+                        <h4 class="rachie-text">Controller</h4>
                         <p><a href="{{ Url::link(array('home','index')) }}">application/controllers/HomeController</a></p>
                     </div>
                 </li>
                 <li class="bmarg">
                     <div class="number">3</div>
                     <div class="wrapper">
-                        <h4 class="gliver-text">Read the users guider found here: </h4>
-                        <p><a href="{{ Url::link(array('home','index')) }}">https://getgliver.com/documentation{{ '@{{' }}  {{ '@' }}for</a></p>
+                        <h4 class="rachie-text">Read the users guider found here: </h4>
+                        <p><a href="{{ Url::link(array('home','index')) }}">https://rachie.dev/documentation{{ '@{{' }}  {{ '@' }}for</a></p>
                     </div>
                 </li>
             </ul>
@@ -65,7 +63,7 @@
 
     </div>
 
-</div><!--EO gliverContainer-->
+</div><!--EO rachieContainer-->
 </body>
 </html>
 
