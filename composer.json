@@ -15,7 +15,7 @@
 	],
 	"require" : {
 		"php" : ">=5.6.0",
-		"glivers/rackage" : "2.*"
+		"glivers/rackage" : "3.*"
 	},
 	"autoload" : {
 		"psr-4" : {
