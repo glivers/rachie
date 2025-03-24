@@ -16,4 +16,4 @@ Rackage\Registry\Registry::setSettings($database);
 Rackage\Registry\Registry::setUrl( ( isset($_GET['url8g6l67i6v4chdgetrcswyr']) ) ? $_GET['url8g6l67i6v4chdgetrcswyr'] : '');
 
 //set the application start time
-Rackage\Registry\Registry::$gliver_app_start = $gliver_app_start;
+Rackage\Registry\Registry::$gliver_app_start = $rachie_app_start;
