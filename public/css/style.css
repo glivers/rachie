@@ -70,7 +70,7 @@ header{
     height: 284px;
     width: 100%;
 }
-.gliverContainer {
+.rachieContainer {
     margin-top: 35px;
     width: 1200px;
     margin: 0 auto;
@@ -82,7 +82,7 @@ header{
     margin-left: 200px;
 }
 
-.gliverLogo{
+.rachieLogo{
     position: relative;
     float: left;
     width: 170px;
@@ -156,7 +156,7 @@ span.subtext{
 .wrapper{
     overflow: hidden;
 }
-.gliver-text{
+.rachie-text{
     margin-top: 15px;
     color: #5e9796;
     font-weight: 600;
