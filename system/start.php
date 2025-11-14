@@ -109,10 +109,11 @@ return	function() use($config){
 		//if( ! array_key_exists('[Controllers\BaseController]', class_uses('Controllers\BaseController', true))) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : Controllers\BaseController class must use Rackage\Controllers\BaseControllerTrait!");
 		
 		//set the controller defaults
-		$dispatch->set_gliver_fr_controller_trait_properties();
+		$dispatch->set_rachie_fr_controller_trait_properties();
 
 		//get the Inspector class object
-		$inspector = (new ReflectionClass($dispatch))->getMethod($action);
+		$classpect =  new ReflectionClass($dispatch);
+		$inspector = $classpect->getMethod($action);
 
 		//get the number of parameters from the reflector
 		$method_params_count = count($inspector->getParameters());
@@ -131,100 +132,159 @@ return	function() use($config){
 		//check if method filter are set, and process filter
 		if ($dispatch->enable_method_filters === true) 
 		{
-			//get  method metadata
-		    $filter_methods = Rackage\Utilities\Inspector::checkFilter($inspector->getdoccomment());
 
-		    try {
-
-		    	if($filter_methods === false){
-
-					//launch the infered method for this request
-					call_user_func_array(array($dispatch, $action), $method_params_array);
-
-		    	}
-
-		    	else {
-
-		    		if(isset($filter_methods['before'])) {
-
-		    			switch (count($filter_methods['before'])) 
-		    			{
-		    				case 1:
-		    					//thow exception if the filter method does not exist.
-					    		if( ! (int)method_exists($controller, $filter_methods['before'][0])) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : The method {$filter_methods['before'][0]} specified as filter in $controller :: $action is undefined.", 1);
-								
-								//call the before filter
-								$dispatch->$filter_methods['before'][0]();
-
-		    					break;
-		    				
-		    				case 2:
-
-		    					//check the filter class and method
-		    					//thow exception if the filter method does not exist.
-		    					if( ! class_exists($filter_methods['before'][0])) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : The class {$filter_methods['before'][0]} specified as filter in $controller :: $action is undefined.", 1);
-		    					
-					    		if( ! (int)method_exists($filter_methods['before'][0], $filter_methods['before'][1])) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : The method {$filter_methods['before'][1]} specified as filter in $controller :: $action is undefined.", 1);
-								
-								//call the before filter
-								(new $filter_methods['before'][0]())->$filter_methods['before'][1]();
-
-		    					break;
-		    			}
-
-		    		}
-
-
-		    		if(isset($filter_methods['after'])){
-
-		    			switch (count($filter_methods['after'])) 
-		    			{
-		    				case 1:
-		    					//check if the method specified in teh after filter does not exists and throw error
-					    		if( ! (int)method_exists($dispatch, $filter_methods['after'][0])) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : The method {$filter_methods['after'][0]} specified as filter in $controller :: $action is undefined.", 1);
-	    				
-			    				//launch the controller class filter method
-								call_user_func_array(array($dispatch, $action), $method_params_array);
-				
-			    				//call the after filter
-								$dispatch->$filter_methods['after'][0]();
-
-		    					break;
-		    				
-		    				case 2:
-		    					//check if the class and method specified in the after filter does not exists and throw error
-		    					if( ! class_exists($filter_methods['after'][0])) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : The class {$filter_methods['after'][0]} specified as filter in $controller :: $action is undefined.", 1);
-					    		if( ! (int)method_exists($filter_methods['after'][0], $filter_methods['after'][1])) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : The method {$filter_methods['after'][1]} specified as filter in $controller :: $action is undefined.", 1);
-	    				
-			    				//launch the controller class filter method
-								call_user_func_array(array($dispatch, $action), $method_params_array);
-				
-			    				//call the after filter
-								(new $filter_methods['after'][0]())->$filter_methods['after'][1]();
-
-		    					break;
-
-		    			}
-
-		    		}
-
-		    		else{
-
-						//launch the controller class filter method
-						call_user_func_array(array($dispatch, $action), $method_params_array);
-	    			
-		    		}
-					
-		    	}
-		    			    	
-		    } 
-
-		    catch (Rackage\Routes\RouteException $e) {
-
-		    	//dislpay the error message
-		    	$e->errorShow();
-		    	
+		    // Get class-level filters
+		    $class_filter_methods = Rackage\Utilities\Inspector::checkFilter($classpect->getDocComment());
+		    
+		    // Get method-level filters (existing code)
+		    $method_filter_methods = Rackage\Utilities\Inspector::checkFilter($inspector->getDocComment());
+		    
+		    // Merge filters: class @before, then method @before
+		    $combined_filters = [
+		        'before' => [],
+		        'after' => []
+		    ];
+		    
+		    // Add class-level @before filters first
+		    if ($class_filter_methods && isset($class_filter_methods['before'])) {
+		        $combined_filters['before'] = array_merge(
+		            $combined_filters['before'],
+		            $class_filter_methods['before']
+		        );
 		    }
+		    
+		    // Add method-level @before filters
+		    if ($method_filter_methods && isset($method_filter_methods['before'])) {
+		        $combined_filters['before'] = array_merge(
+		            $combined_filters['before'],
+		            $method_filter_methods['before']
+		        );
+		    }
+		    
+		    // Add method-level @after filters first
+		    if ($method_filter_methods && isset($method_filter_methods['after'])) {
+		        $combined_filters['after'] = array_merge(
+		            $combined_filters['after'],
+		            $method_filter_methods['after']
+		        );
+		    }
+		    
+		    // Add class-level @after filters last
+		    if ($class_filter_methods && isset($class_filter_methods['after'])) {
+		        $combined_filters['after'] = array_merge(
+		            $combined_filters['after'],
+		            $class_filter_methods['after']
+		        );
+		    }
+		    
+		    // Now use $combined_filters instead of $filter_methods
+		    $filter_methods = $combined_filters;
+
+			try {
+
+			    if($filter_methods === false){
+			        //launch the infered method for this request
+			        call_user_func_array(array($dispatch, $action), $method_params_array);
+			    }
+			    else {
+			        // ========== EXECUTE ALL @BEFORE FILTERS ==========
+			        if(isset($filter_methods['before'])) {
+			            // Loop through each before filter
+			            foreach($filter_methods['before'] as $filter) {
+			                switch (count($filter)) 
+			                {
+			                    case 1:
+			                        //throw exception if the filter method does not exist
+			                        if( ! (int)method_exists($controller, $filter[0])) {
+			                            throw new Rackage\Routes\RouteException(
+			                                "Rackage\Routes\RouteException : The method {$filter[0]} specified as filter in $controller :: $action is undefined.", 
+			                                1
+			                            );
+			                        }
+			                        
+			                        //call the before filter
+			                        $dispatch->$filter[0]();
+			                        break;
+			                    
+			                    case 2:
+			                        //check the filter class and method
+			                        //throw exception if the filter method does not exist
+			                        if( ! class_exists($filter[0])) {
+			                            throw new Rackage\Routes\RouteException(
+			                                "Rackage\Routes\RouteException : The class {$filter[0]} specified as filter in $controller :: $action is undefined.", 
+			                                1
+			                            );
+			                        }
+			                        
+			                        if( ! (int)method_exists($filter[0], $filter[1])) {
+			                            throw new Rackage\Routes\RouteException(
+			                                "Rackage\Routes\RouteException : The method {$filter[1]} specified as filter in $controller :: $action is undefined.", 
+			                                1
+			                            );
+			                        }
+			                        
+			                        //call the before filter
+			                        (new $filter[0]())->$filter[1]();
+			                        break;
+			                }
+			            }
+			        }
+			        
+			        // ========== EXECUTE CONTROLLER METHOD ==========
+			        call_user_func_array(array($dispatch, $action), $method_params_array);
+			        
+			        // ========== EXECUTE ALL @AFTER FILTERS ==========
+			        if(isset($filter_methods['after'])){
+			            // Loop through each after filter
+			            foreach($filter_methods['after'] as $filter) {
+			                switch (count($filter)) 
+			                {
+			                    case 1:
+			                        //check if the method specified in the after filter does not exist and throw error
+			                        if( ! (int)method_exists($dispatch, $filter[0])) {
+			                            throw new Rackage\Routes\RouteException(
+			                                "Rackage\Routes\RouteException : The method {$filter[0]} specified as filter in $controller :: $action is undefined.", 
+			                                1
+			                            );
+			                        }
+			                        
+			                        //call the after filter
+			                        $dispatch->$filter[0]();
+			                        break;
+			                    
+			                    case 2:
+			                        //check if the class and method specified in the after filter does not exist and throw error
+			                        if( ! class_exists($filter[0])) {
+			                            throw new Rackage\Routes\RouteException(
+			                                "Rackage\Routes\RouteException : The class {$filter[0]} specified as filter in $controller :: $action is undefined.", 
+			                                1
+			                            );
+			                        }
+			                        
+			                        if( ! (int)method_exists($filter[0], $filter[1])) {
+			                            throw new Rackage\Routes\RouteException(
+			                                "Rackage\Routes\RouteException : The method {$filter[1]} specified as filter in $controller :: $action is undefined.", 
+			                                1
+			                            );
+			                        }
+			                        
+			                        //call the after filter
+			                        (new $filter[0]())->$filter[1]();
+			                        break;
+			                }
+			            }
+			        }
+			        
+			    }
+			                        
+			} 
+
+			catch (Rackage\Routes\RouteException $e) {
+
+			    //display the error message
+			    $e->errorShow();
+			    
+			}
 
 		}
 
