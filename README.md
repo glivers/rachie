@@ -1,27 +1,98 @@
 # Rachie PHP Framework
 
-Rachie Framework offers you very lightweight and therefore lightning fast MVC environment for writing Web Applications using PHP! An open source framework for rapid application development. Rachie has almost no learning curve and is a best bet for newbies as well as seasoned developers.
+> A lightweight, elegant PHP MVC framework for building web applications quickly.
 
-To make things more interesting Rachie implements the latest technologies for example <a href="https://getcomposer.org/">Composer</a> for package management and use of <a href="https://packagist.org/">Packagist</a> libraries. Lightweight templating engine with efficient ORM - sure this is all you need for an amazing application. But still gives you flexibility to extend the core functionality with custom code...
+[![Latest Version](https://img.shields.io/badge/version-2.0-blue)]
+[![PHP Version](https://img.shields.io/badge/php-%3E%3D7.0-purple)]
+[![License](https://img.shields.io/badge/license-MIT-green)]
 
-# Official Documentation
+## What is Rachie?
 
-The Official detailed documentation for the Rachie framework is available at <a href="http://rachie.dev/">Rachie Documentation Website</a>
+Rachie is a simple, lightweight PHP framework that helps you build web applications without the complexity of larger frameworks. If Laravel feels too heavy and pure PHP feels too raw, Rachie is your sweet spot.
 
+## Key Features
 
-# Server Requirements
+- **Simple Routing** - Elegant URL routing with support for parameters and filters
+- **MVC Architecture** - Clean separation of concerns
+- **Database Layer** - Fluent query builder with PDO prepared statements
+- **Template Engine** - Simple `{{ }}` syntax for views
+- **Form Validation** - Built-in validation with custom rules
+- **Security First** - CSRF protection, XSS prevention, SQL injection prevention
+- **File-based Cache** - Simple caching for expensive operations
+- **Zero Configuration** - Works out of the box
 
-Rachie Framework requires PHP version 5.4 or greater to run. In order to avoid broken functionality or code and opening security holes in your application, upgrade to version >=5.4.
+## Quick Start
 
+### Installation
+```bash
+composer create-project glivers/rachie myapp
+cd myapp
+```
 
-# Installation
+### Configuration
 
-For detailed installation instructions please visit the <a href="http://rachie.dev/home/installation">installation section</a>  of the Rachie User Guide.
+Edit `config/database.php`:
+```php
+return [
+    'default' => 'mysql',
+    'mysql' => [
+        'host' => 'localhost',
+        'username' => 'root',
+        'password' => '',
+        'database' => 'myapp'
+    ]
+];
+```
 
-# Security Vulnerabilities
+### Your First Route
 
-The security of the information you handle with your application is at the core of Rachie. We have already addressed the major security vulnerabilites that are associated with PHP applications, but should you spot any vulnerability please send an email to code@rachie.dev and this would be fixed ASAP!
+Add to `config/routes.php`:
+```php
+'hello' => 'Hello@world'
+```
 
-# License
+Create `application/controllers/HelloController.php`:
+```php
+<?php namespace Controllers;
 
-Rachie PHP MVC Framework is an open source software lincensed unders the <a href="http://opensource.org/licenses/MIT">MIT License</a>
+class HelloController extends BaseController {
+    public function getWorld() {
+        echo "Hello, Rachie!";
+    }
+}
+```
+
+Visit `http://localhost/hello/world`
+
+## Documentation
+
+Full documentation: **https://rachie.dev**
+
+## Requirements
+
+- PHP 7.0 or higher
+- Apache or Nginx
+- MySQL, PostgreSQL, or SQLite
+- Composer
+
+## Learning Rachie
+
+- [Documentation](https://rachie.dev)
+- [Tutorials](https://rachie.dev/tutorials.html)
+- [API Reference](https://rachie.dev/api/)
+
+## Contributing
+
+Thank you for considering contributing to Rachie! Please see our [Contributing Guide](https://rachie.dev/contributing.html).
+
+## Security
+
+If you discover a security vulnerability, please email code@rachie.dev.
+
+## License
+
+Rachie is open-source software licensed under the [MIT license](LICENSE).
+
+## Credits
+
+Created by [Geoffrey Okongo](https://github.com/glivers)
