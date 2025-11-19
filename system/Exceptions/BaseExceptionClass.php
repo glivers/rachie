@@ -12,7 +12,7 @@
  *@version 1.0.1
  */
 
-use Rackage\Registry\Registry;
+use Rackage\Registry;
 use Exceptions\Debug\BaseExceptionInterface;
 
 class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {
@@ -30,12 +30,12 @@ class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {
 	/**
 	*@var boolean true|false The value of the application environment, defaults to true
 	*/
-	public $devENV = true;
+	public $DEV = true;
 
 	/**
 	*@var string The path to the error page HTML
 	*/
-	public $ErrorPageHtml;
+	public $errorPage;
 
 	/**
 	*@var string This property stores the error message
@@ -64,16 +64,16 @@ class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {
 		parent::__construct($errorMessage, $errorCode, $previous);
 
 		//set the value of siteTile property
-		$this->siteTile = Registry::getConfig()['title'];
+		$this->siteTile = Registry::settings()['title'];
 
 		//set the default error log file path
-		$this->errorLogFilePath = Registry::getConfig()['root'] . '/' . Registry::getConfig()['error_log_file_path'];
+		$this->errorLogFilePath = Registry::settings()['root'] . '/' . Registry::settings()['error_log_file_path'];
 
 		//set the value  of the development environment, as defined in the user configuration
-		$this->devENV = Registry::getConfig()['dev'];
+		$this->DEV = Registry::settings()['dev'];
 
 		//set the path to the error page html
-		$this->ErrorPageHtml = Registry::getConfig()['root'] . "/system/Exceptions/ErrorPageHtml.php";
+		$this->errorPage = Registry::settings()['root'] . "/system/Exceptions/error-page.php";
 
 	}
 
@@ -108,7 +108,7 @@ class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {
 		$this->errorMessageContent = '<b>' . $this->getMessage() . ' ' . $this->getFile() . '(' . $this->getLine() . ')</b> As seen from ' . $appendPrevious;
 	    
 	    //remove repeated absolute path from the error message
-	    $this->errorMessageContentToShow = str_replace(array(Registry::getConfig()['root'], '.php'), '', $this->errorMessageContent);
+	    $this->errorMessageContentToShow = str_replace(array(Registry::settings()['root'], '.php'), '', $this->errorMessageContent);
 		
 		//define and return the error message to log excluding the the <b> tags
 	    $this->errorMessageContentToLog = str_replace(array('<b>', '</b>'), '', $this->errorMessageContent);
@@ -132,10 +132,10 @@ class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {
 		$this->getErrorMessage()->logErrorMessage();
 
 		//define the error message to show
-		$showErrorMessage = $this->errorMessageContentToShow;
+		$errorMessage = $this->errorMessageContentToShow;
 
 		//check if this is not development environment
-		if($this->devENV === false){
+		if($this->DEV === false){
 
 			//set the hideErrorMessage parameter
 			$hideErrorMessage = true;
@@ -146,7 +146,7 @@ class BaseExceptionClass extends \Exception implements BaseExceptionInterface  {
 		$title = $this->siteTile;
 
 		//load the error message page html file
-		include $this->ErrorPageHtml;
+		include $this->errorPage;
 
 		//stop futher script execution
 		exit();

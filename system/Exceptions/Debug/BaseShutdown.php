@@ -149,7 +149,7 @@ function handler( $errNo, $errMsg, $errFile, $errLine ) {
     $logErrorMessage = "$errorType $errMsg in $errFile on line ($errLine) As seen from $appendPrevious";
     
     //define the error.log file definiton
-    $filePath =  $rootPath . '/bin/logs/error.log';
+    $filePath =  $rootPath . '/vault/logs/error.log';
    
     /**
      *This methods writes this error messages to file.
