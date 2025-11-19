@@ -15,13 +15,8 @@
 <body>
 <div class="rachieContainer clearfix">
     <header>
-        <img src="{{ Url::assets('img/logo.png') }}" alt="rachie logo" class="rachieLogo">
-        <div class="headerText">
-            <h1>Welcome to Rachie<br><span class="subtext"> MVC at it’s finest...</span> </h1>
+        @section('header'):
 
-            <p>Request Time = {{$request_time}} Rachie is a powerful open-source PHP framework with a very small footprint. Was made to be a simple and elegant toolkit, enabling rapid application development of both web sites and web applications.
-            </p>
-        </div>
     </header>
     <div class="content">
         <div class="left-col">
@@ -33,9 +28,7 @@
                 <li>Light and best suited for extensibility</li>
             </ul>
         </div>
-
-@include('subview')
-
+        @section('main')
             <ul class="circles">
                 <li>
                     <div class="number">1</div>
@@ -59,6 +52,13 @@
                     </div>
                 </li>
             </ul>
+        @endsection
+        </div>
+
+        <div>
+
+            @section('footer'):
+            
         </div>
 
     </div>
