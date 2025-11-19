@@ -11,6 +11,8 @@
  * @version 2.0.1
  */
 
+use Rackage\Model;
+
 class UsersModel extends Model {
 
 	/**
