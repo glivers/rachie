@@ -5,18 +5,19 @@
  * This file is the execution entry point for the Rachie application.
  * It performs critical system checks, loads configurations, and prepares
  * the application for request handling.
- * 
+ *
  * Boot Sequence:
- * 1. Bootstrap (this)    - Validate system and load configs
- * 2. Start               - Route request and dispatch controller
- * 
+ * 1. bootstrap.php (this file) - System validation, configuration loading, Registry setup
+ * 2. start.php - Initialize Input, load routes, create Router (web requests only)
+ * 3. Router::dispatch() - Parse URL, match routes, dispatch controller
+ *
  * This file:
  *   - Checks for required system files
  *   - Sets up error handling
  *   - Loads Composer autoloader
  *   - Initializes session
  *   - Loads all configuration files into Registry
- *   - Prepares application for routing
+ *   - Prepares application for routing (web) or console execution (CLI)
  * 
  * @author Geoffrey Okongo <code@rachie.dev>
  * @copyright 2015 - 2030 Geoffrey Okongo
@@ -84,9 +85,9 @@ try {
 	}
 
 	// Error handler
-	if (!file_exists(__DIR__ . '/Exceptions/Debug/BaseShutdown.php')) {
+	if (!file_exists(__DIR__ . '/Exceptions/Shutdown.php')) {
 		throw new Exception(
-			"Error handler missing: system/Exceptions/Debug/BaseShutdown.php. Please restore if deleted."
+			"Error handler missing: system/Exceptions/Shutdown.php. Please restore if deleted."
 		);
 	}
 
@@ -96,6 +97,13 @@ try {
 
 	// Load application settings
 	$settings = require_once __DIR__ . '/../config/settings.php';
+
+	// Set application timezone from configuration
+	// This ensures all date/time functions (date(), time(), Date helper, etc.)
+	// use the timezone specified in config/settings.php
+	if (isset($settings['timezone'])) {
+		date_default_timezone_set($settings['timezone']);
+	}
 
 	// Define development environment constant
 	// This affects error display and debugging features
@@ -141,7 +149,7 @@ try {
 	
 	// Register custom error handler
 	// This handles PHP errors, exceptions, and fatal errors gracefully
-	require_once __DIR__ . '/Exceptions/Debug/BaseShutdown.php';
+	require_once __DIR__ . '/Exceptions/Shutdown.php';
 
 	// ===========================================================================
 	// FRAMEWORK INITIALIZATION
@@ -176,7 +184,7 @@ try {
 
 	// Free memory by unsetting loaded config arrays
 	// Registry has stored everything we need
-	unset($settings, $database, $cache, $mail);
+	unset($database, $cache, $mail);
 
 	// ===========================================================================
 	// APPLICATION START
@@ -213,10 +221,10 @@ catch (Exception $e) {
 	} else {
 		
 		// Web request - display formatted error page
-		$showErrorMessage = $e->getMessage();
+		$error = $e->getMessage();
 		
 		// Load error page template
-		include __DIR__ . '/Exceptions/ErrorPageHtml.php';
+		include __DIR__ . '/Exceptions/View.php';
 		
 		// Stop execution
 		exit();
