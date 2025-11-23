@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application Entry Point
  * 
@@ -93,10 +94,10 @@ try {
 	} else {
 		
 		// Web request - display formatted error page
-		$errorMessage = $e->getMessage();
+		$error = $e->getMessage();
 		
 		// Load error page template
-		$errorPage = dirname(__DIR__) . '/system/Exceptions/error-page.php';
+		$errorPage = dirname(__DIR__) . '/system/Exceptions/View.php';
 		
 		if (file_exists($errorPage)) {
 			include $errorPage;
