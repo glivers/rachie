@@ -22,7 +22,7 @@
  * @version 2.0.0
  */
 
-use Rackage\Routes\Router;
+use Rackage\Router\Router;
 use Rackage\Registry;
 use Rackage\Input;
 use Rackage\Session;
