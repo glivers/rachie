@@ -1,0 +1,26 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Roline - Rachie Command Line Interface
+ *
+ * This is a thin wrapper that delegates to Roline\Console;
+ */
+
+ define('CONSOLE_INSTANCE', true);
+
+// Check if installed via Composer
+if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
+    echo "Error: Composer dependencies not installed.\n";
+    echo "Run: composer install\n";
+    exit(1);
+}
+
+// Load Composer autoloader
+require __DIR__ . '/vendor/autoload.php';
+
+// Bootstrap Rachie (loads config, registry, etc.)
+require __DIR__ . '/public/index.php';
+
+// Run Roline CLI
+$cli = new Roline\Console();
+$cli->run($argv);
