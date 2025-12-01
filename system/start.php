@@ -1,248 +1,75 @@
 <?php
+/**
+ * Application Start
+ * 
+ * This file is Step 2 of the Rachie boot sequence.
+ * It initializes request input, loads routes, and dispatches the router.
+ *
+ * Boot Sequence:
+ * 1. bootstrap.php - System validation, configuration loading, Registry setup
+ * 2. start.php (this file) - Initialize Input, load routes, create Router (web requests only)
+ * 3. Router::dispatch() - Parse URL, match routes, dispatch controller
+ *
+ * The actual routing logic lives in Rackage\Routes\Router
+ * which is part of the Rackage package (updated via Composer).
+ * 
+ * @author Geoffrey Okongo <code@rachie.dev>
+ * @copyright 2015 - 2030 Geoffrey Okongo
+ * @category Core
+ * @package Rachie
+ * @link https://github.com/glivers/rachie
+ * @license http://opensource.org/licenses/MIT MIT License
+ * @version 2.0.0
+ */
 
-return	function() use($config){
+use Rackage\Router\Router;
+use Rackage\Registry;
+use Rackage\Input;
+use Rackage\Session;
 
-	//Load the defined routes file into array
-	try{
+// ===========================================================================
+// INITIALIZE REQUEST INPUT
+// ===========================================================================
 
-		//check of the routes configuration file exists
-		if ( ! file_exists( __DIR__ . '/../application/routes.php'))
+// Capture GET and POST data for access throughout the application
+// This makes request data available via Input::get() and Input::post()
+// URL route parameters will be added later by RouteParser via Input::setUrl()
+Input::setGet()->setPost();
 
-			throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : The defined routes.php file cannot be found! Please restore if you deleted");
-		
-		//get the defined routes
-		$definedRoutes = include __DIR__ . '/../application/routes.php';
+// ===========================================================================
+// LOAD ROUTE DEFINITIONS
+// ===========================================================================
 
-	}
-	catch(Rackage\Routes\RouteException $ExceptionObjectInstance){
-
-		//display the error message to the browser
-		$ExceptionObjectInstance->errorShow();
- 
-	}
-
-	//create an instance of the UrlParser Class, 
-	$UrlParserObjectInstance = new Rackage\Utilities\UrlParser(Rackage\Registry\Registry::getUrl(), Rackage\Registry\Registry::getConfig()['url_component_separator']);
-
-	//and set controller, method and request parameter
-	$UrlParserObjectInstance->setController()->setMethod()->setParameters();
-
-	//create an instance of the route parser class
-	$RouteParserObject = new Rackage\Routes\RouteParser(Rackage\Registry\Registry::getUrl(), $definedRoutes, $UrlParserObjectInstance);
-
-	//check if there is infered controller from url string
-	if($UrlParserObjectInstance->getController() !== null){
-
-		//check if there is a defined route matched
-		if ( $RouteParserObject->matchRoute() ) 
-		{
-			//if there is a defined route, set the controller, method and parameter properties
-			$RouteParserObject->setController()->setMethod()->setParameters();
-
-			//set the value of the controller
-			$controller = $RouteParserObject->getController();
-
-			//set the value of the method
-			($action = $RouteParserObject->getMethod()) || ($action = $config['default']['action']);
-
-		}
-
-		//there is no defined routes, infer controller and method from the url string
-		else{
-
-			//set the parameter properties
-			$RouteParserObject->setParameters();
-
-			//get the controller name
-			$controller = $UrlParserObjectInstance->getController();
-
-			//set the value of the method
-			($action = $UrlParserObjectInstance->getMethod()) || ($action = $config['default']['action']);
-
-
-		}
-
+try {
+	// Check if routes configuration file exists
+	if (!file_exists(__DIR__ . '/../config/routes.php')) {
+		throw new Rackage\Routes\RouteException(
+			"Route configuration file not found: config/routes.php. Please restore if deleted."
+		);
 	}
 
-	//there is no infered controller from url string, get the defaults 
-	else
-	{
-		//set the parameter properties
-		$RouteParserObject->setParameters();
+	// Load route definitions
+	$routes = require __DIR__ . '/../config/routes.php';
 
-		//get the default controller name
-		$controller = $config['default']['controller'];
+} catch (Rackage\Routes\RouteException $e) {
+	$e->errorShow();
+	exit();
+}
 
-		//get the default action name
-		$action = $config['default']['action'];
+// ===========================================================================
+// CREATE AND DISPATCH ROUTER
+// ===========================================================================
 
-	}
+// Create router with settings and routes
+$router = new Router(Registry::settings(), $routes);
 
-	//check if this class and method exists
-	try {
+// Dispatch the request
+$router->dispatch();
 
-		//get the namespaced controller class
-		$controller 	= 'Controllers\\' . ucwords($controller) . 'Controller';
+// ===========================================================================
+// AGE FLASH DATA
+// ===========================================================================
 
-		if( ! class_exists($controller) ) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : The class " . $controller . ' is undefined');
-		
-		if( ! (int)method_exists($controller, $action) )
-		{
-			//create instance of this object
-			$dispatch = new $controller;
-
-			//throw exception if no method can be found
-			if( ! $dispatch->$action() ) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : Access to undefined method " . $controller . '->' . $action);
-			
-			//get the method name
-			$action = $dispatch->$action();
-
-		} 
-
-		//method exists, go ahead and dispatch
-		else $dispatch = new $controller;
-
-		//ensure the controller is an instance of the Controllers\BaseController class
-		if( ! $dispatch instanceof Controllers\BaseController) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : $controller class must extend Controllers\BaseController class!");
-		
-		//check if the controller class uses the Rackage\Controllers\BaseControllerTrait
-		//if( ! array_key_exists('[Controllers\BaseController]', class_uses('Controllers\BaseController', true))) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : Controllers\BaseController class must use Rackage\Controllers\BaseControllerTrait!");
-		
-		//set the controller defaults
-		$dispatch->set_gliver_fr_controller_trait_properties();
-
-		//get the Inspector class object
-		$inspector = (new ReflectionClass($dispatch))->getMethod($action);
-
-		//get the number of parameters from the reflector
-		$method_params_count = count($inspector->getParameters());
-		
-		//get the method parameters passed
-		$method_params_array = $RouteParserObject->getParameters();
-
-		//check if the keys are more than then values
-		if($method_params_count > count($method_params_array)){
-
-			//padd the $method_params_array with null values
-			$method_params_array = array_pad($method_params_array, $method_params_count, null);
-
-		}
-
-		//check if method filter are set, and process filter
-		if ($dispatch->enable_method_filters === true) 
-		{
-			//get  method metadata
-		    $filter_methods = Rackage\Utilities\Inspector::checkFilter($inspector->getdoccomment());
-
-		    try {
-
-		    	if($filter_methods === false){
-
-					//launch the infered method for this request
-					call_user_func_array(array($dispatch, $action), $method_params_array);
-
-		    	}
-
-		    	else {
-
-		    		if(isset($filter_methods['before'])) {
-
-		    			switch (count($filter_methods['before'])) 
-		    			{
-		    				case 1:
-		    					//thow exception if the filter method does not exist.
-					    		if( ! (int)method_exists($controller, $filter_methods['before'][0])) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : The method {$filter_methods['before'][0]} specified as filter in $controller :: $action is undefined.", 1);
-								
-								//call the before filter
-								$dispatch->$filter_methods['before'][0]();
-
-		    					break;
-		    				
-		    				case 2:
-
-		    					//check the filter class and method
-		    					//thow exception if the filter method does not exist.
-		    					if( ! class_exists($filter_methods['before'][0])) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : The class {$filter_methods['before'][0]} specified as filter in $controller :: $action is undefined.", 1);
-		    					
-					    		if( ! (int)method_exists($filter_methods['before'][0], $filter_methods['before'][1])) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : The method {$filter_methods['before'][1]} specified as filter in $controller :: $action is undefined.", 1);
-								
-								//call the before filter
-								(new $filter_methods['before'][0]())->$filter_methods['before'][1]();
-
-		    					break;
-		    			}
-
-		    		}
-
-
-		    		if(isset($filter_methods['after'])){
-
-		    			switch (count($filter_methods['after'])) 
-		    			{
-		    				case 1:
-		    					//check if the method specified in teh after filter does not exists and throw error
-					    		if( ! (int)method_exists($dispatch, $filter_methods['after'][0])) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : The method {$filter_methods['after'][0]} specified as filter in $controller :: $action is undefined.", 1);
-	    				
-			    				//launch the controller class filter method
-								call_user_func_array(array($dispatch, $action), $method_params_array);
-				
-			    				//call the after filter
-								$dispatch->$filter_methods['after'][0]();
-
-		    					break;
-		    				
-		    				case 2:
-		    					//check if the class and method specified in the after filter does not exists and throw error
-		    					if( ! class_exists($filter_methods['after'][0])) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : The class {$filter_methods['after'][0]} specified as filter in $controller :: $action is undefined.", 1);
-					    		if( ! (int)method_exists($filter_methods['after'][0], $filter_methods['after'][1])) throw new Rackage\Routes\RouteException("Rackage\Routes\RouteException : The method {$filter_methods['after'][1]} specified as filter in $controller :: $action is undefined.", 1);
-	    				
-			    				//launch the controller class filter method
-								call_user_func_array(array($dispatch, $action), $method_params_array);
-				
-			    				//call the after filter
-								(new $filter_methods['after'][0]())->$filter_methods['after'][1]();
-
-		    					break;
-
-		    			}
-
-		    		}
-
-		    		else{
-
-						//launch the controller class filter method
-						call_user_func_array(array($dispatch, $action), $method_params_array);
-	    			
-		    		}
-					
-		    	}
-		    			    	
-		    } 
-
-		    catch (Rackage\Routes\RouteException $e) {
-
-		    	//dislpay the error message
-		    	$e->errorShow();
-		    	
-		    }
-
-		}
-
-		//no filters set, proceed to load controller class method
-		else 
-		{
-			//launch the infered method for this request
-			call_user_func_array(array($dispatch, $action), $method_params_array);
-
-		}
-		
-
-	}
-	catch(Rackage\Routes\RouteException $ExceptionObjectInstance){
-
-		//display the error message to the browser
-		$ExceptionObjectInstance->errorShow();
-
-	}
-
-};	
+// Move current flash to old flash for next request
+// This allows flash messages to persist for exactly one request (perfect for redirects)
+Session::ageFlashData();

@@ -1,9 +1,23 @@
 <IfModule mod_rewrite.c>
-	RewriteEngine On
-	  
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-	 
-	RewriteRule ^(.*)$ index.php?url8g6l67i6v4chdgetrcswyr=$1 [QSA]
- 
+    # Rachie Framework - Request Router
+    # Routes all non-file/directory requests through index.php
+    
+    RewriteEngine On
+    
+    # If request is not for a valid file
+    RewriteCond %{REQUEST_FILENAME} !-f
+    
+    # If request is not for a valid directory
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Route through index.php with URL as query parameter
+    RewriteRule ^(.*)$ index.php?_rachie_route=$1 [QSA,L]
 </IfModule>
+
+# Prevent directory listing
+Options -Indexes
+
+# Deny access to hidden files (starting with .)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>

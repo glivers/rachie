@@ -14,8 +14,9 @@
 		}
 	],
 	"require" : {
-		"php" : ">=5.6.0",
-		"glivers/rackage" : "3.*"
+		"php" : ">=7.1.0",
+		"glivers/rackage" : "3.*",
+		"glivers/roline" : "1.*"
 	},
 	"autoload" : {
 		"psr-4" : {
@@ -24,7 +25,16 @@
 			"Exceptions\\"  : "system/Exceptions",
 			"Libraries\\"  : "application/libraries"
 		}
-
+	},
+	"scripts" : {
+		"test" : "php phpunit.phar",
+		"test:app" : "php phpunit.phar",
+		"test:rackage" : "php phpunit.phar --configuration vendor/glivers/rackage/phpunit.xml",
+		"test:roline" : "php phpunit.phar --configuration vendor/glivers/roline/phpunit.xml",
+		"test:all" : [
+			"@test:app",
+			"@test:rackage",
+			"@test:roline"
+		]
 	}
-	
 }

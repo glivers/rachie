@@ -1,0 +1,154 @@
+{
+    "tests": {
+        "columns": {
+            "id": {
+                "type": "int(11) unsigned",
+                "nullable": false,
+                "default": null,
+                "extra": "auto_increment",
+                "charset": null,
+                "collation": null
+            },
+            "date_created": {
+                "type": "datetime",
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "charset": null,
+                "collation": null
+            },
+            "date_modified": {
+                "type": "datetime",
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "charset": null,
+                "collation": null
+            },
+            "test_field": {
+                "type": "varchar(100)",
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "charset": "utf8mb4",
+                "collation": "utf8mb4_unicode_ci"
+            }
+        },
+        "indexes": [],
+        "primary_key": [
+            "id"
+        ],
+        "engine": "InnoDB",
+        "charset": "utf8mb4"
+    },
+    "testusers": {
+        "columns": {
+            "id": {
+                "type": "int(11) unsigned",
+                "nullable": false,
+                "default": null,
+                "extra": "auto_increment",
+                "charset": null,
+                "collation": null
+            },
+            "date_created": {
+                "type": "datetime",
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "charset": null,
+                "collation": null
+            },
+            "date_modified": {
+                "type": "datetime",
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "charset": null,
+                "collation": null
+            }
+        },
+        "indexes": [],
+        "primary_key": [
+            "id"
+        ],
+        "engine": "InnoDB",
+        "charset": "utf8mb4"
+    },
+    "test_exports": {
+        "columns": {
+            "id": {
+                "type": "int(11) unsigned",
+                "nullable": false,
+                "default": null,
+                "extra": "auto_increment",
+                "charset": null,
+                "collation": null
+            },
+            "date_created": {
+                "type": "datetime",
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "charset": null,
+                "collation": null
+            },
+            "date_modified": {
+                "type": "datetime",
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "charset": null,
+                "collation": null
+            }
+        },
+        "indexes": [],
+        "primary_key": [
+            "id"
+        ],
+        "engine": "InnoDB",
+        "charset": "utf8mb4"
+    },
+    "users": {
+        "columns": {
+            "username": {
+                "type": "varchar(255)",
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "charset": "utf8mb4",
+                "collation": "utf8mb4_unicode_ci"
+            },
+            "id": {
+                "type": "int(11) unsigned",
+                "nullable": false,
+                "default": null,
+                "extra": "auto_increment",
+                "charset": null,
+                "collation": null
+            },
+            "date_created": {
+                "type": "datetime",
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "charset": null,
+                "collation": null
+            },
+            "date_modified": {
+                "type": "datetime",
+                "nullable": false,
+                "default": null,
+                "extra": "",
+                "charset": null,
+                "collation": null
+            }
+        },
+        "indexes": [],
+        "primary_key": [
+            "id"
+        ],
+        "engine": "InnoDB",
+        "charset": "utf8mb4"
+    }
+}

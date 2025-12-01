@@ -1,0 +1,765 @@
+HE_WARNING Undefined variable $rachie_app_start in C:\xampp\htdocs\rachie\system\bootstrap.php on line (183) As seen from  C:\xampp\htdocs\rachie\system\bootstrap.php(183): handler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 183)
+#1 C:\xampp\htdocs\rachie\roline(20): require('C:\\xampp\\htdocs...')
+#2 {main}
+E_WARNING Undefined variable $rachie_app_start in C:\xampp\htdocs\rachie\system\bootstrap.php on line (183) As seen from  C:\xampp\htdocs\rachie\system\bootstrap.php(183): handler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 183)
+#1 C:\xampp\htdocs\rachie\roline(22): require('C:\\xampp\\htdocs...')
+#2 {main}
+E_ERROR Uncaught Error: Class "Roline\Console" not found in C:\xampp\htdocs\rachie\roline:25
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\rachie\roline on line (25) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 25)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Class "Roline\Console" not found in C:\xampp\htdocs\rachie\roline:25
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\rachie\roline on line (25) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 25)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Class "Roline\Console" not found in C:\xampp\htdocs\rachie\roline:25
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\rachie\roline on line (25) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 25)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Class "Roline\Console" not found in C:\xampp\htdocs\rachie\roline:25
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\rachie\roline on line (25) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 25)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Class "Roline\Console" not found in C:\xampp\htdocs\rachie\roline:25
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\rachie\roline on line (25) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 25)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Class "Roline\Console" not found in C:\xampp\htdocs\rachie\roline:25
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\rachie\roline on line (25) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 25)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Class "Roline\Console" not found in C:\xampp\htdocs\rachie\roline:25
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\rachie\roline on line (25) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 25)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Class "Roline\Console" not found in C:\xampp\htdocs\rachie\system\start.php:69
+Stack trace:
+#0 C:\xampp\htdocs\rachie\system\bootstrap.php(199): require_once()
+#1 C:\xampp\htdocs\rachie\public\index.php(78): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\system\start.php on line (69) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 69)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Class "Roline\Console" not found in C:\xampp\htdocs\rachie\system\start.php:69
+Stack trace:
+#0 C:\xampp\htdocs\rachie\system\bootstrap.php(199): require_once()
+#1 C:\xampp\htdocs\rachie\public\index.php(78): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\system\start.php on line (69) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 69)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Class "Roline\Console" not found in C:\xampp\htdocs\rachie\system\start.php:69
+Stack trace:
+#0 C:\xampp\htdocs\rachie\system\bootstrap.php(199): require_once()
+#1 C:\xampp\htdocs\rachie\public\index.php(78): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\system\start.php on line (69) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 69)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Class "Roline\Console" not found in C:\xampp\htdocs\rachie\system\start.php:69
+Stack trace:
+#0 C:\xampp\htdocs\rachie\system\bootstrap.php(199): require_once()
+#1 C:\xampp\htdocs\rachie\public\index.php(78): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\system\start.php on line (69) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 69)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Class "Roline\Console" not found in C:\xampp\htdocs\rachie\system\start.php:69
+Stack trace:
+#0 C:\xampp\htdocs\rachie\system\bootstrap.php(199): require_once()
+#1 C:\xampp\htdocs\rachie\public\index.php(78): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\system\start.php on line (69) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 69)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Class "Roline\Roline" not found in C:\xampp\htdocs\rachie\system\start.php:69
+Stack trace:
+#0 C:\xampp\htdocs\rachie\system\bootstrap.php(199): require_once()
+#1 C:\xampp\htdocs\rachie\public\index.php(78): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\system\start.php on line (69) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 69)
+#1 [internal function]: shut()
+#2 {main}
+E_WARNING Undefined variable $rachie_app_start in C:\xampp\htdocs\rachie\system\bootstrap.php on line (183) As seen from  C:\xampp\htdocs\rachie\system\bootstrap.php(183): handler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 183)
+#1 C:\xampp\htdocs\rachie\roline(34): require('C:\\xampp\\htdocs...')
+#2 {main}
+E_PARSE syntax error, unexpected token "*", expecting "function" or "const" in C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\FileSystem\FileHandler.php on line (1061) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 1061)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Cannot access protected property Roline\Commands\Controller\ControllerCreate::$commandName in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php:58
+Stack trace:
+#0 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#1 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php on line (58) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 58)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Cannot access protected property Roline\Commands\Controller\ControllerCreate::$commandName in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php:58
+Stack trace:
+#0 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#1 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php on line (58) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 58)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Undefined constant "Rackage\Database\MySQL\MYSQLI_OPT_COMPRESS" in C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Database\MySQL\MySQL.php:277
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Registry.php(370): Rackage\Database\MySQL\MySQL->connect()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Registry.php(334): Rackage\Registry::getDatabaseInstance(Array)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Registry.php(160): Rackage\Registry::getInstance('database', Array)
+#3 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Schema\MySQLSchema.php(351): Rackage\Registry::get('database')
+#4 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Schema\MySQLSchema.php(64): Roline\Schema\MySQLSchema->ensureConnection()
+#5 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableCreate.php(121): Roline\Schema\MySQLSchema->createTableFromModel('Models\\UsersMod...')
+#6 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(81): Roline\Commands\Table\TableCreate->execute(Array)
+#7 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#8 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Database\MySQL\MySQL.php on line (277) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 277)
+#1 [internal function]: shut()
+#2 {main}
+E_WARNING Undefined variable $rachie_app_start in C:\xampp\htdocs\rachie\system\bootstrap.php on line (183) As seen from  C:\xampp\htdocs\rachie\system\bootstrap.php(183): handler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 183)
+#1 C:\xampp\htdocs\rachie\test_schema.php(3): require('C:\\xampp\\htdocs...')
+#2 {main}
+E_ERROR Uncaught Error: Undefined constant "Rackage\Database\MySQL\MYSQLI_OPT_COMPRESS" in C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Database\MySQL\MySQL.php:277
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Registry.php(370): Rackage\Database\MySQL\MySQL->connect()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Registry.php(334): Rackage\Registry::getDatabaseInstance(Array)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Registry.php(160): Rackage\Registry::getInstance('database', Array)
+#3 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Schema\MySQLSchema.php(351): Rackage\Registry::get('database')
+#4 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Schema\MySQLSchema.php(64): Roline\Schema\MySQLSchema->ensureConnection()
+#5 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableCreate.php(121): Roline\Schema\MySQLSchema->createTableFromModel('Models\\TestUser...')
+#6 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(81): Roline\Commands\Table\TableCreate->execute(Array)
+#7 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#8 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Database\MySQL\MySQL.php on line (277) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 277)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method Rackage\Database\Database::connect() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Schema\MySQLSchema.php:358
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Schema\MySQLSchema.php(64): Roline\Schema\MySQLSchema->ensureConnection()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableCreate.php(121): Roline\Schema\MySQLSchema->createTableFromModel('Models\\UsersMod...')
+#2 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(81): Roline\Commands\Table\TableCreate->execute(Array)
+#3 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#4 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Schema\MySQLSchema.php on line (358) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 358)
+#1 [internal function]: shut()
+#2 {main}
+E_WARNING Undefined variable $rachie_app_start in C:\xampp\htdocs\rachie\system\bootstrap.php on line (183) As seen from  C:\xampp\htdocs\rachie\system\bootstrap.php(183): handler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 183)
+#1 C:\xampp\htdocs\rachie\debug_sql.php(2): require('C:\\xampp\\htdocs...')
+#2 {main}
+E_WARNING Undefined array key "REQUEST_METHOD" in C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Controller.php on line (100) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Controller.php(100): handler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 100)
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(412): Rackage\Controller->__call('Index', Array)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#3 C:\xampp\htdocs\rachie\system\start.php(67): Rackage\Router\Router->dispatch()
+
+E_ERROR Uncaught Error: Call to undefined method mysqli_result::fetch() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Utils\Migration.php:71
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Utils\Migration.php(87): Roline\Utils\Migration->getRanMigrations()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Migration\MigrationRun.php(45): Roline\Utils\Migration->getPendingMigrations('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(81): Roline\Commands\Migration\MigrationRun->execute(Array)
+#3 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#4 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Utils\Migration.php on line (71) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 71)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method mysqli_result::result_array() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Utils\Migration.php:70
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Utils\Migration.php(87): Roline\Utils\Migration->getRanMigrations()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Migration\MigrationRun.php(45): Roline\Utils\Migration->getPendingMigrations('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(81): Roline\Commands\Migration\MigrationRun->execute(Array)
+#3 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#4 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Utils\Migration.php on line (70) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 70)
+#1 [internal function]: shut()
+#2 {main}
+E_DEPRECATED Optional parameter $fields declared before required parameter $set_timestamps is implicitly treated as a required parameter in C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Database\MySQL\MySQLQuery.php on line (2810) As seen from  C:\xampp\htdocs\rachie\vendor\composer\ClassLoader.php(571): handler(8192, 'Optional parame...', 'C:\\xampp\\htdocs...', 2810)
+#1 C:\xampp\htdocs\rachie\vendor\composer\ClassLoader.php(571): include()
+#2 C:\xampp\htdocs\rachie\vendor\composer\ClassLoader.php(428): Composer\Autoload\includeFile('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Database\MySQL\MySQL.php(482): Composer\Autoload\ClassLoader->loadClass('Rackage\\Databas...')
+
+E_DEPRECATED Optional parameter $fields declared before required parameter $set_timestamps is implicitly treated as a required parameter in C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Database\MySQL\MySQLQuery.php on line (2810) As seen from  C:\xampp\htdocs\rachie\vendor\composer\ClassLoader.php(571): handler(8192, 'Optional parame...', 'C:\\xampp\\htdocs...', 2810)
+#1 C:\xampp\htdocs\rachie\vendor\composer\ClassLoader.php(571): include()
+#2 C:\xampp\htdocs\rachie\vendor\composer\ClassLoader.php(428): Composer\Autoload\includeFile('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Database\MySQL\MySQL.php(482): Composer\Autoload\ClassLoader->loadClass('Rackage\\Databas...')
+
+E_DEPRECATED Optional parameter $fields declared before required parameter $set_timestamps is implicitly treated as a required parameter in C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Database\MySQL\MySQLQuery.php on line (2810) As seen from  C:\xampp\htdocs\rachie\vendor\composer\ClassLoader.php(571): handler(8192, 'Optional parame...', 'C:\\xampp\\htdocs...', 2810)
+#1 C:\xampp\htdocs\rachie\vendor\composer\ClassLoader.php(571): include()
+#2 C:\xampp\htdocs\rachie\vendor\composer\ClassLoader.php(428): Composer\Autoload\includeFile('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Database\MySQL\MySQL.php(482): Composer\Autoload\ClassLoader->loadClass('Rackage\\Databas...')
+
+E_ERROR Uncaught Error: Call to undefined method mysqli_result::result_array() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Utils\Migration.php:64
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Utils\Migration.php(81): Roline\Utils\Migration->getRanMigrations()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Migration\MigrationRun.php(45): Roline\Utils\Migration->getPendingMigrations('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(81): Roline\Commands\Migration\MigrationRun->execute(Array)
+#3 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#4 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Utils\Migration.php on line (64) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 64)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Cannot use object of type Rackage\Cache\Drivers\FileCache as array in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Cleanup\CleanupCache.php:74
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(153): Roline\Commands\Cleanup\CleanupCache->execute(Array)
+#1 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Cleanup\CleanupCache.php on line (74) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 74)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method Roline\Schema\MySQLSchema::getTableColumns() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableSchema.php:183
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(163): Roline\Commands\Table\TableSchema->execute(Array)
+#1 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableSchema.php on line (183) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 183)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method Rackage\Database\MySQL\MySQL::beginTransaction() in C:\xampp\htdocs\rachie\application\database\migrations\2025_11_26_182651_initial_database.php:22
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Utils\Migration.php(168): up()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Migration\MigrationRun.php(166): Roline\Utils\Migration->runMigration('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(163): Roline\Commands\Migration\MigrationRun->execute(Array)
+#3 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#4 {main}
+  thrown in C:\xampp\htdocs\rachie\application\database\migrations\2025_11_26_182651_initial_database.php on line (22) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 22)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method Rackage\Database\MySQL\MySQL::transaction() in C:\xampp\htdocs\rachie\application\database\migrations\2025_11_26_182651_initial_database.php:22
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Utils\Migration.php(168): up()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Migration\MigrationRun.php(166): Roline\Utils\Migration->runMigration('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(163): Roline\Commands\Migration\MigrationRun->execute(Array)
+#3 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#4 {main}
+  thrown in C:\xampp\htdocs\rachie\application\database\migrations\2025_11_26_182651_initial_database.php on line (22) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 22)
+#1 [internal function]: shut()
+#2 {main}
+E_PARSE syntax error, unexpected token "=" in C:\xampp\htdocs\rachie\application\database\migrations\2025_11_26_182651_initial_database.php on line (21) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 21)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method Roline\Schema\MySQLSchema::renameTable() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableRename.php:211
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(163): Roline\Commands\Table\TableRename->execute(Array)
+#1 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableRename.php on line (211) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 211)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method Roline\Schema\MySQLSchema::renameTable() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableRename.php:211
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(163): Roline\Commands\Table\TableRename->execute(Array)
+#1 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableRename.php on line (211) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 211)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method Roline\Schema\MySQLSchema::getRowCount() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Model\ModelEmptyTable.php:187
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(163): Roline\Commands\Model\ModelEmptyTable->execute(Array)
+#1 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Model\ModelEmptyTable.php on line (187) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 187)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method Roline\Schema\MySQLSchema::getRowCount() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Model\ModelEmptyTable.php:187
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(163): Roline\Commands\Model\ModelEmptyTable->execute(Array)
+#1 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Model\ModelEmptyTable.php on line (187) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 187)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method Roline\Schema\MySQLSchema::getRowCount() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Model\ModelEmptyTable.php:187
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(163): Roline\Commands\Model\ModelEmptyTable->execute(Array)
+#1 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Model\ModelEmptyTable.php on line (187) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 187)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method Roline\Schema\MySQLSchema::getRowCount() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Model\ModelEmptyTable.php:187
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(163): Roline\Commands\Model\ModelEmptyTable->execute(Array)
+#1 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Model\ModelEmptyTable.php on line (187) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 187)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method Roline\Schema\MySQLSchema::rawQuery() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableCreate.php:263
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableCreate.php(129): Roline\Commands\Table\TableCreate->createInteractive('test_table', Object(Roline\Schema\MySQLSchema))
+#1 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(163): Roline\Commands\Table\TableCreate->execute(Array)
+#2 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#3 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableCreate.php on line (263) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 263)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method Roline\Schema\MySQLSchema::rawQuery() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableDelete.php:128
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(163): Roline\Commands\Table\TableDelete->execute(Array)
+#1 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableDelete.php on line (128) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 128)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method Roline\Schema\MySQLSchema::rawQuery() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableRename.php:102
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(163): Roline\Commands\Table\TableRename->execute(Array)
+#1 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableRename.php on line (102) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 102)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method Roline\Schema\MySQLSchema::displayTableSchema() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableSchema.php:80
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(163): Roline\Commands\Table\TableSchema->execute(Array)
+#1 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableSchema.php on line (80) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 80)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Call to undefined method Roline\Schema\MySQLSchema::displayTableSchema() in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableSchema.php:80
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Roline.php(163): Roline\Commands\Table\TableSchema->execute(Array)
+#1 C:\xampp\htdocs\rachie\roline(77): Roline\Roline->run(Array)
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\roline\src\Commands\Table\TableSchema.php on line (80) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 80)
+#1 [internal function]: shut()
+#2 {main}
+UNKNOWN_ERROR Undefined array key "SERVER_NAME" in C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Url.php on line (76) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Url.php(76): handler(2, 'Undefined array...', 'C:\\xampp\\htdocs...', 76)
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Url.php(129): Rackage\Url::buildBaseUrl()
+#2 C:\xampp\htdocs\rachie\vault\tmp\view_692a3ca9cc7596.81175729.php(23): Rackage\Url::assets('img/logo.png')
+#3 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(294): include('C:\\xampp\\htdocs...')
+
+UNKNOWN_ERROR Undefined property: Controllers\TestController::$enable_method_filters in C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php on line (470) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(470): handler(2, 'Undefined prope...', 'C:\\xampp\\htdocs...', 470)
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(128): Rackage\Router\Router->dispatchController()
+#2 C:\xampp\htdocs\rachie\tests\bootstrap.php(51): Rackage\Router\Router->dispatch()
+#3 C:\xampp\htdocs\rachie\tests\RachieTest.php(93): simulateRequest('Test/testMethod', 'GET', Array)
+
+UNKNOWN_ERROR Undefined property: Controllers\TestController::$enable_method_filters in C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php on line (470) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(470): handler(2, 'Undefined prope...', 'C:\\xampp\\htdocs...', 470)
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(128): Rackage\Router\Router->dispatchController()
+#2 C:\xampp\htdocs\rachie\tests\bootstrap.php(51): Rackage\Router\Router->dispatch()
+#3 C:\xampp\htdocs\rachie\tests\RachieTest.php(93): simulateRequest('Test/testMethod', 'GET', Array)
+
+E_ERROR Uncaught Error: Class "PHPUnit\Framework\TestCase" not found in C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php:58
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\start.php(62): require_once()
+#1 Command line code(1): require('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php on line (58) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 58)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Class "PHPUnit\Framework\TestCase" not found in C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php:58
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\start.php(62): require_once()
+#1 C:\xampp\htdocs\rachie\test-start.php(2): require('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php on line (58) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 58)
+#1 [internal function]: shut()
+#2 {main}
+E_WARNING session_start(): Session cannot be started after headers have already been sent in C:\xampp\htdocs\rachie\system\bootstrap.php on line (160) As seen from  [internal function]: handler(2, 'session_start()...', 'C:\\xampp\\htdocs...', 160)
+#1 C:\xampp\htdocs\rachie\system\bootstrap.php(160): session_start()
+#2 C:\xampp\htdocs\rachie\public\index.php(78): require_once('C:\\xampp\\htdocs...')
+#3 Command line code(1): require('C:\\xampp\\htdocs...')
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Method 'nonExistent' does not exist on controller 'Controllers\ProductsController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(232): Tests\RackageTest->request('Products/nonExi...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingMethodThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Controller class 'Controllers\NonExistentController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(197): Tests\RackageTest->request('NonExistent/ind...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerThrowsError()
+
+Method 'contact' does not exist on controller 'Controllers\PagesController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\RouteDefinitionTest.php(239): Tests\RackageTest->request('contact')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\RouteDefinitionTest->testFixedMethodRoute()
+
+E_ERROR Uncaught Error: Class "Controllers\BaseController" not found in C:\xampp\htdocs\rachie\application\controllers\HomeController.php:19
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\composer\ClassLoader.php(571): include()
+#1 C:\xampp\htdocs\rachie\vendor\composer\ClassLoader.php(428): Composer\Autoload\includeFile('C:\\xampp\\htdocs...')
+#2 [internal function]: Composer\Autoload\ClassLoader->loadClass('Controllers\\Hom...')
+#3 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(375): class_exists('Controllers\\Hom...')
+#4 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#5 C:\xampp\htdocs\rachie\system\start.php(67): Rackage\Router\Router->dispatch()
+#6 C:\xampp\htdocs\rachie\system\bootstrap.php(199): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\rachie\public\index.php(78): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\rachie\application\controllers\HomeController.php on line (19) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 19)
+#1 [internal function]: shut()
+#2 {main}
+E_ERROR Uncaught Error: Class "Controllers\Controller" not found in C:\xampp\htdocs\rachie\application\controllers\HomeController.php:19
+Stack trace:
+#0 C:\xampp\htdocs\rachie\vendor\composer\ClassLoader.php(571): include()
+#1 C:\xampp\htdocs\rachie\vendor\composer\ClassLoader.php(428): Composer\Autoload\includeFile('C:\\xampp\\htdocs...')
+#2 [internal function]: Composer\Autoload\ClassLoader->loadClass('Controllers\\Hom...')
+#3 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(375): class_exists('Controllers\\Hom...')
+#4 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#5 C:\xampp\htdocs\rachie\system\start.php(67): Rackage\Router\Router->dispatch()
+#6 C:\xampp\htdocs\rachie\system\bootstrap.php(199): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\rachie\public\index.php(78): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\rachie\application\controllers\HomeController.php on line (19) As seen from  C:\xampp\htdocs\rachie\system\Exceptions\Shutdown.php(98): handler(1, 'Uncaught Error:...', 'C:\\xampp\\htdocs...', 19)
+#1 [internal function]: shut()
+#2 {main}
+E_DEPRECATED Exception::__construct(): Passing null to parameter #1 ($message) of type string is deprecated in C:\xampp\htdocs\rachie\system\Exceptions\ExceptionClass.php on line (92) As seen from  [internal function]: handler(8192, 'Exception::__co...', 'C:\\xampp\\htdocs...', 92)
+#1 C:\xampp\htdocs\rachie\system\Exceptions\ExceptionClass.php(92): Exception->__construct(NULL, 0, NULL)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(115): Exceptions\ExceptionClass->__construct()
+#3 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'index')
+
+Method 'contact' does not exist on controller 'Controllers\PagesController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(238): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\RouteDefinitionTest.php(239): Tests\RackageTest->request('contact')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\RouteDefinitionTest->testFixedMethodRoute()
+
+Controller class 'Controllers\NonExistentControllerController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(263): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(198): Tests\RackageTest->request('NonExistentCont...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerShowsError()
+
+Method 'nonExistentMethod' does not exist on controller 'Controllers\TestIncompleteController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(263): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(233): Tests\RackageTest->request('TestIncomplete/...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingMethodShowsError()
+
+Controller class 'Controllers\NonExistentControllerController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(263): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(218): Tests\RackageTest->request('NonExistentCont...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerShowsError()
+
+Method 'nonExistentMethod' does not exist on controller 'Controllers\TestIncompleteController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(263): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(253): Tests\RackageTest->request('TestIncomplete/...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingMethodShowsError()
+
+Controller class 'Controllers\NonExistentControllerController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(263): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(218): Tests\RackageTest->request('NonExistentCont...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerShowsError()
+
+Method 'nonExistentMethod' does not exist on controller 'Controllers\TestIncompleteController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(263): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(253): Tests\RackageTest->request('TestIncomplete/...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingMethodShowsError()
+
+E_DEPRECATED Exception::__construct(): Passing null to parameter #1 ($message) of type string is deprecated in C:\xampp\htdocs\rachie\system\Exceptions\ExceptionClass.php on line (92) As seen from  [internal function]: handler(8192, 'Exception::__co...', 'C:\\xampp\\htdocs...', 92)
+#1 C:\xampp\htdocs\rachie\system\Exceptions\ExceptionClass.php(92): Exception->__construct(NULL, 0, NULL)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(115): Exceptions\ExceptionClass->__construct()
+#3 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'index')
+
+Rackage\Templates\TemplateException: The view file named 'index' cannot be found! C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(114) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'index')
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(274): Rackage\View::getContents('index', false)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(178): Rackage\View::renderView('index', Array, 200, true)
+#3 C:\xampp\htdocs\rachie\application\controllers\HomeController.php(36): Rackage\View::render('index', Array)
+
+Controller class 'Controllers\NonExistentControllerController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(263): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(218): Tests\RackageTest->request('NonExistentCont...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerShowsError()
+
+Method 'nonExistentMethod' does not exist on controller 'Controllers\TestIncompleteController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(263): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(253): Tests\RackageTest->request('TestIncomplete/...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingMethodShowsError()
+
+E_DEPRECATED Exception::__construct(): Passing null to parameter #1 ($message) of type string is deprecated in C:\xampp\htdocs\rachie\system\Exceptions\ExceptionClass.php on line (92) As seen from  [internal function]: handler(8192, 'Exception::__co...', 'C:\\xampp\\htdocs...', 92)
+#1 C:\xampp\htdocs\rachie\system\Exceptions\ExceptionClass.php(92): Exception->__construct(NULL, 0, NULL)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(115): Exceptions\ExceptionClass->__construct()
+#3 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'index')
+
+Rackage\Templates\TemplateException: The view file named 'index' cannot be found! C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(114) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'index')
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(274): Rackage\View::getContents('index', false)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(178): Rackage\View::renderView('index', Array, 200, true)
+#3 C:\xampp\htdocs\rachie\application\controllers\HomeController.php(36): Rackage\View::render('index', Array)
+
+E_DEPRECATED Exception::__construct(): Passing null to parameter #1 ($message) of type string is deprecated in C:\xampp\htdocs\rachie\system\Exceptions\ExceptionClass.php on line (92) As seen from  [internal function]: handler(8192, 'Exception::__co...', 'C:\\xampp\\htdocs...', 92)
+#1 C:\xampp\htdocs\rachie\system\Exceptions\ExceptionClass.php(92): Exception->__construct(NULL, 0, NULL)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(115): Exceptions\ExceptionClass->__construct()
+#3 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'index')
+
+Rackage\Templates\TemplateException: The view file named 'index' cannot be found! C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(114) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'index')
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(274): Rackage\View::getContents('index', false)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(178): Rackage\View::renderView('index', Array, 200, true)
+#3 C:\xampp\htdocs\rachie\application\controllers\HomeController.php(36): Rackage\View::render('index', Array)
+
+E_DEPRECATED Exception::__construct(): Passing null to parameter #1 ($message) of type string is deprecated in C:\xampp\htdocs\rachie\system\Exceptions\ExceptionClass.php on line (92) As seen from  [internal function]: handler(8192, 'Exception::__co...', 'C:\\xampp\\htdocs...', 92)
+#1 C:\xampp\htdocs\rachie\system\Exceptions\ExceptionClass.php(92): Exception->__construct(NULL, 0, NULL)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(115): Exceptions\ExceptionClass->__construct()
+#3 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'index')
+
+Rackage\Templates\TemplateException: The view file named 'index' cannot be found! C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(114) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'index')
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(274): Rackage\View::getContents('index', false)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(178): Rackage\View::renderView('index', Array, 200, true)
+#3 C:\xampp\htdocs\rachie\application\controllers\HomeController.php(36): Rackage\View::render('index', Array)
+
+Controller class 'Controllers\NonExistentControllerController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(263): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(218): Tests\RackageTest->request('NonExistentCont...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerShowsError()
+
+Method 'nonExistentMethod' does not exist on controller 'Controllers\TestIncompleteController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(263): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(253): Tests\RackageTest->request('TestIncomplete/...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingMethodShowsError()
+
+E_DEPRECATED Exception::__construct(): Passing null to parameter #1 ($message) of type string is deprecated in C:\xampp\htdocs\rachie\system\Exceptions\ExceptionClass.php on line (92) As seen from  [internal function]: handler(8192, 'Exception::__co...', 'C:\\xampp\\htdocs...', 92)
+#1 C:\xampp\htdocs\rachie\system\Exceptions\ExceptionClass.php(92): Exception->__construct(NULL, 0, NULL)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(115): Exceptions\ExceptionClass->__construct()
+#3 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'index')
+
+The view file named 'index' cannot be found! C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(114) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'index')
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(274): Rackage\View::getContents('index', false)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(178): Rackage\View::renderView('index', Array, 200, true)
+#3 C:\xampp\htdocs\rachie\application\controllers\HomeController.php(36): Rackage\View::render('index', Array)
+
+E_WARNING Undefined variable $rachie_app_start in C:\xampp\htdocs\rachie\system\bootstrap.php on line (183) As seen from  C:\xampp\htdocs\rachie\system\bootstrap.php(183): handler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 183)
+#1 C:\xampp\htdocs\rachie\public\index.php(80): require_once('C:\\xampp\\htdocs...')
+#2 {main}
+Controller class 'Controllers\NonExistentControllerController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(276): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(218): Tests\RackageTest->request('NonExistentCont...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerShowsError()
+
+Method 'nonExistentMethod' does not exist on controller 'Controllers\TestIncompleteController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(276): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(253): Tests\RackageTest->request('TestIncomplete/...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingMethodShowsError()
+
+The view file named 'home/indexx' cannot be found! C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(114) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'home/indexx')
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(274): Rackage\View::getContents('home/indexx', false)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(178): Rackage\View::renderView('home/indexx', Array, 200, true)
+#3 C:\xampp\htdocs\rachie\application\controllers\HomeController.php(36): Rackage\View::render('home/indexx', Array)
+
+Controller class 'Controllers\NonExistentControllerController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(277): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(218): Tests\RackageTest->request('NonExistentCont...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerShowsError()
+
+Method 'nonExistentMethod' does not exist on controller 'Controllers\TestIncompleteController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(277): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(253): Tests\RackageTest->request('TestIncomplete/...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingMethodShowsError()
+
+The view file named 'home/indexx' cannot be found! C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(114) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'home/indexx')
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(274): Rackage\View::getContents('home/indexx', false)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(178): Rackage\View::renderView('home/indexx', Array, 200, true)
+#3 C:\xampp\htdocs\rachie\application\controllers\HomeController.php(36): Rackage\View::render('home/indexx', Array)
+
+Controller class 'Controllers\NonExistentControllerController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(277): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(217): Tests\RackageTest->request('NonExistentCont...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerShowsError()
+
+Method 'nonExistentMethod' does not exist on controller 'Controllers\TestIncompleteController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(277): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(252): Tests\RackageTest->request('TestIncomplete/...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingMethodShowsError()
+
+The view file named 'home/indexx' cannot be found! C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(114) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'home/indexx')
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(274): Rackage\View::getContents('home/indexx', false)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(178): Rackage\View::renderView('home/indexx', Array, 200, true)
+#3 C:\xampp\htdocs\rachie\application\controllers\HomeController.php(36): Rackage\View::render('home/indexx', Array)
+
+Controller class 'Controllers\NonExistentControllerController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(277): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(217): Tests\RackageTest->request('NonExistentCont...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerShowsError()
+
+Method 'nonExistentMethod' does not exist on controller 'Controllers\TestIncompleteController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(277): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(252): Tests\RackageTest->request('TestIncomplete/...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingMethodShowsError()
+
+The view file named 'home/indexx' cannot be found! C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(114) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'home/indexx')
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(274): Rackage\View::getContents('home/indexx', false)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(178): Rackage\View::renderView('home/indexx', Array, 200, true)
+#3 C:\xampp\htdocs\rachie\application\controllers\HomeController.php(36): Rackage\View::render('home/indexx', Array)
+
+Controller class 'Controllers\NonExistentControllerController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(277): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(225): Tests\RackageTest->request('NonExistentCont...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerShowsError()
+
+Method 'nonExistentMethod' does not exist on controller 'Controllers\TestIncompleteController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(277): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(260): Tests\RackageTest->request('TestIncomplete/...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingMethodShowsError()
+
+The view file named 'home/indexx' cannot be found! C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(114) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'home/indexx')
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(274): Rackage\View::getContents('home/indexx', false)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(178): Rackage\View::renderView('home/indexx', Array, 200, true)
+#3 C:\xampp\htdocs\rachie\application\controllers\HomeController.php(36): Rackage\View::render('home/indexx', Array)
+
+Controller class 'Controllers\NonExistentControllerController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(277): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(225): Tests\RackageTest->request('NonExistentCont...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerShowsError()
+
+Method 'nonExistentMethod' does not exist on controller 'Controllers\TestIncompleteController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(277): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(260): Tests\RackageTest->request('TestIncomplete/...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingMethodShowsError()
+
+The view file named 'home/indexx' cannot be found! C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Templates\Template.php(114) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(351): Rackage\Templates\Template->compiled('C:\\xampp\\htdocs...', false, 'home/indexx')
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(274): Rackage\View::getContents('home/indexx', false)
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\View.php(178): Rackage\View::renderView('home/indexx', Array, 200, true)
+#3 C:\xampp\htdocs\rachie\application\controllers\HomeController.php(36): Rackage\View::render('home/indexx', Array)
+
+Controller class 'Controllers\NonExistentControllerController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(277): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(230): Tests\RackageTest->request('NonExistentCont...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerShowsError()
+
+Method 'nonExistentMethod' does not exist on controller 'Controllers\TestIncompleteController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(277): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(265): Tests\RackageTest->request('TestIncomplete/...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingMethodShowsError()
+
+Controller class 'Controllers\NonExistentControllerController' is not defined C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(397) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(277): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(230): Tests\RackageTest->request('NonExistentCont...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingControllerShowsError()
+
+Method 'nonExistentMethod' does not exist on controller 'Controllers\TestIncompleteController' C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(413) As seen from  C:\xampp\htdocs\rachie\vendor\glivers\rackage\src\Router\Router.php(127): Rackage\Router\Router->validateController()
+#1 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\RackageTest.php(277): Rackage\Router\Router->dispatch()
+#2 C:\xampp\htdocs\rachie\vendor\glivers\rackage\tests\Router\BasicRoutingTest.php(265): Tests\RackageTest->request('TestIncomplete/...')
+#3 phar://C:/xampp/htdocs/rachie/phpunit.phar/phpunit/Framework/TestCase.php(1257): Tests\Router\BasicRoutingTest->testMissingMethodShowsError()
+
