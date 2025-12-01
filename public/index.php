@@ -34,7 +34,9 @@
 
 // Record application start time for performance profiling
 // This will be available in Registry::$rachie_app_start
-$rachie_app_start = microtime(true);
+//$rachie_app_start = microtime(true);
+
+define('RACHIE_START', microtime(true));
 
 // ===========================================================================
 // ERROR REPORTING CONFIGURATION

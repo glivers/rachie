@@ -21,18 +21,34 @@ return array(
 	// ===========================================================================
 	// DEFAULT DATABASE DRIVER
 	// ===========================================================================
-	
+
 	/**
 	 * Default Database Connection
-	 * 
+	 *
 	 * The database driver to use when no specific connection is specified.
 	 * This driver's configuration (below) will be used for all database operations.
-	 * 
+	 *
 	 * Options: 'mysql', 'sqlite', 'postgresql'
-	 * 
+	 *
 	 * Most common: 'mysql'
 	 */
 	'default' => 'mysql',
+
+	// ===========================================================================
+	// MIGRATIONS TRACKING TABLE
+	// ===========================================================================
+
+	/**
+	 * Migrations Table Name
+	 *
+	 * The name of the table used to track which migrations have been run.
+	 * This table is created automatically by Roline when you run migrations.
+	 *
+	 * Change this if 'migrations' conflicts with your application tables.
+	 *
+	 * Default: 'migrations'
+	 */
+	'migrations_table' => 'migrations',
 
 	// ===========================================================================
 	// MYSQL CONFIGURATION
