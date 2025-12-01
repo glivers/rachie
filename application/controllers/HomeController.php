@@ -1,27 +1,25 @@
 <?php namespace Controllers;
 
 /**
- *This class loads the application homepage
- *@author Geoffrey Okongo <code@rachie.dev>
- *@copyright 2015 - 2030 Geoffrey Okongo
- *@category Controllers
- *@package Controllers\Home
- *@link https://github.com/glivers/rachie
- *@license http://opensource.org/licenses/MIT MIT License
- *@version 1.0.1
+ * This class loads the application homepage
+ * @author Geoffrey Okongo <code@rachie.dev>
+ * @copyright 2015 - 2030 Geoffrey Okongo
+ * @category Controllers
+ * @package Controllers\Home
+ * @link https://github.com/glivers/rachie
+ * @license http://opensource.org/licenses/MIT MIT License
+ * @version 1.0.1
  */
 
-use Rackage\Templates\View;
-use Libraries\CronLibrary\SampleCronController;
-use Models\UsersModel;
-use Rackage\Url\Url;
+use Rackage\View;
+use Rackage\Controller;
 
-class HomeController extends BaseController {
+class HomeController extends Controller {
 
 	/**
 	 * @var bool Set to true to enable method filters in this controller
 	 */
-	public $enable_method_filters = false;
+	public $enable_filters = false;
 
 	/**
 	 * This method loads the homepage. 
@@ -34,24 +32,7 @@ class HomeController extends BaseController {
 		$data['title'] = $this->site_title;
 		$data['request_time'] = $this->request_exec_time();
 
-		View::render('index',$data);
-
-	}
-
-	/**
-	 * This method initializes a cron job in the library which executes a series of queries in the 
-	 * database to keep user information in synch
-	 *
-	 * @param null
-	 * @return void
-	 */
-	public function CronInit(){
-
-		//create an instance of the cronController class
-		$cronControllerObject = new SampleCronController();
-
-		//call the method to lauch the cron job operation
-		$cronControllerObject->init();
+		View::render('home/index',$data);
 
 	}
 	
