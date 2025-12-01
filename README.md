@@ -8,7 +8,7 @@
 
 ## What is Rachie?
 
-Rachie is a simple, lightweight PHP framework that helps you build web applications without the complexity of larger frameworks. If Laravel feels too heavy and pure PHP feels too raw, Rachie is your sweet spot.
+Rachie is a simple, lightweight PHP framework that helps you build web applications without the complexity of larger frameworks. If most frameworks feels too heavy and pure PHP feels too raw, Rachie is your sweet spot.
 
 ## Key Features
 
