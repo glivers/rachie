@@ -23,6 +23,6 @@ class UsersModel extends Model {
 	/**
 	 * @var bool Set whether query timestamps should be updated
 	 */	
-	protected static $update_timestamps = true;
+	protected static $timestamps = true;
 
 }
