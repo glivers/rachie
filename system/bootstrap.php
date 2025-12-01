@@ -180,7 +180,7 @@ try {
 	                ->setUrl($_GET['_rachie_route'] ?? '');
 
 	// Store application start time for performance profiling
-	Rackage\Registry::$rachie_app_start = $rachie_app_start;
+	Rackage\Registry::$rachie_app_start = RACHIE_START;
 
 	// Free memory by unsetting loaded config arrays
 	// Registry has stored everything we need
@@ -192,7 +192,7 @@ try {
 
 	// Check if this is a console request (CLI tools, artisan-style commands)
 	// Console requests skip the web routing system
-	if (!defined('CONSOLE_INSTANCE')) {
+	if (!defined('ROLINE_INSTANCE')) {
 		
 		// This is a web request - load the router
 		// start.php contains the routing logic and controller dispatch
@@ -212,7 +212,7 @@ catch (Exception $e) {
 	// Display appropriate error message based on request type
 	
 	// Check if this is a console request
-	if (defined('CONSOLE_INSTANCE')) {
+	if (defined('ROLINE_INSTANCE')) {
 		
 		// Console request - output plain text error
 		echo $e->getMessage();
