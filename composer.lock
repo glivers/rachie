@@ -4,21 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3c0b7cd290ba895f6645fa0b1ad863a1",
+    "content-hash": "687384ccfbfdbac88b92c82b56e9b546",
     "packages": [
         {
             "name": "glivers/rackage",
-            "version": "v3.0.2",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/glivers/rackage.git",
-                "reference": "cac1c7902c53b7cdd00cd8dc41973b94b76f433b"
+                "reference": "2130418e93738c0a92492a64e7b0b097764e8528"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/glivers/rackage/zipball/cac1c7902c53b7cdd00cd8dc41973b94b76f433b",
-                "reference": "cac1c7902c53b7cdd00cd8dc41973b94b76f433b",
+                "url": "https://api.github.com/repos/glivers/rackage/zipball/2130418e93738c0a92492a64e7b0b097764e8528",
+                "reference": "2130418e93738c0a92492a64e7b0b097764e8528",
                 "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
             },
             "type": "package",
             "autoload": {
@@ -39,26 +42,27 @@
             "description": "This is a collection of all the PHP classes that make Rachie a real MVC framework",
             "support": {
                 "issues": "https://github.com/glivers/rackage/issues",
-                "source": "https://github.com/glivers/rackage/tree/v3.0.2"
+                "source": "https://github.com/glivers/rackage/tree/v3.1.0"
             },
-            "time": "2025-03-24T13:08:03+00:00"
+            "time": "2025-12-01T21:26:56+00:00"
         },
         {
             "name": "glivers/roline",
-            "version": "v0.0.2",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/glivers/roline.git",
-                "reference": "4865f743f5e0482aec061ec35b703ad987a7c4be"
+                "reference": "0742e43d23573d3de1a0629a9474740840cebe74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/glivers/roline/zipball/4865f743f5e0482aec061ec35b703ad987a7c4be",
-                "reference": "4865f743f5e0482aec061ec35b703ad987a7c4be",
+                "url": "https://api.github.com/repos/glivers/roline/zipball/0742e43d23573d3de1a0629a9474740840cebe74",
+                "reference": "0742e43d23573d3de1a0629a9474740840cebe74",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1.0"
+                "glivers/rackage": "3.*",
+                "php": ">=7.4"
             },
             "type": "package",
             "autoload": {
@@ -79,9 +83,9 @@
             "description": "This is the entry point into the Rachie console commands",
             "support": {
                 "issues": "https://github.com/glivers/roline/issues",
-                "source": "https://github.com/glivers/roline/tree/v0.0.2"
+                "source": "https://github.com/glivers/roline/tree/v2.0.0"
             },
-            "time": "2025-11-24T14:10:37+00:00"
+            "time": "2025-12-01T22:20:21+00:00"
         }
     ],
     "packages-dev": [],
@@ -91,7 +95,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.1.0"
+        "php": ">=7.4.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.2.0"
