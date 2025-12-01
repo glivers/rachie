@@ -30,7 +30,7 @@
 
 // Make $settings available to all functions in this file
 // $settings is loaded in bootstrap.php before this file is included
-global $settings;
+$settings;
 
 // ===========================================================================
 // ERROR TYPE MAPPING
@@ -117,6 +117,7 @@ function shut()
  */
 function handler($errNo, $errMsg, $errFile, $errLine)
 {
+
 	global $settings, $ERROR_TYPES;
 
 	// Get human-readable error type name
@@ -173,7 +174,7 @@ function handler($errNo, $errMsg, $errFile, $errLine)
 function displayError($showError, $logError)
 {
 	// Check if this is a console request
-	$isConsole = defined('CONSOLE_INSTANCE');
+	$isConsole = defined('ROLINE_INSTANCE');
 
 	// Path to error page template
 	$errorPage = dirname(__FILE__) . '/View.php';
@@ -185,7 +186,6 @@ function displayError($showError, $logError)
 		{
 			// Console: Show log message (no HTML)
 			echo $logError;
-			exit();
 		}
 		else
 		{
@@ -220,7 +220,6 @@ function displayError($showError, $logError)
 		{
 			// Console: Show log message (no HTML)
 			echo $logError;
-			exit();
 		}
 		else
 		{
