@@ -3,24 +3,75 @@
 /**
  * Roline - Rachie Command Line Interface
  *
- * This is a thin wrapper that delegates to Roline\Console;
+ * This is a thin wrapper that delegates to vendor/glivers/roline.
+ * All actual CLI logic lives in the vendor package for easy updates.
+ *
+ * Usage:
+ *   php roline <command> [arguments]
+ *   php roline make:controller Posts
+ *   php roline migrate
+ *   php roline cache:clear
+ *
+ * @author Geoffrey Okongo <code@rachie.dev>
+ * @copyright 2015 - 2030 Geoffrey Okongo
+ * @license MIT
  */
 
- define('CONSOLE_INSTANCE', true);
-
-// Check if installed via Composer
-if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
-    echo "Error: Composer dependencies not installed.\n";
-    echo "Run: composer install\n";
+// Check if Composer dependencies are installed
+if (!file_exists(__DIR__ . '/vendor/autoload.php'))
+{
+    echo "\033[31m✗ Error: Composer dependencies not installed.\033[0m\n";
+    echo "\033[33m→ Run: composer install\033[0m\n";
     exit(1);
 }
 
-// Load Composer autoloader
+/**
+ * Define console instance constant
+ *
+ * This constant tells Rachie bootstrap that we're running in CLI mode,
+ * not a web request. Bootstrap uses this to handle errors appropriately.
+ */
+define('ROLINE_INSTANCE', true);
+
+/**
+ * Load Composer autoloader
+ *
+ * Loads all Composer dependencies including Rackage and Roline packages.
+ */
 require __DIR__ . '/vendor/autoload.php';
 
-// Bootstrap Rachie (loads config, registry, etc.)
+/**
+ * Bootstrap Rachie framework
+ *
+ * Uses the standard Rachie boot sequence via public/index.php.
+ * This ensures proper initialization of all framework components:
+ * - Loads all configuration files
+ * - Initializes Registry
+ * - Sets up error handling
+ * - Starts session (if needed)
+ *
+ * IMPORTANT: We reuse the existing boot sequence instead of duplicating
+ * logic to avoid inconsistencies and potential security issues.
+ */
 require __DIR__ . '/public/index.php';
 
-// Run Roline CLI
-$cli = new Roline\Console();
-$cli->run($argv);
+/**
+ * Verify Roline package is installed
+ *
+ * Check if the glivers/roline package is available via Composer.
+ */
+if (!class_exists('Roline\Roline'))
+{
+    echo "\033[31m✗ Error: Roline package not installed.\033[0m\n";
+    echo "\033[33m→ Run: composer require glivers/roline\033[0m\n";
+    exit(1);
+}
+
+/**
+ * Run Roline CLI application
+ *
+ * Create Roline instance and execute the requested command.
+ * All command routing and execution happens in vendor/glivers/roline.
+ */
+$roline = new Roline\Roline();
+$roline->run($argv);
