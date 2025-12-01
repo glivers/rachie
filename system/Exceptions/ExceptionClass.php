@@ -160,48 +160,64 @@ class ExceptionClass extends \Exception
 	 */
 	public function errorShow()
 	{
+		//set HTTP 500 error code (works in both web and CLI/testing)
+		http_response_code(500);
+		
 		// Build and log error message
 		$this->buildMessage()->logMessage();
 
-		// Prepare error message for display
-		$error = $this->showError;
-
-		// Hide detailed errors in production
-		if ($this->DEV === false)
-		{
-			$hideError = true;
-		}
-
-		// Get site title
-		$title = $this->siteTitle;
-
-		// Try to load error page template, fallback to plain HTML if missing
-		if (file_exists($this->errorPage))
-		{
-			include $this->errorPage;
-		}
-		else
-		{
-			// Fallback: display error without template
-			echo '<!DOCTYPE html><html><head><title>Error</title></head><body>';
-
-			if ($this->DEV === false)
+		// Check if this is a console request
+		if (defined('ROLINE_INSTANCE')) {
+			
+			// Console request - output plain text error
+			echo $this->showError;
+			
+		} 
+		else {
+			
+			// Try to load error page template, fallback to plain HTML if missing
+			if (file_exists($this->errorPage))
 			{
-				echo '<h1>An error occurred</h1>';
-				echo '<p>The application encountered an error. Please contact the administrator.</p>';
+
+				// Prepare error message for display
+				$error = $this->showError;
+
+				// Hide detailed errors in production
+				if ($this->DEV === false)
+				{
+					$hideError = true;
+				}		
+
+				// Get site title
+				$title = $this->siteTitle;
+
+				include $this->errorPage;
+
 			}
 			else
 			{
-				echo '<h1>Error Handler Warning</h1>';
-				echo '<p><strong>Error template missing:</strong> ' . htmlspecialchars($this->errorPage) . '</p>';
-				echo '<hr><h2>Error Details:</h2>';
-				echo '<pre>' . htmlspecialchars($error) . '</pre>';
-			}
+				// Fallback: display error without template
+				echo '<!DOCTYPE html><html><head><title>Error</title></head><body>';
 
-			echo '</body></html>';
+				if ($this->DEV === false)
+				{
+					echo '<h1>An error occurred</h1>';
+					echo '<p>The application encountered an error. Please contact the administrator.</p>';
+				}
+				else
+				{
+					echo '<h1>Error Handler Warning</h1>';
+					echo '<p><strong>Error template missing:</strong> ' . htmlspecialchars($this->errorPage) . '</p>';
+					echo '<hr><h2>Error Details:</h2>';
+					echo '<pre>' . htmlspecialchars($error) . '</pre>';
+				}
+
+				echo '</body></html>';
+			}	
+
+			// Stop execution
+			exit();
 		}
 
-		// Stop script execution
-		exit();
 	}
 }
