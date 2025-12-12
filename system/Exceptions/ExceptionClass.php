@@ -131,7 +131,17 @@ class ExceptionClass extends \Exception
 	{
 		// Get stack trace
 		$trace = $this->getTraceAsString();
-		$context = substr($trace, 2, (strpos($trace, "#4")) ? strpos($trace, "#4") - 2 : 1000);
+
+		// Check if this is a DatabaseException - show full trace for DB errors
+		$isDatabaseException = (get_class($this) === 'Rackage\Database\DatabaseException' ||
+		                        is_subclass_of($this, 'Rackage\Database\DatabaseException'));
+
+		// In dev mode, show full trace for DatabaseExceptions, truncate others
+		if ($this->DEV && $isDatabaseException) {
+			$context = $trace;
+		} else {
+			$context = substr($trace, 2, (strpos($trace, "#4")) ? strpos($trace, "#4") - 2 : 1000);
+		}
 
 		// Build complete error message
 		$this->fullError = '<b>' . $this->getMessage() . ' ' . $this->getFile() . '(' . $this->getLine() . ')</b> As seen from ' . $context;
