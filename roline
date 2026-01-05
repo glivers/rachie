@@ -17,14 +17,6 @@
  * @license MIT
  */
 
-// Check if Composer dependencies are installed
-if (!file_exists(__DIR__ . '/vendor/autoload.php'))
-{
-    echo "\033[31m✗ Error: Composer dependencies not installed.\033[0m\n";
-    echo "\033[33m→ Run: composer install\033[0m\n";
-    exit(1);
-}
-
 /**
  * Define console instance constant
  *
@@ -32,13 +24,6 @@ if (!file_exists(__DIR__ . '/vendor/autoload.php'))
  * not a web request. Bootstrap uses this to handle errors appropriately.
  */
 define('ROLINE_INSTANCE', true);
-
-/**
- * Load Composer autoloader
- *
- * Loads all Composer dependencies including Rackage and Roline packages.
- */
-require __DIR__ . '/vendor/autoload.php';
 
 /**
  * Bootstrap Rachie framework
