@@ -133,18 +133,12 @@ class ExceptionClass extends \Exception
 		$trace = $this->getTraceAsString();
 
 		// Check if this is a DatabaseException - show full trace for DB errors
-		$isDatabaseException = (get_class($this) === 'Rackage\Database\DatabaseException' ||
-		                        is_subclass_of($this, 'Rackage\Database\DatabaseException'));
+		$isDatabaseException = $this instanceof \Rackage\Database\DatabaseException;
 
-		// In dev mode, show full trace for DatabaseExceptions, truncate others
-		if ($this->DEV && $isDatabaseException) {
-			$context = $trace;
-		} else {
-			$context = substr($trace, 2, (strpos($trace, "#4")) ? strpos($trace, "#4") - 2 : 1000);
-		}
+		$context = substr($trace, 0, (strpos($trace, "#10")) ? strpos($trace, "#4") - 2 : 2000);
 
 		// Build complete error message
-		$this->fullError = '<b>' . $this->getMessage() . ' ' . $this->getFile() . '(' . $this->getLine() . ')</b> As seen from ' . $context;
+		$this->fullError = '<b>' . $this->getMessage() . ' ' . $this->getFile() . '(' . $this->getLine() . ')</b> STACK TRACE: ' . $context;
 
 		// Remove absolute paths from display version
 		$this->showError = str_replace(array(Registry::settings()['root'], '.php'), '', $this->fullError);
