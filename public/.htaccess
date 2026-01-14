@@ -22,14 +22,8 @@ Options -Indexes
     Require all denied
 </FilesMatch>
 
-# Allow ONLY index.php and server.php to execute
-# All other PHP files are blocked for security
-<FilesMatch "^(index|server)\.php$">
-    Require all granted
-</FilesMatch>
-
-# Block all PHP and other executable extensions
-<FilesMatch "\.(php|phtml|php3|php4|php5|php7|phps|pht|phar|pl|py|jsp|asp|sh|cgi)$">
+# Block all PHP and executable files EXCEPT index.php and server.php
+<FilesMatch "^(?!(index|server)\.php$).*\.(php|phtml|php3|php4|php5|php7|phps|pht|phar|pl|py|jsp|asp|sh|cgi)$">
     Require all denied
 </FilesMatch>
 
