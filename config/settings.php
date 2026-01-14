@@ -402,6 +402,7 @@ return array(
 		'Rackage\Request',
 		'Rackage\Validate',
 		'Rackage\Registry',
+		'Rackage\Security',
 		'Rackage\Redirect',
 	),
 
@@ -498,7 +499,7 @@ return array(
 		 *   - Controller not found
 		 *   - Catch-all controller returns 404
 		 */
-		'404' => 'errors.404',
+		'404' => 'errors/404',
 
 		/**
 		 * 500 Server Error
@@ -508,6 +509,6 @@ return array(
 		 *   - Fatal errors
 		 *   - Database errors
 		 */
-		'500' => 'errors.500',
+		'500' => 'errors/500',
 	)
 );

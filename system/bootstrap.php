@@ -163,6 +163,10 @@ try {
 	// Enables PSR-4 autoloading for all framework and application classes
 	require_once __DIR__ . '/../vendor/autoload.php';
 
+	// Register template stream wrapper for production rendering
+	// Enables zero-disk-I/O view rendering via 'template://render'
+	Rackage\Templates\TemplateStream::register();
+
 	// Load application constants
 	// User-defined constants available throughout the application
 	require_once __DIR__ . '/../application/constants.php';

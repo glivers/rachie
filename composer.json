@@ -23,7 +23,7 @@
 			"Models\\" : "application/models",
 			"Controllers\\" : "application/controllers",
 			"Exceptions\\"  : "system/Exceptions",
-			"Libraries\\"  : "application/libraries"
+			"Lib\\"  : "application/libraries"
 		}
 	},
 	"scripts" : {

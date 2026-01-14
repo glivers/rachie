@@ -129,16 +129,16 @@ function handler($errNo, $errMsg, $errFile, $errLine)
 	// Build stack trace for context
 	$exception = new Exception;
 	$trace = $exception->getTraceAsString();
-	$context = substr($trace, 2, (strpos($trace, "#4")) ? strpos($trace, "#4") - 2 : 1000);
+	$context = substr($trace, 0, (strpos($trace, "#10")) ? strpos($trace, "#10") - 2 : 2000);
 
 	// Compose error message for display (with HTML formatting)
-	$showError = "<b>$type: $errMsg in $errFile on line($errLine)</b> As seen from $context";
+	$showError = "<b>$type: $errMsg in $errFile on line($errLine)</b> STACK TRACE: $context";
 
 	// Remove absolute path and .php extension for cleaner display
 	$showError = str_replace(array($root, '.php'), '', $showError);
 
 	// Compose error message for log file (plain text, no HTML)
-	$logError = "$type $errMsg in $errFile on line ($errLine) As seen from $context";
+	$logError = "$type $errMsg in $errFile on line ($errLine) STACK TRACE: $context";
 
 	// Get error log file path from settings
 	$logFile = $root . '/' . $settings['error_log'];
