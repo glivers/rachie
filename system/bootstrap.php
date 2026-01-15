@@ -161,7 +161,28 @@ try {
 
 	// Load Composer autoloader
 	// Enables PSR-4 autoloading for all framework and application classes
-	require_once __DIR__ . '/../vendor/autoload.php';
+	$autoloader = require_once __DIR__ . '/../vendor/autoload.php';
+
+	// Load custom namespaces from config (if exists)
+	// Allows developers to add Themes, Plugins, Modules, etc. without editing composer.json
+	if (file_exists(__DIR__ . '/../config/autoload.php')) {
+		$customNamespaces = require_once __DIR__ . '/../config/autoload.php';
+
+		if (is_array($customNamespaces) && !empty($customNamespaces)) {
+			foreach ($customNamespaces as $namespace => $path) {
+				// Ensure namespace ends with \\
+				if (substr($namespace, -1) !== '\\') {
+					$namespace .= '\\';
+				}
+
+				// Make path absolute from application root
+				$absolutePath = __DIR__ . '/../' . ltrim($path, '/');
+
+				// Register with Composer's ClassLoader
+				$autoloader->addPsr4($namespace, $absolutePath);
+			}
+		}
+	}
 
 	// Register template stream wrapper for production rendering
 	// Enables zero-disk-I/O view rendering via 'template://render'

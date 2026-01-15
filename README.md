@@ -181,8 +181,8 @@ Perfect for CMS or dynamic content. Enable in `config/settings.php`:
 ```php
 'routing' => [
     'catch_all' => true,
-    'ca_controller' => 'Pages',
-    'ca_method' => 'show',
+    'controller' => 'Pages',
+    'method' => 'show',
 ]
 ```
 
@@ -567,8 +567,8 @@ Str::slug('My Title')          // my-title
 // Routing
 'routing' => [
     'catch_all' => false,            // Enable catch-all routing
-    'ca_controller' => 'Pages',
-    'ca_method' => 'show'
+    'controller' => 'Pages',
+    'method' => 'show'
 ]
 
 // Error pages
