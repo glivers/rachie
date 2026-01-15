@@ -193,16 +193,17 @@ return array(
 
 	/**
 	 * URL Component Separator
-	 * 
-	 * The character used to separate components in URLs.
-	 * 
-	 * Common patterns:
-	 *   '.' (dot)   - example.com/controller.action.param
-	 *   '/' (slash) - example.com/controller/action/param (REST-style)
-	 * 
-	 * Default Rachie routing: example.com/Home.Index
-	 * 
-	 * Choose based on your preferred URL structure and routing style.
+	 *
+	 * The character used to separate components in URLs and view paths.
+	 *
+	 * Standard: '/' (forward slash)
+	 *   - Follows web standards (RFC 3986)
+	 *   - Compatible with PHP's parse_url() and path functions
+	 *   - RESTful URL structure: example.com/controller/action/param
+	 *   - View paths: View::render('controller/method')
+	 *
+	 * IMPORTANT: DO NOT change this unless you have a very specific reason.
+	 * The framework is optimized for '/' separator.
 	 */
 	'url_separator' => '/',
 
@@ -404,6 +405,35 @@ return array(
 		'Rackage\Registry',
 		'Rackage\Security',
 		'Rackage\Redirect',
+	),
+
+	// ============================================================================
+	// VIEW PATHS
+	// ============================================================================
+
+	/**
+	 * Custom View Paths
+	 *
+	 * Additional directories to search for view files before falling back
+	 * to application/views/. Paths are checked in order (first match wins).
+	 *
+	 * Primary use case: Theme/Plugin development
+	 *   Enables self-contained directories with both classes and views.
+	 *
+	 * Example:
+	 *   'view_paths' => ['themes/'],
+	 *
+	 * Usage:
+	 *   $theme = 'aurora';
+	 *   View::render($theme . '/home', $data);
+	 *   // Checks: themes/aurora/home.php
+	 *   // Falls back: application/views/aurora/home.php
+	 *
+	 * Default: Empty (only use application/views/)
+	 */
+	'view_paths' => array(
+		// 'themes/',
+		// 'plugins/',
 	),
 
 	// ============================================================================
