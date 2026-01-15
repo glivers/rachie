@@ -486,7 +486,7 @@ return array(
 		 * The controller to dispatch to when no route/controller matches.
 		 * Default: 'Pages'
 		 */
-		'ca_controller' => 'Pages',
+		'controller' => 'Pages',
 
 		/**
 		 * Catch-All Method
@@ -496,7 +496,7 @@ return array(
 		 *
 		 * Default: 'show'
 		 */
-		'ca_method' => 'show',
+		'method' => 'show',
 	),
 
 	// ============================================================================
