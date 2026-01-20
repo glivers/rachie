@@ -40,6 +40,26 @@ return array(
 	'contact' => 'Pages@contact',    // /contact → PagesController::contact()
 
 	// ===========================================================================
+	// COMPOUND ROUTES (2-segment matching)
+	// ===========================================================================
+
+	/**
+	 * Compound routes match two URL segments (e.g., 'admin/users').
+	 * Useful for namespacing admin panels, APIs, or avoiding URL conflicts.
+	 *
+	 * Format: 'segment1/segment2' => 'Controller@method'
+	 *
+	 * Example:
+	 *   Route: 'admin/users' => 'home'
+	 *   URL: /admin/users/search
+	 *   Result: HomeController::search()
+	 *
+	 * Priority: Compound routes are checked BEFORE single-segment routes.
+	 * So 'admin/users' takes precedence over 'admin'.
+	 */
+	//'admin/users' => 'Home',           // Route to HomeController, method from URL
+
+	// ===========================================================================
 	// ROUTES WITH NAMED PARAMETERS
 	// ===========================================================================
 

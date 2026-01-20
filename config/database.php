@@ -66,11 +66,11 @@ return array(
 	 *   password: '' (local with XAMPP/MAMP) or your hosting password
 	 *   port: 3306 (default MySQL port)
 	 */
-	'mysql' => array(
+	'mysql' => array(		
 		'host'     => 'localhost',           // Database server hostname or IP
 		'username' => 'root',                // Database username
 		'password' => '',                    // Database password
-		'database' => '',                    // Database name (e.g., 'my_app_db')
+		'database' => 'ke_search',                    // Database name (e.g., 'my_app_db')
 		'port'     => '3306',                // MySQL default port
 		'charset'  => 'utf8mb4',             // Character encoding (utf8mb4 recommended for emoji support)
 		'engine'   => 'InnoDB',              // Storage engine (InnoDB for transactions)
@@ -119,9 +119,73 @@ return array(
 		'username' => 'postgres',            // Database username (often 'postgres')
 		'password' => '',                    // Database password
 		'database' => '',                    // Database name
-		'port'     => '5432',                // PostgreSQL default port 
+		'port'     => '5432',                // PostgreSQL default port
 		'charset'  => 'utf8',                // Character encoding
 	),
+
+	// ===========================================================================
+	// NAMED CONNECTIONS (Advanced)
+	// ===========================================================================
+
+	/**
+	 * Named Database Connections
+	 *
+	 * Define additional database connections for advanced use cases:
+	 *   - Backup databases
+	 *   - Read replicas (load balancing)
+	 *   - Analytics databases (separate server)
+	 *   - Archive databases (old data)
+	 *   - Migration sources (old database to new)
+	 *
+	 * Each named connection MUST include a 'driver' key specifying which
+	 * database driver to use ('mysql', 'sqlite', or 'postgresql').
+	 *
+	 * Usage in code:
+	 *   UserModel::using('backup')->where('id', 1)->all();
+	 *   OrderModel::using('analytics')->sum('total');
+	 *   QueueModel::using('sqlite')->where('key', $key)->first();
+	 *
+	 * Note: You can also use Model::using('sqlite') or Model::using('postgresql')
+	 * to connect to those drivers without creating a named connection. Named
+	 * connections are useful when you need multiple connections of the same
+	 * driver type (e.g., multiple MySQL servers).
+	 *
+	 * The 'default' driver does not need using() - just use Model methods directly.
+	 *
+	 * Example configurations (uncomment and modify as needed):
+	 */
+
+	// Backup MySQL database (separate server)
+	// 'backup' => array(
+	// 	'driver'   => 'mysql',               // REQUIRED: Which driver to use
+	// 	'host'     => 'backup.server.com',   // Backup server hostname
+	// 	'username' => 'backup_user',         // Database username
+	// 	'password' => 'backup_pass',         // Database password
+	// 	'database' => 'backup_db',           // Database name
+	// 	'port'     => '3306',                // MySQL default port
+	// 	'charset'  => 'utf8mb4',             // Character encoding
+	// 	'engine'   => 'InnoDB',              // Storage engine
+	// ),
+
+	// Read replica for load balancing
+	// 'read-replica-1' => array(
+	// 	'driver'   => 'mysql',
+	// 	'host'     => 'read1.db.com',
+	// 	'username' => 'replica_user',
+	// 	'password' => 'replica_pass',
+	// 	'database' => 'myapp_db',
+	// 	'port'     => '3306',
+	// 	'charset'  => 'utf8mb4',
+	// 	'engine'   => 'InnoDB',
+	// ),
+
+	// SQLite cache (if you need a named connection)
+	// 'cache' => array(
+	// 	'driver'   => 'sqlite',
+	// 	'database' => 'storage/sqlite/cache.db',
+	// 	'charset'  => 'utf8',
+	// ),
+
 );
 
 /**

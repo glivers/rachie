@@ -15,7 +15,7 @@
 	],
 	"require" : {
 		"php" : ">=8.0.0",
-		"glivers/rackage" : "^3.0",
+		"glivers/rackage" : "^2.0",
 		"glivers/roline" : "^2.0"
 	},
 	"autoload" : {
