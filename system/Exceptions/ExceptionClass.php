@@ -164,9 +164,15 @@ class ExceptionClass extends \Exception
 	 */
 	public function errorShow()
 	{
+		// Clear any output buffers to prevent partial rendering
+		// This ensures only the error page displays (not mixed with app output)
+		while (ob_get_level() > 0) {
+			ob_end_clean();
+		}
+
 		//set HTTP 500 error code (works in both web and CLI/testing)
 		http_response_code(500);
-		
+
 		// Build and log error message
 		$this->buildMessage()->logMessage();
 
