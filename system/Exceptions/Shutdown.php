@@ -173,6 +173,12 @@ function handler($errNo, $errMsg, $errFile, $errLine)
  */
 function displayError($showError, $logError)
 {
+	// Clear any output buffers to prevent partial rendering
+	// This ensures only the error page displays (not mixed with app output)
+	while (ob_get_level() > 0) {
+		ob_end_clean();
+	}
+
 	// Check if this is a console request
 	$isConsole = defined('ROLINE_INSTANCE');
 
