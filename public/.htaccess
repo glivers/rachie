@@ -1,16 +1,15 @@
 <IfModule mod_rewrite.c>
     # Rachie Framework - Request Router
-    # Routes all non-file/directory requests through index.php
-    
+    # Routes all requests through index.php except actual files (CSS, JS, images)
+    # Note: We only check for files (!-f), NOT directories (!-d).
+    # This ensures routes like /admin work even if public/admin/ directory exists.
+
     RewriteEngine On
-    
-    # If request is not for a valid file
+
+    # If request is not for an actual file (CSS, JS, image, etc)
     RewriteCond %{REQUEST_FILENAME} !-f
-    
-    # If request is not for a valid directory
-    RewriteCond %{REQUEST_FILENAME} !-d
-    
-    # Route through index.php with URL as query parameter
+
+    # Route everything else through index.php
     RewriteRule ^(.*)$ index.php?_rachie_route=$1 [QSA,L]
 </IfModule>
 
