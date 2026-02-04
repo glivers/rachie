@@ -59,7 +59,7 @@ return array(
 	 * 
 	 * Format: 'Copyright (c) YEAR(s) Your Name/Organization'
 	 */
-	'copyright' => 'Copyright (c) 2015 - 2030 Geoffrey Okongo',
+	'copyright' => 'Copyright (c) 2015 - 2050 Geoffrey Okongo',
 
 	/**
 	 * Application License
@@ -395,7 +395,7 @@ return array(
 		'Rackage\Path',
 		'Rackage\Html',
 		'Rackage\File',
-		'Rackage\CSRF',
+		'Rackage\Csrf',
 		'Rackage\Date',
 		'Rackage\Input',
 		'Rackage\Cookie',
