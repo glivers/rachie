@@ -57,7 +57,7 @@
 					<div class="step-num">1</div>
 					<div class="step-text">
 						<h3>Edit this page</h3>
-						<code>application/views/users/home.php</code>
+						<code>application/views/home/index.php</code>
 					</div>
 				</div>
 

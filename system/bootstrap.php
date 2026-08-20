@@ -20,7 +20,7 @@
  *   - Prepares application for routing (web) or console execution (CLI)
  * 
  * @author Geoffrey Okongo <code@rachie.dev>
- * @copyright 2015 - 2030 Geoffrey Okongo
+ * @copyright 2015 - 2050 Geoffrey Okongo
  * @category Rachie
  * @package Bootstrap 
  * @link https://github.com/glivers/rachie
@@ -29,158 +29,109 @@
  */
 
 // ===========================================================================
-// SYSTEM VALIDATION - Check for required files before proceeding
+// SYSTEM BOOTSTRAP - Load required files before proceeding
 // ===========================================================================
 
 try {
 	
 	// -----------------------------------------------------------------------
-	// Check Composer Autoloader
-	// -----------------------------------------------------------------------
-	// The autoloader is required for loading all framework and application classes.
-	// If missing, run: composer install
-	
-	if (!file_exists(__DIR__ . '/../vendor/autoload.php')) {
-		throw new Exception(
-			"Composer autoloader missing! Please run 'composer install' from your terminal."
-		);
-	}
-
-	// -----------------------------------------------------------------------
-	// Check and Load The Settings.php File
+	// Load The Settings.php File
 	// -----------------------------------------------------------------------
 	// This file contains core application settings. Without it the framework freezes
 	// The application cannot run without it.
-	
-	// Application settings (timezone, paths, aliases, etc.)
-	if (!file_exists(__DIR__ . '/../config/settings.php')) {
-		throw new Exception(
-			"Configuration file missing: config/settings.php. Please restore if deleted."
-		);
-	}
-
-	// Load application settings to help with early error handling
-	$settings = require_once __DIR__ . '/../config/settings.php';
+	$settings = require_once (file_exists(__DIR__ . '/../config/overrides/settings.php')
+	? __DIR__ . '/../config/overrides/settings.php'
+	: __DIR__ . '/../config/settings.php');
 
 	// Set application timezone from configuration
 	// This ensures all date/time functions (date(), time(), Date helper, etc.)
-	// use the timezone specified in config/settings.php
 	if (isset($settings['timezone'])) {
 		date_default_timezone_set($settings['timezone']);
 	}
 
 	// Define development environment constant
 	// This affects error display and debugging features
-	if (isset($settings) && $settings['debug'] == true) {
-		define('DEBUG', true);
-	} 
-	else define('DEBUG', false);
-
+	define('DEBUG', isset($settings['debug']) ? $settings['debug'] : false);
+	
 	// ===========================================================================
 	// ERROR HANDLING SETUP
 	// ===========================================================================
 	
 	// Register custom error handler
 	// This handles PHP errors, exceptions, and fatal errors gracefully
-	require_once __DIR__ . '/Exceptions/Shutdown.php';
-	
-	// -----------------------------------------------------------------------
-	// Check Core Configuration Files
-	// -----------------------------------------------------------------------
-	// These files contain essential application settings.
-	// The application cannot run without them.
-	
-	// Security configuration settings
-	if (!file_exists(__DIR__ . '/../config/security.php')) {
-		throw new Exception(
-			"Security configuration missing: config/security.php. Please restore if deleted."
-		);
-	}	
-	
-	// Database connection settings
-	if (!file_exists(__DIR__ . '/../config/database.php')) {
-		throw new Exception(
-			"Database configuration missing: config/database.php. Please restore if deleted."
-		);
-	}
-
-	// Session configuration files
-	if(!file_exists(__DIR__ . '/../config/session.php')){
-		throw new Exception(
-			"Session configuration missing: config/session.php. Please restore if deleted."
-		);
-	}
+	require_once __DIR__ . '/Exceptions/Shutdown.php';	
 
 	// -----------------------------------------------------------------------
-	// Check System Files
+	// Load application configuration
 	// -----------------------------------------------------------------------
 	
-	// Application start/router file
-	if (!file_exists(__DIR__ . '/start.php')) {
-		throw new Exception(
-			"System file missing: system/start.php. Please restore if deleted."
-		);
-	}
+	// Load cached configuration if present
+	$config = [];
+	if(file_exists(__DIR__ . '/../vault/config.php')) {
 
-	// Application constants
-	if (!file_exists(__DIR__ . '/../application/constants.php')) {
-		throw new Exception(
-			"Constants file missing: application/constants.php. Please restore if deleted."
-		);
-	}
+		// Load all cached configuration into one main $config array
+		$config = require_once __DIR__ . '/../vault/config.php';
 
-	// Error handler
-	if (!file_exists(__DIR__ . '/Exceptions/Shutdown.php')) {
-		throw new Exception(
-			"Error handler missing: system/Exceptions/Shutdown.php. Please restore if deleted."
-		);
-	}
+		// Delete cached config if we are in debug mode
+		// Helps to clean up when switching from production mode to dev mode
+		if(isset($settings['debug']) &&  $settings['debug'] == true) {
 
+			unlink(__DIR__ . '/../vault/config.php');
+			// Reset config for manual loading
+			$config	= [];
+		}
+	}
+	
+	// If configuration is loaded jump to framework initialization
+	if($config) goto framework_init;
+	
 	// ===========================================================================
 	// CONFIGURATION LOADING - Load all config files
 	// ===========================================================================
 	
 	// Load security configuration
 	// Helps to set the correct headers to secure the application
-	$security = require_once __DIR__ . '/../config/security.php';
-
+	$config['security'] = require_once (file_exists(__DIR__ . '/../config/overrides/security.php')
+	? __DIR__ . '/../config/overrides/security.php'
+	: __DIR__ . '/../config/security.php');
+	
 	// Load session settings
 	// These help sync browser sessions configurations and browser cookies
-	$session = require_once __DIR__ . '/../config/session.php';
-
+	$config['session'] = require_once (file_exists(__DIR__ . '/../config/overrides/session.php')
+	? __DIR__ . '/../config/overrides/session.php'
+	: __DIR__ . '/../config/session.php');
+	
 	// Load database configuration
-	$database = require_once __DIR__ . '/../config/database.php';
+	// Use to access the databse through the model class
+	$config['database'] = require_once (file_exists(__DIR__ . '/../config/overrides/database.php')
+	? __DIR__ . '/../config/overrides/database.php'
+	: __DIR__ . '/../config/database.php');
+	
+	// Load cache configuration
+	// Used to 'cache' responses to avoid processing overhead
+	$config['cache'] = require_once (file_exists(__DIR__ . '/../config/overrides/cache.php')
+	? __DIR__ . '/../config/overrides/cache.php'
+	: __DIR__ . '/../config/cache.php');
+	
+	// Load mail configuration
+	// Used by Mail class to send email messages
+	$config['mail'] = require_once (file_exists(__DIR__ . '/../config/overrides/mail.php')
+	? __DIR__ . '/../config/overrides/mail.php'
+	: __DIR__ . '/../config/mail.php');
 
-	// Load optional configuration files
-	// Cache configuration
-	$cache = array();
-	if (file_exists(__DIR__ . '/../config/cache.php')) {
-		$cache = require_once __DIR__ . '/../config/cache.php';
-	} 
-	else if (DEBUG) {
-		// Warn in development if cache config is missing
-		trigger_error(
-			'Cache configuration not found. Create config/cache.php to enable caching features.',
-			E_USER_NOTICE
+	// Write configuration to file if in production
+	if(isset($settings['debug']) && $settings['debug'] == false) {
+
+		file_put_contents("{$settings['root']}/vault/config.php",
+			"<?php return \n//Auto-generated configuration file\n" . var_export($config, true) . ";"
 		);
 	}
-
-	// Mail configuration
-	$mail = array();
-	if (file_exists(__DIR__ . '/../config/mail.php')) {
-		$mail = require_once __DIR__ . '/../config/mail.php';
-	} 
-	else if (DEBUG) {
-		// Warn in development if mail config is missing
-		trigger_error(
-			'Mail configuration not found. Create config/mail.php to enable email features.',
-			E_USER_NOTICE
-		);
-	} 
-
+	
 	// ===========================================================================
 	// FRAMEWORK INITIALIZATION
 	// ===========================================================================
+
+	framework_init:
 
 	// Define a private session storage path to prevent session hijacking on shared hosting
 	session_save_path(__DIR__ . '/../vault/sessions');
@@ -191,7 +142,7 @@ try {
 
 	// Start PHP session, passing the application specific config params
 	// Required for session handling, flash messages, CSRF protection, etc.
-	session_start($session);
+	session_start($config['session']);
 
 	// Load Composer autoloader
 	// Enables PSR-4 autoloading for all framework and application classes
@@ -199,8 +150,8 @@ try {
 
 	// Load custom namespaces from config (if exists)
 	// Allows developers to add Themes, Plugins, Modules, etc. without editing composer.json
-	if (file_exists(__DIR__ . '/../config/autoload.php')) {
-		$customNamespaces = require_once __DIR__ . '/../config/autoload.php';
+	if (file_exists(__DIR__ . '/../application/autoload.php')) {
+		$customNamespaces = require_once __DIR__ . '/../application/autoload.php';
 
 		if (is_array($customNamespaces) && !empty($customNamespaces)) {
 			foreach ($customNamespaces as $namespace => $path) {
@@ -233,10 +184,10 @@ try {
 	// Load all configurations into Registry using method chaining
 	// Registry provides centralized access to config and resources
 	Rackage\Registry::settings($settings)
-					->securityConfig($security)
-	                ->dbConfig($database)
-	                ->cacheConfig($cache)
-	                ->mailConfig($mail)
+					->securityConfig($config['security'])
+	                ->dbConfig($config['database'])
+	                ->cacheConfig($config['cache'])
+	                ->mailConfig($config['mail'])
 	                ->setUrl($_GET['_rachie_route'] ?? '');
 
 	// Store application start time for performance profiling
@@ -244,7 +195,7 @@ try {
 
 	// Free memory by unsetting loaded config arrays
 	// Registry has stored everything we need
-	unset($database, $cache, $mail);
+	// unset($config);
 
 	// ===========================================================================
 	// APPLICATION START

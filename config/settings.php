@@ -110,7 +110,7 @@ return array(
 	 * 
 	 * IMPORTANT: Always set to FALSE in production environments!
 	 */
-	'debug' => true,
+	'debug' => false,
 
 	/**
 	 * Error Log File Path
@@ -241,7 +241,7 @@ return array(
 	 * 
 	 * DO NOT modify this unless you have a specific reason!
 	 */
-	'root' => dirname((dirname(__FILE__))),
+	'root' => dirname(dirname(__FILE__)),
 
 	// ============================================================================
 	// ROUTING DEFAULTS

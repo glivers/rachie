@@ -1,0 +1,107 @@
+<?php namespace Models;
+
+/**
+ * {{ModelName}} Model
+ *
+ * TODO: Describe what this model represents (e.g., "Represents products in the system")
+ * Define your database columns as protected properties with @column annotations.
+ *
+ * Usage:
+ *   php roline model:create-table {{ModelName}}  - Create table from annotations
+ *   php roline model:update-table {{ModelName}}  - Update existing table
+ *
+ * Documentation: https://rachie.dev/docs/models
+ *
+ * @author {{author}}
+ * @copyright {{copyright}}
+ * @license {{license}}
+ * @version {{version}}
+ */
+
+use Rackage\Model;
+
+class {{ModelName}}Model extends Model
+{
+    // ==================== MODEL PROPERTIES ====================
+
+    /**
+     * Database table name for this model
+     *
+     * Defines which database table this model maps to. Used by the
+     * Query builder for all database operations on this model's records.
+     *
+     * @var string
+     */
+    protected static $table = '{{TableName}}';
+
+    /**
+     * Enable automatic timestamp management
+     *
+     * When enabled, automatically updates created_at on insert and
+     * updated_at on update. Set to true if using timestamp columns.
+     *
+     * @var bool
+     */
+    protected static $timestamps = true;
+
+    // ==================== TABLE COLUMNS ====================
+    // Uncomment and modify the example columns below to match your table structure
+
+    /**
+     * Primary key identifier for the record
+     * @column
+     * @primary
+     * @autonumber
+     */
+    protected $id;
+
+    /**
+     * String column - names, titles, short text (up to 255 chars)
+     * @column
+     * @varchar 255
+     */
+    protected $title;
+
+    /**
+     * Text column - long descriptions, content (up to 65K chars)
+     * @column
+     * @text
+     * @nullable
+     */
+    protected $description;
+
+    /**
+     * Enum column - limited set of allowed values
+     * @column
+     * @enum pending,completed
+     * @default pending
+     */
+    protected $status;    
+
+    /**
+     * Enum column - limited set of allowed values
+     * @column
+     * @enum low,medium,high
+     * @default low
+     */
+    protected $priority;
+
+    /**
+     * Timestamp columns - automatically managed when $timestamps = true
+     * Uncomment these and set $timestamps = true to enable auto-timestamps
+     * @column
+     * @datetime
+     */
+    protected $created_at;
+
+    /**
+    * Timestamp when the record was last modified
+     * @column
+     * @datetime
+     */
+    protected $updated_at;
+
+    // ==================== MODEL METHODS ====================
+
+    // Add your business logic methods here
+}

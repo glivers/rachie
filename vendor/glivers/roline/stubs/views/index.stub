@@ -1,0 +1,54 @@
+@extends('{{ResourceName|lowercase}}/layout')
+
+@section('title', '{{ResourceName|capitalize}}')
+
+@section('content')
+    <div class="page-header">
+        <h1>{{ResourceName}}</h1>
+        <a href="{{ Url::link('{{ResourceName|lowercase}}/new') }}" class="btn btn-primary">Create New</a>
+    </div>
+
+    <div class="cards-grid">
+        @loopelse(${{ResourceName|lowercase}} as $item)
+            <div class="task-card">
+                <div class="task-header">
+                    <h3>{{ $item['title'] or 'Untitled' }}</h3>
+                    <div class="task-badges">
+                        <span class="badge badge-status badge-{{ $item['status'] or 'pending' }}">
+                            {{ $item['status'] or 'pending' }}
+                        </span>
+                        <span class="badge badge-priority badge-{{ $item['priority'] or 'low' }}">
+                            {{ $item['priority'] or 'low' }}
+                        </span>
+                    </div>
+                </div>
+                <div class="task-body">
+                    @isset($item['description'])
+                        <p class="task-description">{{ $item['description'] }}</p>
+                    @endisset
+                    <div class="task-footer">
+                        @isset($item['created_at'])
+                            <small class="text-muted">
+                                Created: {{ Date::format($item['created_at'], 'M j, Y') }}
+                            </small>
+                        @endisset
+                        <div class="task-actions">
+                            <a href="{{ Url::link('{{ResourceName|lowercase}}/show/' . $item['id']) }}" class="btn btn-sm btn-info">View</a>
+                            <a href="{{ Url::link('{{ResourceName|lowercase}}/edit/' . $item['id']) }}" class="btn btn-sm btn-secondary">Edit</a>
+                            <a href="{{ Url::link('{{ResourceName|lowercase}}/delete/' . $item['id']) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @empty
+            <div class="empty-state">
+                <svg class="empty-state-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+                <h2>No {{ResourceName|lowercase}} yet</h2>
+                <p>Your {{ResourceName|lowercase}} will appear here</p>
+                <a href="{{ Url::link('{{ResourceName|lowercase}}/new') }}" class="btn btn-primary">Create your first one</a>
+            </div>
+        @endloop
+    </div>
+@endsection

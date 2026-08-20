@@ -1,0 +1,189 @@
+<?php namespace Controllers;
+
+/**
+ * {{ControllerName}} Controller
+ *
+ * TODO: Describe what this controller handles (e.g., "Manages product catalog and inventory")
+ * You can use method prefixes (get/post/put/delete) for HTTP routing. Should extend Controller class.
+ *
+ * Routes:
+ *   GET  /{{ControllerName|lowercase}}           - List all resources
+ *   GET  /{{ControllerName|lowercase}}/show/id   - Show single resource
+ *   GET  /{{ControllerName|lowercase}}/new       - Show create form
+ *   POST /{{ControllerName|lowercase}}/new       - Save new resource
+ *
+ * Documentation: https://rachie.dev/docs/controllers
+ *
+ * @author {{author}}
+ * @copyright {{copyright}}
+ * @license {{license}}
+ * @version {{version}}
+ */
+
+use Rackage\View;
+use Rackage\Controller;
+use Rackage\CSRF;
+use Rackage\Input;
+use Rackage\Session;
+use Rackage\Redirect;
+use Models\TodoModel;  // Adjust to match your model name (typically singular)
+
+class {{ControllerName}}Controller extends Controller
+{
+    /**
+     * Enable method filters for this controller
+     *
+     * Set to true to enable before/after filters defined in the class or
+     * method level docblock. Defaults to false. Set to true to use filters.
+     *
+     * @var bool
+     */
+    public $enable_filters = false;
+
+    /**
+     * Display a listing of all resources
+     *
+     * Retrieves and displays paginated list of resources with optional
+     * filtering and sorting capabilities.
+     *
+     * @return void
+     */
+    public function getIndex()
+    {
+        // Example: Fetch all records from database
+        // Note: TodoModel should match your actual model class name
+        $data['{{ControllerName|lowercase}}'] = TodoModel::all();
+        $data['title'] = '{{ControllerName}} List';
+
+        View::render('{{ControllerName|lowercase}}/index', $data);
+    }
+
+    /**
+     * Display detailed view of a single resource
+     *
+     * Fetches resource by ID and renders detailed view with all
+     * associated data and relationships.
+     *
+     * @param mixed $id Resource identifier
+     * @return void
+     */
+    public function getShow($id)
+    {
+        // Example: Fetch single record by ID
+        // Note: TodoModel should match your actual model class name
+        ${{ControllerName|lowercase}} = TodoModel::getById($id);
+
+        $data['title'] = '{{ControllerName}} Details';
+        $data['id'] = $id;
+        $data['{{ControllerName|lowercase}}'] = ${{ControllerName|lowercase}};
+
+        View::render('{{ControllerName|lowercase}}/show', $data);
+    }
+
+    /**
+     * Show form for creating a new resource
+     *
+     * Renders creation form with all necessary fields and
+     * validation rules for user input.
+     *
+     * @return void
+     */
+    public function getNew()
+    {
+        $data['title'] = 'New {{ControllerName}}';
+
+        View::render('{{ControllerName|lowercase}}/new', $data);
+    }
+
+    /**
+     * Save newly created resource to database
+     *
+     * Validates submitted form data, creates new resource record,
+     * and redirects to appropriate page on success.
+     *
+     * @return void
+     */
+    public function postNew()
+    {
+        // In real life you'd validate input & CSRF token before saving records
+
+        // 4. Create new record
+        // Note: TodoModel should match your actual model class name
+        TodoModel::save([
+            'title' => Input::get('title'),
+            'description' => Input::get('description'),
+            'status' => Input::get('status'),
+            'priority' => Input::get('priority')
+        ]);
+
+        // 5. Set success message and redirect
+        Session::flash('success', 'Record created successfully!');
+        Redirect::to('{{ControllerName|lowercase}}');
+    }
+
+    /**
+     * Show form for editing an existing resource
+     *
+     * Fetches resource by ID and renders edit form pre-filled
+     * with current values.
+     *
+     * @param mixed $id Resource identifier
+     * @return void
+     */
+    public function getEdit($id)
+    {
+        // Fetch the record to edit
+        ${{ControllerName|lowercase}} = TodoModel::getById($id);
+
+        if (!${{ControllerName|lowercase}}) {
+            Session::flash('error', 'Record not found!');
+            Redirect::to('{{ControllerName|lowercase}}');
+        }
+
+        $data['title'] = 'Edit {{ControllerName}}';
+        $data['id'] = $id;
+        $data['{{ControllerName|lowercase}}'] = ${{ControllerName|lowercase}};
+
+        View::render('{{ControllerName|lowercase}}/edit', $data);
+    }
+
+    /**
+     * Update existing resource in database
+     *
+     * Validates submitted form data, updates the resource record,
+     * and redirects to appropriate page on success.
+     *
+     * @param mixed $id Resource identifier
+     * @return void
+     */
+    public function postEdit($id)
+    {
+        // In real life you'd validate input & CSRF token before updating records
+
+        TodoModel::where('id', $id)->save([
+            'title' => Input::get('title'),
+            'description' => Input::get('description'),
+            'status' => Input::get('status'),
+            'priority' => Input::get('priority')
+        ]);
+
+        Session::flash('success', 'Record updated successfully!');
+        Redirect::to('{{ControllerName|lowercase}}/show/' . $id);
+    }
+
+    /**
+     * Delete a resource from database
+     *
+     * Deletes the resource record and redirects to list page.
+     *
+     * @param mixed $id Resource identifier
+     * @return void
+     */
+    public function getDelete($id)
+    {
+        TodoModel::deleteById($id);
+
+        Session::flash('success', 'Record deleted successfully!');
+        Redirect::to('{{ControllerName|lowercase}}');
+    }
+}

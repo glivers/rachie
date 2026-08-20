@@ -1,0 +1,21 @@
+{
+    "name": "glivers/roline",
+    "description": "This is the entry point into the Rachie console commands",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Geoffrey Okongo",
+            "email": "code@rachie.dev"
+        }
+    ],
+    "require": {
+        "php": ">=8.0.0",
+        "glivers/rackage": "^2.0"
+    },
+    "autoload": {
+        "psr-4": { 
+            "Roline\\": "src" 
+        }
+    }
+}

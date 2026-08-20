@@ -1,6 +1,4 @@
-vendor/
-config/
-vault/
+vault/**
 tests/**
 phpunit.phar
 .phpunit.cache

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         cacheDirectory=".phpunit.cache"
+         colors="true"
+         testdox="true">
+    <testsuites>
+        <testsuite name="All">
+            <directory>tests</directory>
+            <exclude>tests/RolineTest.php</exclude>
+        </testsuite>
+        <testsuite name="Controller">
+            <directory>tests/Integration/Commands/Controller</directory>
+        </testsuite>
+        <testsuite name="Model">
+            <directory>tests/Integration/Commands/Model</directory>
+        </testsuite>
+        <testsuite name="View">
+            <directory>tests/Integration/Commands/View</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
+</phpunit>

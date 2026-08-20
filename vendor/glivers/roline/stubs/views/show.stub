@@ -1,0 +1,75 @@
+@extends('{{ResourceName|lowercase}}/layout')
+
+@section('title', '{{ResourceName}} Details')
+
+@section('content')
+    <div class="page-header">
+        <h1>{{ResourceName}} Details</h1>
+        <div class="actions">
+            <a href="{{ Url::link('{{ResourceName|lowercase}}') }}" class="btn">Back to List</a>
+            <a href="{{ Url::link('{{ResourceName|lowercase}}/edit/' . $id) }}" class="btn btn-primary">Edit</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="detail-row">
+            <span class="label">ID:</span>
+            <span class="value">{{ $id }}</span>
+        </div>
+
+        @isset(${{ResourceName|lowercase}})
+            <div class="detail-row">
+                <span class="label">Title:</span>
+                <span class="value">{{ ${{ResourceName|lowercase}}['title'] or 'N/A' }}</span>
+            </div>
+
+            @isset(${{ResourceName|lowercase}}['description'])
+                <div class="detail-row">
+                    <span class="label">Description:</span>
+                    <span class="value">{{ ${{ResourceName|lowercase}}['description'] }}</span>
+                </div>
+            @endisset
+
+            @isset(${{ResourceName|lowercase}}['status'])
+                <div class="detail-row">
+                    <span class="label">Status:</span>
+                    <span class="value">
+                        <span class="badge badge-status badge-{{ ${{ResourceName|lowercase}}['status'] }}">
+                            {{ ${{ResourceName|lowercase}}['status'] }}
+                        </span>
+                    </span>
+                </div>
+            @endisset
+
+            @isset(${{ResourceName|lowercase}}['priority'])
+                <div class="detail-row">
+                    <span class="label">Priority:</span>
+                    <span class="value">
+                        <span class="badge badge-priority badge-{{ ${{ResourceName|lowercase}}['priority'] }}">
+                            {{ ${{ResourceName|lowercase}}['priority'] }}
+                        </span>
+                    </span>
+                </div>
+            @endisset
+
+            @isset(${{ResourceName|lowercase}}['created_at'])
+                <div class="detail-row">
+                    <span class="label">Created:</span>
+                    <span class="value">{{ Date::format(${{ResourceName|lowercase}}['created_at'], 'F j, Y g:i A') }}</span>
+                </div>
+            @endisset
+
+            @isset(${{ResourceName|lowercase}}['updated_at'])
+                <div class="detail-row">
+                    <span class="label">Last Updated:</span>
+                    <span class="value">{{ Date::format(${{ResourceName|lowercase}}['updated_at'], 'F j, Y g:i A') }}</span>
+                </div>
+            @endisset
+        @else
+            <div class="empty-state">
+                <p>Record not found.</p>
+                <a href="{{ Url::link('{{ResourceName|lowercase}}') }}" class="btn btn-primary">Back to List</a>
+            </div>
+        @endisset
+    </div>
+@endsection

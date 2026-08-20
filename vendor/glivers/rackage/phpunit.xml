@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
+         bootstrap="tests/start.php"
+         cacheDirectory=".phpunit.cache"
+         colors="true"
+         testdox="true"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="All">
+            <directory>tests/Router</directory>
+        </testsuite>
+    </testsuites>
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
+</phpunit>

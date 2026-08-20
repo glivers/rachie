@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'type' => 'project',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'reference' => 'cb47137489e656f75669d93e1570c2422cc53406',
+        'name' => 'glivers/rachie',
+        'dev' => true,
+    ),
+    'versions' => array(
+        'glivers/rachie' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'type' => 'project',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => 'cb47137489e656f75669d93e1570c2422cc53406',
+            'dev_requirement' => false,
+        ),
+        'glivers/rackage' => array(
+            'pretty_version' => 'v2.0.9',
+            'version' => '2.0.9.0',
+            'type' => 'package',
+            'install_path' => __DIR__ . '/../glivers/rackage',
+            'aliases' => array(),
+            'reference' => '5e42ab84784d2717b666bafac2424c5add1325da',
+            'dev_requirement' => false,
+        ),
+        'glivers/roline' => array(
+            'pretty_version' => 'v2.0.3',
+            'version' => '2.0.3.0',
+            'type' => 'package',
+            'install_path' => __DIR__ . '/../glivers/roline',
+            'aliases' => array(),
+            'reference' => 'b25d409b7193dfbf960d8ab50ca235edf2f4bacf',
+            'dev_requirement' => false,
+        ),
+    ),
+);

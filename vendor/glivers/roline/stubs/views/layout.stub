@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('title') - My Application</title>
+    <link rel="stylesheet" href="{{ Url::assets('css/{{ResourceName|lowercase}}.css') }}">
+    @yield('styles')
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="{{ Url::link('{{ResourceName|lowercase}}') }}" class="brand">{{ResourceName|capitalize}} Manager</a>
+            <div class="nav-links">
+                <a href="{{ Url::link('{{ResourceName|lowercase}}') }}">List</a>
+                <a href="{{ Url::link('{{ResourceName|lowercase}}/new') }}">Create New</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        @if(Session::flash('success'))
+            <div class="alert alert-success">
+                {{{ Session::flash('success') }}}
+            </div>
+        @endif
+
+        @if(Session::flash('error'))
+            <div class="alert alert-error">
+                {{{ Session::flash('error') }}}
+            </div>
+        @endif
+
+        @yield('content')
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Copyright &copy; {{ date('Y') }} My Application. Built with Rachie Framework.</p>
+        </div>
+    </footer>
+
+    <script src="{{ Url::assets('js/app.js') }}"></script>
+    @yield('scripts')
+</body>
+</html>

@@ -1,0 +1,64 @@
+@extends('{{ResourceName|lowercase}}/layout')
+
+@section('title', 'New {{ResourceName}}')
+
+@section('content')
+    <div class="page-header">
+        <h1>Create New {{ResourceName}}</h1>
+        <a href="{{ Url::link('{{ResourceName|lowercase}}') }}" class="btn">Back to List</a>
+    </div>
+
+    <div class="card">
+        <form method="POST" action="{{ Url::link('{{ResourceName|lowercase}}/new') }}" class="form">
+            {{{ CSRF::field() }}}
+
+            <div class="form-group">
+                <label for="title">Title <span class="required">*</span></label>
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    value="{{ Input::get('title') }}"
+                    required
+                    class="form-control"
+                    placeholder="Enter task title"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="5"
+                    class="form-control"
+                    placeholder="Add more details about this task (optional)"
+                >{{ Input::get('description') }}</textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="status">Status <span class="required">*</span></label>
+                    <select id="status" name="status" class="form-control" required>
+                        <option value="pending" {{ Input::get('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                        <option value="completed" {{ Input::get('status') == 'completed' ? 'selected' : '' }}>Completed</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="priority">Priority <span class="required">*</span></label>
+                    <select id="priority" name="priority" class="form-control" required>
+                        <option value="low" {{ Input::get('priority') == 'low' ? 'selected' : '' }}>Low</option>
+                        <option value="medium" {{ Input::get('priority') == 'medium' ? 'selected' : '' }}>Medium</option>
+                        <option value="high" {{ Input::get('priority') == 'high' ? 'selected' : '' }}>High</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Create</button>
+                <a href="{{ Url::link('{{ResourceName|lowercase}}') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+@endsection
